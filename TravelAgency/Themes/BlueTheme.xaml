@@ -5,11 +5,13 @@
     <Color x:Key="SecondaryColor">#4b6bb8</Color>
     <Color x:Key="MouseOverColor">#29478f</Color>
     <Color x:Key="ForegroundColor">#f0f4ff</Color>
+    
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource PrimaryColor}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource SecondaryColor}" />
     <SolidColorBrush x:Key="MouseOverBrush" Color="{DynamicResource MouseOverColor}" />
-    <SolidColorBrush x:Key="ForegroundBrush" Color="{DynamicResource ForegroundColor}" />
+    <SolidColorBrush x:Key="ForegroundBrush"
+                     Color="{DynamicResource ForegroundColor}" />
 
-  
+
 </ResourceDictionary>

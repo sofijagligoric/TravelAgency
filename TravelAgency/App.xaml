@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:TravelAgency"
-             StartupUri="Windows/LoginWindow.xaml">
+             StartupUri="Windows/LoginView.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -12,6 +12,142 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Color x:Key="CloseButtonColor">#7a1420</Color>
+            <Color x:Key="MouseOverCloseButtonColor">#590d16</Color>
+            <SolidColorBrush x:Key="CloseButtonBrush" Color="{StaticResource CloseButtonColor}" />
+            <SolidColorBrush x:Key="MouseOverCloseButtonBrush" Color="{StaticResource MouseOverCloseButtonColor}" />
+            <Color x:Key="MinimiseButtonColor">#142c7a</Color>
+            <Color x:Key="MouseOverMinimiseButtonColor">#0d1559</Color>
+            <SolidColorBrush x:Key="MinimiseButtonBrush"
+                             Color="{StaticResource MinimiseButtonColor}" />
+            <SolidColorBrush x:Key="MouseOverMinimiseButtonBrush"
+                             Color="{StaticResource MouseOverMinimiseButtonColor}" />
+
+            <Style TargetType="Control">
+                <Setter Property="FontFamily"
+                        Value="Calibri" />
+            </Style>
+
+            <Style x:Key="CloseButtonStyle"
+                   TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20"
+                                    Height="20"
+                                    CornerRadius="10"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderThickness"
+                        Value="0" />
+                <Setter Property="Content"
+                        Value="X" />
+                <Setter Property="Foreground"
+                        Value="White" />
+                <Setter Property="FontSize"
+                        Value="12" />
+                <Setter Property="Cursor"
+                        Value="Hand" />
+                <Setter Property="Background"
+                        Value="{StaticResource CloseButtonBrush}"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver"
+                             Value="True">
+                        <Setter Property="Background"
+                                Value="{StaticResource MouseOverCloseButtonBrush}" />
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+
+
+            <Style x:Key="MinimiseButtonStyle"
+                   TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20"
+                                    Height="20"
+                                    CornerRadius="10"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderThickness"
+                        Value="0" />
+                <Setter Property="Content"
+                        Value="-" />
+                <Setter Property="Foreground"
+                        Value="White" />
+                <Setter Property="FontSize"
+                        Value="15" />
+                <Setter Property="Cursor"
+                        Value="Hand" />
+                <Setter Property="Background"
+                        Value="{StaticResource MinimiseButtonBrush}" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver"
+                             Value="True">
+                        <Setter Property="Background"
+                                Value="{StaticResource MouseOverMinimiseButtonBrush}" />
+                    </Trigger>
+                </Style.Triggers>
+
+
+            </Style>
+
+            <Style x:Key="ProceedButtonStyle"
+                   TargetType="Button">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="120"
+                                    Height="40"
+                                    CornerRadius="20"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="BorderThickness"
+                        Value="0" />
+                <Setter Property="Foreground"
+                        Value="White" />
+                <Setter Property="FontSize"
+                        Value="15" />
+                <Setter Property="Cursor"
+                        Value="Hand" />
+                <Setter Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0,0"
+                                             EndPoint="0,1">
+                            <GradientStop Color="{DynamicResource PrimaryColor}"
+                                          Offset="0" />
+                            <GradientStop Color="{DynamicResource SecondaryColor}"
+                                          Offset="1" />
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver"
+                             Value="True">
+                        <Setter Property="Background"
+                                Value="{DynamicResource MouseOverBrush}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
