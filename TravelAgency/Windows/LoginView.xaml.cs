@@ -38,15 +38,15 @@ namespace TravelAgency.Windows
 
                 if (emp != null)
                 {
-                    /*
+                    
                     if("admin".Equals(emp.RoleType))
                     {
-                        AdminWindow adminWindow = new AdminWindow(emp.Theme);
+                        AdminWindow adminWindow = new AdminWindow();
                         adminWindow.Show();
                     }
                     else if ("salesAgent".Equals(emp.RoleType))
                     {
-                        SalesAgentWindow saWindow = new SalesAgentWindow(emp.Theme);
+                        SalesAgentWindow saWindow = new SalesAgentWindow();
                         saWindow.Show();
                     }
                     else
@@ -54,8 +54,8 @@ namespace TravelAgency.Windows
                         MessageBox.Show("Nepoznat tip naloga.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                     this.Close();
-                    */
-                    MessageBox.Show("Zaposleni pronađen.", "Uspjesno", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    
+                   // MessageBox.Show("Zaposleni pronađen.", "Uspjesno", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                 }
                 else

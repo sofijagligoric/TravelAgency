@@ -3,9 +3,28 @@
 
     <Color x:Key="PrimaryColor">#5376c9</Color>
     <Color x:Key="SecondaryColor">#4b6bb8</Color>
-    <Color x:Key="MouseOverColor">#29478f</Color>
+    <Color x:Key="MouseOverColor">#102878</Color>
     <Color x:Key="ForegroundColor">#f0f4ff</Color>
-    
+    <Color x:Key="primaryBackColor1">#d5d8e3</Color>
+    <Color x:Key="primaryBackColor2">#d3d8eb</Color>
+    <Color x:Key="secondaryBackColor1">#061d69</Color>
+    <Color x:Key="secondaryBackColor2">#041240</Color>
+    <SolidColorBrush x:Key="panelColor" Color="#200F53" />
+    <SolidColorBrush x:Key="panelOverColor" Color="#281269" />
+    <SolidColorBrush x:Key="panelActiveColor" Color="#2B1372" />
+
+    <SolidColorBrush x:Key="menuContentColor"
+                     Color="#d5d8e3" />
+    <SolidColorBrush x:Key="titleColor1" Color="#041240" />
+    <SolidColorBrush x:Key="titleColor2" Color="#d3d8eb" />
+    <SolidColorBrush x:Key="titleColor3"
+                     Color="#BCBEE0" />
+    <SolidColorBrush x:Key="plainTextColor1"
+                     Color="#9497CD" />
+    <SolidColorBrush x:Key="plainTextColor2"
+                     Color="#7C80C2" />
+    <SolidColorBrush x:Key="plainTextColor3"
+                     Color="#7376BD" />
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource PrimaryColor}" />
     <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource SecondaryColor}" />
