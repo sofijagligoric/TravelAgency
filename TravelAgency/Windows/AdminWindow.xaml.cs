@@ -86,10 +86,41 @@ namespace TravelAgency.Windows
 
         private void SetTheme(string theme)
         {
+            /*
             var uri = new Uri(theme, UriKind.Relative);
             var resourceDictionary = new ResourceDictionary { Source = uri };
             Application.Current.Resources.MergedDictionaries.Clear();
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+            */
+            var uri = new Uri(theme, UriKind.Relative);
+            var resourceDictionary = new ResourceDictionary { Source = uri };
+
+            // Ukloni prethodne teme samo ako su iste vrste (npr. završavaju se sa "Theme.xaml")
+            var oldTheme = Application.Current.Resources.MergedDictionaries
+                .FirstOrDefault(d => d.Source != null && d.Source.ToString().EndsWith("Theme.xaml"));
+
+            if (oldTheme != null)
+            {
+                Application.Current.Resources.MergedDictionaries.Remove(oldTheme);
+            }
+
+            // Dodaj novu temu na kraj
+            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+        }
+
+        private void EmployeesRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+                AdminEmployeesPage adminHome = new AdminEmployeesPage();
+                MainFrame.Navigate(adminHome);
+          
+        }
+
+        private void ReservationsRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+           
+                AdminReservationsPage adminRes = new AdminReservationsPage();
+                MainFrame.Navigate(adminRes);
+         
         }
 
     }

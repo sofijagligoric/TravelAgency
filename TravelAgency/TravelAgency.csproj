@@ -149,6 +149,9 @@
     <Compile Include="Windows\AdminEmployeesPage.xaml.cs">
       <DependentUpon>AdminEmployeesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AdminReservationsPage.xaml.cs">
+      <DependentUpon>AdminReservationsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
@@ -201,6 +204,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Windows\AdminEmployeesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AdminReservationsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

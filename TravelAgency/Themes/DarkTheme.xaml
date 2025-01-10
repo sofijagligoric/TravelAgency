@@ -1,5 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
     <Color x:Key="PrimaryColor">#000000</Color>
     <!-- Crna -->
     <Color x:Key="SecondaryColor">#4B4B4B</Color>

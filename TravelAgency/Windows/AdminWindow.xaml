@@ -60,8 +60,11 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
-                                     IsChecked="True"
-                                     Command="{Binding ShowHomeViewCommand}">
+                                     IsChecked="False"
+                                     Checked="EmployeesRadioButton_Checked">
+                            <!--
+                                     Command="{Binding ShowHomeViewCommand}"
+                            --> 
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="User"
                                               Style="{StaticResource menuButtonIcon}" />
@@ -72,7 +75,7 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
-                                     IsChecked="True"
+                                     IsChecked="False"
                                      Command="{Binding ShowHomeViewCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="LocationDot"
@@ -84,7 +87,7 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
-                                     IsChecked="True"
+                                     IsChecked="False"
                                      Command="{Binding ShowHomeViewCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="Hotel"
@@ -96,7 +99,7 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
-                                     IsChecked="True"
+                                     IsChecked="False"
                                      Command="{Binding ShowHomeViewCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="PlaneDeparture"
@@ -108,8 +111,10 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
-                                     IsChecked="True"
-                                     Command="{Binding ShowHomeViewCommand}">
+                                     IsChecked="False"
+                                     Checked="ReservationsRadioButton_Checked">
+                            
+                          <!--  Command="{Binding ShowHomeViewCommand}"> -->
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="BookOpen"
                                               Style="{StaticResource menuButtonIcon}" />
@@ -253,8 +258,8 @@
                                     Grid.Row="2"
                                     Margin="25" />
                     -->
-                    <Frame Name="MainFrame"
-                           Grid.Row="2"
+                    <Frame x:Name="MainFrame"
+                           Grid.Row="1"
                            Margin="25"
                            NavigationUIVisibility="Hidden"
                            Navigated="MainFrame_Navigated" />

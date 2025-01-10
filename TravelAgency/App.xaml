@@ -32,10 +32,11 @@
 
             <Style x:Key="MenuDottsStyle"
                    TargetType="MenuItem">
+                <Setter Property="Background"
+                        Value="Transparent" />
 
+                <!--
                 <Setter Property="Background">
-
-
                     <Setter.Value>
                         <LinearGradientBrush StartPoint="0,0"
                                              EndPoint="1,0.7">
@@ -46,13 +47,13 @@
                         </LinearGradientBrush>
                     </Setter.Value>
                 </Setter>
-                
+                -->
                 <Setter Property="Foreground"
                         Value="{DynamicResource ForegroundBrush}" />
                 <Setter Property="BorderBrush"
-                        Value="Transparent" />
+                        Value="{DynamicResource ForegroundBrush}" />
                 <Setter Property="BorderThickness"
-                        Value="0" />
+                        Value="1" />
                 <Setter Property="Width"
                         Value="60" />
                 <Setter Property="Height"
