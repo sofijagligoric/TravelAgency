@@ -31,7 +31,7 @@ namespace TravelAgency.Windows
             string username = txtUsername.Text;
             string password = txtPassword.Password;
 
-            if (!string.IsNullOrWhiteSpace(username) || !string.IsNullOrWhiteSpace(password))
+            if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
             {
 
                 Employee? emp = EmployeeDataAccess.CheckLoginInfo(username, password);
@@ -41,7 +41,7 @@ namespace TravelAgency.Windows
                     
                     if("admin".Equals(emp.RoleType))
                     {
-                        AdminWindow adminWindow = new AdminWindow();
+                        AdminWindow adminWindow = new AdminWindow(emp);
                         adminWindow.Show();
                     }
                     else if ("salesAgent".Equals(emp.RoleType))
@@ -54,19 +54,18 @@ namespace TravelAgency.Windows
                         MessageBox.Show("Nepoznat tip naloga.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
                     }
                     this.Close();
-                    
-                   // MessageBox.Show("Zaposleni pronađen.", "Uspjesno", MessageBoxButton.OK, MessageBoxImage.Warning);
+
 
                 }
                 else
                 {
-                    MessageBox.Show("Zaposleni nije pronađen.", "Greška", MessageBoxButton.OK, MessageBoxImage.Warning);
+                       incorrectData.SetResourceReference(TextBlock.TextProperty, "IncorrectPassword");
                 }
 
             }
             else
             {
-                MessageBox.Show("Unesite JMB.", "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+                incorrectData.SetResourceReference(TextBlock.TextProperty, "EmptyPasswordOrUsernameField");
             }
         }
 

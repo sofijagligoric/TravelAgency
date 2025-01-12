@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <System:String x:Key="LoginWelcomeTitle">Dobrodošli!</System:String>
+    <System:String x:Key="PasswordHint">Lozinka</System:String>
+    <System:String x:Key="UsernameHint">Korisničko ime</System:String>
+    <System:String x:Key="Login">Prijava</System:String>
+
+
+    <System:String x:Key="Theme">Tema</System:String>
+    <System:String x:Key="BlueTheme">Plava</System:String>
+    <System:String x:Key="DarkTheme">Tamna</System:String>
+    <System:String x:Key="BurgundyTheme">Bordo</System:String>
+    <System:String x:Key="Logout">Odjava</System:String>
+    <System:String x:Key="Employees">Zaposleni</System:String>
+    <System:String x:Key="Destinations">Destinacije</System:String>
+    <System:String x:Key="Hotels">Hoteli</System:String>
+    <System:String x:Key="Packages">Aranžmani</System:String>
+    <System:String x:Key="Reservations">Rezervacije</System:String>
+    <System:String x:Key="IncorrectPassword">Netačna lozinka ili korisničko ime.</System:String>
+    <System:String x:Key="EmptyPasswordOrUsernameField">Oba polja moraju biti popunjena.</System:String>
+
+</ResourceDictionary>

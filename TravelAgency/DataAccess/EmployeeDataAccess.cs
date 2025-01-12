@@ -187,7 +187,7 @@ namespace TravelAgency.DataAccess
             return result;
         }
 
-        public static bool CahngeTheme(Employee emp, string theme)
+        public static bool ChangeTheme(Employee emp, string theme)
         {
             bool successful = false;
             try
@@ -213,7 +213,7 @@ namespace TravelAgency.DataAccess
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
                         if (successful)
                         {
-                            MessageBox.Show("Customer added successfully.");
+                            MessageBox.Show("Theme changed successfully.");
                             emp.Theme = theme;
                         }
                         else

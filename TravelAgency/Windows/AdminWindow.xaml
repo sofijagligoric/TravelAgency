@@ -64,11 +64,11 @@
                                      Checked="EmployeesRadioButton_Checked">
                             <!--
                                      Command="{Binding ShowHomeViewCommand}"
-                            --> 
+                            -->
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="User"
                                               Style="{StaticResource menuButtonIcon}" />
-                                <TextBlock Text="Employees"
+                                <TextBlock Text="{DynamicResource Employees}"
                                            Style="{StaticResource menuButtonText}" />
                             </StackPanel>
                         </RadioButton>
@@ -80,7 +80,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="LocationDot"
                                               Style="{StaticResource menuButtonIcon}" />
-                                <TextBlock Text="Destinations"
+                                <TextBlock Text="{DynamicResource Destinations}"
                                            Style="{StaticResource menuButtonText}" />
                             </StackPanel>
                         </RadioButton>
@@ -92,7 +92,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="Hotel"
                                               Style="{StaticResource menuButtonIcon}" />
-                                <TextBlock Text="Hotels"
+                                <TextBlock Text="{DynamicResource Hotels}"
                                            Style="{StaticResource menuButtonText}" />
                             </StackPanel>
                         </RadioButton>
@@ -104,7 +104,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="PlaneDeparture"
                                               Style="{StaticResource menuButtonIcon}" />
-                                <TextBlock Text="Packages"
+                                <TextBlock Text="{DynamicResource Packages}"
                                            Style="{StaticResource menuButtonText}" />
                             </StackPanel>
                         </RadioButton>
@@ -113,18 +113,19 @@
                                      Tag="{DynamicResource menuContentColor}"
                                      IsChecked="False"
                                      Checked="ReservationsRadioButton_Checked">
-                            
-                          <!--  Command="{Binding ShowHomeViewCommand}"> -->
+
+                            <!--  Command="{Binding ShowHomeViewCommand}"> -->
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="BookOpen"
                                               Style="{StaticResource menuButtonIcon}" />
-                                <TextBlock Text="Reservations"
+                                <TextBlock Text="{DynamicResource Reservations}"
                                            Style="{StaticResource menuButtonText}" />
                             </StackPanel>
                         </RadioButton>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
+                    <StackPanel Grid.Row="1"
+                                VerticalAlignment="Bottom">
                         <Button Click="LogoutButton_Click"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
@@ -136,7 +137,7 @@
                                               Width="18"
                                               Margin="5,0,0,0"
                                               Foreground="{DynamicResource plainTextColor1}" />
-                                <TextBlock Text="Log Out"
+                                <TextBlock Text="{DynamicResource Logout}"
                                            FontSize="18"
                                            Margin="5,0,5,0"
                                            FontWeight="Medium"
@@ -145,10 +146,10 @@
                         </Button>
                     </StackPanel>
                 </Grid>
-                
+
             </Border>
 
-            
+
             <Border CornerRadius="0,10,10,0"
                     Grid.Column="1">
                 <Border.Background>
@@ -211,10 +212,22 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="40" />
                                 </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="10" />
+                                </Grid.ColumnDefinitions>
 
-                                <StackPanel
+                                <StackPanel Grid.Column="0"
                                             Orientation="Horizontal"
-                                            VerticalAlignment="Center">
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Width="100">
+                                    <TextBlock Text="Naslov"
+                                             FontSize="20"
+                                             Foreground="White" />
+                                    <!--  
                                     <fa:IconImage Icon="{Binding Icon}"
                                                   Height="20"
                                                   Width="20"
@@ -227,29 +240,48 @@
                                                FontFamily="Calibri"
                                                FontWeight="Medium"
                                                VerticalAlignment="Center" />
+                                    -->
                                 </StackPanel>
 
                                 <Menu Grid.Column="1"
-                                    Margin="0,0,60,0"
-                                      HorizontalAlignment="Right"
+                                      Margin="0,0,0,0"
+                                      HorizontalAlignment="Center"
                                       VerticalAlignment="Center"
-                                      Width="60">
-                                    <MenuItem Header="Theme"
+                            
+                                      Width="50"
+                                      Height="35">
+                                    <MenuItem Header="{DynamicResource Theme}"
                                               Style="{DynamicResource MenuDottsStyle}"
                                               StaysOpenOnClick="True">
-                                        <MenuItem Header="Blue"
+                                        <MenuItem Header="{DynamicResource BlueTheme}"
                                                   Click="Blue_Click"
                                                   Style="{DynamicResource MenuOptionStyle}" />
-                                        <MenuItem Header="Dark"
+                                        <MenuItem Header="{DynamicResource DarkTheme}"
                                                   Click="Dark_Click"
                                                   Style="{DynamicResource MenuOptionStyle}" />
-                                        <MenuItem Header="Burgundy"
+                                        <MenuItem Header="{DynamicResource BurgundyTheme}"
                                                   Click="Burgundy_Click"
                                                   Style="{DynamicResource MenuOptionStyle}" />
                                     </MenuItem>
                                 </Menu>
+                                <StackPanel  Grid.Column="2"
+                                             Orientation="Horizontal"
+                                             VerticalAlignment="Center">
+
+                                    <Button Content="EN"
+                                            x:Name="EngButton"
+                                            Click="Set_English_Lang"
+                                            Style="{DynamicResource LanguageButtonStyle}" />
+
+                                    <Button Content="SR"
+                                            x:Name="SerButton"
+                                            Click="Set_Serbian_Lang"
+                                            Style="{DynamicResource LanguageButtonStyle}" />
+
+                                </StackPanel>
+
                             </Grid>
-                           
+
                         </Grid>
 
                     </Border>

@@ -9,6 +9,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
                 <ResourceDictionary Source="/Themes/BlueTheme.xaml" />
+                <ResourceDictionary Source="/Languages/EnglishLanguage.xaml" />
                 <ResourceDictionary Source="/Themes/Buttons.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
@@ -32,35 +33,73 @@
 
             <Style x:Key="MenuDottsStyle"
                    TargetType="MenuItem">
-                <Setter Property="Background"
-                        Value="Transparent" />
-
-                <!--
-                <Setter Property="Background">
+                <Setter Property="Template">
                     <Setter.Value>
-                        <LinearGradientBrush StartPoint="0,0"
-                                             EndPoint="1,0.7">
-                            <GradientStop Color="{DynamicResource secondaryBackColor1}"
-                                          Offset="0" />
-                            <GradientStop Color="{DynamicResource secondaryBackColor2}"
-                                          Offset="1" />
-                        </LinearGradientBrush>
+                        <ControlTemplate TargetType="MenuItem">
+                            <Grid>
+                                <Border Background="{TemplateBinding Background}"
+                                        Height="35"
+                                        Width="50"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                    <ContentPresenter ContentSource="Header"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center" />
+                                </Border>
+                                <Popup Name="SubmenuPopup"
+                                       Placement="Bottom"
+                                       StaysOpen="False"
+                                       IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <Border Background="White"
+                                            BorderBrush="Gray"
+                                            BorderThickness="1">
+                                        <ScrollViewer>
+                                            <ItemsPresenter />
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="{DynamicResource MouseOverBrush}" />
+                                    <Setter Property="Foreground"
+                                            Value="{DynamicResource ForegroundBrush}" />
+                                </Trigger>
+                                <Trigger Property="IsSubmenuOpen"
+                                         Value="True">
+                                    <Setter TargetName="SubmenuPopup"
+                                            Property="IsOpen"
+                                            Value="True" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-                -->
+
+                <Setter Property="FontWeight"
+                        Value="Medium" />
+                <Setter Property="FontSize"
+                        Value="13" />
                 <Setter Property="Foreground"
                         Value="{DynamicResource ForegroundBrush}" />
+                <Setter Property="Background"
+                        Value="Transparent" />
                 <Setter Property="BorderBrush"
                         Value="{DynamicResource ForegroundBrush}" />
                 <Setter Property="BorderThickness"
-                        Value="1" />
-                <Setter Property="Width"
-                        Value="60" />
-                <Setter Property="Height"
-                        Value="40" />
-                <Setter Property="Padding"
-                        Value="5" />
+                        Value="0" />
 
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver"
+                             Value="True">
+                        <Setter Property="Background"
+                                Value="{DynamicResource MouseOverBrush}" />
+                        <Setter Property="Foreground"
+                                Value="{DynamicResource ForegroundBrush}" />
+                    </Trigger>
+                </Style.Triggers>
             </Style>
 
             <Style x:Key="MenuOptionStyle"
