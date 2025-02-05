@@ -59,7 +59,7 @@ namespace TravelAgency.DataAccess
                                         h.HotelId, 
                                         h.Name_of AS HotelName, 
                                         h.RoomCount, 
-                                        h.Addressa, 
+                                        h.Address, 
                                         h.Email, 
                                         h.ContainsRestaurant, 
                                         h.PostCode AS HotelPostCode, 
@@ -73,7 +73,7 @@ namespace TravelAgency.DataAccess
                                     JOIN destination d ON h.PostCode = d.PostCode AND h.DestinationName = d.DestinationName;";
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read())
+                            while (reader.Read())
                             {
 
                                 var country = new Country(reader["CountryName"]?.ToString() ?? string.Empty);
@@ -91,7 +91,7 @@ namespace TravelAgency.DataAccess
                                     reader["HotelId"] != DBNull.Value ? Convert.ToInt32(reader["HotelId"]) : 0,
                                     reader["RoomCount"] != DBNull.Value ? Convert.ToInt32(reader["RoomCount"]) : 0,
                                     reader["HotelName"]?.ToString() ?? string.Empty,
-                                    reader["Addressa"]?.ToString() ?? string.Empty,
+                                    reader["Address"]?.ToString() ?? string.Empty,
                                     reader["Email"]?.ToString() ?? string.Empty,
                                     reader["ContainsRestaurant"] != DBNull.Value ? Convert.ToByte(reader["ContainsRestaurant"]) : (byte)0,
                                     destination
@@ -124,7 +124,7 @@ namespace TravelAgency.DataAccess
                                         h.HotelId, 
                                         h.Name_of AS HotelName, 
                                         h.RoomCount, 
-                                        h.Addressa, 
+                                        h.Address, 
                                         h.Email, 
                                         h.ContainsRestaurant, 
                                         h.PostCode AS HotelPostCode, 
@@ -140,7 +140,7 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters.AddWithValue("@DestName", destinationName + "%");
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read())
+                            while(reader.Read())
                             {
 
                                 var country = new Country(reader["CountryName"]?.ToString() ?? string.Empty);
@@ -158,7 +158,7 @@ namespace TravelAgency.DataAccess
                                     reader["HotelId"] != DBNull.Value ? Convert.ToInt32(reader["HotelId"]) : 0,
                                     reader["RoomCount"] != DBNull.Value ? Convert.ToInt32(reader["RoomCount"]) : 0,
                                     reader["HotelName"]?.ToString() ?? string.Empty,
-                                    reader["Addressa"]?.ToString() ?? string.Empty,
+                                    reader["Address"]?.ToString() ?? string.Empty,
                                     reader["Email"]?.ToString() ?? string.Empty,
                                     reader["ContainsRestaurant"] != DBNull.Value ? Convert.ToByte(reader["ContainsRestaurant"]) : (byte)0,
                                     destination
@@ -228,6 +228,7 @@ namespace TravelAgency.DataAccess
             catch (MySqlException e)
             {
                 MessageBox.Show("Error occurred: " + e.Message);
+                return false;
             }
             return retVal;
         }

@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
 
-namespace TravelAgency.Windows
+namespace TravelAgency.Views
 {
     /// <summary>
     /// Interaction logic for LoginView.xaml

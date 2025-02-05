@@ -24,6 +24,16 @@ namespace TravelAgency.Models
             Country = new Country();
         }
 
+        public Destination(Destination other)
+        {
+            PostCode = other.PostCode;
+            DestinationName = other.DestinationName;
+            About = other.About;
+            Distance = other.Distance;
+            LocalLanguage = other.LocalLanguage;
+            Country = new Country(other.Country);
+        }
+
         public Destination(int postCode, string destinationName, string about, int distance, string localLanguage, Country country)
         {
             PostCode = postCode;

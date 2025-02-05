@@ -20,5 +20,21 @@
     <System:String x:Key="Reservations">Rezervacije</System:String>
     <System:String x:Key="IncorrectPassword">Netačna lozinka ili korisničko ime.</System:String>
     <System:String x:Key="EmptyPasswordOrUsernameField">Oba polja moraju biti popunjena.</System:String>
+    <System:String x:Key="Add">Dodaj</System:String>
+    <System:String x:Key="Update">Uredi</System:String>
+    <System:String x:Key="HotelId">HotelId</System:String>
+    <System:String x:Key="Delete">Obrisi</System:String>
+    <System:String x:Key="RoomCount">Broj soba</System:String>
+    <System:String x:Key="Address">Adresa</System:String>
+    <System:String x:Key="Email">Email</System:String>
+    <System:String x:Key="HasRestaurant">Ima restoran</System:String>
+    <System:String x:Key="Destination">Destinacija</System:String>
+    <System:String x:Key="Postcode">Postanski broj</System:String>
+    <System:String x:Key="Name">Naziv</System:String>
+    <System:String x:Key="All">Svi</System:String>
+    <System:String x:Key="Search">Pretraga</System:String>
+    <System:String x:Key="DestinationNameHint">Naziv destinacije</System:String>
+
+    <System:String x:Key="RowNotSelected">Red nije oznacen, nije moguce izvrsiti radnju.</System:String>
 
 </ResourceDictionary>

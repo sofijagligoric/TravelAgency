@@ -16,8 +16,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
+using TravelAgency.ViewModels;
 
-namespace TravelAgency.Windows
+namespace TravelAgency.Views
 {
     /// <summary>
     /// Interaction logic for AdminWindow.xaml
@@ -43,8 +44,8 @@ namespace TravelAgency.Windows
                 SetTheme("Themes/BurgundyTheme.xaml");
             else
                 SetTheme("Themes/BlueTheme.xaml");
-            AdminEmployeesPage adminHome = new AdminEmployeesPage();
-            MainFrame.Navigate(adminHome);
+            var navigationService = new NavigationService(MainContent);
+            DataContext = new AdminViewModel(navigationService);
         }
 
         private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
@@ -55,6 +56,14 @@ namespace TravelAgency.Windows
         private void btnMinimise_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void btnMaximise_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+                this.WindowState = WindowState.Maximized;
+            else
+                this.WindowState = WindowState.Normal;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
@@ -141,7 +150,7 @@ namespace TravelAgency.Windows
         private void EmployeesRadioButton_Checked(object sender, RoutedEventArgs e)
         {
                 AdminEmployeesPage adminHome = new AdminEmployeesPage();
-                MainFrame.Navigate(adminHome);
+            //    MainFrame.Navigate(adminHome);
           
         }
 
@@ -149,7 +158,7 @@ namespace TravelAgency.Windows
         {
            
                 AdminReservationsPage adminRes = new AdminReservationsPage();
-                MainFrame.Navigate(adminRes);
+             //   MainFrame.Navigate(adminRes);
          
         }
 

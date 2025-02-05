@@ -1,0 +1,116 @@
+﻿<UserControl x:Class="TravelAgency.Views.AdminHotelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:TravelAgency.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="800">
+   
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    Margin="10"
+                    Height="50">
+            <TextBox x:Name="destName"
+                     Width="250"
+                     Height="50"
+                     FontSize="15"
+                     materialDesign:HintAssist.Hint="{DynamicResource DestinationNameHint}"
+                     Style="{StaticResource MaterialDesignFilledTextBox}"
+                     TextWrapping="Wrap"
+                     Margin="0,0,5,0"/>
+            <Button Content="{DynamicResource Search}"
+                    Command="{Binding SearchHotelsCommand}"
+                    CommandParameter="{Binding Text, ElementName=destName}"
+                    Margin="5"
+                    Style="{DynamicResource ProceedButtonStyle}" />
+            <Button Content="{DynamicResource All}"
+                    Command="{Binding AllHotelsCommand}"
+                    Margin="5"
+                    Style="{DynamicResource ProceedButtonStyle}" />
+        </StackPanel>
+
+        <DataGrid Grid.Row="1"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="False"
+                  SelectedItem="{Binding SelectedHotel, Mode=TwoWay}"
+                  ItemsSource="{Binding Hotels}"
+                  CanUserAddRows="False"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  HorizontalScrollBarVisibility="Auto"
+                  VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{DynamicResource Name}"
+                                    Binding="{Binding Name}"
+                                    />
+                <DataGridTextColumn Header="{DynamicResource HotelId}"
+                                    Binding="{Binding HotelId}"
+                                     />
+                <DataGridTextColumn Header="{DynamicResource RoomCount}"
+                                    Binding="{Binding RoomCount}"
+                                    />
+                <DataGridTextColumn Header="{DynamicResource Address}"
+                                    Binding="{Binding Address}"
+                                    />
+                <DataGridTextColumn Header="{DynamicResource Email}"
+                                    Binding="{Binding Email}"
+                                    />
+                <DataGridTextColumn Header="{DynamicResource HasRestaurant}"
+                                    Binding="{Binding HasRestaurantString}"
+                                    />
+
+                <DataGridTextColumn Header="{DynamicResource Destination}"
+                                    Binding="{Binding Destination.DestinationName}"
+                                    />
+                <DataGridTextColumn Header="{DynamicResource Postcode}"
+                                    Binding="{Binding Destination.PostCode}"
+                                    />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock 
+                   TextWrapping="Wrap"
+                   x:Name="messageText"
+                   Width="400"
+                   FontSize="12"
+                   FontStyle="Italic"
+                   Text="{Binding MessageLabel}"
+                   Foreground="{Binding MessageLabelTextColor}" 
+                   Margin="5,5,0,0"
+                   Grid.Row="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left" />
+
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="10">
+            <Button Content="{DynamicResource Add}"
+                    Command="{Binding AddHotelCommand}"
+                    Margin="5"
+                    Style="{DynamicResource ProceedButtonStyle}"/>
+            <Button Content="{DynamicResource Update}"
+                    Command="{Binding UpdateHotelCommand}"
+                    Margin="5"
+                    Style="{DynamicResource ProceedButtonStyle}" />
+            <Button Content="{DynamicResource Delete}"
+                    Command="{Binding DeleteHotelCommand}"
+                    Margin="5"
+                    Style="{DynamicResource ProceedButtonStyle}" 
+                    IsEnabled="True"/>
+            <!--  IsEnabled="{Binding SelectedHotel, Converter={StaticResource NullToBooleanConverter}}" -->
+        </StackPanel>
+    </Grid>
+</UserControl>

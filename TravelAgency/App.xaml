@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clr-namespace:TravelAgency"
-             StartupUri="Windows/LoginView.xaml">
+             StartupUri="Views/LoginView.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -39,7 +39,7 @@
                             <Grid>
                                 <Border Background="{TemplateBinding Background}"
                                         Height="35"
-                                        Width="50"
+                                        Width="70"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
                                     <ContentPresenter ContentSource="Header"
@@ -63,7 +63,7 @@
                                 <Trigger Property="IsMouseOver"
                                          Value="True">
                                     <Setter Property="Background"
-                                            Value="{DynamicResource MouseOverBrush}" />
+                                            Value="{DynamicResource panelActiveColor}" />
                                     <Setter Property="Foreground"
                                             Value="{DynamicResource ForegroundBrush}" />
                                 </Trigger>
@@ -95,7 +95,7 @@
                     <Trigger Property="IsMouseOver"
                              Value="True">
                         <Setter Property="Background"
-                                Value="{DynamicResource MouseOverBrush}" />
+                                Value="{DynamicResource panelActiveColor}" />
                         <Setter Property="Foreground"
                                 Value="{DynamicResource ForegroundBrush}" />
                     </Trigger>

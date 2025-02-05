@@ -1,15 +1,15 @@
-﻿<Page x:Class="TravelAgency.Windows.AdminEmployeesPage"
+﻿<Page x:Class="TravelAgency.Views.AdminReservationsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:TravelAgency.Windows"
+      xmlns:local="clr-namespace:TravelAgency.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="AdminEmployeesPage">
+      Title="AdminReservationsPage">
 
     <Grid>
-        <TextBlock Text="zaposleni"
+        <TextBlock Text="rezervacije"
                    Width="100"
                    Height="100"
                    Foreground="Black" />

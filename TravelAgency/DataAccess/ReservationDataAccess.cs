@@ -177,7 +177,7 @@ namespace TravelAgency.DataAccess
                                     reader["HotelId"] != DBNull.Value ? Convert.ToInt32(reader["HotelId"]) : 0,
                                     reader["RoomCount"] != DBNull.Value ? Convert.ToInt32(reader["RoomCount"]) : 0,
                                     reader["HotelName"]?.ToString() ?? string.Empty,
-                                    reader["Addressa"]?.ToString() ?? string.Empty,
+                                    reader["Address"]?.ToString() ?? string.Empty,
                                     reader["Email"]?.ToString() ?? string.Empty,
                                     reader["ContainsRestaurant"] != DBNull.Value ? Convert.ToByte(reader["ContainsRestaurant"]) : (byte)0,
                                     destination
@@ -264,7 +264,7 @@ namespace TravelAgency.DataAccess
                                     reader["HotelId"] != DBNull.Value ? Convert.ToInt32(reader["HotelId"]) : 0,
                                     reader["RoomCount"] != DBNull.Value ? Convert.ToInt32(reader["RoomCount"]) : 0,
                                     reader["HotelName"]?.ToString() ?? string.Empty,
-                                    reader["Addressa"]?.ToString() ?? string.Empty,
+                                    reader["Address"]?.ToString() ?? string.Empty,
                                     reader["Email"]?.ToString() ?? string.Empty,
                                     reader["ContainsRestaurant"] != DBNull.Value ? Convert.ToByte(reader["ContainsRestaurant"]) : (byte)0,
                                     destination

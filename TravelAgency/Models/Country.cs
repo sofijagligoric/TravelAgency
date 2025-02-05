@@ -20,6 +20,11 @@ namespace TravelAgency.Models
             CountryName = string.Empty;
         }
 
+        public Country(Country other)
+        {
+            CountryName = other.CountryName;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is Country country &&

@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TravelAgency.Windows
+namespace TravelAgency.Views
 {
     /// <summary>
-    /// Interaction logic for AdminReservationsPage.xaml
+    /// Interaction logic for SalesAgentWindow.xaml
     /// </summary>
-    public partial class AdminReservationsPage : Page
+    public partial class SalesAgentWindow : Window
     {
-        public AdminReservationsPage()
+        public SalesAgentWindow()
         {
             InitializeComponent();
         }

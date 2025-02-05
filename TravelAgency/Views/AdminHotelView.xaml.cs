@@ -12,17 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelAgency.ViewModels;
 
-namespace TravelAgency.Windows
+namespace TravelAgency.Views
 {
     /// <summary>
-    /// Interaction logic for AdminEmployeesPage.xaml
+    /// Interaction logic for AdminHotelView.xaml
     /// </summary>
-    public partial class AdminEmployeesPage : Page
+    public partial class AdminHotelView : UserControl
     {
-        public AdminEmployeesPage()
+        public AdminHotelView()
         {
             InitializeComponent();
+            DataContext = new HotelViewModel();
         }
     }
 }
