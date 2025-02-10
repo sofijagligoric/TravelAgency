@@ -22,7 +22,7 @@
     <SolidColorBrush x:Key="plainTextColor1"
                      Color="#9497CD" />
     <SolidColorBrush x:Key="plainTextColor2"
-                     Color="#7C80C2" />
+                     Color="#7C80C9" />
     <SolidColorBrush x:Key="plainTextColor3"
                      Color="#7376BD" />
 

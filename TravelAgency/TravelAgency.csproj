@@ -167,6 +167,9 @@
     <Compile Include="ViewModels\NavigationService.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\ViewModelToBooleanConverter.cs" />
+    <Compile Include="Views\AddHotelWindow.xaml.cs">
+      <DependentUpon>AddHotelWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AdminEmployeesView.xaml.cs">
       <DependentUpon>AdminEmployeesView.xaml</DependentUpon>
     </Compile>
@@ -182,8 +185,17 @@
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MessageDialog.xaml.cs">
+      <DependentUpon>MessageDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageWithoutOptionDialog.xaml.cs">
+      <DependentUpon>MessageWithoutOptionDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SalesAgentWindow.xaml.cs">
       <DependentUpon>SalesAgentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateHotelWindow.xaml.cs">
+      <DependentUpon>UpdateHotelWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Languages\EnglishLanguage.xaml">
       <SubType>Designer</SubType>
@@ -234,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AddHotelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AdminEmployeesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -254,7 +270,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MessageDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessageWithoutOptionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SalesAgentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateHotelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

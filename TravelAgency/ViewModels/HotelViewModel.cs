@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
+using TravelAgency.Views;
 
 namespace TravelAgency.ViewModels
 {
@@ -37,6 +38,7 @@ namespace TravelAgency.ViewModels
             }
         }
 
+        /*
         private string _messageLabel;
         public string MessageLabel
         {
@@ -58,6 +60,7 @@ namespace TravelAgency.ViewModels
                 OnPropertyChanged(nameof(MessageLabelTextColor));
             }
         }
+        */
 
         public ICommand AddHotelCommand { get; }
         public ICommand DeleteHotelCommand { get; }
@@ -85,11 +88,22 @@ namespace TravelAgency.ViewModels
 
         private void AddHotel()
         {
-            if (HotelDataAccess.AddHotel(SelectedHotel))
+            AddHotelWindow dialog = new AddHotelWindow();
+
+            bool? dialogResult =dialog.ShowDialog();
+
+            if ((bool)dialogResult)
             {
-                Hotels.Add(SelectedHotel);
-                SelectedHotel = new Hotel();
-                OnPropertyChanged(nameof(SelectedHotel));
+                Hotel pom = dialog.Hotel;
+                if (HotelDataAccess.AddHotel(pom))
+                {
+                    Hotels.Add(pom);
+                    OnPropertyChanged(nameof(Hotels));
+                    string message = (string)Application.Current.Resources["SuccessfullyAdded"];
+                    MessageWithoutOptionDialog dialog2 = new MessageWithoutOptionDialog(message + " " + pom);
+                    dialog2.ShowDialog();
+                }
+                
             }
         }
 
@@ -128,11 +142,17 @@ namespace TravelAgency.ViewModels
             if (SelectedHotel == null)
             {
                 //  MessageBox.Show("Please select a row you want to delete.");
+                /*
                 MessageLabel = "Please select a row you want to delete.";
                 MessageLabelTextColor = Brushes.Red;
+                */
+                string message = (string)Application.Current.Resources["RowNotSelected"];
+                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);   
+                dialog.ShowDialog();
+               
                 return;
             }
-
+            /*
             var result = MessageBox.Show($"Are you sure you want to delete {SelectedHotel.Name}?",
                                          "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
@@ -142,34 +162,71 @@ namespace TravelAgency.ViewModels
                 {
                     Hotels.Remove(SelectedHotel); 
                     OnPropertyChanged(nameof(Hotels));
+                    /*
                     MessageLabel = "Action completed successfully.";
                     MessageLabelTextColor = Brushes.Green;
-                }
+                    */
+     /*   }
                 else
                 {
                     MessageBox.Show("Failed to delete hotel.");
+                }
+}
+*/
+
+            string message2 = (string)Application.Current.Resources["ConfirmDelete"] + " " + SelectedHotel.Name + "?";
+            MessageDialog dialog2 = new MessageDialog(message2);
+            bool? dialogResult2 = dialog2.ShowDialog();
+
+            
+            if ((bool)dialogResult2)
+            {
+                if (HotelDataAccess.DeleteHotel(SelectedHotel))
+                {
+                    Hotels.Remove(SelectedHotel); 
+                    OnPropertyChanged(nameof(Hotels));
+                    string message = (string)Application.Current.Resources["SuccessfulDelete"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
+                    /*
+                    MessageLabel = "Action completed successfully.";
+                    MessageLabelTextColor = Brushes.Green;
+                    */
+                }
+                else
+                {
+                    // MessageBox.Show("Failed to delete hotel.");
+                    string message = (string)Application.Current.Resources["FailedDelete"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
                 }
             }
         }
 
         private void UpdateHotel()
         {
+            
             if (SelectedHotel != null)
             {
-                MessageBoxResult result = MessageBox.Show(
-                    "Are you sure you want to update this hotel?", "Confirmation",
-                    MessageBoxButton.YesNo, MessageBoxImage.Question);
+                /*
+                string message1 = (string)Application.Current.Resources["ConfirmUpdate"] + " " + SelectedHotel.Name + "?";
+                MessageDialog dialog1 = new MessageDialog(message1);
+                bool? dialogResult1 = dialog1.ShowDialog();
 
-                if (result == MessageBoxResult.Yes)
+                if ((bool)dialogResult1)
                 {
                     bool success = HotelDataAccess.UpdateHotel(SelectedHotel);
                     if (success)
                     {
-                        MessageBox.Show("Hotel updated successfully!");
+                        string message2 = (string)Application.Current.Resources["SuccessfulUpdate"];
+                        MessageWithoutOptionDialog dialog2 = new MessageWithoutOptionDialog(message2);
+                        dialog2.ShowDialog();
                     }
                     else
                     {
-                        MessageBox.Show("Failed to update hotel.");
+                        string message3 = (string)Application.Current.Resources["FailedUpdate"];
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                        dialog3.ShowDialog();
                     }
                 }
                 else
@@ -181,9 +238,31 @@ namespace TravelAgency.ViewModels
                     SelectedHotel.HasRestaurant = _backupHotel.HasRestaurant;
                     SelectedHotel.Destination = _backupHotel.Destination;
                 }
+                */
+                UpdateHotelWindow dialog = new UpdateHotelWindow(SelectedHotel);
+
+                bool? dialogResult = dialog.ShowDialog();
+
+                if ((bool)dialogResult)
+                {
+                    Hotel pom = dialog.Hotel;
+                    if (HotelDataAccess.UpdateHotel(pom))
+                    {
+                        SelectedHotel = pom;
+                        OnPropertyChanged(nameof(Hotels));
+                        string message2 = (string)Application.Current.Resources["SuccessfulUpdate"];
+                        MessageWithoutOptionDialog dialog2 = new MessageWithoutOptionDialog(message2);
+                        dialog2.ShowDialog();
+                    }
+
+                }
             }
             else
-                MessageBox.Show("Please select a row you want to update.");
+                {
+                string message = (string)Application.Current.Resources["RowNotSelected"];
+                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                dialog.ShowDialog();
+            }
         }
 
         private bool CanModify()

@@ -88,7 +88,7 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters.AddWithValue("@DName", name);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read())
+                            while (reader.Read())
                             {
                                 var country = new Country(reader["CountryName"]?.ToString() ?? string.Empty);
                                 destinations.Add(new Destination(
@@ -109,6 +109,45 @@ namespace TravelAgency.DataAccess
                 Console.WriteLine($"An error occurred while fetching destination by name: {ex.Message}");
             }
             return destinations;
+        }
+
+        public static Destination GetDestinationByNameAndPostcode(string name, string postcode)
+        {
+            Destination destination = null;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"SELECT PostCode, DestinationName, About, Distance, LocalLanguage, CountryName 
+                        FROM destination WHERE DestinationName = @DName AND PostCode = @Postcode";
+                        cmd.Parameters.AddWithValue("@DName", name);
+                        cmd.Parameters.AddWithValue("@Postcode", postcode);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                var country = new Country(reader["CountryName"]?.ToString() ?? string.Empty);
+                                destination = new Destination(
+                                    reader["PostCode"] != DBNull.Value ? Convert.ToInt32(reader["PostCode"]) : 0,
+                                    reader["DestinationName"]?.ToString() ?? string.Empty,
+                                    reader["About"]?.ToString() ?? string.Empty,
+                                    reader["Distance"] != DBNull.Value ? Convert.ToInt32(reader["Distance"]) : 0,
+                                    reader["LocalLanguage"]?.ToString() ?? string.Empty,
+                                    country
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while fetching destination by name: {ex.Message}");
+            }
+            return destination;
         }
 
         public static bool AddDestination(Destination dest)
