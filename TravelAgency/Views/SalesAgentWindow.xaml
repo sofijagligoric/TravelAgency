@@ -12,14 +12,14 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown">
     <Border CornerRadius="10"
             BorderThickness="1">
         <Grid>
             <Grid.ColumnDefinitions>
-                <!--Navigation menu-->
+
                 <ColumnDefinition Width="250" />
-                <!--Content section-->
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
@@ -34,28 +34,131 @@
                                       Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
-                <StackPanel>
 
-                    <StackPanel Orientation="Horizontal"
-                                Height="35"
-                                Margin="15,25,0,40">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                        <Image Source="/Images/Logo-transparent.png"
-                               Height="30" />
-                        <TextBlock Text="Planned Escape"
-                                   Foreground="{DynamicResource titleColor2}"
-                                   FontSize="20"
-                                   FontFamily="Calibri"
-                                   FontWeight="Medium"
-                                   VerticalAlignment="Center"
-                                   Margin="10,0,0,0" />
+                    <StackPanel Grid.Row="0">
+
+                        <StackPanel Orientation="Horizontal"
+                                    Height="35"
+                                    Margin="15,25,0,40">
+
+                            <Image Source="/Images/Logo-transparent.png"
+                                   Height="30" />
+                            <TextBlock Text="Planned Escape"
+                                       Foreground="{DynamicResource titleColor2}"
+                                       FontSize="20"
+                                       FontFamily="Calibri"
+                                       FontWeight="Medium"
+                                       VerticalAlignment="Center"
+                                       Margin="10,0,0,0" />
+                        </StackPanel>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="{DynamicResource menuContentColor}"
+                                     IsChecked="False"
+                                     Checked="EmployeesRadioButton_Checked">
+                            <!--
+                                     Command="{Binding ShowHomeViewCommand}"
+                            -->
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="User"
+                                              Style="{StaticResource menuButtonIcon}" />
+                                <TextBlock Text="{DynamicResource Customers}"
+                                           Style="{StaticResource menuButtonText}" />
+                            </StackPanel>
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="{DynamicResource menuContentColor}"
+                                     IsChecked="False">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="PlaneDeparture"
+                                              Style="{StaticResource menuButtonIcon}" />
+                                <TextBlock Text="{DynamicResource Packages}"
+                                           Style="{StaticResource menuButtonText}" />
+                            </StackPanel>
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="{DynamicResource menuContentColor}"
+                                     Command="{Binding ShowHotelsCommand}"
+                                     IsChecked="False">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="Hotel"
+                                              Style="{StaticResource menuButtonIcon}" />
+                                <TextBlock Text="{DynamicResource Hotels}"
+                                           Style="{StaticResource menuButtonText}" />
+                            </StackPanel>
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="{DynamicResource menuContentColor}"
+                                     Command="{Binding ShowReservationsCommand}"
+                                     IsChecked="False">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="BookOpen"
+                                              Style="{StaticResource menuButtonIcon}" />
+                                <TextBlock Text="{DynamicResource Reservations}"
+                                           Style="{StaticResource menuButtonText}" />
+                            </StackPanel>
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="{DynamicResource menuContentColor}"
+                                     IsChecked="False">
+
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="CashRegister"
+                                              Style="{StaticResource menuButtonIcon}" />
+                                <TextBlock Text="{DynamicResource AllPayments}"
+                                           Style="{StaticResource menuButtonText}" />
+                            </StackPanel>
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="{DynamicResource menuContentColor}"
+                                     IsChecked="False">
+
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="MoneyBills"
+                                              Style="{StaticResource menuButtonIcon}" />
+                                <TextBlock Text="{DynamicResource PaymentsByReservation}"
+                                           Style="{StaticResource menuButtonText}" />
+                            </StackPanel>
+                        </RadioButton>
                     </StackPanel>
 
-                </StackPanel>
+                    <StackPanel Grid.Row="1"
+                                VerticalAlignment="Bottom">
+                        <Button Click="LogoutButton_Click"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="10,0,10,0"
+                                Style="{DynamicResource LogoutButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="SignOut"
+                                              Height="18"
+                                              Width="18"
+                                              Margin="5,0,0,0"
+                                              Foreground="{DynamicResource plainTextColor1}" />
+                                <TextBlock Text="{DynamicResource Logout}"
+                                           FontSize="18"
+                                           Margin="5,0,5,0"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource plainTextColor1}" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
 
             </Border>
 
-            <!--Main Section-->
+
             <Border CornerRadius="0,10,10,0"
                     Grid.Column="1">
                 <Border.Background>
@@ -67,6 +170,154 @@
                                       Offset="1" />
                     </LinearGradientBrush>
                 </Border.Background>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Border BorderThickness="0"
+                            Grid.Column="0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0"
+                                                 EndPoint="1,0.7">
+                                <GradientStop Color="{DynamicResource secondaryBackColor1}"
+                                              Offset="0" />
+                                <GradientStop Color="{DynamicResource secondaryBackColor2}"
+                                              Offset="1" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30" />
+                                <RowDefinition Height="40" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="35" />
+                                    <ColumnDefinition Width="35" />
+                                    <ColumnDefinition Width="35" />
+                                    <ColumnDefinition Width="5" />
+                                </Grid.ColumnDefinitions>
+
+
+                                <Button x:Name="btnMinimise"
+                                        Style="{DynamicResource controlButton}"
+                                        Grid.Column="1"
+                                        Tag="{DynamicResource SecondaryColor}"
+                                        Click="btnMinimise_Click">
+                                    <fa:IconImage Icon="WindowMinimize"
+                                                  Style="{DynamicResource controlButtonIcon}" />
+                                </Button>
+
+                                <Button x:Name="btnMaximise"
+                                        Style="{DynamicResource controlButton}"
+                                        Grid.Column="2"
+                                        Tag="{DynamicResource SecondaryColor}"
+                                        Click="btnMaximise_Click">
+                                    <fa:IconImage Icon="WindowMaximize"
+                                                  Style="{DynamicResource controlButtonIcon}" />
+                                </Button>
+
+                                <Button x:Name="btnClose"
+                                        Style="{DynamicResource controlButton}"
+                                        Grid.Column="3"
+                                        Tag="{DynamicResource SecondaryColor}"
+                                        Click="btnClose_Click">
+                                    <fa:IconImage Icon="Xmark"
+                                                  Style="{DynamicResource controlButtonIcon}" />
+                                </Button>
+
+
+                            </Grid>
+
+                            <Grid Grid.Row="1"
+                                  VerticalAlignment="Top"
+                                  HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="75" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="10" />
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0"
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Width="100">
+                                    <TextBlock Text="Naslov"
+                                               FontSize="20"
+                                               Foreground="White" />
+                                    <!--  
+                                    <fa:IconImage Icon="{Binding Icon}"
+                                                  Height="20"
+                                                  Width="20"
+                                                  Foreground="{StaticResource titleColor2}"
+                                                  Margin="35,0,10,0" />
+
+                                    <TextBlock Text="{Binding Caption}"
+                                               Foreground="{StaticResource titleColor2}"
+                                               FontSize="16"
+                                               FontFamily="Calibri"
+                                               FontWeight="Medium"
+                                               VerticalAlignment="Center" />
+                                    -->
+                                </StackPanel>
+
+                                <Menu Grid.Column="1"
+                                      Margin="0,0,10,0"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Width="70"
+                                      Height="35">
+                                    <MenuItem Header="{DynamicResource Theme}"
+                                              Style="{DynamicResource MenuDottsStyle}"
+                                              StaysOpenOnClick="True">
+                                        <MenuItem Header="{DynamicResource BlueTheme}"
+                                                  Click="Blue_Click"
+                                                  Style="{DynamicResource MenuOptionStyle}" />
+                                        <MenuItem Header="{DynamicResource DarkTheme}"
+                                                  Click="Dark_Click"
+                                                  Style="{DynamicResource MenuOptionStyle}" />
+                                        <MenuItem Header="{DynamicResource BurgundyTheme}"
+                                                  Click="Burgundy_Click"
+                                                  Style="{DynamicResource MenuOptionStyle}" />
+                                    </MenuItem>
+                                </Menu>
+                                <StackPanel  Grid.Column="2"
+                                             Orientation="Horizontal"
+                                             VerticalAlignment="Center">
+
+                                    <Button Content="EN"
+                                            x:Name="EngButton"
+                                            Click="Set_English_Lang"
+                                            Style="{DynamicResource LanguageButtonStyle}" />
+
+                                    <Button Content="SR"
+                                            x:Name="SerButton"
+                                            Click="Set_Serbian_Lang"
+                                            Style="{DynamicResource LanguageButtonStyle}" />
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Grid>
+
+                    </Border>
+
+
+                    <ContentControl x:Name="MainContent"
+                                    Grid.Row="1"
+                                    Margin="25" />
+                </Grid>
             </Border>
 
         </Grid>

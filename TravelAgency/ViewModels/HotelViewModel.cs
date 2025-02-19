@@ -21,8 +21,7 @@ namespace TravelAgency.ViewModels
         public ObservableCollection<Hotel> Hotels { get; set; }
         //  public Hotel SelectedHotel { get; set; } = new Hotel();
         public Hotel NewHotel { get; set; }
-        private Hotel _selectedHotel;
-        private Hotel _backupHotel; 
+        private Hotel _selectedHotel; 
 
         public Hotel SelectedHotel
         {
@@ -31,42 +30,20 @@ namespace TravelAgency.ViewModels
             {
                 if (_selectedHotel != value)
                 {
-                    _backupHotel = value != null ? new Hotel(value) : null;  
+                  //  _backupHotel = value != null ? new Hotel(value) : null;  
                     _selectedHotel = value;
                     OnPropertyChanged(nameof(SelectedHotel));
                 }
             }
         }
 
-        /*
-        private string _messageLabel;
-        public string MessageLabel
-        {
-            get { return _messageLabel; }
-            set
-            {
-                _messageLabel = value;
-                OnPropertyChanged(nameof(MessageLabel)); 
-            }
-        }
-
-        private Brush _messageTextColor = Brushes.Red;  
-        public Brush MessageLabelTextColor
-        {
-            get { return _messageTextColor; }
-            set
-            {
-                _messageTextColor = value;
-                OnPropertyChanged(nameof(MessageLabelTextColor));
-            }
-        }
-        */
-
+      
         public ICommand AddHotelCommand { get; }
         public ICommand DeleteHotelCommand { get; }
         public ICommand UpdateHotelCommand { get; }
         public ICommand SearchHotelsCommand { get; }
         public ICommand AllHotelsCommand { get; }
+        public ICommand DeselectHotelCommand { get; }
 
         public HotelViewModel()
         {
@@ -84,6 +61,12 @@ namespace TravelAgency.ViewModels
             UpdateHotelCommand = new RelayCommand(UpdateHotel);
             SearchHotelsCommand = new RelayCommand(param => SearchHotels(param.ToString()));
             AllHotelsCommand = new RelayCommand(AllHotels);
+            DeselectHotelCommand = new RelayCommand(DeselectHotel);
+        }
+
+        private void DeselectHotel()
+        {
+            SelectedHotel = null;
         }
 
         private void AddHotel()
@@ -127,8 +110,9 @@ namespace TravelAgency.ViewModels
             var foundHotels = HotelDataAccess.GetHotelsByDestinationName(destName);
             if (foundHotels == null)
             {
-                MessageBox.Show("No result");
-              //  hotels = new List<Hotel>(); 
+                string message = (string)Application.Current.Resources["NoMatches"];
+                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                dialog.ShowDialog();
             }
             else
             {
@@ -141,38 +125,13 @@ namespace TravelAgency.ViewModels
         {
             if (SelectedHotel == null)
             {
-                //  MessageBox.Show("Please select a row you want to delete.");
-                /*
-                MessageLabel = "Please select a row you want to delete.";
-                MessageLabelTextColor = Brushes.Red;
-                */
                 string message = (string)Application.Current.Resources["RowNotSelected"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);   
                 dialog.ShowDialog();
                
                 return;
             }
-            /*
-            var result = MessageBox.Show($"Are you sure you want to delete {SelectedHotel.Name}?",
-                                         "Confirm Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-            if (result == MessageBoxResult.Yes)
-            {
-                if (HotelDataAccess.DeleteHotel(SelectedHotel))
-                {
-                    Hotels.Remove(SelectedHotel); 
-                    OnPropertyChanged(nameof(Hotels));
-                    /*
-                    MessageLabel = "Action completed successfully.";
-                    MessageLabelTextColor = Brushes.Green;
-                    */
-     /*   }
-                else
-                {
-                    MessageBox.Show("Failed to delete hotel.");
-                }
-}
-*/
+            
 
             string message2 = (string)Application.Current.Resources["ConfirmDelete"] + " " + SelectedHotel.Name + "?";
             MessageDialog dialog2 = new MessageDialog(message2);
@@ -188,14 +147,11 @@ namespace TravelAgency.ViewModels
                     string message = (string)Application.Current.Resources["SuccessfulDelete"];
                     MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                     dialog.ShowDialog();
-                    /*
-                    MessageLabel = "Action completed successfully.";
-                    MessageLabelTextColor = Brushes.Green;
-                    */
+                    
                 }
                 else
                 {
-                    // MessageBox.Show("Failed to delete hotel.");
+                    
                     string message = (string)Application.Current.Resources["FailedDelete"];
                     MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                     dialog.ShowDialog();
@@ -208,37 +164,6 @@ namespace TravelAgency.ViewModels
             
             if (SelectedHotel != null)
             {
-                /*
-                string message1 = (string)Application.Current.Resources["ConfirmUpdate"] + " " + SelectedHotel.Name + "?";
-                MessageDialog dialog1 = new MessageDialog(message1);
-                bool? dialogResult1 = dialog1.ShowDialog();
-
-                if ((bool)dialogResult1)
-                {
-                    bool success = HotelDataAccess.UpdateHotel(SelectedHotel);
-                    if (success)
-                    {
-                        string message2 = (string)Application.Current.Resources["SuccessfulUpdate"];
-                        MessageWithoutOptionDialog dialog2 = new MessageWithoutOptionDialog(message2);
-                        dialog2.ShowDialog();
-                    }
-                    else
-                    {
-                        string message3 = (string)Application.Current.Resources["FailedUpdate"];
-                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
-                        dialog3.ShowDialog();
-                    }
-                }
-                else
-                {
-                    SelectedHotel.Name = _backupHotel.Name;
-                    SelectedHotel.RoomCount = _backupHotel.RoomCount;
-                    SelectedHotel.Address = _backupHotel.Address;
-                    SelectedHotel.Email = _backupHotel.Email;
-                    SelectedHotel.HasRestaurant = _backupHotel.HasRestaurant;
-                    SelectedHotel.Destination = _backupHotel.Destination;
-                }
-                */
                 UpdateHotelWindow dialog = new UpdateHotelWindow(SelectedHotel);
 
                 bool? dialogResult = dialog.ShowDialog();

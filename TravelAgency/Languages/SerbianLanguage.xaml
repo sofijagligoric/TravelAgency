@@ -22,18 +22,20 @@
     <System:String x:Key="EmptyPasswordOrUsernameField">Oba polja moraju biti popunjena.</System:String>
     <System:String x:Key="Add">Dodaj</System:String>
     <System:String x:Key="Update">Uredi</System:String>
-    <System:String x:Key="HotelId">HotelId</System:String>
+    <System:String x:Key="HotelId">HotelId:</System:String>
     <System:String x:Key="Delete">Obrisi</System:String>
-    <System:String x:Key="RoomCount">Broj soba</System:String>
-    <System:String x:Key="Address">Adresa</System:String>
-    <System:String x:Key="Email">Email</System:String>
-    <System:String x:Key="HasRestaurant">Ima restoran</System:String>
+    <System:String x:Key="RoomCount">Broj soba:</System:String>
+    <System:String x:Key="Address">Adresa:</System:String>
+    <System:String x:Key="Email">Email:</System:String>
+    <System:String x:Key="HasRestaurant">Ima restoran:</System:String>
     <System:String x:Key="Destination">Destinacija</System:String>
-    <System:String x:Key="Postcode">Postanski broj</System:String>
-    <System:String x:Key="Name">Naziv</System:String>
+    <System:String x:Key="Postcode">Postanski broj:</System:String>
+    <System:String x:Key="Name">Naziv:</System:String>
     <System:String x:Key="All">Svi</System:String>
     <System:String x:Key="Search">Pretraga</System:String>
-    <System:String x:Key="DestinationNameHint">Naziv destinacije</System:String>
+    <System:String x:Key="Distance">Udaljenost:</System:String>
+    <System:String x:Key="LocalLanguage">Lokalni jezik:</System:String>
+    <System:String x:Key="DestinationNameHint">Naziv destinacije:</System:String>
 
     <System:String x:Key="RowNotSelected">Red nije oznacen, nije moguce izvrsiti radnju.</System:String>
     <System:String x:Key="ConfirmDelete">Da li ste sigurni da zelite da obrisete </System:String>
@@ -42,9 +44,33 @@
     <System:String x:Key="FailedUpdate">Azuriranje nije uspjelo.</System:String>
     <System:String x:Key="SuccessfulDelete">Brisanje uspjesno.</System:String>
     <System:String x:Key="SuccessfulUpdate">Azuriranje uspjesno.</System:String>
-    <System:String x:Key="Hotel">hotel</System:String>
+    <System:String x:Key="Hotel">Hotel:</System:String>
     <System:String x:Key="EmptyField">Sva polja moraju biti popunjena.</System:String>
     <System:String x:Key="SuccessfullyAdded">Uspjesno dodano:</System:String>
     <System:String x:Key="Cancel">Odustani</System:String>
+    <System:String x:Key="CustomerName">Ime i/ili prezime putnika</System:String>
+
+    <System:String x:Key="ReservationId">IdRezervacije:</System:String>
+    <System:String x:Key="PackageId">IdAranzmana:</System:String>
+    <System:String x:Key="CustomerFullName">Ime putnika:</System:String>
+    <System:String x:Key="CustomersPhoneNumber">Broj putnika:</System:String>
+    <System:String x:Key="Price">Cijena:</System:String>
+    <System:String x:Key="IsPayed">Da li je placeno:</System:String>
+    <System:String x:Key="SalesAgentsName">Ime agenta prodaje:</System:String>
+
+    <System:String x:Key="Yes">Da</System:String>
+    <System:String x:Key="No">Ne</System:String>
+    <System:String x:Key="NoMatches">Nema rezultata.</System:String>
+    <System:String x:Key="Country">Drzava:</System:String>
+    <System:String x:Key="Customers">Putnici</System:String>
+    <System:String x:Key="AllPayments">Sve uplate</System:String>
+    <System:String x:Key="PaymentsByReservation">Uplate rezervacija</System:String>
+    <System:String x:Key="Amount">Iznos:</System:String>
+    <System:String x:Key="ReservationIsPayed">Rezervacija je placena. Nije moguce izvrsiti vise uplata.</System:String>
+    <System:String x:Key="PaymentSuccessful">Uplata rezervacije uspjesna.</System:String>
+    <System:String x:Key="Pay">Uplati</System:String>
+    <System:String x:Key="AmountTooBig">Iznos je prevelik. Unesite manji iznos.</System:String>
+    <System:String x:Key="Debt">Dug:</System:String>
+    <System:String x:Key="About">Opis:</System:String>
 
 </ResourceDictionary>

@@ -162,13 +162,23 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\DestinationViewModel.cs" />
     <Compile Include="ViewModels\HotelViewModel.cs" />
     <Compile Include="ViewModels\INavigationService.cs" />
+    <Compile Include="ViewModels\InverseBoolConverter.cs" />
     <Compile Include="ViewModels\NavigationService.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\ReservationViewModel.cs" />
+    <Compile Include="ViewModels\SalesAgentVIewModel.cs" />
     <Compile Include="ViewModels\ViewModelToBooleanConverter.cs" />
+    <Compile Include="Views\AddDestinationWindow.xaml.cs">
+      <DependentUpon>AddDestinationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddHotelWindow.xaml.cs">
       <DependentUpon>AddHotelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminDestinationView.xaml.cs">
+      <DependentUpon>AdminDestinationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminEmployeesView.xaml.cs">
       <DependentUpon>AdminEmployeesView.xaml</DependentUpon>
@@ -190,6 +200,18 @@
     </Compile>
     <Compile Include="Views\MessageWithoutOptionDialog.xaml.cs">
       <DependentUpon>MessageWithoutOptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PayReservationWindow.xaml.cs">
+      <DependentUpon>PayReservationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SalesAgentHotelView.xaml.cs">
+      <DependentUpon>SalesAgentHotelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SalesAgentPackageView.xaml.cs">
+      <DependentUpon>SalesAgentPackageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SalesAgentReservationView.xaml.cs">
+      <DependentUpon>SalesAgentReservationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SalesAgentWindow.xaml.cs">
       <DependentUpon>SalesAgentWindow.xaml</DependentUpon>
@@ -246,7 +268,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AddDestinationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddHotelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminDestinationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -275,6 +305,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MessageWithoutOptionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PayReservationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SalesAgentHotelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SalesAgentPackageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SalesAgentReservationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

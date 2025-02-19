@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Org.BouncyCastle.Utilities;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,19 @@ namespace TravelAgency.Views
     {
         public Hotel Hotel { get; set; }
 
+        /*
+        private bool _isOptionYes;
+
+        public bool IsOptionYes
+        {
+            get => _isOptionYes;
+            set
+            {
+                _isOptionYes = value;
+                OnPropertyChanged(nameof(IsOptionYes));
+            }
+        }
+        */
         public UpdateHotelWindow(Hotel hotel1)
         {
             InitializeComponent();
@@ -35,8 +50,7 @@ namespace TravelAgency.Views
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Address.Text) || string.IsNullOrEmpty(Postcode.Text) ||
-               string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(RoomCount.Text) || string.IsNullOrEmpty(DestinationName.Text) ||
-               string.IsNullOrEmpty(HasRestaurant.Text))
+               string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(RoomCount.Text) || string.IsNullOrEmpty(DestinationName.Text))
             {
                 string message = (string)Application.Current.Resources["EmptyField"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
@@ -57,7 +71,7 @@ namespace TravelAgency.Views
                    Hotel.Name = Name.Text;
                     Hotel.Address = Address.Text;
                     Hotel.Email = Email.Text;
-                    Hotel.HasRestaurant = (byte)(HasRestaurant.Text.Equals("yes") ? 1 : 0);
+                    Hotel.HasRestaurant = (byte)((bool)rbYes.IsChecked ? 1 : 0);
                     Hotel.Destination = dest;
                     Hotel.RoomCount = int.Parse(RoomCount.Text);
                     DialogResult = true;
@@ -84,6 +98,12 @@ namespace TravelAgency.Views
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

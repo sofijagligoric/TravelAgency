@@ -1,10 +1,9 @@
-﻿<Window x:Class="TravelAgency.Views.UpdateHotelWindow"
+﻿<Window x:Class="TravelAgency.Views.AddDestinationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency.Views"
-        xmlns:local2="clr-namespace:TravelAgency.ViewModels"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         Title="PlannedEscape"
@@ -16,10 +15,6 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown"
         ResizeMode="NoResize">
-
-    <Window.Resources>
-        <local2:InverseBoolConverter x:Key="InverseBoolConverter" />
-    </Window.Resources>
     <Border BorderThickness="1"
             CornerRadius="0,0,10,10">
         <Border.BorderBrush>
@@ -76,11 +71,10 @@
                           Padding="10"
                           Grid.Row="1">
                 <Grid HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
                       Margin="0,10,0,0">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition Height="auto"></RowDefinition>
                         <RowDefinition Height="auto"></RowDefinition>
                         <RowDefinition Height="auto"></RowDefinition>
                         <RowDefinition Height="auto"></RowDefinition>
@@ -92,108 +86,68 @@
                     <StackPanel Grid.Row="0"
                                 Margin="0,0,0,5">
                         <Label FontSize="15"
-                               Content="{DynamicResource HotelId}" />
-                        <TextBox x:Name="HotelId"
-                                 IsReadOnly="True"
-                                 Width="300"
-                                 Text="{Binding Hotel.HotelId}"
-                                 Style="{DynamicResource FormTextBoxStyle}" />
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="1"
-                                Margin="0,0,0,5">
-                        <Label FontSize="15"
-                               Content="{DynamicResource Name}" />
-                        <TextBox x:Name="Name"
-                                 Width="300"
-                                 Text="{Binding Hotel.Name,Mode=TwoWay}"
-                                 Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="2"
-                                Margin="0,0,0,5">
-                        <Label FontSize="15"
-                               Content="{DynamicResource Address}" />
-                        <TextBox x:Name="Address"
-                                 Width="300"
-                                 Style="{DynamicResource FormTextBoxStyle}"
-                                 Text="{Binding Hotel.Address,Mode=TwoWay}" />
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="3"
-                                Margin="0,0,0,5">
-                        <Label FontSize="15"
-                               Content="{DynamicResource Email}" />
-                        <TextBox x:Name="Email"
-                                 Width="300"
-                                 Style="{DynamicResource FormTextBoxStyle}"
-                                 Text="{Binding Hotel.Email,Mode=TwoWay}" />
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="4"
-                                Margin="0,0,0,5">
-                        <Label FontSize="15"
-                               Content="{DynamicResource RoomCount}" />
-                        <TextBox x:Name="RoomCount"
-                                 Width="300"
-                                 Style="{DynamicResource FormTextBoxStyle}"
-                                 Text="{Binding Hotel.RoomCount,Mode=TwoWay}" />
-                    </StackPanel>
-
-                    <StackPanel Grid.Row="5"
-                                Margin="0,0,0,5">
-                        <Label FontSize="15"
                                Content="{DynamicResource DestinationNameHint}" />
                         <TextBox x:Name="DestinationName"
                                  Width="300"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 Text="{Binding Hotel.Destination.DestinationName,Mode=TwoWay}" />
+                                 HorizontalContentAlignment="Center" />
                     </StackPanel>
 
-                    <StackPanel Grid.Row="6"
+                    <StackPanel Grid.Row="1"
                                 Margin="0,0,0,5">
                         <Label FontSize="15"
                                Content="{DynamicResource Postcode}" />
                         <TextBox x:Name="Postcode"
                                  Width="300"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 Text="{Binding Hotel.Destination.PostCode,Mode=TwoWay}" />
-                    </StackPanel>
-
-                    <StackPanel Orientation="Horizontal"
-                                Grid.Row="7"
-                                Margin="0,0,0,5">
-                        <Label FontSize="15"
-                               Content="{DynamicResource HasRestaurant}" />
-
-                        <RadioButton x:Name="rbYes"
-                                     Content="{DynamicResource Yes}"
-                                     GroupName="RestaurantOptions"
-                                     IsChecked="{Binding Hotel.HasRestaurantBool}"
-                                     Margin="10,0,0,0" />
-
-                        <RadioButton x:Name="rbNo"
-                                     Content="{DynamicResource No}"
-                                     GroupName="RestaurantOptions"
-                                     IsChecked="{Binding Hotel.HasRestaurantBool, Converter={StaticResource InverseBoolConverter}}"
-                                     Margin="20,0,0,0" />
+                                 HorizontalContentAlignment="Center" />
                     </StackPanel>
                     
-                    <!--
-                    <StackPanel Grid.Row="7"
+                    <StackPanel Grid.Row="2"
                                 Margin="0,0,0,5">
                         <Label FontSize="15"
-                               Content="{DynamicResource HasRestaurant}" />
-                        <TextBox x:Name="HasRestaurant"
+                               Content="{DynamicResource Distance}" />
+                        <TextBox x:Name="Distance"
                                  Width="300"
-                                 Text="{Binding Hotel.HasRestaurant,Mode=TwoWay}"
-                                 Style="{DynamicResource FormTextBoxStyle}" />
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center" />
                     </StackPanel>
-                    -->
 
+                    <StackPanel Grid.Row="3"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource LocalLanguage}" />
+                        <TextBox x:Name="LocalLanguage"
+                                 Width="300"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center" />
+                    </StackPanel>
+
+
+                    <StackPanel Grid.Row="4"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource Country}" />
+                        <TextBox x:Name="Country"
+                                 Width="300"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource About}" />
+                        <TextBox x:Name="About"
+                                 Height="80"
+                                 Width="300"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center"
+                                 TextWrapping="Wrap" />
+                    </StackPanel>
                 </Grid>
             </ScrollViewer>
+
 
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal"
@@ -202,8 +156,8 @@
                 <Button Content="OK"
                         Style="{DynamicResource ProceedButtonStyle}"
                         Click="OkButton_Click"
-                        Margin="0,0,5,0"
-                        IsDefault="True" />
+                        IsDefault="True"
+                        Margin="0,0,5,0" />
                 <Button Content="{DynamicResource Cancel}"
                         Style="{DynamicResource ProceedButtonStyle}"
                         Margin="5,0,0,0"

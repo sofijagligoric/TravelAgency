@@ -1,14 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TravelAgency.Models
 {
-    public class Country
+    public class Country : INotifyPropertyChanged
     {
-        public string CountryName { get; set; }
+        private string _countryName;
+       
+
+        public string CountryName
+        {
+            get => _countryName;
+            set
+            {
+                _countryName = value;
+                OnPropertyChanged(nameof(CountryName));
+            }
+        }
 
         public Country(string countryName)
         {
@@ -47,6 +59,12 @@ namespace TravelAgency.Models
         public override int GetHashCode()
         {
             return HashCode.Combine(CountryName);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

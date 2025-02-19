@@ -75,6 +75,7 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
+                                     Command="{Binding ShowDestinationsCommand}"
                                      IsChecked="False">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="LocationDot"
@@ -110,7 +111,7 @@
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
                                      IsChecked="False"
-                                     Checked="ReservationsRadioButton_Checked">
+                                     Command="{Binding ShowReservationsCommand}">
 
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="BookOpen"
@@ -302,17 +303,7 @@
                         </Grid>
 
                     </Border>
-                    <!--
-                    <ContentControl Content="{Binding CurrentChildView}"
-                                    Grid.Row="2"
-                                    Margin="25" />
-                    
-                    <Frame x:Name="MainFrame"
-                           Grid.Row="1"
-                           Margin="25"
-                           NavigationUIVisibility="Hidden"
-                           Navigated="MainFrame_Navigated" />
-                    -->
+                   
 
                     <ContentControl x:Name="MainContent"
                                     Grid.Row="1"

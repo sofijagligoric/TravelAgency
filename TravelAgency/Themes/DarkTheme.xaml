@@ -33,7 +33,7 @@
     <SolidColorBrush x:Key="titleColor2"
                      Color="#C0C0C0" />
     <SolidColorBrush x:Key="titleColor3"
-                     Color="#A0A0A0" />
+                     Color="#b8b6b6" />
     <SolidColorBrush x:Key="plainTextColor1"
                      Color="#808080" />
     <SolidColorBrush x:Key="plainTextColor2"

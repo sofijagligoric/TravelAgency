@@ -22,18 +22,20 @@
     <System:String x:Key="Packages">Packages</System:String>
     <System:String x:Key="Reservations">Reservations</System:String>
     <System:String x:Key="Update">Update</System:String>
-    <System:String x:Key="Name">Name</System:String>
+    <System:String x:Key="Name">Name:</System:String>
     <System:String x:Key="IncorrectPassword"> Incorrect password or username! Try again.</System:String>
     <System:String x:Key="EmptyPasswordOrUsernameField">Both fields must be filled.</System:String>
-    <System:String x:Key="HotelId">HotelId</System:String>
+    <System:String x:Key="HotelId">HotelId:</System:String>
     <System:String x:Key="Delete">Delete</System:String>
-    <System:String x:Key="RoomCount">Room Count</System:String>
-    <System:String x:Key="Address">Address</System:String>
-    <System:String x:Key="Email">Email</System:String>
-    <System:String x:Key="HasRestaurant">Has restaurant</System:String>
+    <System:String x:Key="RoomCount">Room Count:</System:String>
+    <System:String x:Key="Address">Address:</System:String>
+    <System:String x:Key="Email">Email:</System:String>
+    <System:String x:Key="HasRestaurant">Has restaurant:</System:String>
     <System:String x:Key="Destination">Destination</System:String>
-    <System:String x:Key="Postcode">Postcode</System:String>
-    <System:String x:Key="DestinationNameHint">Destination name</System:String>
+    <System:String x:Key="Postcode">Postcode:</System:String>
+    <System:String x:Key="Distance">Distance:</System:String>
+    <System:String x:Key="LocalLanguage">Local language:</System:String>
+    <System:String x:Key="DestinationNameHint">Destination name:</System:String>
 
     <System:String x:Key="RowNotSelected">Row not selected, action can't be completed.</System:String>
     <System:String x:Key="ConfirmDelete">Are you sure you want to delete </System:String>
@@ -42,10 +44,34 @@
     <System:String x:Key="FailedUpdate">Failed to update.</System:String>
     <System:String x:Key="SuccessfulDelete">Selected item deleted.</System:String>
     <System:String x:Key="SuccessfulUpdate">Selected item updated.</System:String>
-    <System:String x:Key="Hotel">hotel</System:String>
+    <System:String x:Key="Hotel">Hotel:</System:String>
     <System:String x:Key="EmptyField">All fields must be filled.</System:String>
     <System:String x:Key="SuccessfullyAdded">Successfully added: </System:String>
     <System:String x:Key="Cancel">Cancel</System:String>
     <System:String x:Key="UnknownEntry">Unknown entry:</System:String>
+    <System:String x:Key="CustomerName">Customer's firstname and/or lastname </System:String>
 
+    <System:String x:Key="ReservationId">ReservationId:</System:String>
+    <System:String x:Key="PackageId">PackageId:</System:String>
+    <System:String x:Key="CustomerFullName">Customer's name:</System:String>
+    <System:String x:Key="CustomersPhoneNumber">Customer's phone number:</System:String>
+    <System:String x:Key="Price">Price:</System:String>
+    <System:String x:Key="IsPayed">Is payed:</System:String>
+    <System:String x:Key="SalesAgentsName">Sales agent's name:</System:String>
+    <System:String x:Key="Yes">Yes</System:String>
+    <System:String x:Key="No">No</System:String>
+    <System:String x:Key="NoMatches">No matches found.</System:String>
+    <System:String x:Key="Customers">Customers</System:String>
+    <System:String x:Key="AllPayments">All payments</System:String>
+    <System:String x:Key="PaymentsByReservation">Reservation payments</System:String>
+    <System:String x:Key="Amount">Amount:</System:String>
+    <System:String x:Key="ReservationIsPayed">Reservation is fully payed. No more payments can be made.</System:String>
+    <System:String x:Key="PaymentSuccessful">Payment was successful.</System:String>
+    <System:String x:Key="Pay">Pay</System:String>
+    <System:String x:Key="AmountTooBig">Amount too big. Please select smaller amount.</System:String>
+    <System:String x:Key="Debt">Debt:</System:String>
+    <System:String x:Key="Country">Country:</System:String>
+    <System:String x:Key="About">About:</System:String>
+
+    <System:String x:Key="CountryNameHint">Country name:</System:String>
 </ResourceDictionary>

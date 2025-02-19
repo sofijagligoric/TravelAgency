@@ -17,14 +17,14 @@ using TravelAgency.ViewModels;
 namespace TravelAgency.Views
 {
     /// <summary>
-    /// Interaction logic for AdminReservationsView.xaml
+    /// Interaction logic for SalesAgentHotelView.xaml
     /// </summary>
-    public partial class AdminReservationsView : UserControl
+    public partial class SalesAgentHotelView : UserControl
     {
-        public AdminReservationsView()
+        public SalesAgentHotelView()
         {
             InitializeComponent();
-            DataContext = new ReservationViewModel();
+            DataContext = new HotelViewModel();
         }
     }
 }

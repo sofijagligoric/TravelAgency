@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace TravelAgency.Models
 {
@@ -48,10 +49,32 @@ namespace TravelAgency.Models
             set { _email = value; OnPropertyChanged(nameof(Email)); }
         }
 
+
         public byte HasRestaurant
         {
             get => _hasRestaurant;
-            set { _hasRestaurant = value; OnPropertyChanged(nameof(HasRestaurant)); }
+            set
+            {
+                if (_hasRestaurant != value)
+                {
+                    _hasRestaurant = value;
+                    OnPropertyChanged(nameof(HasRestaurant));
+                    OnPropertyChanged(nameof(HasRestaurantBool));
+                }
+            }
+        }
+
+        public bool HasRestaurantBool
+        {
+            get => _hasRestaurant == 1;
+            set
+            {
+                if (HasRestaurantBool != value) 
+                {
+                    HasRestaurant = (byte)(value ? 1 : 0);
+                    OnPropertyChanged(nameof(HasRestaurantBool));
+                }
+            }
         }
 
         public string HasRestaurantString
@@ -59,8 +82,8 @@ namespace TravelAgency.Models
             get
             {
                 if (HasRestaurant == 0)
-                    return "No";
-                else return "Yes";
+                    return (string)Application.Current.Resources["No"];
+                else return  (string)Application.Current.Resources["Yes"]; ;
             }
         }
 

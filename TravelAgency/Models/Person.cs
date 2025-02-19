@@ -10,6 +10,7 @@ namespace TravelAgency.Models
     {
         public string FirstName  { get; set; }
         public string LastName  { get; set; }
+        public string FullName { get; set; }
         public string Jmb { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
@@ -20,6 +21,7 @@ namespace TravelAgency.Models
         {
             FirstName  = firstName ;
             LastName  = lastName ;
+            FullName = firstName + " " + lastName ;
             Jmb = jmb;
             Address = address;
             Email = email;
@@ -30,6 +32,7 @@ namespace TravelAgency.Models
         public Person() {
             FirstName = string.Empty;
             LastName = string.Empty;
+            FullName = string.Empty ;
             Jmb = string.Empty;
             Address = string.Empty;
             Email = string.Empty;

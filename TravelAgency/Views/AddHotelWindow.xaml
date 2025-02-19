@@ -4,18 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency.Views"
+        xmlns:local2="clr-namespace:TravelAgency.ViewModels"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         Title="PlannedEscape"
-        Height="450"
-        Width="500"
+        Height="500"
+        Width="400"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
         MouseDown="Window_MouseDown"
         ResizeMode="NoResize">
-    <Border CornerRadius="10,10,10,10">
+    <Window.Resources>
+        <local2:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </Window.Resources>
+    <Border BorderThickness="1"
+            CornerRadius="0,0,10,10">
+        <Border.BorderBrush>
+            <SolidColorBrush Color="{DynamicResource secondaryBackColor2}" />
+        </Border.BorderBrush>
         <Border.Background>
             <LinearGradientBrush StartPoint="1,1"
                                  EndPoint="0,0">
@@ -61,126 +69,129 @@
                 </Grid>
             </Border>
 
-            <Grid Grid.Row="1"
-                  HorizontalAlignment="Center"
-                  Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"></ColumnDefinition>
-                    <ColumnDefinition Width="250"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                    <RowDefinition Height="1*"></RowDefinition>
-                </Grid.RowDefinitions>
-                
-                <Label Grid.Row="0"
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       FontSize="18"
-                       Margin="18 0 0 0"
-                       Content="{DynamicResource Name}"></Label>
-                <Label Grid.Row="1"
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       FontSize="18"
-                       Margin="18 0 0 0"
-                       Content="{DynamicResource Address}"></Label>
-                <Label Grid.Row="2"
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       FontSize="18"
-                       Margin="18 0 0 0"
-                       Content="{DynamicResource Email}"></Label>
-                <Label Grid.Row="3"
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       FontSize="18"
-                       Margin="18 0 0 0"
-                       Content="{DynamicResource RoomCount}"></Label>
-                <Label Grid.Row="4"
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       FontSize="18"
-                       Margin="18 0 0 0"
-                       Content="{DynamicResource Destination}"></Label>
-                <Label Grid.Row="5"
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       FontSize="18"
-                       Margin="18 0 0 0"
-                       Content="{DynamicResource Postcode}"></Label>
-                <Label Grid.Row="6"
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       FontSize="18"
-                       Margin="18 0 0 0"
-                       Content="{DynamicResource HasRestaurant}"></Label>
-                <TextBox x:Name="Name"
-                         Grid.Row="0"
-                         Grid.Column="1"
-                         Width="auto"
-                         Height="40"
-                         FontSize="15"
-                         Style="{DynamicResource CustomTextBoxStyle}"
-                         HorizontalContentAlignment="Center"
-                         Margin="0,0,5,0" />
-                <TextBox x:Name="Address"
-                         Grid.Row="1"
-                         Grid.Column="1"
-                         Width="auto"
-                         Height="40"
-                         FontSize="15"
-                         Style="{DynamicResource CustomTextBoxStyle}"
-                         Margin="0,0,5,0" />
-                <TextBox x:Name="Email"
-                         Grid.Row="2"
-                         Grid.Column="1"
-                         Width="auto"
-                         Height="40"
-                         FontSize="15"
-                         Style="{DynamicResource CustomTextBoxStyle}"
-                         Margin="0,0,5,0" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Height="370"
+                          HorizontalAlignment="Stretch"
+                          Padding="10"
+                          Grid.Row="1">
+                <Grid HorizontalAlignment="Center"
+                      Margin="0,10,0,0">
 
-                <TextBox x:Name="RoomCount"
-                         Grid.Row="3"
-                         Grid.Column="1"
-                         Width="auto"
-                         Height="40"
-                         FontSize="15"
-                         Style="{DynamicResource CustomTextBoxStyle}"
-                         Margin="0,0,5,0" />
-                <TextBox x:Name="DestinationName"
-                         Grid.Row="4"
-                         Grid.Column="1"
-                         Width="auto"
-                         Height="40"
-                         FontSize="15"
-                         Style="{DynamicResource CustomTextBoxStyle}"
-                         Margin="0,0,5,0" />
-                <TextBox x:Name="Postcode"
-                         Grid.Row="5"
-                         Grid.Column="1"
-                         Width="auto"
-                         Height="40"
-                         FontSize="15"
-                         Style="{DynamicResource CustomTextBoxStyle}"
-                         Margin="0,0,5,0" />
-                <TextBox x:Name="HasRestaurant"
-                         Grid.Row="6"
-                         Grid.Column="1"
-                         Width="auto"
-                         Height="40"
-                         FontSize="15"
-                         Style="{DynamicResource CustomTextBoxStyle}"
-                         Margin="0,0,5,0" />
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
 
-            </Grid>
+                    <StackPanel Grid.Row="0"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource Name}" />
+                        <TextBox x:Name="Name"
+                                 Width="300"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center" />
+                    </StackPanel>
 
+                    <StackPanel Grid.Row="1"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource Address}" />
+                        <TextBox x:Name="Address"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource Email}" />
+                        <TextBox x:Name="Email"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource RoomCount}" />
+                        <TextBox x:Name="RoomCount"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="4"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource DestinationNameHint}" />
+                        <TextBox x:Name="DestinationName"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource Postcode}" />
+                        <TextBox x:Name="Postcode"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center"
+                                 TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal"
+                                Grid.Row="6"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource HasRestaurant}" />
+                        <RadioButton Content="{DynamicResource Yes}"
+                                     GroupName="Options"
+                                     IsChecked="{Binding IsOptionYes}"
+                                     Margin="10,0,0,0" />
+
+                        <RadioButton Content="{DynamicResource No}"
+                                     GroupName="Options"
+                                     IsChecked="{Binding IsOptionYes, Converter={StaticResource InverseBoolConverter}}"
+                                     Margin="20,0,0,0" />
+                    </StackPanel>
+
+                    <!--
+                    <StackPanel Grid.Row="6"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource HasRestaurant}" />
+                        <TextBox x:Name="HasRestaurant"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center"
+                                 TextWrapping="Wrap" />
+                    </StackPanel>
+                    
+                    -->
+
+                </Grid>
+            </ScrollViewer>
 
             <StackPanel Grid.Row="2"
                         Orientation="Horizontal"
@@ -189,11 +200,13 @@
                 <Button Content="OK"
                         Style="{DynamicResource ProceedButtonStyle}"
                         Click="OkButton_Click"
+                        IsDefault="True"
                         Margin="0,0,5,0" />
                 <Button Content="{DynamicResource Cancel}"
                         Style="{DynamicResource ProceedButtonStyle}"
                         Margin="5,0,0,0"
-                        Click="CancelButton_Click" />
+                        Click="CancelButton_Click"
+                        IsCancel="True" />
             </StackPanel>
         </Grid>
     </Border>

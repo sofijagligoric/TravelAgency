@@ -46,7 +46,7 @@ namespace TravelAgency.Views
                     }
                     else if ("salesAgent".Equals(emp.RoleType))
                     {
-                        SalesAgentWindow saWindow = new SalesAgentWindow();
+                        SalesAgentWindow saWindow = new SalesAgentWindow(emp);
                         saWindow.Show();
                     }
                     else

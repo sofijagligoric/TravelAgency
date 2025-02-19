@@ -37,14 +37,7 @@ namespace TravelAgency.DataAccess
                         cmd.ExecuteNonQuery();
                         successful = Convert.ToBoolean(cmd.Parameters["@successfulPayment"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
-                        if (successful)
-                        {
-                            MessageBox.Show("Reservation payed successfully.");
-                        }
-                        else
-                        {
-                            MessageBox.Show($"Error: {message}");
-                        }
+                       
                     }
                 }
             }
@@ -125,6 +118,43 @@ namespace TravelAgency.DataAccess
             }
             return result;
         }
+
+        public static TotalReservationPayment GetTotalPaymentForReservation(int resId)
+        {
+            TotalReservationPayment result = null;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "SELECT * FROM total_payment_for_reservation WHERE  ReservationId LIKE @ResId";
+                        cmd.Parameters.AddWithValue("@ResId", resId);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                result= new TotalReservationPayment(
+                                    reader["CustomerName"]?.ToString() ?? string.Empty,
+                                    reader["ReservationId"] != DBNull.Value ? Convert.ToInt32(reader["ReservationId"]) : 0,
+                                    reader["FinalPrice"] != DBNull.Value ? Convert.ToDecimal(reader["FinalPrice"]) : 0m,
+                                    reader["Payed"] != DBNull.Value ? Convert.ToDecimal(reader["Payed"]) : 0m,
+                                    reader["Debt"] != DBNull.Value ? Convert.ToDecimal(reader["Debt"]) : 0m,
+                                    reader["IsPayed"]?.ToString() ?? string.Empty
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+            return result;
+        }
+
 
         public static List<Payment> GetAllPayments()
         {

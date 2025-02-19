@@ -105,7 +105,7 @@ namespace TravelAgency.DataAccess
             return successful;
         }
 
-        public bool UpdateReservation(Reservation reservation)
+        public static bool UpdateReservation(Reservation reservation)
         {
             bool retVal = false;
             try
@@ -137,7 +137,7 @@ namespace TravelAgency.DataAccess
             return retVal;
         }
 
-        public List<Reservation> GetReservations()
+        public static List<Reservation> GetReservations()
         {
             List<Reservation> packages = new List<Reservation>();
             try
@@ -149,7 +149,7 @@ namespace TravelAgency.DataAccess
                     {
                         cmd.CommandText = @"SELECT ReservationId, r.Price AS ReservationPrice, r.PackageId, r.HotelId, CustomerJMB, IsPayed, r.EmployeeJMB, 
                                           a.StartDate, a.EndDate, a.Price, a.About, a.PostCode, 
-                                          h.Name_of, h.RoomCount, h.Address, h.Email, h.ContainsRestaurant, h.PostCode,
+                                          h.Name_of AS HotelName, h.RoomCount, h.Address, h.Email, h.ContainsRestaurant, h.PostCode,
                                           d.DestinationName, d.About, d.Distance, d.LocalLanguage, d.CountryName, 
                                           o.LastName, o.FirstName, o.Address, o.DateOfBirth, o.Email 
                                           FROM reservation r INNER JOIN package a ON a.PackageId=r.PackageId 
@@ -195,7 +195,7 @@ namespace TravelAgency.DataAccess
                                 var customer = new Customer(
                                     reader["FirstName"]?.ToString() ?? string.Empty,
                                     reader["LastName"]?.ToString() ?? string.Empty,
-                                    reader["JMB"]?.ToString() ?? string.Empty,
+                                    reader["CustomerJMB"]?.ToString() ?? string.Empty,
                                     reader["Address"]?.ToString() ?? string.Empty,
                                     reader["Email"]?.ToString() ?? string.Empty,
                                     reader["DateOfBirth"]?.ToString() ?? string.Empty
@@ -217,12 +217,13 @@ namespace TravelAgency.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
             }
             return packages;
         }
 
-        public List<Reservation> GetReservationsByCustomer(string searchString)
+        public static List<Reservation> GetReservationsByCustomer(string searchString)
         {
             List<Reservation> packages = new List<Reservation>();
             try
@@ -234,7 +235,7 @@ namespace TravelAgency.DataAccess
                     {
                         cmd.CommandText = @"SELECT ReservationId, r.Price AS ReservationPrice, r.PackageId, r.HotelId, CustomerJMB, IsPayed, r.EmployeeJMB, 
                                           a.StartDate, a.EndDate, a.Price, a.About, a.PostCode, 
-                                          h.Name_of, h.RoomCount, h.Address, h.Email, h.ContainsRestaurant, h.PostCode,
+                                          h.Name_of as HotelName, h.RoomCount, h.Address, h.Email, h.ContainsRestaurant, h.PostCode,
                                           d.DestinationName, d.About, d.Distance, d.LocalLanguage, d.CountryName, 
                                           o.LastName, o.FirstName, o.Address, o.DateOfBirth, o.Email 
                                           FROM reservation r INNER JOIN package a ON a.PackageId=r.PackageId 
@@ -282,7 +283,7 @@ namespace TravelAgency.DataAccess
                                 var customer = new Customer(
                                     reader["FirstName"]?.ToString() ?? string.Empty,
                                     reader["LastName"]?.ToString() ?? string.Empty,
-                                    reader["JMB"]?.ToString() ?? string.Empty,
+                                    reader["CustomerJMB"]?.ToString() ?? string.Empty,
                                     reader["Address"]?.ToString() ?? string.Empty,
                                     reader["Email"]?.ToString() ?? string.Empty,
                                     reader["DateOfBirth"]?.ToString() ?? string.Empty
@@ -304,6 +305,7 @@ namespace TravelAgency.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message);
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
             }
             return packages;

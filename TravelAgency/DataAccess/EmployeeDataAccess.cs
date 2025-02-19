@@ -213,7 +213,7 @@ namespace TravelAgency.DataAccess
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
                         if (successful)
                         {
-                            MessageBox.Show("Theme changed successfully.");
+                           // MessageBox.Show("Theme changed successfully.");
                             emp.Theme = theme;
                         }
                         else

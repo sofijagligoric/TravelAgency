@@ -48,10 +48,6 @@ namespace TravelAgency.Views
             DataContext = new AdminViewModel(navigationService);
         }
 
-        private void MainFrame_Navigated(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        {
-
-        }
 
         private void btnMinimise_Click(object sender, RoutedEventArgs e)
         {
@@ -125,16 +121,9 @@ namespace TravelAgency.Views
 
         private void SetTheme(string theme)
         {
-            /*
-            var uri = new Uri(theme, UriKind.Relative);
-            var resourceDictionary = new ResourceDictionary { Source = uri };
-            Application.Current.Resources.MergedDictionaries.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-            */
             var uri = new Uri(theme, UriKind.Relative);
             var resourceDictionary = new ResourceDictionary { Source = uri };
 
-            // Ukloni prethodne teme samo ako su iste vrste (npr. završavaju se sa "Theme.xaml")
             var oldTheme = Application.Current.Resources.MergedDictionaries
                 .FirstOrDefault(d => d.Source != null && d.Source.ToString().EndsWith("Theme.xaml"));
 
@@ -143,29 +132,16 @@ namespace TravelAgency.Views
                 Application.Current.Resources.MergedDictionaries.Remove(oldTheme);
             }
 
-            // Dodaj novu temu na kraj
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
         }
 
         private void EmployeesRadioButton_Checked(object sender, RoutedEventArgs e)
         {
-                AdminEmployeesPage adminHome = new AdminEmployeesPage();
-            //    MainFrame.Navigate(adminHome);
-          
-        }
-
-        private void ReservationsRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-           
-                AdminReservationsPage adminRes = new AdminReservationsPage();
-             //   MainFrame.Navigate(adminRes);
-         
+                AdminEmployeesPage adminHome = new AdminEmployeesPage();    
         }
 
         private void Set_English_Lang(object sender, RoutedEventArgs e)
         {
-            //  SetLang("en-US");
-            //  var currentLang = Application.Current.Resources.MergedDictionaries[1].Source.ToString();
             var oldLang = Application.Current.Resources.MergedDictionaries
                  .FirstOrDefault(d => d.Source != null && d.Source.ToString().EndsWith("Language.xaml")).ToString();
             if (!oldLang.EndsWith("Languages/EnglishLanguage.xaml"))
@@ -174,36 +150,15 @@ namespace TravelAgency.Views
 
         private void Set_Serbian_Lang(object sender, RoutedEventArgs e)
         {
-            //SetLang("sr-SR");
             var oldLang = Application.Current.Resources.MergedDictionaries
                .FirstOrDefault(d => d.Source != null && d.Source.ToString().EndsWith("Language.xaml")).ToString();
-          //  var currentLang = Application.Current.Resources.MergedDictionaries[1].Source.ToString();
             if (!oldLang.EndsWith("Languages/SerbianLanguage.xaml"))
                  SetLang("Languages/SerbianLanguage.xaml");
         }
 
         private void SetLang(string lang)
         {
-            /*
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-
-            Application.Current.Resources.MergedDictionaries.Clear();
-
-            var dictionary = new ResourceDictionary();
-            switch (lang)
-            {
-                case "sr-Latn":
-                    dictionary.Source = new Uri("Languages/SerbianLanguage.xaml", UriKind.Relative);
-                    break;
-                default:
-                    dictionary.Source = new Uri("Languages/SerbianLanguage.xaml", UriKind.Relative);
-                    break;
-            }
-            Application.Current.Resources.MergedDictionaries.Add(dictionary);
-            */
-
-
+          
             var uri = new Uri(lang, UriKind.Relative);
             var resourceDictionary = new ResourceDictionary { Source = uri };
             var oldLang = Application.Current.Resources.MergedDictionaries
@@ -215,22 +170,7 @@ namespace TravelAgency.Views
             }
 
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-            /*
-            EngButton.IsEnabled = true;
-            SerButton.IsEnabled = true;
-
-            switch (lang)
-            {
-                case "en-US":
-                    EngButton.IsEnabled = false;
-                    break;
-                case "sr-SR":
-                    EngButton.IsEnabled = false;
-                    break;
-                default:
-                    break;
-            }
-            */
+           
         }
     }
 }

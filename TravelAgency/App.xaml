@@ -161,226 +161,6 @@
                 </Style.Triggers>
             </Style>
 
-            
-            <Style x:Key="CustomHintedTextBoxStyle"
-                   TargetType="TextBox">
-                <Setter Property="Background"
-                        Value="{DynamicResource titleColor3}" />
-                <Setter Property="Foreground"
-                        Value="{DynamicResource SecondaryBrush}" />
-                <Setter Property="FontFamily"
-                        Value="Calibri" />
-                <Setter Property="FontSize"
-                        Value="18" />
-                <Setter Property="FontStyle"
-                        Value="Italic" />
-                <Setter Property="Padding"
-                        Value="10" />
-                <Setter Property="BorderThickness"
-                        Value="0" />
-                <!--
-                <Setter Property="Text"
-                        Value="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" />
-                -->
-
-
-                <Setter Property="Height"
-                        Value="40" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="TextBox">
-                            <Grid>
-                                <Border Background="{TemplateBinding Background}"
-                                        CornerRadius="4"
-                                        Padding="{TemplateBinding Padding}"
-                                        BorderBrush="Transparent"
-                                        BorderThickness="{TemplateBinding BorderThickness}" />
-
-                                <TextBlock x:Name="HintText"
-                                           Text="{TemplateBinding Tag}"
-                                           Foreground="{DynamicResource SecondaryBrush}"
-                                           VerticalAlignment="Center"
-                                           Margin="10,0,0,0"
-                                           RenderTransformOrigin="0,0"
-                                           FontSize="16">
-                                    <TextBlock.RenderTransform>
-                                        <TranslateTransform Y="0" />
-                                    </TextBlock.RenderTransform>
-                                </TextBlock>
-
-                                <ScrollViewer x:Name="PART_ContentHost"
-                                              Margin="5,0,5,0"
-                                              VerticalAlignment="Center" />
-
-
-                                <Border x:Name="FocusBorder"
-                                        Height="2"
-                                        Background="Transparent"
-                                        VerticalAlignment="Bottom"
-                                        CornerRadius="4" />
-                            </Grid>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsKeyboardFocused"
-                                         Value="True">
-                                    <!--
-                                    <Setter Property="Text"
-                                            Value="" />
-                                    -->
-                                   
-                                   
-                                    <Setter TargetName="HintText"
-                                            Property="FontSize"
-                                            Value="10" />
-                                    <Setter TargetName="HintText"
-                                            Property="RenderTransform">
-                                        <Setter.Value>
-                                            <TranslateTransform Y="-15" />
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Setter Property="Foreground"
-                                            Value="{DynamicResource titleColor1}" />
-                                    <Setter TargetName="FocusBorder"
-                                            Property="Background"
-                                            Value="{DynamicResource panelActiveColor}" />
-                                </Trigger>
-
-
-
-                                <Trigger Property="Text"
-                                         Value="">
-                                    <Setter TargetName="HintText"
-                                            Property="Visibility"
-                                            Value="Visible" />
-                                </Trigger>
-
-                                <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}"
-                                             Value="0">
-                                    <Setter TargetName="HintText"
-                                            Property="Visibility"
-                                            Value="Visible" />
-                                </DataTrigger>
-
-                                <DataTrigger Binding="{Binding Text.Length, RelativeSource={RelativeSource Self}}"
-                                             Value="*">
-                                    <Setter TargetName="HintText"
-                                            Property="Visibility"
-                                            Value="Collapsed" />
-                                </DataTrigger>
-
-
-                                <Trigger Property="IsEnabled"
-                                         Value="False">
-                                    <Setter Property="Foreground"
-                                            Value="{DynamicResource titleColor3}" />
-                                    <Setter Property="Background"
-                                            Value="#F5F5F5" />
-                                </Trigger>
-
-                              
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-
-            <Style x:Key="CustomFilledPasswordBoxStyle"
-                   TargetType="PasswordBox">
-                <Setter Property="Background"
-                        Value="{DynamicResource titleColor3}" />
-                <Setter Property="Foreground"
-                        Value="{DynamicResource SecondaryBrush}" />
-                <Setter Property="FontFamily"
-                        Value="Calibri" />
-                <Setter Property="FontSize"
-                        Value="18" />
-                <Setter Property="FontStyle"
-                        Value="Italic" />
-                <Setter Property="Padding"
-                        Value="10" />
-                <Setter Property="BorderThickness"
-                        Value="0" />
-                <Setter Property="Height"
-                        Value="40" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="PasswordBox">
-                            <Grid>
-                                <Border Background="{TemplateBinding Background}"
-                                        CornerRadius="4"
-                                        Padding="{TemplateBinding Padding}"
-                                        BorderBrush="Transparent"
-                                        BorderThickness="{TemplateBinding BorderThickness}" />
-                                <TextBlock x:Name="HintText"
-                                           Text="{TemplateBinding Tag}"
-                                           Foreground="{DynamicResource SecondaryBrush}"
-                                           VerticalAlignment="Center"
-                                           Margin="10,0,0,0"
-                                           RenderTransformOrigin="0,0"
-                                           FontSize="16">
-                                    <TextBlock.RenderTransform>
-                                        <TranslateTransform Y="0" />
-                                    </TextBlock.RenderTransform>
-                                </TextBlock>
-
-                                <ScrollViewer x:Name="PART_ContentHost"
-                                              Margin="5,0,5,0"
-                                              VerticalAlignment="Center" />
-
-
-                                <Border x:Name="FocusBorder"
-                                        Height="2"
-                                        Background="Transparent"
-                                        VerticalAlignment="Bottom"
-                                        CornerRadius="4" />
-                            </Grid>
-
-                            <ControlTemplate.Triggers>
-
-                             
-                                <Trigger Property="IsKeyboardFocused"
-                                         Value="True">
-                                    <Setter TargetName="HintText"
-                                            Property="FontSize"
-                                            Value="10" />
-                                    <Setter TargetName="HintText"
-                                            Property="RenderTransform">
-                                        <Setter.Value>
-                                            <TranslateTransform Y="-15" />
-                                        </Setter.Value>
-                                    </Setter>
-                                    <Setter TargetName="FocusBorder"
-                                            Property="Background"
-                                            Value="{DynamicResource panelActiveColor}" />
-                                    <!--
-                                    <Setter TargetName="HintText"
-                                            Property="Visibility"
-                                            Value="Hidden" />
-                                    -->
-                                </Trigger>
-
-                               
-
-                                <Trigger Property="IsEnabled"
-                                         Value="False">
-                                    <Setter Property="Foreground"
-                                            Value="{DynamicResource titleColor3}" />
-                                    <Setter Property="Background"
-                                            Value="#F5F5F5" />
-                                </Trigger>
-
-                                <Trigger Property="PasswordChar"
-                                         Value="">
-                                    <Setter TargetName="HintText"
-                                            Property="Visibility"
-                                            Value="Visible" />
-                                </Trigger>
-                               
-
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
 
             <Style x:Key="CustomTextBoxStyle"
                    TargetType="TextBox">
@@ -395,7 +175,7 @@
                 <Setter Property="FontStyle"
                         Value="Italic" />
                 <Setter Property="Padding"
-                        Value="10" />
+                        Value="0" />
                 <Setter Property="BorderThickness"
                         Value="0" />
                 <Setter Property="HorizontalContentAlignment"
@@ -448,6 +228,78 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+            <Style x:Key="HintedTextBoxStyle"
+                   BasedOn="{StaticResource MaterialDesignFilledTextBox}"
+                   TargetType="TextBox">
+                <Setter Property="Background"
+                        Value="{DynamicResource titleColor3}" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource titleColor1}" />
+                <Setter Property="FontFamily"
+                        Value="Calibri" />
+                <Setter Property="FontSize"
+                        Value="15" />
+                <Setter Property="FontStyle"
+                        Value="Italic" />
+                <Setter Property="materialDesign:HintAssist.Foreground"
+                        Value="{DynamicResource SecondaryBrush}" />
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
+                        Value="{DynamicResource panelActiveColor}" />
+            </Style>
+
+            <Style x:Key="FormTextBoxStyle"
+                   BasedOn="{StaticResource MaterialDesignFilledTextBox}"
+                   TargetType="TextBox">
+                <Setter Property="Background"
+                        Value="{DynamicResource titleColor3}" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource SecondaryBrush}" />
+                <Setter Property="FontFamily"
+                        Value="Calibri" />
+                <Setter Property="FontSize"
+                        Value="15" />
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="FontStyle"
+                        Value="Italic" />
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Center" />
+                <Setter Property="Height"
+                        Value="40" />
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
+                        Value="{DynamicResource panelActiveColor}" />
+                <Style.Triggers>
+                    <Trigger Property="IsKeyboardFocused"
+                             Value="True">
+                        <Setter Property="Foreground"
+                                Value="{DynamicResource titleColor1}" />
+                     
+                    </Trigger>
+                </Style.Triggers>
+
+            </Style>
+
+
+            <Style x:Key="PasswordBoxStyle"
+                   BasedOn="{StaticResource MaterialDesignFilledPasswordBox}"
+                   TargetType="PasswordBox">
+                <Setter Property="Background"
+                        Value="{DynamicResource titleColor3}" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource titleColor1}" />
+                <Setter Property="FontFamily"
+                        Value="Calibri" />
+                <Setter Property="FontSize"
+                        Value="15" />
+                <Setter Property="FontStyle"
+                        Value="Italic" />
+                <Setter Property="materialDesign:HintAssist.Foreground"
+                        Value="{DynamicResource SecondaryBrush}" />
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
+                        Value="{DynamicResource panelActiveColor}" />
+                
             </Style>
         </ResourceDictionary>
     </Application.Resources>

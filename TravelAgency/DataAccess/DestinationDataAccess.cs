@@ -37,7 +37,7 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred while adding coutry: {e.Message}");
             }
             return retVal;
         }
@@ -67,9 +67,40 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred while getting countries: {e.Message}");
             }
             return countries;
+        }
+
+        public static Country GetCountryByName(string name)
+        { 
+            Country country = null; 
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"SELECT CountryName from country WHERE CountryName LIKE @CName";
+                        cmd.Parameters.AddWithValue("@CName", name + "%");
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                country = new Country(
+                                    reader["CountryName"]?.ToString() ?? string.Empty
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine($"An error occurred while getting country: {e.Message}");
+            }
+            return country;
         }
 
 
@@ -174,7 +205,7 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred while adding destination: {e.Message}");
             }
             return retVal;
         }
@@ -231,7 +262,7 @@ namespace TravelAgency.DataAccess
                         FROM destination";
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read())
+                            while (reader.Read())
                             {
                                 var cntr = new Country(reader["CountryName"]?.ToString() ?? string.Empty);
                                 destinations.Add(new Destination(
@@ -278,7 +309,7 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred while updating destination: {e.Message}");
             }
             return retVal;
 
@@ -303,7 +334,7 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred while deleting destination: {e.Message}");
             }
             return retVal;
 
