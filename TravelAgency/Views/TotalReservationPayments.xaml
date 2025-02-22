@@ -1,18 +1,18 @@
-﻿<UserControl x:Class="TravelAgency.Views.AdminDestinationView"
+﻿<UserControl x:Class="TravelAgency.Views.TotalReservationPayments"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TravelAgency.Views"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DesignHeight="500"
              d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="70" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0"
@@ -20,28 +20,28 @@
                     HorizontalAlignment="Left"
                     Margin="5"
                     Height="50">
-            <TextBox x:Name="destName"
+            <TextBox x:Name="customerName"
                      Width="300"
                      FontSize="15"
                      Style="{DynamicResource HintedTextBoxStyle}"
-                     materialDesign:HintAssist.Hint="{DynamicResource DestinationNameHint}"
+                     materialDesign:HintAssist.Hint="{DynamicResource CustomerName}"
                      TextWrapping="Wrap"
                      Margin="0,0,5,0">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Enter"
-                                Command="{Binding SearchDestinationsCommand}"
-                                CommandParameter="{Binding Text, ElementName=destName}" />
+                                Command="{Binding SearchTotalReservationPaymentsCommand}"
+                                CommandParameter="{Binding Text, ElementName=customerName}" />
                 </TextBox.InputBindings>
             </TextBox>
 
 
             <Button Content="{DynamicResource Search}"
-                    Command="{Binding SearchDestinationsCommand}"
-                    CommandParameter="{Binding Text, ElementName=destName}"
+                    Command="{Binding SearchTotalReservationPaymentsCommand}"
+                    CommandParameter="{Binding Text, ElementName=customerName}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
             <Button Content="{DynamicResource All}"
-                    Command="{Binding AllDestinationsCommand}"
+                    Command="{Binding AllTotalReservationPaymentsCommand}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
 
@@ -50,21 +50,22 @@
         <Grid Grid.Row="1">
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
-                <ListBox ItemsSource="{Binding Destinations}"
-                         SelectedItem="{Binding SelectedDestination, Mode=TwoWay}"
+                <ListBox ItemsSource="{Binding TotalReservationPayments}"
+                         SelectedItem="{Binding SelectedTotalReservationPayment, Mode=TwoWay}"
                          BorderThickness="0"
-                         Background="Transparent">
+                         Background="Transparent"
+                         HorizontalContentAlignment="Stretch">
 
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel />
+                            <StackPanel Orientation="Vertical" />
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
 
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="Margin"
-                                    Value="3" />
+                                    Value="0,0,0,2" />
                             <Setter Property="Padding"
                                     Value="0" />
                             <Setter Property="Background"
@@ -73,6 +74,8 @@
                                     Value="0" />
                             <Setter Property="Cursor"
                                     Value="Hand" />
+                            <Setter Property="HorizontalAlignment"
+                                    Value="Stretch" />
 
                         </Style>
                     </ListBox.ItemContainerStyle>
@@ -81,10 +84,10 @@
                         <DataTemplate>
                             <Border BorderThickness="1"
                                     Padding="10"
-                                    Margin="3"
+                                    Margin="5"
                                     CornerRadius="10"
-                                    Width="230"
-                                    Height="180"
+                                    HorizontalAlignment="Stretch"
+                                    Height="auto"
                                     Focusable="False">
                                 <Border.Style>
                                     <Style TargetType="Border">
@@ -101,8 +104,8 @@
                                                      Value="True">
                                                 <Setter Property="Background"
                                                         Value="{DynamicResource titleColor3}" />
-
                                                 <!--
+
                                                 <Setter Property="Effect">
                                                     <Setter.Value>
                                                         <DropShadowEffect Color="Gray"
@@ -111,8 +114,9 @@
                                                                           Opacity="0.4" />
                                                     </Setter.Value>
                                                 </Setter>
-                                                
                                                 -->
+
+
                                                 <Setter Property="BorderBrush"
                                                         Value="{DynamicResource titleColor1}" />
                                             </Trigger>
@@ -140,112 +144,118 @@
                                 </Border.Style>
 
                                 <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                              Focusable="False">
+                                              Focusable="False"
+                                              >
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
+                                          
                                         </Grid.RowDefinitions>
 
                                         <Grid Grid.Row="0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
-                                            <fa:IconImage Icon="LocationDot"
-                                                          Height="20"
-                                                          Width="20"
+                                            <fa:IconImage Icon="Bank"
+                                                          Height="15"
+                                                          Width="15"
                                                           Grid.Column="0"
                                                           VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"
                                                           Margin="0,0,5,0" />
-                                            <TextBlock Text="{Binding DestinationName}"
+                                            <Label FontSize="16"
+                                                   Grid.Column="1"
+                                                   Content="{DynamicResource ReservationId}"
+                                                   Margin="5,0,5,0"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center" />
+                                            <TextBlock Text="{Binding ReservationId}"
                                                        FontSize="16"
-                                                       FontWeight="Bold"
-                                                       Grid.Column="1"
-                                                       TextWrapping="Wrap" />
+                                                       Grid.Column="2"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center" />
+                                            <Label FontSize="16"
+                                                   Grid.Column="3"
+                                                   Content="{DynamicResource CustomerFullName}"
+                                                   Margin="20,0,5,0"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center" />
+                                            <TextBlock Text="{Binding CustomerName}"
+                                                       FontSize="16"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center"
+                                                       Grid.Column="4" />
                                         </Grid>
 
                                         <Grid Grid.Row="1">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Text="{DynamicResource Postcode}"
-                                                       FontWeight="Bold"
-                                                       Margin="0,0,5,0"
-                                                       Grid.Column="0" />
-                                            <TextBlock Text="{Binding PostCode}"
-                                                       Grid.Column="1"
-                                                       TextWrapping="Wrap" />
-                                        </Grid>
-
-                                        <Grid Grid.Row="2">
-                                            <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Text="{DynamicResource Distance}"
-                                                       FontWeight="Bold"
-                                                       Margin="0,0,5,0"
-                                                       Grid.Column="0" />
-                                            <TextBlock Text="{Binding Distance}"
-                                                       Grid.Column="1"
-                                                       TextWrapping="Wrap" />
-                                        </Grid>
-
-                                        <Grid Grid.Row="3">
-                                            <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Text="{DynamicResource LocalLanguage}"
-                                                       FontWeight="Bold"
-                                                       Margin="0,0,5,0"
-                                                       Grid.Column="0" />
-                                            <TextBlock Text="{Binding LocalLanguage}"
-                                                       Grid.Column="1"
-                                                       TextWrapping="Wrap" />
-                                        </Grid>
-
-                                        <Grid Grid.Row="4">
-                                            <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <TextBlock Text="{DynamicResource Country}"
-                                                       FontWeight="Bold"
-                                                       Margin="0,0,5,0"
-                                                       Grid.Column="0" />
-                                            <TextBlock Text="{Binding Country.CountryName}"
-                                                       Grid.Column="1"
-                                                       TextWrapping="Wrap" />
-                                        </Grid>
-
-                                        <Grid Grid.Row="5">
-                                            <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
-                                            <TextBlock Text="{DynamicResource About}"
-                                                       FontWeight="Bold"
-                                                       Margin="0,0,5,0"
-                                                       Grid.Column="0"
-                                                       VerticalAlignment="Top" />
-                                            <TextBlock Text="{Binding About}"
-                                                       TextWrapping="Wrap"
-                                                       Grid.Column="1" />
+                                            <Label FontSize="13"
+                                                   Grid.Column="0"
+                                                   Content="{DynamicResource Price}"
+                                                   Margin="0,0,5,0"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center" />
+                                            <TextBlock Text="{Binding TotalPrice}"
+                                                       FontSize="13"
+                                                       Grid.Column="1"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center" />
+                                            <Label FontSize="13"
+                                                   Grid.Column="2"
+                                                   Content="{DynamicResource Payed}"
+                                                   Margin="30,0,5,0"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center" />
+                                            <TextBlock Text="{Binding Payed}"
+                                                       FontSize="13"
+                                                       Grid.Column="3"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center" />
+                                            <Label FontSize="13"
+                                                   Grid.Column="4"
+                                                   Content="{DynamicResource Debt}"
+                                                   Margin="30,0,5,0"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center" />
+                                            <TextBlock Text="{Binding Owed}"
+                                                       FontSize="13"
+                                                       Grid.Column="5"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center" />
+                                            <Label FontSize="13"
+                                                   Grid.Column="6"
+                                                   Content="{DynamicResource IsPayed}"
+                                                   Margin="30,0,5,0"
+                                                   FontWeight="Bold"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center" />
+                                            <TextBlock Text="{Binding FullyPayedString}"
+                                                       FontSize="13"
+                                                       Grid.Column="7"
+                                                       VerticalAlignment="Center"
+                                                       HorizontalAlignment="Center" />
                                         </Grid>
-
                                     </Grid>
                                 </ScrollViewer>
                             </Border>
@@ -254,21 +264,6 @@
                 </ListBox>
             </ScrollViewer>
         </Grid>
-        <StackPanel Grid.Row="3"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Margin="10">
-            <Button Content="{DynamicResource Add}"
-                    Command="{Binding AddDestinationCommand}"
-                    Margin="5"
-                    Style="{DynamicResource ProceedButtonStyle}" />
-           
-            <Button Content="{DynamicResource Delete}"
-                    Command="{Binding DeleteDestinationCommand}"
-                    Margin="5"
-                    Style="{DynamicResource ProceedButtonStyle}"
-                    IsEnabled="True" />
-            <!--  IsEnabled="{Binding SelectedHotel, Converter={StaticResource NullToBooleanConverter}}" -->
-        </StackPanel>
+       
     </Grid>
 </UserControl>

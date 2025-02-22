@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency.Views"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="AdminWindow"
         Height="700"
@@ -231,7 +232,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="75" />
+                                    <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="10" />
                                 </Grid.ColumnDefinitions>
@@ -260,6 +261,7 @@
                                     -->
                                 </StackPanel>
 
+                                <!--
                                 <Menu Grid.Column="1"
                                       Margin="0,0,10,0"
                                       HorizontalAlignment="Center"
@@ -273,15 +275,40 @@
                                               StaysOpenOnClick="True">
                                         <MenuItem Header="{DynamicResource BlueTheme}"
                                                   Click="Blue_Click"
+                                                  IsCheckable="True"
                                                   Style="{DynamicResource MenuOptionStyle}" />
                                         <MenuItem Header="{DynamicResource DarkTheme}"
                                                   Click="Dark_Click"
+                                                  IsCheckable="True"
                                                   Style="{DynamicResource MenuOptionStyle}" />
                                         <MenuItem Header="{DynamicResource BurgundyTheme}"
                                                   Click="Burgundy_Click"
+                                                  IsCheckable="True"
                                                   Style="{DynamicResource MenuOptionStyle}" />
                                     </MenuItem>
                                 </Menu>
+                                -->
+                                <ComboBox x:Name="ThemeComboBox"
+                                    Grid.Column="1"
+                                          Margin="0,0,10,0"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Width="75"
+                                          Height="35"
+                                          SelectionChanged="Theme_SelectionChanged"
+                                          materialDesign:HintAssist.Hint="{DynamicResource Theme}"
+                                          Style="{DynamicResource ComboBoxStyle}">
+                                    <ComboBoxItem Content="{DynamicResource BlueTheme}"
+                                                  Tag="Blue"
+                                                  />
+                                    <ComboBoxItem Content="{DynamicResource DarkTheme}"
+                                                  Tag="Dark"
+                                                 />
+                                    <ComboBoxItem Content="{DynamicResource BurgundyTheme}"
+                                                  Tag="Burgundy"
+                                                   />
+                                </ComboBox>
+
                                 <StackPanel  Grid.Column="2"
                                              Orientation="Horizontal"
                                              VerticalAlignment="Center">

@@ -6,8 +6,13 @@
              xmlns:vm="clr-namespace:TravelAgency.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:util="clr-namespace:TravelAgency.Util"
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <util:YesNoConverter x:Key="YesNoConverter" />
+    </UserControl.Resources>
 
 
     <Grid>

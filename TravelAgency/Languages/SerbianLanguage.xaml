@@ -40,9 +40,12 @@
     <System:String x:Key="RowNotSelected">Red nije oznacen, nije moguce izvrsiti radnju.</System:String>
     <System:String x:Key="ConfirmDelete">Da li ste sigurni da zelite da obrisete </System:String>
     <System:String x:Key="ConfirmUpdate">Da li ste sigurni da zelite da azurirate </System:String>
+    <System:String x:Key="ConfirmAdd">Da li ste sigurni da zelite da dodate</System:String>
+    <System:String x:Key="ConfirmPayment">Da li ste sigurni da zelite da uplatite:</System:String>
     <System:String x:Key="FailedDelete">Brisanje nije uspjelo.</System:String>
     <System:String x:Key="FailedUpdate">Azuriranje nije uspjelo.</System:String>
     <System:String x:Key="SuccessfulDelete">Brisanje uspjesno.</System:String>
+    <System:String x:Key="SuccessfulAdd">Dodavanje uspjesno.</System:String>
     <System:String x:Key="SuccessfulUpdate">Azuriranje uspjesno.</System:String>
     <System:String x:Key="Hotel">Hotel:</System:String>
     <System:String x:Key="EmptyField">Sva polja moraju biti popunjena.</System:String>
@@ -66,11 +69,23 @@
     <System:String x:Key="AllPayments">Sve uplate</System:String>
     <System:String x:Key="PaymentsByReservation">Uplate rezervacija</System:String>
     <System:String x:Key="Amount">Iznos:</System:String>
+    <System:String x:Key="Payed">Uplaceno:</System:String>
     <System:String x:Key="ReservationIsPayed">Rezervacija je placena. Nije moguce izvrsiti vise uplata.</System:String>
     <System:String x:Key="PaymentSuccessful">Uplata rezervacije uspjesna.</System:String>
     <System:String x:Key="Pay">Uplati</System:String>
     <System:String x:Key="AmountTooBig">Iznos je prevelik. Unesite manji iznos.</System:String>
     <System:String x:Key="Debt">Dug:</System:String>
     <System:String x:Key="About">Opis:</System:String>
+    <System:String x:Key="EmptyFieldRegex">Polje ne moze biti prazno!</System:String>
+    <System:String x:Key="InvalidInput">Format unosa nije dobar.</System:String>
+
+    <System:String x:Key="FirstName">Ime:</System:String>
+    <System:String x:Key="LastName">Prezime:</System:String>
+    <System:String x:Key="DateOfbirth">Datum rodjednja:</System:String>
+    <System:String x:Key="DateOfbirthHint">Datum rodjenja (dd.MM.yyyy.):</System:String>
+    <System:String x:Key="PhoneNumber">Telefon:</System:String>
+    <System:String x:Key="JMB">JMB:</System:String>
+    <System:String x:Key="JMBHint">JMB (13 cifara):</System:String>
+    <System:String x:Key="Customer">Putnik</System:String>
 
 </ResourceDictionary>

@@ -142,13 +142,23 @@ namespace TravelAgency.ViewModels
 
                     if ((bool)dialogResult)
                     {
-                        if (PaymentDataAccess.PayReservation(SelectedReservation.ReservationId, dialog.AmountPayed))
+                        Reservation pom = dialog.Reservation;
+                        string message2 = (string)Application.Current.Resources["ConfirmPayment"] + "\n" +
+                          (string)Application.Current.Resources["ReservationId"]+ " " + dialog.Reservation.ReservationId + ", " + 
+                          dialog.Reservation.Customer.FullName +", "+ (string)Application.Current.Resources["Amount"] + " "+ dialog.AmountPayed + "?";
+                        MessageDialog dialog2 = new MessageDialog(message2);
+                        bool? dialogResult2 = dialog2.ShowDialog();
+                        if ((bool)dialogResult2)
                         {
-                            SelectedReservation = dialog.Reservation;
-                            OnPropertyChanged(nameof(Reservations));
-                            string message2 = (string)Application.Current.Resources["PaymentSuccessful"];
-                            MessageWithoutOptionDialog dialog2 = new MessageWithoutOptionDialog(message2);
-                            dialog2.ShowDialog();
+                            if (PaymentDataAccess.PayReservation(SelectedReservation.ReservationId, dialog.AmountPayed))
+                            {
+                                SelectedReservation.AllPayed = pom.AllPayed;
+                                OnPropertyChanged(nameof(SelectedReservation));
+                                OnPropertyChanged(nameof(Reservations));
+                                string message3 = (string)Application.Current.Resources["PaymentSuccessful"];
+                                MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                                dialog3.ShowDialog();
+                            }
                         }
                     }
                 }

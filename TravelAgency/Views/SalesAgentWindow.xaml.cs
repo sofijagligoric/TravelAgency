@@ -37,11 +37,20 @@ namespace TravelAgency.Views
             InitializeComponent();
             this.user = emp;
             if (emp.Theme == "tamna")
+            {
+                ThemeComboBox.SelectedIndex = 1;
                 SetTheme("Themes/DarkTheme.xaml");
+            }
             else if (emp.Theme == "bordo")
+            {
+                ThemeComboBox.SelectedIndex = 2;
                 SetTheme("Themes/BurgundyTheme.xaml");
+            }
             else
+            {
+                ThemeComboBox.SelectedIndex = 0;
                 SetTheme("Themes/BlueTheme.xaml");
+            }
             var navigationService = new NavigationService(MainContent);
             DataContext = new SalesAgentViewModel(navigationService);
         }
@@ -76,6 +85,26 @@ namespace TravelAgency.Views
             LoginView loginWindow = new LoginView();
             loginWindow.Show();
             this.Close();
+        }
+
+        private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string theme = selectedItem.Tag.ToString();
+                switch (theme)
+                {
+                    case "Blue":
+                        Blue_Click(sender, e);
+                        break;
+                    case "Dark":
+                        Dark_Click(sender, e);
+                        break;
+                    case "Burgundy":
+                        Burgundy_Click(sender, e);
+                        break;
+                }
+            }
         }
 
         private void ThemeMenu_Click(object sender, RoutedEventArgs e)

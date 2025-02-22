@@ -39,11 +39,20 @@ namespace TravelAgency.Views
             InitializeComponent();
             this.user = emp;
             if (emp.Theme == "tamna")
+            {
+                ThemeComboBox.SelectedIndex = 1;
                 SetTheme("Themes/DarkTheme.xaml");
+            }
             else if (emp.Theme == "bordo")
+            {
+                ThemeComboBox.SelectedIndex = 2;
                 SetTheme("Themes/BurgundyTheme.xaml");
+            }
             else
+            {
+                ThemeComboBox.SelectedIndex = 0;
                 SetTheme("Themes/BlueTheme.xaml");
+            }
             var navigationService = new NavigationService(MainContent);
             DataContext = new AdminViewModel(navigationService);
         }
@@ -78,6 +87,26 @@ namespace TravelAgency.Views
             LoginView loginWindow = new LoginView();
             loginWindow.Show();
             this.Close();
+        }
+
+        private void Theme_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ComboBox comboBox && comboBox.SelectedItem is ComboBoxItem selectedItem)
+            {
+                string theme = selectedItem.Tag.ToString();
+                switch (theme)
+                {
+                    case "Blue":
+                        Blue_Click(sender, e);
+                        break;
+                    case "Dark":
+                        Dark_Click(sender, e);
+                        break;
+                    case "Burgundy":
+                        Burgundy_Click(sender, e);
+                        break;
+                }
+            }
         }
 
         private void ThemeMenu_Click(object sender, RoutedEventArgs e)
@@ -133,6 +162,32 @@ namespace TravelAgency.Views
             }
 
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
+
+            /*
+            var adminWindow = Application.Current.MainWindow as AdminWindow;
+            Console.WriteLine("------------------------>  MAIN WINDOW JE NULL" );
+            
+            if (adminWindow != null)
+            {
+                Console.WriteLine("------------------------>  MAIN WINDOW NIJE NULL");
+                var themeComboBox = adminWindow.FindName("ThemeComboBox") as ComboBox;
+                Console.WriteLine("------------------------>  THEMEBOX JE NULL");
+                if (themeComboBox != null)
+                {
+                    Console.WriteLine("------------------------>  THEMEBOX NIJE NULL");
+                    string themeName = theme.Split('/')[1].Replace("Theme.xaml", "");
+                    Console.WriteLine("------------------------>" + themeName);
+                    foreach (ComboBoxItem item in themeComboBox.Items)
+                    {
+                        if (item.Tag != null && item.Tag.ToString() == themeName)
+                        {
+                            themeComboBox.SelectedItem = item;
+                            break;
+                        }
+                    }
+                }
+            }
+            */
         }
 
         private void EmployeesRadioButton_Checked(object sender, RoutedEventArgs e)
@@ -166,7 +221,7 @@ namespace TravelAgency.Views
 
             if (oldLang != null)
             {
-                Application.Current.Resources.MergedDictionaries.Remove(oldLang);
+                 Application.Current.Resources.MergedDictionaries.Remove(oldLang);
             }
 
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);

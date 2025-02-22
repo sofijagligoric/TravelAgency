@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+
             <Color x:Key="CloseButtonColor">#7a1420</Color>
             <Color x:Key="MouseOverCloseButtonColor">#590d16</Color>
             <SolidColorBrush x:Key="CloseButtonBrush" Color="{StaticResource CloseButtonColor}" />
@@ -122,7 +123,6 @@
                                 </Grid>
                             </Border>
                             <ControlTemplate.Triggers>
-                                <!-- Kada je miš iznad stavke -->
                                 <Trigger Property="IsMouseOver"
                                          Value="True">
                                     <Setter Property="Background"
@@ -131,10 +131,20 @@
                                     <Setter Property="Foreground"
                                             Value="{DynamicResource ForegroundBrush}" />
                                 </Trigger>
+
+                                <Trigger Property="IsChecked"
+                                         Value="True">
+                                    <Setter Property="Background"
+                                            Value="Gray" />
+                                    <Setter Property="Foreground"
+                                            Value="White" />
+                                </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
+                
+                
                 <Setter Property="Background"
                         Value="{DynamicResource ForegroundBrush}" />
                 <Setter Property="Foreground"
@@ -150,6 +160,8 @@
                 <Setter Property="Padding"
                         Value="5" />
 
+
+                <!--
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver"
                              Value="True">
@@ -159,6 +171,7 @@
                                 Value="{DynamicResource ForegroundBrush}" />
                     </Trigger>
                 </Style.Triggers>
+                -->
             </Style>
 
 
@@ -277,6 +290,14 @@
                                 Value="{DynamicResource titleColor1}" />
                      
                     </Trigger>
+
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.HasError)}"
+                                 Value="True">
+                        <Setter Property="BorderBrush"
+                                Value="Red" />
+                        <Setter Property="BorderThickness"
+                                Value="2" />
+                    </DataTrigger>
                 </Style.Triggers>
 
             </Style>
@@ -299,8 +320,121 @@
                         Value="{DynamicResource SecondaryBrush}" />
                 <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
                         Value="{DynamicResource panelActiveColor}" />
-                
             </Style>
+
+            <Style x:Key="ComboBoxStyle"
+                   BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}"
+                   TargetType="ComboBox">
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource ForegroundBrush}" />
+                <Setter Property="FontSize"
+                        Value="13" />
+                <Setter Property="FontWeight"
+                        Value="Medium" />
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="materialDesign:HintAssist.Foreground"
+                        Value="{DynamicResource ForegroundBrush}" />
+
+                <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
+                        Value="{DynamicResource SecondaryBrush}" />
+                <Setter Property="FocusVisualStyle"
+                        Value="{x:Null}" />
+            </Style>
+            
+            <Style x:Key="ComboBoxStyle2"
+                   TargetType="ComboBox">
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource ForegroundBrush}" />
+                <Setter Property="FontSize"
+                        Value="13" />
+                <Setter Property="FontWeight"
+                        Value="Medium" />
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalAlignment"
+                        Value="Center" />
+                <Setter Property="VerticalContentAlignment"
+                        Value="Center" />
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Center" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ComboBox">
+                            <Grid>
+                                <Border Background="Transparent"
+                                        BorderBrush="Gray"
+                                        BorderThickness="1">
+                                    <DockPanel>
+                                        <TextBlock Text="{TemplateBinding Text}"
+                                                   Foreground="{TemplateBinding Foreground}"
+                                                   Padding="5" />
+                                        <ToggleButton DockPanel.Dock="Right"
+                                                      Focusable="False"
+                                                      IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}">
+                                            <ToggleButton.Content>
+                                                ▼
+                                            </ToggleButton.Content>
+                                        </ToggleButton>
+                                    </DockPanel>
+                                </Border>
+                                <Popup IsOpen="{TemplateBinding IsDropDownOpen}"
+                                       Placement="Bottom">
+                                    <Border Background="White"
+                                            BorderBrush="Gray"
+                                            BorderThickness="1">
+                                        <ScrollViewer>
+                                            <ItemsPresenter />
+                                        </ScrollViewer>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ComboBoxItemStyle"
+                   TargetType="ComboBoxItem">
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource panelActiveColor}" />
+                <Setter Property="Padding"
+                        Value="5" />
+
+                <Style.Triggers>
+                    <!-- Kada je selektovan -->
+                    <Trigger Property="IsSelected"
+                             Value="True">
+                        <Setter Property="Background"
+                                Value="{DynamicResource panelActiveColor}" />
+                        <Setter Property="Foreground"
+                                Value="{DynamicResource ForegroundBrush}" />
+                    </Trigger>
+
+                    <!-- Kada je miš iznad opcije -->
+                    <Trigger Property="IsMouseOver"
+                             Value="True">
+                        <Setter Property="Background"
+                                Value="{DynamicResource panelActiveColor}" />
+                        <Setter Property="Foreground"
+                                Value="{DynamicResource ForegroundBrush}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

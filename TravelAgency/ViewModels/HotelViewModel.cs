@@ -18,9 +18,10 @@ namespace TravelAgency.ViewModels
 {
     public class HotelViewModel : INotifyPropertyChanged
     {
+        
         public ObservableCollection<Hotel> Hotels { get; set; }
         //  public Hotel SelectedHotel { get; set; } = new Hotel();
-        public Hotel NewHotel { get; set; }
+        
         private Hotel _selectedHotel; 
 
         public Hotel SelectedHotel
@@ -48,6 +49,7 @@ namespace TravelAgency.ViewModels
         public HotelViewModel()
         {
             var hotels = HotelDataAccess.GetAllHotels();
+            
             if (hotels == null)
             {
                 Console.WriteLine("Hotels list is null! Check database connection.");
@@ -55,7 +57,7 @@ namespace TravelAgency.ViewModels
             }
 
             Hotels = new ObservableCollection<Hotel>(hotels);
-            NewHotel = new Hotel();
+           
             AddHotelCommand = new RelayCommand(AddHotel);
             DeleteHotelCommand = new RelayCommand(DeleteHotel);
             UpdateHotelCommand = new RelayCommand(UpdateHotel);
@@ -78,13 +80,19 @@ namespace TravelAgency.ViewModels
             if ((bool)dialogResult)
             {
                 Hotel pom = dialog.Hotel;
-                if (HotelDataAccess.AddHotel(pom))
+                string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
+                MessageDialog dialog2 = new MessageDialog(message2);
+                bool? dialogResult2 = dialog2.ShowDialog();
+                if ((bool)dialogResult2)
                 {
-                    Hotels.Add(pom);
-                    OnPropertyChanged(nameof(Hotels));
-                    string message = (string)Application.Current.Resources["SuccessfullyAdded"];
-                    MessageWithoutOptionDialog dialog2 = new MessageWithoutOptionDialog(message + " " + pom);
-                    dialog2.ShowDialog();
+                    if (HotelDataAccess.AddHotel(pom))
+                    {
+                        Hotels.Add(pom);
+                        OnPropertyChanged(nameof(Hotels));
+                        string message = (string)Application.Current.Resources["SuccessfullyAdded"];
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                        dialog3.ShowDialog();
+                    }
                 }
                 
             }
@@ -142,7 +150,7 @@ namespace TravelAgency.ViewModels
             {
                 if (HotelDataAccess.DeleteHotel(SelectedHotel))
                 {
-                    Hotels.Remove(SelectedHotel); 
+                    Hotels.Remove(SelectedHotel);
                     OnPropertyChanged(nameof(Hotels));
                     string message = (string)Application.Current.Resources["SuccessfulDelete"];
                     MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
@@ -171,15 +179,28 @@ namespace TravelAgency.ViewModels
                 if ((bool)dialogResult)
                 {
                     Hotel pom = dialog.Hotel;
-                    if (HotelDataAccess.UpdateHotel(pom))
+                    string message2 = (string)Application.Current.Resources["ConfirmUpdate"] + ": " + pom + "?";
+                    MessageDialog dialog2 = new MessageDialog(message2);
+                    bool? dialogResult2 = dialog2.ShowDialog();
+                    if((bool)dialogResult2)
                     {
-                        SelectedHotel = pom;
-                        OnPropertyChanged(nameof(Hotels));
-                        string message2 = (string)Application.Current.Resources["SuccessfulUpdate"];
-                        MessageWithoutOptionDialog dialog2 = new MessageWithoutOptionDialog(message2);
-                        dialog2.ShowDialog();
+                        if (HotelDataAccess.UpdateHotel(pom))
+                        {
+                            SelectedHotel.Name = pom.Name;
+                            SelectedHotel.Address = pom.Address;
+                            SelectedHotel.Email = pom.Email;
+                            SelectedHotel.Destination = pom.Destination;
+                            SelectedHotel.HasRestaurant = pom.HasRestaurant;
+                            SelectedHotel.RoomCount = pom.RoomCount;
+                            
+                            OnPropertyChanged(nameof(SelectedHotel));
+                            OnPropertyChanged(nameof(Hotels));
+                            string message3 = (string)Application.Current.Resources["SuccessfulUpdate"];
+                            MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                            dialog3.ShowDialog();
+                        }
                     }
-
+                   
                 }
             }
             else

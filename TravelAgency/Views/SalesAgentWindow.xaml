@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         Title="SalesAgentWindow"
@@ -60,8 +61,8 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
-                                     IsChecked="False"
-                                     Checked="EmployeesRadioButton_Checked">
+                                     IsChecked="True"
+                                     Command="{Binding ShowCustomersCommand}">
                             <!--
                                      Command="{Binding ShowHomeViewCommand}"
                             -->
@@ -122,6 +123,7 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
+                                     Command="{Binding ShowTotalPaymentsCommand}"
                                      IsChecked="False">
 
                             <StackPanel Orientation="Horizontal">
@@ -242,7 +244,7 @@
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="75" />
+                                    <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="10" />
                                 </Grid.ColumnDefinitions>
@@ -271,6 +273,7 @@
                                     -->
                                 </StackPanel>
 
+                                <!--
                                 <Menu Grid.Column="1"
                                       Margin="0,0,10,0"
                                       HorizontalAlignment="Center"
@@ -291,6 +294,24 @@
                                                   Style="{DynamicResource MenuOptionStyle}" />
                                     </MenuItem>
                                 </Menu>
+                                -->
+                                <ComboBox x:Name="ThemeComboBox"
+                                          Grid.Column="1"
+                                          Margin="0,0,10,0"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Width="75"
+                                          Height="35"
+                                          SelectionChanged="Theme_SelectionChanged"
+                                          materialDesign:HintAssist.Hint="{DynamicResource Theme}"
+                                          Style="{DynamicResource ComboBoxStyle}">
+                                    <ComboBoxItem Content="{DynamicResource BlueTheme}"
+                                                  Tag="Blue" />
+                                    <ComboBoxItem Content="{DynamicResource DarkTheme}"
+                                                  Tag="Dark" />
+                                    <ComboBoxItem Content="{DynamicResource BurgundyTheme}"
+                                                  Tag="Burgundy" />
+                                </ComboBox>
                                 <StackPanel  Grid.Column="2"
                                              Orientation="Horizontal"
                                              VerticalAlignment="Center">

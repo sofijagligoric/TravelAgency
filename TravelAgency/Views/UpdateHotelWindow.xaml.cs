@@ -43,7 +43,7 @@ namespace TravelAgency.Views
         public UpdateHotelWindow(Hotel hotel1)
         {
             InitializeComponent();
-            Hotel = hotel1;
+            Hotel = new Hotel(hotel1);
             DataContext = this;
         }
 

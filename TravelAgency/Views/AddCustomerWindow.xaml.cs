@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,32 +12,32 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TravelAgency.Views
 {
     /// <summary>
-    /// Interaction logic for AddDestinationWindow.xaml
+    /// Interaction logic for AddCustomerWindow.xaml
     /// </summary>
-    public partial class AddDestinationWindow : Window
+    public partial class AddCustomerWindow : Window
     {
-        public AddDestinationWindow()
+        public Customer Customer { get; set; }
+
+
+        public AddCustomerWindow()
         {
             InitializeComponent();
-            Destination = new Destination();
+            Customer = new Customer();
             DataContext = this;
         }
 
-        public Destination Destination { get; set; }
-
-        
-
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(DestinationName.Text) || string.IsNullOrEmpty(About.Text) || string.IsNullOrEmpty(Postcode.Text) ||
-               string.IsNullOrEmpty(Country.Text) || string.IsNullOrEmpty(Distance.Text) || string.IsNullOrEmpty(LocalLanguage.Text))
+            if (string.IsNullOrEmpty(FirstName.Text) || string.IsNullOrEmpty(Address.Text) || string.IsNullOrEmpty(LastName.Text) ||
+               string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(PhoneNumber.Text) || string.IsNullOrEmpty(JMB.Text) || string.IsNullOrEmpty(DateOfBirth.Text))
+           
             {
                 string message = (string)Application.Current.Resources["EmptyField"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
@@ -44,17 +45,13 @@ namespace TravelAgency.Views
             }
             else
             {
-                Country country = DestinationDataAccess.GetCountryByName(Country.Text);
-                if (country == null)
-                {
-                    DestinationDataAccess.AddCountry(new Models.Country(Country.Text));
-                }
-
-                Destination = new Destination(int.Parse(Postcode.Text), DestinationName.Text, About.Text, int.Parse(Distance.Text), LocalLanguage.Text, country);
-                DialogResult = true;
-                Close();
+                    Customer = new Customer(FirstName.Text, LastName.Text, JMB.Text, Address.Text, Email.Text, DateOfBirth.Text, PhoneNumber.Text);
+                    DialogResult = true;
+                    Close();
                 
             }
+
+
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -73,5 +70,12 @@ namespace TravelAgency.Views
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
 }

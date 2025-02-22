@@ -94,6 +94,7 @@ namespace TravelAgency.Models
                 {
                     _allPayed = value;
                     OnPropertyChanged(nameof(AllPayed));
+                    OnPropertyChanged(nameof(AllPayedString));
                 }
             }
         }

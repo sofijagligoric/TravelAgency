@@ -40,10 +40,13 @@
     <System:String x:Key="RowNotSelected">Row not selected, action can't be completed.</System:String>
     <System:String x:Key="ConfirmDelete">Are you sure you want to delete </System:String>
     <System:String x:Key="ConfirmUpdate">Are you sure you want to update </System:String>
+    <System:String x:Key="ConfirmPayment">Are you sure you want to place payment:</System:String>
+    <System:String x:Key="ConfirmAdd">Are you sure you want to add</System:String>
     <System:String x:Key="FailedDelete">Failed to delete.</System:String>
     <System:String x:Key="FailedUpdate">Failed to update.</System:String>
     <System:String x:Key="SuccessfulDelete">Selected item deleted.</System:String>
     <System:String x:Key="SuccessfulUpdate">Selected item updated.</System:String>
+    <System:String x:Key="SuccessfulAdd">Selected item added.</System:String>
     <System:String x:Key="Hotel">Hotel:</System:String>
     <System:String x:Key="EmptyField">All fields must be filled.</System:String>
     <System:String x:Key="SuccessfullyAdded">Successfully added: </System:String>
@@ -70,8 +73,19 @@
     <System:String x:Key="Pay">Pay</System:String>
     <System:String x:Key="AmountTooBig">Amount too big. Please select smaller amount.</System:String>
     <System:String x:Key="Debt">Debt:</System:String>
+    <System:String x:Key="Payed">Payed:</System:String>
     <System:String x:Key="Country">Country:</System:String>
     <System:String x:Key="About">About:</System:String>
+    <System:String x:Key="EmptyFieldRegex">Field cannot be empty!</System:String>
+    <System:String x:Key="InvalidInput">Invalid input format.</System:String>
 
+    <System:String x:Key="FirstName">First name:</System:String>
+    <System:String x:Key="LastName">Last name:</System:String>
+    <System:String x:Key="DateOfbirth">Date of birth:</System:String>
+    <System:String x:Key="DateOfbirthHint">Date of birth (dd.MM.yyyy.):</System:String>
+    <System:String x:Key="PhoneNumber">Phone:</System:String>
+    <System:String x:Key="JMB">Personal ID:</System:String>
+    <System:String x:Key="JMBHint">Personal ID (13 digits):</System:String>
     <System:String x:Key="CountryNameHint">Country name:</System:String>
+    <System:String x:Key="Customer">Customer</System:String>
 </ResourceDictionary>

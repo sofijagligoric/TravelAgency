@@ -59,7 +59,8 @@ namespace TravelAgency.Models
                 {
                     _hasRestaurant = value;
                     OnPropertyChanged(nameof(HasRestaurant));
-                    OnPropertyChanged(nameof(HasRestaurantBool));
+                    OnPropertyChanged(nameof(HasRestaurantBool)); 
+                    OnPropertyChanged(nameof(HasRestaurantString)); 
                 }
             }
         }
@@ -69,10 +70,11 @@ namespace TravelAgency.Models
             get => _hasRestaurant == 1;
             set
             {
-                if (HasRestaurantBool != value) 
+                if (HasRestaurantBool != value)
                 {
                     HasRestaurant = (byte)(value ? 1 : 0);
                     OnPropertyChanged(nameof(HasRestaurantBool));
+                    OnPropertyChanged(nameof(HasRestaurantString)); 
                 }
             }
         }
@@ -81,9 +83,9 @@ namespace TravelAgency.Models
         {
             get
             {
-                if (HasRestaurant == 0)
-                    return (string)Application.Current.Resources["No"];
-                else return  (string)Application.Current.Resources["Yes"]; ;
+                return HasRestaurant == 0
+                    ? (string)Application.Current.Resources["No"]
+                    : (string)Application.Current.Resources["Yes"];
             }
         }
 
@@ -151,5 +153,6 @@ namespace TravelAgency.Models
 
 
         }
+
     }
         }

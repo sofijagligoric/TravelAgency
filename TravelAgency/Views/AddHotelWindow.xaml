@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency.Views"
         xmlns:local2="clr-namespace:TravelAgency.ViewModels"
+        xmlns:util="clr-namespace:TravelAgency.Util"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         Title="PlannedEscape"
@@ -16,9 +17,19 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown"
         ResizeMode="NoResize">
+
     <Window.Resources>
         <local2:InverseBoolConverter x:Key="InverseBoolConverter" />
+        <util:RegexValidation x:Key="TextValidationRule"
+                              Pattern="^[a-zA-Z0-9 ]*$" />
+        <util:RegexValidation x:Key="OnlyNumbersValidation"
+                                  Pattern="^\d+$" />
+        <util:RegexValidation x:Key="OnlyLettersAndSpacesValidation"
+                              Pattern="^([A-Za-z\s]+)?$" />
+        <util:RegexValidation x:Key="EmailValidation"
+                                  Pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
     </Window.Resources>
+
     <Border BorderThickness="1"
             CornerRadius="0,0,10,10">
         <Border.BorderBrush>
@@ -92,9 +103,23 @@
                         <Label FontSize="15"
                                Content="{DynamicResource Name}" />
                         <TextBox x:Name="Name"
+                                
                                  Width="300"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
+                                 HorizontalContentAlignment="Center" >
+                        
+                            <TextBox.Text>
+                                <Binding Path="Hotel.Name"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^([A-Za-z0-9ĆČŠĐŽćčšđž\s]+)?$"
+                                                              ValidatesOnTargetUpdated="True"
+                                                              />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                            
                     </StackPanel>
 
                     <StackPanel Grid.Row="1"
@@ -106,7 +131,18 @@
                                  Width="300"
                                  FontSize="15"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Hotel.Address"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^([A-Za-z0-9ĆČŠĐŽćčšđž\s]+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
                     <StackPanel Grid.Row="2"
@@ -118,7 +154,18 @@
                                  Width="300"
                                  FontSize="15"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Hotel.Email"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^(|[^@\s]+@[^@\s]+\.[^@\s]+)$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
                     <StackPanel Grid.Row="3"
@@ -130,7 +177,18 @@
                                  Width="300"
                                  FontSize="15"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Hotel.RoomCount"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^(\d+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
                     <StackPanel Grid.Row="4"
@@ -142,7 +200,18 @@
                                  Width="300"
                                  FontSize="15"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Hotel.Destination.DestinationName"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^([A-Za-zĆČŠĐŽćčšđž\s]+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
                     <StackPanel Grid.Row="5"
@@ -155,7 +224,18 @@
                                  FontSize="15"
                                  Style="{DynamicResource FormTextBoxStyle}"
                                  HorizontalContentAlignment="Center"
-                                 TextWrapping="Wrap" />
+                                 TextWrapping="Wrap">
+
+                            <TextBox.Text>
+                                <Binding Path="Hotel.Destination.PostCode"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^(\d+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal"

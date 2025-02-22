@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TravelAgency.Models;
+using TravelAgency.Util;
 
 namespace TravelAgency.DataAccess
 {
@@ -151,7 +152,7 @@ namespace TravelAgency.DataAccess
                                           a.StartDate, a.EndDate, a.Price, a.About, a.PostCode, 
                                           h.Name_of AS HotelName, h.RoomCount, h.Address, h.Email, h.ContainsRestaurant, h.PostCode,
                                           d.DestinationName, d.About, d.Distance, d.LocalLanguage, d.CountryName, 
-                                          o.LastName, o.FirstName, o.Address, o.DateOfBirth, o.Email 
+                                          o.LastName, o.FirstName, o.Address, o.DateOfBirth, o.Email, o.PhoneNumber 
                                           FROM reservation r INNER JOIN package a ON a.PackageId=r.PackageId 
                                           INNER JOIN hotel h ON h.HotelId=r.HotelId 
                                           INNER JOIN destination d ON d.PostCode=h.PostCode AND d.DestinationName = h.DestinationName
@@ -198,7 +199,8 @@ namespace TravelAgency.DataAccess
                                     reader["CustomerJMB"]?.ToString() ?? string.Empty,
                                     reader["Address"]?.ToString() ?? string.Empty,
                                     reader["Email"]?.ToString() ?? string.Empty,
-                                    reader["DateOfBirth"]?.ToString() ?? string.Empty
+                                     General.DateFromBase(reader["DateOfBirth"]?.ToString() ?? string.Empty),
+                                    reader["PhoneNumber"]?.ToString() ?? string.Empty
                                 );
 
                                 packages.Add(new Reservation(
@@ -237,7 +239,7 @@ namespace TravelAgency.DataAccess
                                           a.StartDate, a.EndDate, a.Price, a.About, a.PostCode, 
                                           h.Name_of as HotelName, h.RoomCount, h.Address, h.Email, h.ContainsRestaurant, h.PostCode,
                                           d.DestinationName, d.About, d.Distance, d.LocalLanguage, d.CountryName, 
-                                          o.LastName, o.FirstName, o.Address, o.DateOfBirth, o.Email 
+                                          o.LastName, o.FirstName, o.Address, o.DateOfBirth, o.Email, o.PhoneNumber 
                                           FROM reservation r INNER JOIN package a ON a.PackageId=r.PackageId 
                                           INNER JOIN hotel h ON h.HotelId=r.HotelId 
                                           INNER JOIN destination d ON d.PostCode=h.PostCode  AND d.DestinationName = h.DestinationName
@@ -286,7 +288,8 @@ namespace TravelAgency.DataAccess
                                     reader["CustomerJMB"]?.ToString() ?? string.Empty,
                                     reader["Address"]?.ToString() ?? string.Empty,
                                     reader["Email"]?.ToString() ?? string.Empty,
-                                    reader["DateOfBirth"]?.ToString() ?? string.Empty
+                                     General.DateFromBase(reader["DateOfBirth"]?.ToString() ?? string.Empty),
+                                    reader["PhoneNumber"]?.ToString() ?? string.Empty
                                 );
 
                                 packages.Add(new Reservation(

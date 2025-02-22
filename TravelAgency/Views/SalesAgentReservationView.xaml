@@ -67,12 +67,12 @@
                                     Binding="{Binding Customer.FullName}" />
                 <DataGridTextColumn Header="{DynamicResource PackageId}"
                                     Binding="{Binding Package.PackageId}" />
-                <DataGridTextColumn Header="{DynamicResource Destination}"
-                                    Binding="{Binding Destination.DestinationName}" />
+                <DataGridTextColumn Header="{DynamicResource DestinationNameHint}"
+                                    Binding="{Binding Package.Destination.DestinationName}" />
                 <DataGridTextColumn Header="{DynamicResource Hotel}"
                                     Binding="{Binding Hotel.Name}" />
                 <DataGridTextColumn Header="{DynamicResource CustomersPhoneNumber}"
-                                    Binding="{Binding Customer.Email}" />
+                                    Binding="{Binding Customer.PhoneNumber}" />
                 <DataGridTextColumn Header="{DynamicResource Price}"
                                     Binding="{Binding Price}" />
 
@@ -92,7 +92,7 @@
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
             <Button Content="{DynamicResource Delete}"
-                    Command="{Binding DeleteHotelCommand}"
+                    Command="{Binding DeleteReservationlCommand}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}"
                     IsEnabled="True" />

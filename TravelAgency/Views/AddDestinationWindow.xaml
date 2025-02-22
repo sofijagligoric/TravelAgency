@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TravelAgency.Views"
+        xmlns:util="clr-namespace:TravelAgency.Util"
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         mc:Ignorable="d"
         Title="PlannedEscape"
@@ -90,7 +91,18 @@
                         <TextBox x:Name="DestinationName"
                                  Width="300"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Destination.DestinationName"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^([A-Za-zĆČŠĐŽćčšđž\s]+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
                     <StackPanel Grid.Row="1"
@@ -100,7 +112,18 @@
                         <TextBox x:Name="Postcode"
                                  Width="300"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Destination.PostCode"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^(\d+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
                     
                     <StackPanel Grid.Row="2"
@@ -110,7 +133,18 @@
                         <TextBox x:Name="Distance"
                                  Width="300"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Destination.Distance"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^(\d+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
                     <StackPanel Grid.Row="3"
@@ -120,7 +154,18 @@
                         <TextBox x:Name="LocalLanguage"
                                  Width="300"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Destination.LocalLanguage"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^([A-Za-zĆČŠĐŽćčšđž\s]+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
 
@@ -131,7 +176,18 @@
                         <TextBox x:Name="Country"
                                  Width="300"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center" />
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Destination.Country.CountryName"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^([A-Za-zĆČŠĐŽćčšđž\s]+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
                     </StackPanel>
 
                     <StackPanel Grid.Row="5"

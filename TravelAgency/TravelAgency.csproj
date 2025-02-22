@@ -161,7 +161,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Util\General.cs" />
+    <Compile Include="Util\RegexValidation.cs" />
+    <Compile Include="Util\YesNoConverter .cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\DestinationViewModel.cs" />
     <Compile Include="ViewModels\HotelViewModel.cs" />
     <Compile Include="ViewModels\INavigationService.cs" />
@@ -170,7 +174,11 @@
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\ReservationViewModel.cs" />
     <Compile Include="ViewModels\SalesAgentVIewModel.cs" />
+    <Compile Include="ViewModels\TotalReservationPaymentViewModel.cs" />
     <Compile Include="ViewModels\ViewModelToBooleanConverter.cs" />
+    <Compile Include="Views\AddCustomerWindow.xaml.cs">
+      <DependentUpon>AddCustomerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddDestinationWindow.xaml.cs">
       <DependentUpon>AddDestinationWindow.xaml</DependentUpon>
     </Compile>
@@ -191,6 +199,9 @@
     </Compile>
     <Compile Include="Views\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CustomerView.xaml.cs">
+      <DependentUpon>CustomerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -215,6 +226,12 @@
     </Compile>
     <Compile Include="Views\SalesAgentWindow.xaml.cs">
       <DependentUpon>SalesAgentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TotalReservationPayments.xaml.cs">
+      <DependentUpon>TotalReservationPayments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateCustomerWindow.xaml.cs">
+      <DependentUpon>UpdateCustomerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateHotelWindow.xaml.cs">
       <DependentUpon>UpdateHotelWindow.xaml</DependentUpon>
@@ -242,7 +259,6 @@
     <Compile Include="DataAccess\PackageDataAccess.cs" />
     <Compile Include="DataAccess\PackageOffersHotelDataAccess.cs" />
     <Compile Include="DataAccess\PaymentDataAccess.cs" />
-    <Compile Include="DataAccess\PhoneDataAccess.cs" />
     <Compile Include="DataAccess\ReservationDataAccess.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -267,6 +283,10 @@
     <Page Include="Themes\PurpleTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddDestinationWindow.xaml">
       <SubType>Designer</SubType>
@@ -293,6 +313,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CustomerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -328,6 +352,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TotalReservationPayments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UpdateHotelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -343,7 +375,6 @@
     <Compile Include="Models\PackageOffersHotel.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Person.cs" />
-    <Compile Include="Models\Phone.cs" />
     <Compile Include="Models\Reservation.cs" />
     <Compile Include="Models\TotalReservationPayment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -69,7 +69,8 @@ namespace TravelAgency.DataAccess
                                     reader["FinalPrice"] != DBNull.Value ? Convert.ToDecimal(reader["FinalPrice"]) : 0m,
                                     reader["Payed"] != DBNull.Value ? Convert.ToDecimal(reader["Payed"]) : 0m,
                                     reader["Debt"] != DBNull.Value ? Convert.ToDecimal(reader["Debt"]) : 0m,
-                                    reader["IsPayed"]?.ToString() ?? string.Empty
+                                    //   reader["IsPayed"]?.ToString() ?? string.Empty
+                                    reader["IsPayed"] != DBNull.Value && reader["IsPayed"].ToString().Equals("Jeste", StringComparison.OrdinalIgnoreCase)
                                 ));
                             }
                         }
@@ -79,6 +80,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageBox.Show("Error occurred: " + ex.Message);
             }
             return result;
         }
@@ -105,7 +107,7 @@ namespace TravelAgency.DataAccess
                                     reader["FinalPrice"] != DBNull.Value ? Convert.ToDecimal(reader["FinalPrice"]) : 0m,
                                     reader["Payed"] != DBNull.Value ? Convert.ToDecimal(reader["Payed"]) : 0m,
                                     reader["Debt"] != DBNull.Value ? Convert.ToDecimal(reader["Debt"]) : 0m,
-                                    reader["IsPayed"]?.ToString() ?? string.Empty
+                                    reader["IsPayed"] != DBNull.Value && reader["IsPayed"].ToString().Equals("Jeste", StringComparison.OrdinalIgnoreCase)
                                 ));
                             }
                         }
@@ -115,6 +117,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageBox.Show("Error occurred: " + ex.Message);
             }
             return result;
         }
@@ -141,7 +144,7 @@ namespace TravelAgency.DataAccess
                                     reader["FinalPrice"] != DBNull.Value ? Convert.ToDecimal(reader["FinalPrice"]) : 0m,
                                     reader["Payed"] != DBNull.Value ? Convert.ToDecimal(reader["Payed"]) : 0m,
                                     reader["Debt"] != DBNull.Value ? Convert.ToDecimal(reader["Debt"]) : 0m,
-                                    reader["IsPayed"]?.ToString() ?? string.Empty
+                                     reader["IsPayed"] != DBNull.Value && reader["IsPayed"].ToString().Equals("Jeste", StringComparison.OrdinalIgnoreCase)
                                 );
                             }
                         }

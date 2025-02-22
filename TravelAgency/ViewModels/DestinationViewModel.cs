@@ -58,15 +58,20 @@ namespace TravelAgency.ViewModels
             if ((bool)dialogResult)
             {
                 Destination pom = dialog.Destination;
-                if (DestinationDataAccess.AddDestination(pom))
+                string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
+                MessageDialog dialog2 = new MessageDialog(message2);
+                bool? dialogResult2 = dialog2.ShowDialog();
+                if ((bool)dialogResult2)
                 {
-                    Destinations.Add(pom);
-                    OnPropertyChanged(nameof(Destinations));
-                    string message = (string)Application.Current.Resources["SuccessfullyAdded"];
-                    MessageWithoutOptionDialog dialog2 = new MessageWithoutOptionDialog(message + " " + pom);
-                    dialog2.ShowDialog();
+                    if (DestinationDataAccess.AddDestination(pom))
+                    {
+                        Destinations.Add(pom);
+                        OnPropertyChanged(nameof(Destinations));
+                        string message = (string)Application.Current.Resources["SuccessfullyAdded"];
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                        dialog3.ShowDialog();
+                    }
                 }
-
             }
         }
 

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace TravelAgency.Models
 {
@@ -14,7 +15,7 @@ namespace TravelAgency.Models
         private decimal _totalPrice;
         private decimal _payed;
         private decimal _owed;
-        private string _fullyPayed;
+        private bool _fullyPayed;
 
         public string CustomerName
         {
@@ -81,7 +82,7 @@ namespace TravelAgency.Models
             }
         }
 
-        public string FullyPayed
+        public bool FullyPayed
         {
             get => _fullyPayed;
             set
@@ -90,9 +91,22 @@ namespace TravelAgency.Models
                 {
                     _fullyPayed = value;
                     OnPropertyChanged(nameof(FullyPayed));
+                    OnPropertyChanged(nameof(FullyPayedString));
                 }
             }
         }
+
+
+        public string FullyPayedString
+        {
+            get
+            {
+                return FullyPayed == false
+                    ? (string)Application.Current.Resources["No"]
+                    : (string)Application.Current.Resources["Yes"];
+            }
+        }
+
 
         public TotalReservationPayment(TotalReservationPayment other)
         {
@@ -110,7 +124,7 @@ namespace TravelAgency.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public TotalReservationPayment(string customerName, int reservationId, decimal totalPrice, decimal payed, decimal owed, string fullyPayed)
+        public TotalReservationPayment(string customerName, int reservationId, decimal totalPrice, decimal payed, decimal owed, bool fullyPayed)
         {
             CustomerName = customerName;
             ReservationId = reservationId;
@@ -127,7 +141,7 @@ namespace TravelAgency.Models
             TotalPrice = 0;
             Payed = 0;
             Owed = 0;
-            FullyPayed = string.Empty ;
+            FullyPayed = false;
         }
 
         public override bool Equals(object obj)

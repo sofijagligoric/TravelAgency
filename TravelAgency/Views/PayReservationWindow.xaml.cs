@@ -29,7 +29,7 @@ namespace TravelAgency.Views
         public PayReservationWindow(Reservation reservation1)
         {
             InitializeComponent();
-            Reservation = reservation1;
+            Reservation = new Reservation(reservation1);
             Payment = PaymentDataAccess.GetTotalPaymentForReservation(Reservation.ReservationId);
             AmountPayed = 0;
             DataContext = this;
