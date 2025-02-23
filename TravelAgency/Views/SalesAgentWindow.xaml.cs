@@ -52,7 +52,7 @@ namespace TravelAgency.Views
                 SetTheme("Themes/BlueTheme.xaml");
             }
             var navigationService = new NavigationService(MainContent);
-            DataContext = new SalesAgentViewModel(navigationService);
+            DataContext = new SalesAgentViewModel(navigationService, user);
         }
 
 
@@ -162,12 +162,6 @@ namespace TravelAgency.Views
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
         }
 
-        private void EmployeesRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            AdminEmployeesPage adminHome = new AdminEmployeesPage();
-            //    MainFrame.Navigate(adminHome);
-
-        }
 
         private void Set_English_Lang(object sender, RoutedEventArgs e)
         {

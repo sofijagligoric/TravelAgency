@@ -92,12 +92,16 @@ namespace TravelAgency.ViewModels
 
         private void SearchDestinations(string destName)
         {
+            if (destName.Trim().Length == 0)
+
+            {
+                this.AllDestinations();
+                return;
+            }
             var foundDestinations = DestinationDataAccess.GetDestinationByName(destName);
             if (foundDestinations == null)
             {
-                string message = (string)Application.Current.Resources["NoMatches"];
-                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
-                dialog.ShowDialog();
+                Console.WriteLine("Search is null.");
             }
             else
             {

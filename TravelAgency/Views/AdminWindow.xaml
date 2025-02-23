@@ -61,8 +61,8 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
-                                     IsChecked="False"
-                                     Checked="EmployeesRadioButton_Checked">
+                                     IsChecked="True"
+                                     Command="{Binding ShowEmployeesCommand}">
                             <!--
                                      Command="{Binding ShowHomeViewCommand}"
                             -->
@@ -115,7 +115,7 @@
                                      Command="{Binding ShowReservationsCommand}">
 
                             <StackPanel Orientation="Horizontal">
-                                <fa:IconImage Icon="BookOpen"
+                                <fa:IconImage Icon="CalendarCheck"
                                               Style="{StaticResource menuButtonIcon}" />
                                 <TextBlock Text="{DynamicResource Reservations}"
                                            Style="{StaticResource menuButtonText}" />
@@ -124,7 +124,28 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="1"
+                                Orientation="Vertical"
                                 VerticalAlignment="Bottom">
+                        <Button Command="{Binding ChangePasswordCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="10,0,10,0"
+                                Width="auto"
+                                Style="{DynamicResource LogoutButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="Key"
+                                              Height="15"
+                                              Width="15"
+                                              Margin="5,0,0,0"
+                                              Foreground="{DynamicResource plainTextColor1}" />
+                                <TextBlock Text="{DynamicResource ChangePassword}"
+                                           FontSize="18"
+                                           Margin="5,0,5,0"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource plainTextColor1}" />
+                            </StackPanel>
+                        </Button>
+
                         <Button Click="LogoutButton_Click"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
@@ -132,8 +153,8 @@
                                 Style="{DynamicResource LogoutButton}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="SignOut"
-                                              Height="18"
-                                              Width="18"
+                                              Height="15"
+                                              Width="15"
                                               Margin="5,0,0,0"
                                               Foreground="{DynamicResource plainTextColor1}" />
                                 <TextBlock Text="{DynamicResource Logout}"
@@ -241,24 +262,24 @@
                                             Orientation="Horizontal"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
-                                            Width="100">
-                                    <TextBlock Text="Naslov"
-                                             FontSize="20"
-                                             Foreground="White" />
-                                    <!--  
-                                    <fa:IconImage Icon="{Binding Icon}"
-                                                  Height="20"
-                                                  Width="20"
-                                                  Foreground="{StaticResource titleColor2}"
-                                                  Margin="35,0,10,0" />
+                                            Width="Auto">
 
-                                    <TextBlock Text="{Binding Caption}"
+
+                                    <fa:IconImage Icon="{Binding Icon, Mode=TwoWay}"
+                                                  Height="18"
+                                                  Width="18"
+                                                  x:Name="MainIcon"
+                                                  Foreground="{StaticResource titleColor2}"
+                                                  Margin="10,0,10,0" />
+
+                                    <TextBlock Text="{Binding Caption, Mode=TwoWay}"
                                                Foreground="{StaticResource titleColor2}"
-                                               FontSize="16"
+                                               FontSize="18"
+                                               x:Name="MainCaption"
                                                FontFamily="Calibri"
                                                FontWeight="Medium"
                                                VerticalAlignment="Center" />
-                                    -->
+                                    
                                 </StackPanel>
 
                                 <!--

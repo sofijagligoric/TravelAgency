@@ -25,7 +25,7 @@
     <System:String x:Key="Name">Name:</System:String>
     <System:String x:Key="IncorrectPassword"> Incorrect password or username! Try again.</System:String>
     <System:String x:Key="EmptyPasswordOrUsernameField">Both fields must be filled.</System:String>
-    <System:String x:Key="HotelId">HotelId:</System:String>
+    <System:String x:Key="HotelId">Hotel ID:</System:String>
     <System:String x:Key="Delete">Delete</System:String>
     <System:String x:Key="RoomCount">Room Count:</System:String>
     <System:String x:Key="Address">Address:</System:String>
@@ -54,8 +54,8 @@
     <System:String x:Key="UnknownEntry">Unknown entry:</System:String>
     <System:String x:Key="CustomerName">Customer's firstname and/or lastname </System:String>
 
-    <System:String x:Key="ReservationId">ReservationId:</System:String>
-    <System:String x:Key="PackageId">PackageId:</System:String>
+    <System:String x:Key="ReservationId">Reservation ID:</System:String>
+    <System:String x:Key="PackageId">Package ID:</System:String>
     <System:String x:Key="CustomerFullName">Customer's name:</System:String>
     <System:String x:Key="CustomersPhoneNumber">Customer's phone number:</System:String>
     <System:String x:Key="Price">Price:</System:String>
@@ -88,4 +88,33 @@
     <System:String x:Key="JMBHint">Personal ID (13 digits):</System:String>
     <System:String x:Key="CountryNameHint">Country name:</System:String>
     <System:String x:Key="Customer">Customer</System:String>
+    <System:String x:Key="NoData">Your search did not match any data. Try different combination.</System:String>
+
+    <System:String x:Key="PaymentId">Payment ID:</System:String>
+    <System:String x:Key="PayedToHotel">Payed to hotel:</System:String>
+    <System:String x:Key="PayedToAgency">Payed to agency:</System:String>
+    <System:String x:Key="Date">Date:</System:String>
+
+    <System:String x:Key="EmployeeFullName">Employee's name:</System:String>
+    <System:String x:Key="EmployeePhoneNumber">Employee's phone number:</System:String>
+    <System:String x:Key="Employee">Employee</System:String>
+    <System:String x:Key="EmployeeName">Employee's firstname and/or lastname</System:String>
+    <System:String x:Key="EmployeeUsername">Username:</System:String>
+    <System:String x:Key="Role">Role:</System:String>
+    <System:String x:Key="EmploymentDate">Employment date:</System:String>
+    <System:String x:Key="Salary">Salary:</System:String>
+    <System:String x:Key="Admin">Admin</System:String>
+    <System:String x:Key="SalesAgent">Sales agent</System:String>
+
+    <System:String x:Key="CurrentPassword">Current password:</System:String>
+    <System:String x:Key="NewPassword">New password:</System:String>
+    <System:String x:Key="NewPassword2">Repeat new password:</System:String>
+    <System:String x:Key="PasswordsDontMatch">New password entries don't match!</System:String>
+    <System:String x:Key="CurrentDontMatch">Current password is not correct!</System:String>
+    <System:String x:Key="PasswordChangedSuccessfully">Password changed.</System:String>
+    <System:String x:Key="PasswordChangeFailed">Password change failed.</System:String>
+    <System:String x:Key="PasswordChangeConfirm">Are you sure you want to change your password?</System:String>
+    <System:String x:Key="ChangePassword">Change password</System:String>
+    <System:String x:Key="CantDeleteAdmin">Can't delete admin's account.</System:String>
+
 </ResourceDictionary>

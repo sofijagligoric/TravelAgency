@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -45,8 +46,7 @@ namespace TravelAgency.ViewModels
             AllTotalReservationPaymentsCommand = new RelayCommand(AllTotalReservationPayments);
         }
 
-     
-
+        
         private void AllTotalReservationPayments()
         {
             var hotels = PaymentDataAccess.GetPaymentInfoForReservations();
@@ -64,12 +64,16 @@ namespace TravelAgency.ViewModels
 
         private void SearchTotalReservationPayments(string destName)
         {
+            if (destName.Trim().Length == 0)
+
+            {
+                this.AllTotalReservationPayments();
+                return;
+            }
             var foundTotalReservationPayments = PaymentDataAccess.GetPaymentInfoForReservationsByCustomerName(destName);
             if (foundTotalReservationPayments == null)
             {
-                string message = (string)Application.Current.Resources["NoMatches"];
-                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
-                dialog.ShowDialog();
+                Console.WriteLine("Search is null.");
             }
             else
             {

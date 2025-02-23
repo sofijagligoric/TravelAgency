@@ -40,6 +40,8 @@
                      Color="#6A6A6A" />
     <SolidColorBrush x:Key="plainTextColor3"
                      Color="#5A5A5A" />
+    <SolidColorBrush x:Key="secondaryBackColor2Brush"
+                     Color="{DynamicResource secondaryBackColor2}" />
 
     <SolidColorBrush x:Key="PrimaryBrush"
                      Color="{DynamicResource PrimaryColor}" />

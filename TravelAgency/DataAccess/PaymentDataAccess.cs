@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TravelAgency.Models;
+using TravelAgency.Util;
 
 namespace TravelAgency.DataAccess
 {
@@ -95,8 +96,21 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
+                        string[] parts = searchString.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+                        string firstName = parts.Length > 0 ? parts[0] : "";
+                        string lastName = parts.Length > 1 ? parts[1] : "";
+                        cmd.CommandText = @"
+                                            SELECT * FROM total_payment_for_reservation 
+                                            WHERE (CustomerName LIKE @firstName AND CustomerName LIKE @lastName) 
+                                            OR (CustomerName LIKE @lastName AND CustomerName LIKE @firstName)";
+
+                        cmd.Parameters.AddWithValue("@firstName", "%" + firstName + "%");
+                        cmd.Parameters.AddWithValue("@lastName", "%" + lastName + "%");
+                        /*
                         cmd.CommandText = "SELECT * FROM total_payment_for_reservation WHERE  CustomerName LIKE @CustomerName";
                         cmd.Parameters.AddWithValue("@CustomerName", "%" + searchString + "%");
+                        */
+
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -117,7 +131,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                MessageBox.Show("Error occurred: " + ex.Message);
+                
             }
             return result;
         }
@@ -144,7 +158,7 @@ namespace TravelAgency.DataAccess
                                     reader["FinalPrice"] != DBNull.Value ? Convert.ToDecimal(reader["FinalPrice"]) : 0m,
                                     reader["Payed"] != DBNull.Value ? Convert.ToDecimal(reader["Payed"]) : 0m,
                                     reader["Debt"] != DBNull.Value ? Convert.ToDecimal(reader["Debt"]) : 0m,
-                                     reader["IsPayed"] != DBNull.Value && reader["IsPayed"].ToString().Equals("Jeste", StringComparison.OrdinalIgnoreCase)
+                                    reader["IsPayed"] != DBNull.Value && reader["IsPayed"].ToString().Equals("Jeste", StringComparison.OrdinalIgnoreCase)
                                 );
                             }
                         }
@@ -182,7 +196,7 @@ namespace TravelAgency.DataAccess
                                     reader["PayedToHotel"] != DBNull.Value ? Convert.ToDecimal(reader["PayedToHotel"]) : 0m,
                                     reader["PayedToAgency"] != DBNull.Value ? Convert.ToDecimal(reader["PayedToAgency"]) : 0m,
                                     reader["PhoneNumber"]?.ToString() ?? string.Empty,
-                                    reader["PaymentDate"]?.ToString() ?? string.Empty,
+                                    General.DateFromBase(reader["PaymentDate"]?.ToString() ?? string.Empty),
                                     reader["JMB"]?.ToString() ?? string.Empty
                                 ));
                             }
@@ -207,8 +221,20 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
+                        string[] parts = searchString.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+                        string firstName = parts.Length > 0 ? parts[0] : "";
+                        string lastName = parts.Length > 1 ? parts[1] : "";
+                        cmd.CommandText = @"
+                                            SELECT * FROM reservation_payment_info 
+                                            WHERE (CustomerFirstName LIKE @firstName AND CustomerFirstName LIKE @lastName) 
+                                            OR (CustomerFirstName LIKE @lastName AND CustomerFirstName LIKE @firstName)";
+
+                        cmd.Parameters.AddWithValue("@firstName", "%" + firstName + "%");
+                        cmd.Parameters.AddWithValue("@lastName", "%" + lastName + "%");
+                        /*
                         cmd.CommandText = "SELECT * FROM reservation_payment_info WHERE  CustomerFirstName LIKE @CustomerName";
                         cmd.Parameters.AddWithValue("@CustomerName", "%" + searchString + "%");
+                        */
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -221,7 +247,7 @@ namespace TravelAgency.DataAccess
                                     reader["PayedToHotel"] != DBNull.Value ? Convert.ToDecimal(reader["PayedToHotel"]) : 0m,
                                     reader["PayedToAgency"] != DBNull.Value ? Convert.ToDecimal(reader["PayedToAgency"]) : 0m,
                                     reader["PhoneNumber"]?.ToString() ?? string.Empty,
-                                    reader["PaymentDate"]?.ToString() ?? string.Empty,
+                                    General.DateFromBase(reader["PaymentDate"]?.ToString() ?? string.Empty),
                                     reader["JMB"]?.ToString() ?? string.Empty
                                 ));
                             }
@@ -232,6 +258,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageBox.Show("Error occurred: " + ex.Message);
             }
             return result;
         }

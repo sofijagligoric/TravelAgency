@@ -5,9 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:util="clr-namespace:TravelAgency.Util"
              mc:Ignorable="d"
              d:DesignHeight="500"
              d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <util:EmptyToVisibilityConverter x:Key="EmptyToVisibilityConverter" />
+        <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
@@ -48,12 +54,20 @@
 
         </StackPanel>
         <Grid Grid.Row="1">
+            <TextBlock Text="{DynamicResource NoData}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource secondaryBackColor2Brush}"
+                       FontSize="16"
+                       Visibility="{Binding ElementName=DestinationsList, Path=Items.Count, Converter={StaticResource EmptyToVisibilityConverter}}" />
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
                 <ListBox ItemsSource="{Binding Destinations}"
+                          x:Name ="DestinationsList"
                          SelectedItem="{Binding SelectedDestination, Mode=TwoWay}"
                          BorderThickness="0"
-                         Background="Transparent">
+                         Background="Transparent"
+                         Visibility="{Binding ElementName=DestinationsList, Path=HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
 
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>

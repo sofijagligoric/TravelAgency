@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="TravelAgency.Views.CustomerView"
+﻿<UserControl x:Class="TravelAgency.Views.EmployeeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -31,24 +31,24 @@
                      Width="300"
                      FontSize="15"
                      Style="{DynamicResource HintedTextBoxStyle}"
-                     materialDesign:HintAssist.Hint="{DynamicResource CustomerName}"
+                     materialDesign:HintAssist.Hint="{DynamicResource EmployeeName}"
                      TextWrapping="Wrap"
                      Margin="0,0,5,0">
                 <TextBox.InputBindings>
                     <KeyBinding Key="Enter"
-                                Command="{Binding SearchCustomersCommand}"
+                                Command="{Binding SearchEmployeesCommand}"
                                 CommandParameter="{Binding Text, ElementName=destName}" />
                 </TextBox.InputBindings>
             </TextBox>
 
 
             <Button Content="{DynamicResource Search}"
-                    Command="{Binding SearchCustomersCommand}"
+                    Command="{Binding SearchEmployeesCommand}"
                     CommandParameter="{Binding Text, ElementName=destName}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
             <Button Content="{DynamicResource All}"
-                    Command="{Binding AllCustomersCommand}"
+                    Command="{Binding AllEmployeesCommand}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
 
@@ -60,15 +60,15 @@
                        VerticalAlignment="Center"
                        Foreground="{DynamicResource secondaryBackColor2Brush}"
                        FontSize="16"
-                       Visibility="{Binding ElementName=CustomersList, Path=Items.Count, Converter={StaticResource EmptyToVisibilityConverter}}" />
+                       Visibility="{Binding ElementName=EmployeesList, Path=Items.Count, Converter={StaticResource EmptyToVisibilityConverter}}" />
             <ScrollViewer VerticalScrollBarVisibility="Auto"
                           HorizontalScrollBarVisibility="Disabled">
-                <ListBox ItemsSource="{Binding Customers}"
-                         x:Name="CustomersList"
-                         SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
+                <ListBox ItemsSource="{Binding Employees}"
+                         x:Name="EmployeesList"
+                         SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"
                          BorderThickness="0"
                          Background="Transparent"
-                         Visibility="{Binding ElementName=CustomersList, Path=HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
+                         Visibility="{Binding ElementName=EmployeesList, Path=HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
 
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -99,7 +99,7 @@
                                     Margin="3"
                                     CornerRadius="10"
                                     Width="220"
-                                    Height="160"
+                                    Height="230"
                                     Focusable="False">
                                 <Border.Style>
                                     <Style TargetType="Border">
@@ -158,6 +158,10 @@
                                               Focusable="False">
                                     <Grid>
                                         <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
                                             <RowDefinition Height="Auto" />
@@ -267,6 +271,69 @@
                                                        Grid.Column="1" />
                                         </Grid>
 
+                                        <Grid Grid.Row="6">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="{DynamicResource EmployeeUsername}"
+                                                       FontWeight="Bold"
+                                                       Margin="0,0,5,2"
+                                                       Grid.Column="0"
+                                                       TextWrapping="Wrap" />
+                                            <TextBlock Text="{Binding Username}"
+                                                       Grid.Column="1"
+                                                       TextWrapping="Wrap" />
+                                        </Grid>
+
+                                        <Grid Grid.Row="7">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="{DynamicResource Role}"
+                                                       FontWeight="Bold"
+                                                       Margin="0,0,5,2"
+                                                       Grid.Column="0"
+                                                       TextWrapping="Wrap" />
+                                            <TextBlock Text="{Binding RoleTypeShow}"
+                                                       Grid.Column="1"
+                                                       TextWrapping="Wrap" />
+                                        </Grid>
+
+                                        <Grid Grid.Row="8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="{DynamicResource EmploymentDate}"
+                                                       FontWeight="Bold"
+                                                       Margin="0,0,5,2"
+                                                       Grid.Column="0"
+                                                       TextWrapping="Wrap" />
+                                            <TextBlock Text="{Binding EmploymentDate}"
+                                                       Grid.Column="1"
+                                                       TextWrapping="Wrap" />
+                                        </Grid>
+
+                                        <Grid Grid.Row="9">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="{DynamicResource Salary}"
+                                                       FontWeight="Bold"
+                                                       Margin="0,0,5,2"
+                                                       Grid.Column="0"
+                                                       TextWrapping="Wrap" />
+                                            <TextBlock Text="{Binding Salary}"
+                                                       Grid.Column="1"
+                                                       TextWrapping="Wrap" />
+                                        </Grid>
                                     </Grid>
                                 </ScrollViewer>
                             </Border>
@@ -280,18 +347,20 @@
                     HorizontalAlignment="Center"
                     Margin="10">
             <Button Content="{DynamicResource Add}"
-                    Command="{Binding AddCustomerCommand}"
+                    Command="{Binding AddEmployeeCommand}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
             <Button Content="{DynamicResource Update}"
-                    Command="{Binding UpdateCustomerCommand}"
+                    Command="{Binding UpdateEmployeeCommand}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
+           
             <Button Content="{DynamicResource Delete}"
-                    Command="{Binding DeleteCustomerCommand}"
+                    Command="{Binding DeleteEmployeeCommand}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}"
                     IsEnabled="True" />
+          
             <!--  IsEnabled="{Binding SelectedHotel, Converter={StaticResource NullToBooleanConverter}}" -->
         </StackPanel>
     </Grid>

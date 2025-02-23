@@ -22,7 +22,7 @@
     <System:String x:Key="EmptyPasswordOrUsernameField">Oba polja moraju biti popunjena.</System:String>
     <System:String x:Key="Add">Dodaj</System:String>
     <System:String x:Key="Update">Uredi</System:String>
-    <System:String x:Key="HotelId">HotelId:</System:String>
+    <System:String x:Key="HotelId">ID hotela:</System:String>
     <System:String x:Key="Delete">Obrisi</System:String>
     <System:String x:Key="RoomCount">Broj soba:</System:String>
     <System:String x:Key="Address">Adresa:</System:String>
@@ -53,8 +53,8 @@
     <System:String x:Key="Cancel">Odustani</System:String>
     <System:String x:Key="CustomerName">Ime i/ili prezime putnika</System:String>
 
-    <System:String x:Key="ReservationId">IdRezervacije:</System:String>
-    <System:String x:Key="PackageId">IdAranzmana:</System:String>
+    <System:String x:Key="ReservationId">ID rezervacije:</System:String>
+    <System:String x:Key="PackageId">ID aranzmana:</System:String>
     <System:String x:Key="CustomerFullName">Ime putnika:</System:String>
     <System:String x:Key="CustomersPhoneNumber">Broj putnika:</System:String>
     <System:String x:Key="Price">Cijena:</System:String>
@@ -87,5 +87,33 @@
     <System:String x:Key="JMB">JMB:</System:String>
     <System:String x:Key="JMBHint">JMB (13 cifara):</System:String>
     <System:String x:Key="Customer">Putnik</System:String>
+    <System:String x:Key="NoData">Nema podataka koji odgovaraju trazenom pojmu. Pokusajte sa drugacijim unosom.</System:String>
+
+    <System:String x:Key="PaymentId">ID uplate:</System:String>
+    <System:String x:Key="PayedToHotel">Uplaceno hotelu:</System:String>
+    <System:String x:Key="PayedToAgency">Uplaceno agenciji:</System:String>
+    <System:String x:Key="Date">Datum:</System:String>
+
+    <System:String x:Key="EmployeeFullName">Ime zaposlenog:</System:String>
+    <System:String x:Key="EmployeePhoneNumber">Broj telefona zaposlenog:</System:String>
+    <System:String x:Key="Employee">Zaposleni</System:String>
+    <System:String x:Key="EmployeeName">Ime i/ili prezime zaposlenog</System:String>
+    <System:String x:Key="EmployeeUsername">Korisnicko ime:</System:String>
+    <System:String x:Key="Role">Uloga:</System:String>
+    <System:String x:Key="EmploymentDate">Datum zaposlenja:</System:String>
+    <System:String x:Key="Salary">Plata:</System:String>
+
+    <System:String x:Key="Admin">Admin</System:String>
+    <System:String x:Key="SalesAgent">Agent prodaje</System:String>
+    <System:String x:Key="ChangePassword">Promijeni lozinku</System:String>
+    <System:String x:Key="CurrentPassword">Trenutna lozinka:</System:String>
+    <System:String x:Key="NewPassword">Nova lozinka:</System:String>
+    <System:String x:Key="NewPassword2">Ponovite novu lozinku:</System:String>
+    <System:String x:Key="PasswordsDontMatch">Ne poklapaju se unosi novi lozinke!</System:String>
+    <System:String x:Key="CurrentDontMatch">Trenutna lozinka nije tacna!</System:String>
+    <System:String x:Key="PasswordChangedSuccessfully">Lozinka uspjesno promijenjena.</System:String>
+    <System:String x:Key="PasswordChangeFiled">Lozinka nije promijenjena.</System:String>
+    <System:String x:Key="PasswordChangeConfirm">Da li ste sigurni da zelite promijeniti lozinku?</System:String>
+    <System:String x:Key="CantDeleteAdmin">Ne mozete obrisati administratorski nalog.</System:String>
 
 </ResourceDictionary>

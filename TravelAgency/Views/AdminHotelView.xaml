@@ -12,6 +12,8 @@
 
     <UserControl.Resources>
         <util:YesNoConverter x:Key="YesNoConverter" />
+        <util:EmptyToVisibilityConverter x:Key="EmptyToVisibilityConverter" />
+        <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
 
 
@@ -56,50 +58,49 @@
            
         </StackPanel>
 
-        <DataGrid Grid.Row="1"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  SelectedItem="{Binding SelectedHotel, Mode=TwoWay}"
-                  ItemsSource="{Binding Hotels}"
-                  CanUserAddRows="False"
-                  SelectionMode="Single"
-                  SelectionUnit="FullRow"
-                  HorizontalScrollBarVisibility="Auto"
-                  VerticalScrollBarVisibility="Auto"
-                  >
+        <Grid Grid.Row="1">
+            <TextBlock Text="{DynamicResource NoData}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource secondaryBackColor2Brush}"
+                       FontSize="16"
+                       Visibility="{Binding ElementName=HotelsGrid, Path=Items.Count, Converter={StaticResource EmptyToVisibilityConverter}}" />
+            <DataGrid AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      x:Name="HotelsGrid"
+                      SelectedItem="{Binding SelectedHotel, Mode=TwoWay}"
+                      ItemsSource="{Binding Hotels}"
+                      CanUserAddRows="False"
+                      SelectionMode="Single"
+                      SelectionUnit="FullRow"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      Visibility="{Binding ElementName=HotelsGrid, Path=HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
 
 
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="{DynamicResource Name}"
-                                    Binding="{Binding Name}"
-                                    />
-                <DataGridTextColumn Header="{DynamicResource HotelId}"
-                                    Binding="{Binding HotelId}"
-                                     />
-                <DataGridTextColumn Header="{DynamicResource RoomCount}"
-                                    Binding="{Binding RoomCount}"
-                                    />
-                <DataGridTextColumn Header="{DynamicResource Address}"
-                                    Binding="{Binding Address}"
-                                    />
-                <DataGridTextColumn Header="{DynamicResource Email}"
-                                    Binding="{Binding Email}"
-                                    />
-                <DataGridTextColumn Header="{DynamicResource HasRestaurant}"
-                                    Binding="{Binding HasRestaurantString}"
-                                    />
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{DynamicResource Name}"
+                                        Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="{DynamicResource HotelId}"
+                                        Binding="{Binding HotelId}" />
+                    <DataGridTextColumn Header="{DynamicResource RoomCount}"
+                                        Binding="{Binding RoomCount}" />
+                    <DataGridTextColumn Header="{DynamicResource Address}"
+                                        Binding="{Binding Address}" />
+                    <DataGridTextColumn Header="{DynamicResource Email}"
+                                        Binding="{Binding Email}" />
+                    <DataGridTextColumn Header="{DynamicResource HasRestaurant}"
+                                        Binding="{Binding HasRestaurantString}" />
 
-                <DataGridTextColumn Header="{DynamicResource Destination}"
-                                    Binding="{Binding Destination.DestinationName}"
-                                    />
-                <DataGridTextColumn Header="{DynamicResource Postcode}"
-                                    Binding="{Binding Destination.PostCode}"
-                                    />
-            </DataGrid.Columns>
-        </DataGrid>
+                    <DataGridTextColumn Header="{DynamicResource Destination}"
+                                        Binding="{Binding Destination.DestinationName}" />
+                    <DataGridTextColumn Header="{DynamicResource Postcode}"
+                                        Binding="{Binding Destination.PostCode}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
 
-        
-        <StackPanel Grid.Row="3"
+        <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Margin="10">

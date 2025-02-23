@@ -17,6 +17,8 @@
     <SolidColorBrush x:Key="menuContentColor"
                      Color="#d5d8e3" />
     <SolidColorBrush x:Key="titleColor1" Color="#041240" />
+    <SolidColorBrush x:Key="secondaryBackColor2Brush"
+                     Color="{DynamicResource secondaryBackColor2}" />
     <SolidColorBrush x:Key="titleColor2" Color="#d3d8eb" />
     <SolidColorBrush x:Key="titleColor3"
                      Color="#BCBEE0" />

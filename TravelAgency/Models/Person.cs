@@ -50,7 +50,7 @@ namespace TravelAgency.Models
         public string FullName
         {
             get { return _fullName; }
-            private set
+             set
             {
                 if (_fullName != value)
                 {

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
+using TravelAgency.Util;
 
 namespace TravelAgency.Views
 {
@@ -34,7 +35,7 @@ namespace TravelAgency.Views
             if (!string.IsNullOrWhiteSpace(username) && !string.IsNullOrWhiteSpace(password))
             {
 
-                Employee? emp = EmployeeDataAccess.CheckLoginInfo(username, password);
+                Employee? emp = EmployeeDataAccess.CheckLoginInfo(username, General.HashPassword(password));
 
                 if (emp != null)
                 {

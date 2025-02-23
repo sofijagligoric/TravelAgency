@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Shapes;
 using TravelAgency.Models;
 using TravelAgency.Util;
 
@@ -235,7 +236,10 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = @"SELECT ReservationId, r.Price AS ReservationPrice, r.PackageId, r.HotelId, CustomerJMB, IsPayed, r.EmployeeJMB, 
+                        string[] parts = searchString.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+                        if (parts.Length == 1)
+                        {
+                            cmd.CommandText = @"SELECT ReservationId, r.Price AS ReservationPrice, r.PackageId, r.HotelId, CustomerJMB, IsPayed, r.EmployeeJMB, 
                                           a.StartDate, a.EndDate, a.Price, a.About, a.PostCode, 
                                           h.Name_of as HotelName, h.RoomCount, h.Address, h.Email, h.ContainsRestaurant, h.PostCode,
                                           d.DestinationName, d.About, d.Distance, d.LocalLanguage, d.CountryName, 
@@ -246,7 +250,31 @@ namespace TravelAgency.DataAccess
                                           INNER JOIN customer p ON p.JMB = r.CustomerJMB 
                                           INNER JOIN person o ON p.JMB=o.JMB
                                           WHERE o.FirstName LIKE @searchTerm OR o.LastName LIKE @searchTerm";
-                        cmd.Parameters.AddWithValue("@searchTerm", searchString + "%");
+                            cmd.Parameters.AddWithValue("@searchTerm", searchString + "%");
+                        }
+                        else
+                        {
+                            string firstName = parts.Length > 0 ? parts[0] : "";
+                            string lastName = parts.Length > 1 ? parts[1] : "";
+
+                            cmd.CommandText = @"SELECT ReservationId, r.Price AS ReservationPrice, r.PackageId, r.HotelId, CustomerJMB, IsPayed, r.EmployeeJMB, 
+                                          a.StartDate, a.EndDate, a.Price, a.About, a.PostCode, 
+                                          h.Name_of as HotelName, h.RoomCount, h.Address, h.Email, h.ContainsRestaurant, h.PostCode,
+                                          d.DestinationName, d.About, d.Distance, d.LocalLanguage, d.CountryName, 
+                                          o.LastName, o.FirstName, o.Address, o.DateOfBirth, o.Email, o.PhoneNumber 
+                                          FROM reservation r INNER JOIN package a ON a.PackageId=r.PackageId 
+                                          INNER JOIN hotel h ON h.HotelId=r.HotelId 
+                                          INNER JOIN destination d ON d.PostCode=h.PostCode  AND d.DestinationName = h.DestinationName
+                                          INNER JOIN customer p ON p.JMB = r.CustomerJMB 
+                                          INNER JOIN person o ON p.JMB=o.JMB
+                                          WHERE(o.FirstName LIKE @firstName AND o.LastName LIKE @lastName)
+                                             OR(o.FirstName LIKE @lastName AND o.LastName LIKE @firstName)";
+                           
+
+                            cmd.Parameters.AddWithValue("@firstName", firstName + "%");
+                            cmd.Parameters.AddWithValue("@lastName", lastName + "%");
+                        }
+                       
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())

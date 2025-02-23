@@ -115,12 +115,16 @@ namespace TravelAgency.ViewModels
 
         private void SearchHotels(string destName)
         {
+            if (destName.Trim().Length == 0)
+
+            {
+                this.AllHotels();
+                return;
+            }
             var foundHotels = HotelDataAccess.GetHotelsByDestinationName(destName);
             if (foundHotels == null)
             {
-                string message = (string)Application.Current.Resources["NoMatches"];
-                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
-                dialog.ShowDialog();
+                Console.WriteLine("Search is null.");
             }
             else
             {
@@ -196,6 +200,12 @@ namespace TravelAgency.ViewModels
                             OnPropertyChanged(nameof(SelectedHotel));
                             OnPropertyChanged(nameof(Hotels));
                             string message3 = (string)Application.Current.Resources["SuccessfulUpdate"];
+                            MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                            dialog3.ShowDialog();
+                        }
+                        else
+                        {
+                            string message3 = (string)Application.Current.Resources["FailedUpdate"];
                             MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
                             dialog3.ShowDialog();
                         }

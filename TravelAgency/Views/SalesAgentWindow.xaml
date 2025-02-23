@@ -102,7 +102,7 @@
                                      Command="{Binding ShowReservationsCommand}"
                                      IsChecked="False">
                             <StackPanel Orientation="Horizontal">
-                                <fa:IconImage Icon="BookOpen"
+                                <fa:IconImage Icon="CalendarCheck"
                                               Style="{StaticResource menuButtonIcon}" />
                                 <TextBlock Text="{DynamicResource Reservations}"
                                            Style="{StaticResource menuButtonText}" />
@@ -111,7 +111,8 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
-                                     IsChecked="False">
+                                     IsChecked="False"
+                                     Command="{Binding ShowAllPaymentsCommand}">
 
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="CashRegister"
@@ -136,7 +137,28 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="1"
+                                Orientation="Vertical"
                                 VerticalAlignment="Bottom">
+                        <Button Command="{Binding ChangePasswordCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="10,0,10,0"
+                                Width="auto"
+                                Style="{DynamicResource LogoutButton}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="Key"
+                                              Height="15"
+                                              Width="15"
+                                              Margin="5,0,0,0"
+                                              Foreground="{DynamicResource plainTextColor1}" />
+                                <TextBlock Text="{DynamicResource ChangePassword}"
+                                           FontSize="18"
+                                           Margin="5,0,5,0"
+                                           FontWeight="Medium"
+                                           Foreground="{DynamicResource plainTextColor1}" />
+                            </StackPanel>
+                        </Button>
+
                         <Button Click="LogoutButton_Click"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
@@ -144,8 +166,8 @@
                                 Style="{DynamicResource LogoutButton}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="SignOut"
-                                              Height="18"
-                                              Width="18"
+                                              Height="15"
+                                              Width="15"
                                               Margin="5,0,0,0"
                                               Foreground="{DynamicResource plainTextColor1}" />
                                 <TextBlock Text="{DynamicResource Logout}"

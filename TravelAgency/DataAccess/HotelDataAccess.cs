@@ -199,7 +199,7 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters.AddWithValue("@ContainsRestaurant", hotel.HasRestaurant);
                         cmd.Parameters.AddWithValue("@PostCode", hotel.Destination.PostCode);
                         cmd.Parameters.AddWithValue("@DestinationName", hotel.Destination.DestinationName);
-                        retVal = cmd.ExecuteNonQuery() == 1;
+                        retVal = cmd.ExecuteNonQuery() >= 1;
                     }
                 }
             }

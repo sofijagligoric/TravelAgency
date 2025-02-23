@@ -87,6 +87,14 @@ namespace TravelAgency.Models
                     ? (string)Application.Current.Resources["No"]
                     : (string)Application.Current.Resources["Yes"];
             }
+            set
+            {
+                if (HasRestaurantString != value)
+                {
+                    HasRestaurantString = value;
+                    OnPropertyChanged(nameof(HasRestaurantString));
+                }
+            }
         }
 
         public Destination Destination

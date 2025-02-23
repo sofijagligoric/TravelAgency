@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TravelAgency.DataAccess;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace TravelAgency.Models
 {
@@ -132,6 +133,14 @@ namespace TravelAgency.Models
                 if (AllPayed == 0)
                     return (string)Application.Current.Resources["No"];
                 else return (string)Application.Current.Resources["Yes"]; ;
+            }
+            set
+            {
+                if (AllPayedString != value)
+                {
+                    AllPayedString = value;
+                    OnPropertyChanged(nameof(AllPayedString));
+                }
             }
         }
 

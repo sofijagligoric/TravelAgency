@@ -6,9 +6,15 @@
              xmlns:local="clr-namespace:TravelAgency.Views"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:util="clr-namespace:TravelAgency.Util"
              mc:Ignorable="d"
              d:DesignHeight="500"
              d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <util:EmptyToVisibilityConverter x:Key="EmptyToVisibilityConverter" />
+        <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
@@ -48,13 +54,26 @@
 
         </StackPanel>
         <Grid Grid.Row="1">
+
+            <TextBlock Text="{DynamicResource NoData}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource secondaryBackColor2Brush}"
+                       FontSize="16"
+                       Visibility="{Binding ElementName=TotalReservationsList, Path=Items.Count, Converter={StaticResource EmptyToVisibilityConverter}}" />
+
             <ScrollViewer VerticalScrollBarVisibility="Auto"
-                          HorizontalScrollBarVisibility="Disabled">
-                <ListBox ItemsSource="{Binding TotalReservationPayments}"
+                          HorizontalScrollBarVisibility="Disabled"
+                          PanningMode="Both"
+                          CanContentScroll="True">
+
+                <ListBox x:Name="TotalReservationsList"
+                         ItemsSource="{Binding TotalReservationPayments}"
                          SelectedItem="{Binding SelectedTotalReservationPayment, Mode=TwoWay}"
                          BorderThickness="0"
                          Background="Transparent"
-                         HorizontalContentAlignment="Stretch">
+                         HorizontalContentAlignment="Stretch"
+                         Visibility="{Binding ElementName=TotalReservationsList, Path=HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
 
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -84,7 +103,7 @@
                         <DataTemplate>
                             <Border BorderThickness="1"
                                     Padding="10"
-                                    Margin="5"
+                                    Margin="5,0,10,3"
                                     CornerRadius="10"
                                     HorizontalAlignment="Stretch"
                                     Height="auto"
@@ -143,9 +162,10 @@
                                     </Style>
                                 </Border.Style>
 
+                                <!--
                                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                                               Focusable="False"
-                                              >
+                                              > -->
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
@@ -210,7 +230,7 @@
                                             <Label FontSize="13"
                                                    Grid.Column="0"
                                                    Content="{DynamicResource Price}"
-                                                   Margin="0,0,5,0"
+                                                   Margin="25,0,3,0"
                                                    FontWeight="Bold"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center" />
@@ -222,7 +242,7 @@
                                             <Label FontSize="13"
                                                    Grid.Column="2"
                                                    Content="{DynamicResource Payed}"
-                                                   Margin="30,0,5,0"
+                                                   Margin="30,0,3,0"
                                                    FontWeight="Bold"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center" />
@@ -234,7 +254,7 @@
                                             <Label FontSize="13"
                                                    Grid.Column="4"
                                                    Content="{DynamicResource Debt}"
-                                                   Margin="30,0,5,0"
+                                                   Margin="30,0,3,0"
                                                    FontWeight="Bold"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center" />
@@ -246,7 +266,7 @@
                                             <Label FontSize="13"
                                                    Grid.Column="6"
                                                    Content="{DynamicResource IsPayed}"
-                                                   Margin="30,0,5,0"
+                                                   Margin="30,0,3,0"
                                                    FontWeight="Bold"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center" />
@@ -257,7 +277,7 @@
                                                        HorizontalAlignment="Center" />
                                         </Grid>
                                     </Grid>
-                                </ScrollViewer>
+                             <!--   </ScrollViewer> -->
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

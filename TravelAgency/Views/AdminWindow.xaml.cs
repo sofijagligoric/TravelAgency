@@ -1,4 +1,5 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using FontAwesome.Sharp;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -54,9 +55,22 @@ namespace TravelAgency.Views
                 SetTheme("Themes/BlueTheme.xaml");
             }
             var navigationService = new NavigationService(MainContent);
-            DataContext = new AdminViewModel(navigationService);
+            DataContext = new AdminViewModel(navigationService, user);
         }
 
+        public void UpdateCaptionAndIcon(string newCaption, string newIcon)
+        {
+            MainCaption.Text = newCaption;
+            if (Enum.TryParse(newIcon, out IconChar iconChar))
+            {
+                MainIcon.Icon = iconChar;
+            }
+            else
+            {
+                MainIcon.Icon = IconChar.QuestionCircle;
+            }
+            
+        }
 
         private void btnMinimise_Click(object sender, RoutedEventArgs e)
         {
@@ -190,11 +204,7 @@ namespace TravelAgency.Views
             */
         }
 
-        private void EmployeesRadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-                AdminEmployeesPage adminHome = new AdminEmployeesPage();    
-        }
-
+        
         private void Set_English_Lang(object sender, RoutedEventArgs e)
         {
             var oldLang = Application.Current.Resources.MergedDictionaries

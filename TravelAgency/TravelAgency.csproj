@@ -161,16 +161,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Util\BoolToVisibilityConverter.cs" />
+    <Compile Include="Util\EmptyToVisibilityConverter.cs" />
     <Compile Include="Util\General.cs" />
     <Compile Include="Util\RegexValidation.cs" />
     <Compile Include="Util\YesNoConverter .cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="ViewModels\DestinationViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\HotelViewModel.cs" />
     <Compile Include="ViewModels\INavigationService.cs" />
     <Compile Include="ViewModels\InverseBoolConverter.cs" />
     <Compile Include="ViewModels\NavigationService.cs" />
+    <Compile Include="ViewModels\PaymentViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
     <Compile Include="ViewModels\ReservationViewModel.cs" />
     <Compile Include="ViewModels\SalesAgentVIewModel.cs" />
@@ -182,14 +186,14 @@
     <Compile Include="Views\AddDestinationWindow.xaml.cs">
       <DependentUpon>AddDestinationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddEmployeeWindow.xaml.cs">
+      <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddHotelWindow.xaml.cs">
       <DependentUpon>AddHotelWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminDestinationView.xaml.cs">
       <DependentUpon>AdminDestinationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AdminEmployeesView.xaml.cs">
-      <DependentUpon>AdminEmployeesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminHotelView.xaml.cs">
       <DependentUpon>AdminHotelView.xaml</DependentUpon>
@@ -200,8 +204,14 @@
     <Compile Include="Views\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CustomerView.xaml.cs">
       <DependentUpon>CustomerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeeView.xaml.cs">
+      <DependentUpon>EmployeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -211,6 +221,9 @@
     </Compile>
     <Compile Include="Views\MessageWithoutOptionDialog.xaml.cs">
       <DependentUpon>MessageWithoutOptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentView.xaml.cs">
+      <DependentUpon>PaymentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PayReservationWindow.xaml.cs">
       <DependentUpon>PayReservationWindow.xaml</DependentUpon>
@@ -232,6 +245,9 @@
     </Compile>
     <Compile Include="Views\UpdateCustomerWindow.xaml.cs">
       <DependentUpon>UpdateCustomerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateEmployeeWindow.xaml.cs">
+      <DependentUpon>UpdateEmployeeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdateHotelWindow.xaml.cs">
       <DependentUpon>UpdateHotelWindow.xaml</DependentUpon>
@@ -292,15 +308,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddHotelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AdminDestinationView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\AdminEmployeesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -316,7 +332,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ChangePasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -329,6 +353,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MessageWithoutOptionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PaymentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -357,6 +385,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UpdateCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateEmployeeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

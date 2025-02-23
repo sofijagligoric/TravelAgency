@@ -9,75 +9,77 @@ using System.Windows;
 using System.Windows.Input;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
+using TravelAgency.Util;
 using TravelAgency.Views;
 
 namespace TravelAgency.ViewModels
 {
-    public class CustomerViewModel : INotifyPropertyChanged
+    public class EmployeeViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Customer> Customers { get; set; }
-        private Customer _selectedCustomer;
+        public ObservableCollection<Employee> Employees { get; set; }
+        private Employee _selectedEmployee;
 
-        public Customer SelectedCustomer
+        public Employee SelectedEmployee
         {
-            get => _selectedCustomer;
+            get => _selectedEmployee;
             set
             {
-                if (_selectedCustomer != value)
+                if (_selectedEmployee != value)
                 {
-                    //  _backupCustomer = value != null ? new Customer(value) : null;  
-                    _selectedCustomer = value;
-                    OnPropertyChanged(nameof(SelectedCustomer));
+                    //  _backupEmployee = value != null ? new Employee(value) : null;  
+                    _selectedEmployee = value;
+                    OnPropertyChanged(nameof(SelectedEmployee));
                 }
             }
         }
 
 
-        public ICommand AddCustomerCommand { get; }
-        public ICommand DeleteCustomerCommand { get; }
-        public ICommand UpdateCustomerCommand { get; }
-        public ICommand SearchCustomersCommand { get; }
-        public ICommand AllCustomersCommand { get; }
+        public ICommand AddEmployeeCommand { get; }
+        public ICommand DeleteEmployeeCommand { get; }
+        public ICommand UpdateEmployeeCommand { get; }
+        public ICommand SearchEmployeesCommand { get; }
+        public ICommand AllEmployeesCommand { get; }
 
-        public CustomerViewModel()
+        public EmployeeViewModel()
         {
-            var hotels = CustomerDataAccess.GetAllCustomers();
+            var hotels = EmployeeDataAccess.GetAllEmployees();
 
             if (hotels == null)
             {
-                Console.WriteLine("Customers list is null! Check database connection.");
-                hotels = new List<Customer>();
+                Console.WriteLine("Employees list is null! Check database connection.");
+                hotels = new List<Employee>();
             }
 
-            Customers = new ObservableCollection<Customer>(hotels);
+            Employees = new ObservableCollection<Employee>(hotels);
 
-            AddCustomerCommand = new RelayCommand(AddCustomer);
-            DeleteCustomerCommand = new RelayCommand(DeleteCustomer);
-            UpdateCustomerCommand = new RelayCommand(UpdateCustomer);
-            SearchCustomersCommand = new RelayCommand(param => SearchCustomers(param.ToString()));
-            AllCustomersCommand = new RelayCommand(AllCustomers);
+            AddEmployeeCommand = new RelayCommand(AddEmployee);
+            DeleteEmployeeCommand = new RelayCommand(DeleteEmployee);
+            UpdateEmployeeCommand = new RelayCommand(UpdateEmployee);
+            SearchEmployeesCommand = new RelayCommand(param => SearchEmployees(param.ToString()));
+            AllEmployeesCommand = new RelayCommand(AllEmployees);
+
         }
 
-        
 
-        private void AddCustomer()
+
+        private void AddEmployee()
         {
-            AddCustomerWindow dialog = new AddCustomerWindow();
+            AddEmployeeWindow dialog = new AddEmployeeWindow();
 
             bool? dialogResult = dialog.ShowDialog();
 
             if ((bool)dialogResult)
             {
-                Customer pom = dialog.Customer;
+                Employee pom = dialog.Employee;
                 string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
                 MessageDialog dialog2 = new MessageDialog(message2);
                 bool? dialogResult2 = dialog2.ShowDialog();
                 if ((bool)dialogResult2)
                 {
-                    if (CustomerDataAccess.AddCustomer(pom, dialog.Customer.PhoneNumber))
+                    if (EmployeeDataAccess.AddEmployee(pom, dialog.Employee.PhoneNumber))
                     {
-                        Customers.Add(pom);
-                        OnPropertyChanged(nameof(Customers));
+                        Employees.Add(pom);
+                        OnPropertyChanged(nameof(Employees));
                         string message = (string)Application.Current.Resources["SuccessfullyAdded"];
                         MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
                         dialog3.ShowDialog();
@@ -87,44 +89,45 @@ namespace TravelAgency.ViewModels
             }
         }
 
-        private void AllCustomers()
+        private void AllEmployees()
         {
-            var hotels = CustomerDataAccess.GetAllCustomers();
+            var hotels = EmployeeDataAccess.GetAllEmployees();
             if (hotels == null)
             {
-                Console.WriteLine("Customers list is null! Check database connection.");
-                hotels = new List<Customer>();
+                Console.WriteLine("Employees list is null! Check database connection.");
+                hotels = new List<Employee>();
             }
             else
             {
-                Customers = new ObservableCollection<Customer>(hotels);
-                OnPropertyChanged(nameof(Customers));
+                Employees = new ObservableCollection<Employee>(hotels);
+                OnPropertyChanged(nameof(Employees));
             }
         }
 
-        private void SearchCustomers(string destName)
+        private void SearchEmployees(string destName)
         {
             if (destName.Trim().Length == 0)
 
             {
-                this.AllCustomers();
+                this.AllEmployees();
                 return;
             }
-            var foundCustomers = CustomerDataAccess.GetCustomersByFirstOrLastName(destName);
-            if (foundCustomers == null)
+            var foundEmployees = EmployeeDataAccess.GetEmployeesByFirstOrLastName(destName);
+            if (foundEmployees == null)
             {
                 Console.WriteLine("Search is null.");
             }
             else
             {
-                Customers = new ObservableCollection<Customer>(foundCustomers);
-                OnPropertyChanged(nameof(Customers));
+                Employees = new ObservableCollection<Employee>(foundEmployees);
+                OnPropertyChanged(nameof(Employees));
             }
         }
 
-        private void DeleteCustomer(object obj)
+        
+        private void DeleteEmployee(object obj)
         {
-            if (SelectedCustomer == null)
+            if (SelectedEmployee == null)
             {
                 string message = (string)Application.Current.Resources["RowNotSelected"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
@@ -133,18 +136,27 @@ namespace TravelAgency.ViewModels
                 return;
             }
 
+            if (SelectedEmployee.RoleType.Equals("admin"))
+            {
+                string message = (string)Application.Current.Resources["CantDeleteAdmin"];
+                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                dialog.ShowDialog();
 
-            string message2 = (string)Application.Current.Resources["ConfirmDelete"] + " " + SelectedCustomer.FullName + "?";
+                return;
+            }
+
+
+            string message2 = (string)Application.Current.Resources["ConfirmDelete"] + " " + SelectedEmployee.FullName + "?";
             MessageDialog dialog2 = new MessageDialog(message2);
             bool? dialogResult2 = dialog2.ShowDialog();
 
 
             if ((bool)dialogResult2)
             {
-                if (CustomerDataAccess.DeleteCustomer(SelectedCustomer.Jmb))
+                if (EmployeeDataAccess.DeleteEmployee(SelectedEmployee.Jmb))
                 {
-                    Customers.Remove(SelectedCustomer);
-                    OnPropertyChanged(nameof(Customers));
+                    Employees.Remove(SelectedEmployee);
+                    OnPropertyChanged(nameof(Employees));
                     string message = (string)Application.Current.Resources["SuccessfulDelete"];
                     MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                     dialog.ShowDialog();
@@ -159,36 +171,37 @@ namespace TravelAgency.ViewModels
                 }
             }
         }
-
         
-        private void UpdateCustomer()
+
+        private void UpdateEmployee()
         {
 
-            if (SelectedCustomer != null)
+            if (SelectedEmployee != null)
             {
-                UpdateCustomerWindow dialog = new UpdateCustomerWindow(SelectedCustomer);
+                UpdateEmployeeWindow dialog = new UpdateEmployeeWindow(SelectedEmployee);
 
                 bool? dialogResult = dialog.ShowDialog();
 
                 if ((bool)dialogResult)
                 {
-                    Customer pom = dialog.Customer;
+                    Employee pom = dialog.Employee;
                     string message2 = (string)Application.Current.Resources["ConfirmUpdate"] + ": " + pom + "?";
                     MessageDialog dialog2 = new MessageDialog(message2);
                     bool? dialogResult2 = dialog2.ShowDialog();
                     if ((bool)dialogResult2)
                     {
-                        if (CustomerDataAccess.UpdateCustomer(pom))
+                        if (EmployeeDataAccess.UpdateEmployee(pom))
                         {
-                            SelectedCustomer.FirstName = pom.FirstName;
-                            SelectedCustomer.Address = pom.Address;
-                            SelectedCustomer.Email = pom.Email;
-                            SelectedCustomer.LastName = pom.LastName;
-                            SelectedCustomer.DateOfBirth = pom.DateOfBirth;
-                            
+                            SelectedEmployee.FirstName = pom.FirstName;
+                            SelectedEmployee.Address = pom.Address;
+                            SelectedEmployee.Email = pom.Email;
+                            SelectedEmployee.LastName = pom.LastName;
+                            SelectedEmployee.DateOfBirth = pom.DateOfBirth;
+                            SelectedEmployee.Username = pom.Username;
+                            SelectedEmployee.Salary = pom.Salary;
 
-                            OnPropertyChanged(nameof(SelectedCustomer));
-                            OnPropertyChanged(nameof(Customers));
+                            OnPropertyChanged(nameof(SelectedEmployee));
+                            OnPropertyChanged(nameof(Employees));
                             string message3 = (string)Application.Current.Resources["SuccessfulUpdate"];
                             MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
                             dialog3.ShowDialog();
@@ -211,7 +224,7 @@ namespace TravelAgency.ViewModels
             }
         }
 
-        
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)

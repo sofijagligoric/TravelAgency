@@ -1,0 +1,329 @@
+﻿<Window x:Class="TravelAgency.Views.UpdateEmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TravelAgency.Views"
+        xmlns:util="clr-namespace:TravelAgency.Util"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        mc:Ignorable="d"
+        Height="500"
+        Width="400"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        MouseDown="Window_MouseDown"
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+
+        <util:RegexValidation x:Key="TextValidationRule"
+                              Pattern="^[a-zA-Z0-9 ]*$" />
+        <util:RegexValidation x:Key="OnlyNumbersValidation"
+                              Pattern="^\d+$" />
+        <util:RegexValidation x:Key="OnlyLettersAndSpacesValidation"
+                              Pattern="^([A-Za-z\s]+)?$" />
+        <util:RegexValidation x:Key="EmailValidation"
+                              Pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
+    </Window.Resources>
+
+    <Border BorderThickness="1"
+            CornerRadius="0,0,10,10">
+        <Border.BorderBrush>
+            <SolidColorBrush Color="{DynamicResource secondaryBackColor2}" />
+        </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1,1"
+                                 EndPoint="0,0">
+                <GradientStop Color="{DynamicResource primaryBackColor1}"
+                              Offset="0" />
+                <GradientStop Color="{DynamicResource primaryBackColor2}"
+                              Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Border BorderThickness="0"
+                    Grid.Row="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0"
+                                         EndPoint="1,0.7">
+                        <GradientStop Color="{DynamicResource secondaryBackColor1}"
+                                      Offset="0" />
+                        <GradientStop Color="{DynamicResource secondaryBackColor2}"
+                                      Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+
+
+                    <Button x:Name="btnClose"
+                            Style="{DynamicResource controlButton}"
+                            Tag="{DynamicResource SecondaryColor}"
+                            Click="btnClose_Click"
+                            HorizontalAlignment="Right">
+                        <fa:IconImage Icon="Xmark"
+                                      Style="{DynamicResource controlButtonIcon}" />
+                    </Button>
+                </Grid>
+            </Border>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Height="370"
+                          HorizontalAlignment="Stretch"
+                          Padding="10"
+                          Grid.Row="1">
+                <Grid HorizontalAlignment="Center"
+                      Margin="0,10,0,0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource JMBHint}" />
+                        <TextBox x:Name="JMB"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 IsReadOnly="True"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center"
+                                 TextWrapping="Wrap">
+
+                            <TextBox.Text>
+                                <Binding Path="Employee.Jmb"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^(\d{13})?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource FirstName}" />
+                        <TextBox x:Name="FirstName"
+                                 Width="300"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Employee.FirstName"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^([A-Za-zĆČŠĐŽćčšđž\s]+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource LastName}" />
+                        <TextBox x:Name="LastName"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Employee.LastName"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^([A-Za-zĆČŠĐŽćčšđž\s]+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource Email}" />
+                        <TextBox x:Name="Email"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Employee.Email"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^(|[^@\s]+@[^@\s]+\.[^@\s]+)$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="4"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource PhoneNumber}" />
+                        <TextBox x:Name="PhoneNumber"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Employee.PhoneNumber"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^(\+?\d*)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="5"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource DateOfbirthHint}" />
+                        <TextBox x:Name="DateOfBirth"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Employee.DateOfBirth"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}\.$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="6"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource Address}" />
+                        <TextBox x:Name="Address"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Employee.Address"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^([A-Za-z0-9ĆČŠĐŽćčšđž\s]+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="7"
+                                Margin="0,0,0,5">
+                        <Label FontSize="15"
+                               Content="{DynamicResource EmployeeUsername}" />
+                        <TextBox x:Name="Username"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Employee.Username"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^([A-Za-z0-9ĆČŠĐŽćčšđž\s]+)?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="8"
+                                Margin="0,0,0,20">
+                        <Label FontSize="15"
+                               Content="{DynamicResource Salary}" />
+                        <TextBox x:Name="Salary"
+                                 Height="40"
+                                 Width="300"
+                                 FontSize="15"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center">
+
+                            <TextBox.Text>
+                                <Binding Path="Employee.Salary"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <util:RegexValidation Pattern="^\d{1,13}([.,]\d{1,2})?$"
+                                                              ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                    </StackPanel>
+
+                </Grid>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,20,0,20">
+                <Button Content="OK"
+                        Style="{DynamicResource ProceedButtonStyle}"
+                        Click="OkButton_Click"
+                        IsDefault="True"
+                        Margin="0,0,5,0" />
+                <Button Content="{DynamicResource Cancel}"
+                        Style="{DynamicResource ProceedButtonStyle}"
+                        Margin="5,0,0,0"
+                        Click="CancelButton_Click"
+                        IsCancel="True" />
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

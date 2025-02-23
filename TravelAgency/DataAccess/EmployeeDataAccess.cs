@@ -41,12 +41,12 @@ namespace TravelAgency.DataAccess
                                     reader["JMB"]?.ToString() ?? string.Empty,
                                     reader["Address"]?.ToString() ?? string.Empty,
                                     reader["Email"]?.ToString() ?? string.Empty,
-                                     General.DateFromBase(reader["DateOfBirth"]?.ToString() ?? string.Empty),
+                                    General.DateFromBase(reader["DateOfBirth"]?.ToString() ?? string.Empty),
                                     reader["PhoneNumber"]?.ToString() ?? string.Empty,
                                     reader["Username"]?.ToString() ?? string.Empty,
                                     reader["PasswordString"]?.ToString() ?? string.Empty,
                                     reader["RoleType"]?.ToString() ?? string.Empty,
-                                    reader["EmploymentDate"]?.ToString() ?? string.Empty,
+                                    General.DateFromBase(reader["EmploymentDate"]?.ToString() ?? string.Empty),
                                     reader["Salary"] != DBNull.Value ? Convert.ToDecimal(reader["Salary"]) : 0m,
                                     reader["PreferredTheme"]?.ToString() ?? string.Empty
                                 );
@@ -57,7 +57,8 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                // MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
             }
             return retVal;
         }
@@ -90,7 +91,7 @@ namespace TravelAgency.DataAccess
                                     reader["Username"]?.ToString() ?? string.Empty,
                                     reader["PasswordString"]?.ToString() ?? string.Empty,
                                     reader["RoleType"]?.ToString() ?? string.Empty,
-                                    reader["EmploymentDate"]?.ToString() ?? string.Empty,
+                                   General.DateFromBase(reader["EmploymentDate"]?.ToString() ?? string.Empty),
                                     reader["Salary"] != DBNull.Value ? Convert.ToDecimal(reader["Salary"]) : 0m,
                                     reader["PreferredTheme"]?.ToString() ?? string.Empty
                                 );
@@ -101,7 +102,8 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                // MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
             }
             return retVal;
         }
@@ -116,8 +118,26 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = "SELECT e.JMB, LastName, FirstName, Address, DateOfBirth, Email, PhoneNumber, Salary, Username, PasswordString, EmploymentDate, RoleType, PreferredTheme FROM employee e NATURAL JOIN person WHERE FirstName LIKE @searchTerm OR LastName LIKE @searchTerm";
-                        cmd.Parameters.AddWithValue("@searchTerm", searchString + "%");
+                        
+                        string[] parts = searchString.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+                        if (parts.Length == 1)
+                        {
+                            cmd.CommandText = "SELECT e.JMB, LastName, FirstName, Address, DateOfBirth, Email, PhoneNumber, Salary, Username, PasswordString, EmploymentDate, RoleType, PreferredTheme FROM employee e NATURAL JOIN person WHERE FirstName LIKE @searchTerm OR LastName LIKE @searchTerm";
+                            cmd.Parameters.AddWithValue("@searchTerm", searchString + "%");
+                        }
+                        else
+                        {
+                            string firstName = parts.Length > 0 ? parts[0] : "";
+                            string lastName = parts.Length > 1 ? parts[1] : "";
+
+                            cmd.CommandText = @"
+                                            SELECT e.JMB, LastName, FirstName, Address, DateOfBirth, Email, PhoneNumber, Salary, Username, PasswordString, EmploymentDate, RoleType, PreferredTheme FROM employee e NATURAL JOIN person 
+                                            WHERE (FirstName LIKE @firstName AND LastName LIKE @lastName) 
+                                            OR (FirstName LIKE @lastName AND LastName LIKE @firstName)";
+
+                            cmd.Parameters.AddWithValue("@firstName", firstName + "%");
+                            cmd.Parameters.AddWithValue("@lastName", lastName + "%");
+                        }
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -134,7 +154,7 @@ namespace TravelAgency.DataAccess
                                     reader["Username"]?.ToString() ?? string.Empty,
                                     reader["PasswordString"]?.ToString() ?? string.Empty,
                                     reader["RoleType"]?.ToString() ?? string.Empty,
-                                    reader["EmploymentDate"]?.ToString() ?? string.Empty,
+                                   General.DateFromBase(reader["EmploymentDate"]?.ToString() ?? string.Empty),
                                     reader["Salary"] != DBNull.Value ? Convert.ToDecimal(reader["Salary"]) : 0m,
                                     reader["PreferredTheme"]?.ToString() ?? string.Empty
                                 ));
@@ -145,7 +165,8 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                // MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
             }
             return result;
         }
@@ -176,7 +197,7 @@ namespace TravelAgency.DataAccess
                                     reader["Username"]?.ToString() ?? string.Empty,
                                     reader["PasswordString"]?.ToString() ?? string.Empty,
                                     reader["RoleType"]?.ToString() ?? string.Empty,
-                                    reader["EmploymentDate"]?.ToString() ?? string.Empty,
+                                    General.DateFromBase(reader["EmploymentDate"]?.ToString() ?? string.Empty),
                                     reader["Salary"] != DBNull.Value ? Convert.ToDecimal(reader["Salary"]) : 0m,
                                     reader["PreferredTheme"]?.ToString() ?? string.Empty
                                 ));
@@ -187,7 +208,8 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                //  MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
             }
             return result;
         }
@@ -216,6 +238,7 @@ namespace TravelAgency.DataAccess
 
                         successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
+                        /*
                         if (successful)
                         {
                            // MessageBox.Show("Theme changed successfully.");
@@ -225,12 +248,15 @@ namespace TravelAgency.DataAccess
                         {
                             MessageBox.Show($"Error: {message}");
                         }
+                        */
                     }
                 }
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+
+                //MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
             }
             return successful;
         }
@@ -265,7 +291,7 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters["@pUsername"].Direction = ParameterDirection.Input;
                         cmd.Parameters.AddWithValue("@pPasswordString", employee.Password);
                         cmd.Parameters["@pPasswordString"].Direction = ParameterDirection.Input;
-                        cmd.Parameters.AddWithValue("@pEmploymentDate", employee.EmploymentDate);
+                        cmd.Parameters.AddWithValue("@pEmploymentDate", General.DateForBase(employee.EmploymentDate));
                         cmd.Parameters["@pEmploymentDate"].Direction = ParameterDirection.Input;
                         cmd.Parameters.AddWithValue("@pSalary", employee.Salary);
                         cmd.Parameters["@pSalary"].Direction = ParameterDirection.Input;
@@ -278,6 +304,7 @@ namespace TravelAgency.DataAccess
 
                         successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
+                        /*
                         if (successful)
                         {
                             MessageBox.Show("Employee added successfully.");
@@ -286,12 +313,14 @@ namespace TravelAgency.DataAccess
                         {
                             MessageBox.Show($"Error: {message}");
                         }
+                        */
                     }
                 }
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                // MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
             }
             return successful;
         }
@@ -328,7 +357,7 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters.AddWithValue("@UName", employee.Username);
                         cmd.Parameters.AddWithValue("@Password", employee.Password);
                         cmd.Parameters.AddWithValue("@PhoneNumber", employee.PhoneNumber);
-                        cmd.Parameters.AddWithValue("@EmploymentDate", employee.EmploymentDate);
+                        cmd.Parameters.AddWithValue("@EmploymentDate", General.DateForBase(employee.EmploymentDate));
                         cmd.Parameters.AddWithValue("@RoleType", employee.RoleType);
                         cmd.Parameters.AddWithValue("@Theme", employee.Theme);
                         cmd.Parameters.AddWithValue("@JMB", employee.Jmb);
@@ -337,9 +366,48 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters.AddWithValue("@Address", employee.Address);
                         cmd.Parameters.AddWithValue("@DateOfBirth", General.DateForBase(employee.DateOfBirth));
                         cmd.Parameters.AddWithValue("@Email", employee.Email);
-                        retVal = cmd.ExecuteNonQuery() == 1;
-                        conn.Close();
-                        return retVal;
+                        retVal = cmd.ExecuteNonQuery() >= 1;
+                    }
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+
+            }
+            return retVal;
+        }
+
+        public static bool DeleteEmployee(string jmb)
+        {
+            bool successful = false;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "delete_employee";
+                        cmd.Parameters.AddWithValue("@pJMB", jmb).Direction = ParameterDirection.Input;
+                        cmd.Parameters.Add("@successful", MySqlDbType.Bit).Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add("@message", MySqlDbType.VarChar, 255).Direction = ParameterDirection.Output;
+
+                        cmd.ExecuteNonQuery();
+
+                        successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
+                        string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
+                        /*
+                        if (successful)
+                        {
+                            MessageBox.Show("Customer deleted successfully.");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Error: {message}");
+                        }
+                        */
                     }
                 }
             }
@@ -347,9 +415,36 @@ namespace TravelAgency.DataAccess
             {
                 MessageBox.Show("Error occurred: " + e.Message);
             }
+            return successful;
+        }
+
+        public static bool ChangePassword(string jmb, string password)
+        {
+            bool retVal = false;
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"UPDATE employee
+                                            SET PasswordString = @Password
+                                            WHERE JMB = @JMB";
+
+                        cmd.Parameters.AddWithValue("@Password", password);
+                        cmd.Parameters.AddWithValue("@JMB", jmb);
+                        retVal = cmd.ExecuteNonQuery() == 1;
+                    }
+                }
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine($"Error: {e.Message}");
+
+            }
             return retVal;
         }
 
-        
     }
 }

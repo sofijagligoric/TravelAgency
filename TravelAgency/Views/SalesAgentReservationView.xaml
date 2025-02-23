@@ -5,10 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:TravelAgency.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:util="clr-namespace:TravelAgency.Util"
              mc:Ignorable="d"
              d:DesignHeight="500"
              d:DesignWidth="800">
 
+    <UserControl.Resources>
+        <util:EmptyToVisibilityConverter x:Key="EmptyToVisibilityConverter" />
+        <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -50,39 +55,49 @@
 
         </StackPanel>
 
-        <DataGrid Grid.Row="1"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  SelectedItem="{Binding SelectedReservation, Mode=TwoWay}"
-                  ItemsSource="{Binding Reservations}"
-                  CanUserAddRows="False"
-                  SelectionMode="Single"
-                  SelectionUnit="FullRow"
-                  HorizontalScrollBarVisibility="Auto"
-                  VerticalScrollBarVisibility="Auto">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="{DynamicResource ReservationId}"
-                                    Binding="{Binding ReservationId}" />
-                <DataGridTextColumn Header="{DynamicResource CustomerFullName}"
-                                    Binding="{Binding Customer.FullName}" />
-                <DataGridTextColumn Header="{DynamicResource PackageId}"
-                                    Binding="{Binding Package.PackageId}" />
-                <DataGridTextColumn Header="{DynamicResource DestinationNameHint}"
-                                    Binding="{Binding Package.Destination.DestinationName}" />
-                <DataGridTextColumn Header="{DynamicResource Hotel}"
-                                    Binding="{Binding Hotel.Name}" />
-                <DataGridTextColumn Header="{DynamicResource CustomersPhoneNumber}"
-                                    Binding="{Binding Customer.PhoneNumber}" />
-                <DataGridTextColumn Header="{DynamicResource Price}"
-                                    Binding="{Binding Price}" />
+        <Grid Grid.Row="1">
+            <TextBlock Text="{DynamicResource NoData}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource secondaryBackColor2Brush}"
+                       FontSize="16"
+                       Visibility="{Binding ElementName=ReservationsDataGrid, Path=Items.Count, Converter={StaticResource EmptyToVisibilityConverter}}" />
 
-                <DataGridTextColumn Header="{DynamicResource IsPayed}"
-                                    Binding="{Binding AllPayedString}" />
-                <DataGridTextColumn Header="{DynamicResource SalesAgentsName}"
-                                    Binding="{Binding Employee.FullName}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <StackPanel Grid.Row="3"
+            <DataGrid AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      SelectedItem="{Binding SelectedReservation, Mode=TwoWay}"
+                      ItemsSource="{Binding Reservations}"
+                      CanUserAddRows="False"
+                      SelectionMode="Single"
+                      x:Name="ReservationsDataGrid"
+                      SelectionUnit="FullRow"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      Visibility="{Binding ElementName=ReservationsDataGrid, Path=HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{DynamicResource ReservationId}"
+                                        Binding="{Binding ReservationId}" />
+                    <DataGridTextColumn Header="{DynamicResource CustomerFullName}"
+                                        Binding="{Binding Customer.FullName}" />
+                    <DataGridTextColumn Header="{DynamicResource PackageId}"
+                                        Binding="{Binding Package.PackageId}" />
+                    <DataGridTextColumn Header="{DynamicResource DestinationNameHint}"
+                                        Binding="{Binding Package.Destination.DestinationName}" />
+                    <DataGridTextColumn Header="{DynamicResource Hotel}"
+                                        Binding="{Binding Hotel.Name}" />
+                    <DataGridTextColumn Header="{DynamicResource CustomersPhoneNumber}"
+                                        Binding="{Binding Customer.PhoneNumber}" />
+                    <DataGridTextColumn Header="{DynamicResource Price}"
+                                        Binding="{Binding Price}" />
+
+                    <DataGridTextColumn Header="{DynamicResource IsPayed}"
+                                        Binding="{Binding AllPayedString}" />
+                    <DataGridTextColumn Header="{DynamicResource SalesAgentsName}"
+                                        Binding="{Binding Employee.FullName}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <StackPanel Grid.Row="2"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
                     Margin="10">
@@ -92,7 +107,7 @@
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
             <Button Content="{DynamicResource Delete}"
-                    Command="{Binding DeleteReservationlCommand}"
+                    Command="{Binding DeleteReservationCommand}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}"
                     IsEnabled="True" />

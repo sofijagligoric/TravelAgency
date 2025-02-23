@@ -180,7 +180,7 @@
                 <Setter Property="Background"
                         Value="{DynamicResource titleColor3}" />
                 <Setter Property="Foreground"
-                        Value="{DynamicResource SecondaryBrush}" />
+                        Value="{DynamicResource MouseOverBrush}" />
                 <Setter Property="FontFamily"
                         Value="Calibri" />
                 <Setter Property="FontSize"
@@ -222,7 +222,7 @@
                                          Value="True">
                                 
                                     <Setter Property="Foreground"
-                                            Value="{DynamicResource titleColor1}" />
+                                            Value="{DynamicResource secondaryBackColor2Brush}" />
                                     <Setter TargetName="FocusBorder"
                                             Property="Background"
                                             Value="{DynamicResource panelActiveColor}" />
@@ -249,7 +249,7 @@
                 <Setter Property="Background"
                         Value="{DynamicResource titleColor3}" />
                 <Setter Property="Foreground"
-                        Value="{DynamicResource titleColor1}" />
+                        Value="{DynamicResource secondaryBackColor2Brush}" />
                 <Setter Property="FontFamily"
                         Value="Calibri" />
                 <Setter Property="FontSize"
@@ -257,7 +257,7 @@
                 <Setter Property="FontStyle"
                         Value="Italic" />
                 <Setter Property="materialDesign:HintAssist.Foreground"
-                        Value="{DynamicResource SecondaryBrush}" />
+                        Value="{DynamicResource MouseOverBrush}" />
                 <Setter Property="materialDesign:TextFieldAssist.UnderlineBrush"
                         Value="{DynamicResource panelActiveColor}" />
             </Style>
@@ -268,7 +268,7 @@
                 <Setter Property="Background"
                         Value="{DynamicResource titleColor3}" />
                 <Setter Property="Foreground"
-                        Value="{DynamicResource SecondaryBrush}" />
+                        Value="{DynamicResource MouseOverBrush}" />
                 <Setter Property="FontFamily"
                         Value="Calibri" />
                 <Setter Property="FontSize"
@@ -287,17 +287,18 @@
                     <Trigger Property="IsKeyboardFocused"
                              Value="True">
                         <Setter Property="Foreground"
-                                Value="{DynamicResource titleColor1}" />
+                                Value="{DynamicResource secondaryBackColor2Brush}" />
                      
                     </Trigger>
 
+                    <!--
                     <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.HasError)}"
                                  Value="True">
                         <Setter Property="BorderBrush"
                                 Value="Red" />
                         <Setter Property="BorderThickness"
                                 Value="2" />
-                    </DataTrigger>
+                    </DataTrigger>-->
                 </Style.Triggers>
 
             </Style>

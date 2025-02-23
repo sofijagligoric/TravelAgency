@@ -43,6 +43,8 @@
                      Color="#6A1212" />
     <SolidColorBrush x:Key="panelActiveColor"
                      Color="#7B1717" />
+    <SolidColorBrush x:Key="secondaryBackColor2Brush"
+                     Color="{DynamicResource secondaryBackColor2}" />
 
     <SolidColorBrush x:Key="menuContentColor"
                      Color="#F5E4E4" />

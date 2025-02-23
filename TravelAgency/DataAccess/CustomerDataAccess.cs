@@ -68,8 +68,31 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
+                        /*
                         cmd.CommandText = "SELECT p.JMB, LastName, FirstName, Address, DateOfBirth, Email, PhoneNumber FROM customer p NATURAL JOIN person WHERE FirstName LIKE @searchTerm OR LastName LIKE @searchTerm";
                         cmd.Parameters.AddWithValue("@searchTerm", searchString + "%");
+                        */
+                        string[] parts = searchString.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
+                        if (parts.Length == 1)
+                        {
+                            cmd.CommandText = "SELECT p.JMB, LastName, FirstName, Address, DateOfBirth, Email, PhoneNumber FROM customer p NATURAL JOIN person WHERE FirstName LIKE @searchTerm OR LastName LIKE @searchTerm";
+                            cmd.Parameters.AddWithValue("@searchTerm", searchString + "%");
+                        }
+                        else
+                        {
+                            string firstName = parts.Length > 0 ? parts[0] : "";
+                            string lastName = parts.Length > 1 ? parts[1] : "";
+
+                            cmd.CommandText = @"
+                                            SELECT p.JMB, LastName, FirstName, Address, DateOfBirth, Email, PhoneNumber 
+                                            FROM customer p NATURAL JOIN person 
+                                            WHERE (FirstName LIKE @firstName AND LastName LIKE @lastName) 
+                                            OR (FirstName LIKE @lastName AND LastName LIKE @firstName)";
+
+                            cmd.Parameters.AddWithValue("@firstName", firstName + "%");
+                            cmd.Parameters.AddWithValue("@lastName", lastName + "%");
+                        }
+                        
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -178,7 +201,8 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                // MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred: {e.Message}");
             }
             return successful;
         }
@@ -218,7 +242,8 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                // MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred: {e.Message}");
             }
             return successful;
         }
@@ -242,13 +267,14 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters.AddWithValue("@Email", customer.Email);
                         cmd.Parameters.AddWithValue("@PhoneNumber", customer.PhoneNumber);
 
-                        retVal = cmd.ExecuteNonQuery() == 1;
+                        retVal = cmd.ExecuteNonQuery() >= 1;
                     }
                 }
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                // MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred: {e.Message}");
             }
             return retVal;
         }
