@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TravelAgency.ViewModels;
 
 namespace TravelAgency.Views
 {
     /// <summary>
-    /// Interaction logic for SalesAgentPackageView.xaml
+    /// Interaction logic for AdminPackageView.xaml
     /// </summary>
-    public partial class SalesAgentPackageView : UserControl
+    public partial class AdminPackageView : UserControl
     {
-        public SalesAgentPackageView()
+        public AdminPackageView()
         {
             InitializeComponent();
-            DataContext = new PackageViewModel();
         }
     }
 }

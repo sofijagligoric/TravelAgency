@@ -19,6 +19,7 @@ namespace TravelAgency.ViewModels
         private readonly SalesAgentHotelView _saHotelView;
         private readonly SalesAgentReservationView _saReservationView;
         private readonly TotalReservationPayments _saTotalPayments;
+        private readonly SalesAgentPackageView _saPackages;
         private readonly CustomerView _customersView;
         private readonly PaymentView _paymentsView;
 
@@ -27,6 +28,7 @@ namespace TravelAgency.ViewModels
         public ICommand ShowReservationsCommand { get; }
         public ICommand ShowTotalPaymentsCommand { get; }
         public ICommand ShowAllPaymentsCommand { get; }
+        public ICommand ShowPackagesCommand { get; }
         public ICommand ChangePasswordCommand { get; }
 
 
@@ -50,6 +52,7 @@ namespace TravelAgency.ViewModels
             _saReservationView = new SalesAgentReservationView();
             _saTotalPayments = new TotalReservationPayments();
             _paymentsView = new PaymentView();
+            _saPackages = new SalesAgentPackageView();
             Employee = e;
 
             ShowCustomersCommand = new RelayCommand(ShowCustomers);
@@ -58,6 +61,7 @@ namespace TravelAgency.ViewModels
             ShowTotalPaymentsCommand = new RelayCommand(ShowTotalPayments);
             ShowAllPaymentsCommand = new RelayCommand(ShowAllPayments);
             ChangePasswordCommand = new RelayCommand(ChangePassword);
+            ShowPackagesCommand = new RelayCommand(ShowPackages);
 
             ShowCustomers();
         }
@@ -97,6 +101,11 @@ namespace TravelAgency.ViewModels
         private void ShowCustomers()
         {
             _navigationService.NavigateTo(_customersView);
+        }
+
+        private void ShowPackages()
+        {
+            _navigationService.NavigateTo(_saPackages);
         }
 
         private void ShowHotels()

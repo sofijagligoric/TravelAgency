@@ -4,9 +4,113 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TravelAgency.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:vm="clr-namespace:TravelAgency.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:util="clr-namespace:TravelAgency.Util"
+             mc:Ignorable="d"
+             d:DesignHeight="500"
+             d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <util:EmptyToVisibilityConverter x:Key="EmptyToVisibilityConverter" />
+        <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </UserControl.Resources>
+
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="3*" />
+            <!-- <RowDefinition Height="30" />  -->
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left"
+                    Margin="10"
+                    Height="50">
+            <TextBox x:Name="destName"
+                     Width="300"
+                     FontSize="15"
+                     Style="{DynamicResource HintedTextBoxStyle}"
+                     materialDesign:HintAssist.Hint="{DynamicResource DestinationNameHint}"
+                     TextWrapping="Wrap"
+                     Margin="0,0,5,0">
+                <TextBox.InputBindings>
+                    <KeyBinding Key="Enter"
+                                Command="{Binding SearchPackagesCommand}"
+                                CommandParameter="{Binding Text, ElementName=destName}" />
+                </TextBox.InputBindings>
+            </TextBox>
+
+
+            <Button Content="{DynamicResource Search}"
+                    Command="{Binding SearchPackagesCommand}"
+                    CommandParameter="{Binding Text, ElementName=customerName}"
+                    Margin="5"
+                    Style="{DynamicResource ProceedButtonStyle}" />
+            <Button Content="{DynamicResource All}"
+                    Command="{Binding AllPackagesCommand}"
+                    Margin="5"
+                    Style="{DynamicResource ProceedButtonStyle}" />
+
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <TextBlock Text="{DynamicResource NoData}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Foreground="{DynamicResource secondaryBackColor2Brush}"
+                       FontSize="16"
+                       Visibility="{Binding ElementName=PackagesDataGrid, Path=Items.Count, Converter={StaticResource EmptyToVisibilityConverter}}" />
+
+            <DataGrid AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      SelectedItem="{Binding SelectedPackage, Mode=TwoWay}"
+                      ItemsSource="{Binding Packages}"
+                      CanUserAddRows="False"
+                      SelectionMode="Single"
+                      x:Name="PackagesDataGrid"
+                      SelectionUnit="FullRow"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto"
+                      Visibility="{Binding ElementName=PackagesDataGrid, Path=HasItems, Converter={StaticResource BoolToVisibilityConverter}}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="{DynamicResource PackageId}"
+                                        Binding="{Binding PackageId}" />
+                    <DataGridTextColumn Header="{DynamicResource StartDate}"
+                                        Binding="{Binding StartDate}" />
+                    <DataGridTextColumn Header="{DynamicResource EndDate}"
+                                        Binding="{Binding EndDate}" />
+                    <DataGridTextColumn Header="{DynamicResource Price}"
+                                        Binding="{Binding Price}" />
+                    <DataGridTextColumn Header="{DynamicResource DestinationNameHint}"
+                                        Binding="{Binding Destination.DestinationName}" />
+                    <DataGridTextColumn Header="{DynamicResource Postcode}"
+                                        Binding="{Binding Destination.PostCode}" />
+                    <DataGridTextColumn Header="{DynamicResource About}"
+                                        Binding="{Binding About}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping"
+                                        Value="Wrap" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <StackPanel Grid.Row="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Margin="10">
+
+            <Button Content="{DynamicResource Reserve}"
+                    Command="{Binding PayPackageCommand}"
+                    Margin="5"
+                    Style="{DynamicResource ProceedButtonStyle}" />
             
+            <!--  IsEnabled="{Binding SelectedHotel, Converter={StaticResource NullToBooleanConverter}}" -->
+        </StackPanel>
     </Grid>
 </UserControl>

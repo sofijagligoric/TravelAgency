@@ -17,6 +17,7 @@ using System.Xml.Linq;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace TravelAgency.Views
 {
@@ -62,9 +63,13 @@ namespace TravelAgency.Views
                 Destination dest = DestinationDataAccess.GetDestinationByNameAndPostcode(DestinationName.Text, Postcode.Text);
                 if (dest == null)
                 {
-                    string message = (string)Application.Current.Resources["UnknownEntry"];
-                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message + " " + DestinationName.Text + ", " + Postcode.Text);
-                    dialog.ShowDialog();
+                    string message = (string)Application.Current.Resources["UnknownDestination"];
+                    MessageDialog dialog = new MessageDialog(message);
+                    bool? dialogResult = dialog.ShowDialog();
+                    if ((bool)dialogResult)
+                    {
+                        AddDestination();
+                    }
                 }
                 else
                 {
@@ -74,8 +79,31 @@ namespace TravelAgency.Views
                 }
                
             }
-           
-            
+
+
+        }
+        private void AddDestination()
+        {
+            AddDestinationWindow dialog = new AddDestinationWindow();
+
+            bool? dialogResult = dialog.ShowDialog();
+
+            if ((bool)dialogResult)
+            {
+                Destination pom = dialog.Destination;
+                string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
+                MessageDialog dialog2 = new MessageDialog(message2);
+                bool? dialogResult2 = dialog2.ShowDialog();
+                if ((bool)dialogResult2)
+                {
+                    if (DestinationDataAccess.AddDestination(pom))
+                    { 
+                        string message = (string)Application.Current.Resources["SuccessfullyAdded"];
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                        dialog3.ShowDialog();
+                    }
+                }
+            }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

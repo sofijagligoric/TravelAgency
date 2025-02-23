@@ -117,4 +117,12 @@
     <System:String x:Key="ChangePassword">Change password</System:String>
     <System:String x:Key="CantDeleteAdmin">Can't delete admin's account.</System:String>
 
+    <System:String x:Key="UnknownDestination">Unknown destination. Would you like to create new?</System:String>
+    <System:String x:Key="UnknownHotel">Unknown hotel. Would you like to create new?</System:String>
+    <System:String x:Key="UnknownCustomer">Unknown customer. Would you like to create new?</System:String>
+
+    <System:String x:Key="StartDate">Start date:</System:String>
+    <System:String x:Key="EndDate">End date:</System:String>
+    <System:String x:Key="Reserve">Reserve</System:String>
+
 </ResourceDictionary>

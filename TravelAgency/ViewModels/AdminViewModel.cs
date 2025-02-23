@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using FontAwesome.Sharp;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,36 +11,36 @@ using System.Windows.Input;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
 using TravelAgency.Views;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace TravelAgency.ViewModels
 {
     public class AdminViewModel : ViewModelBase
     {
         private string _caption;
+        private IconChar _icon;
         public string Caption
         {
-            get => _caption;
+            get
+            {
+                return _caption;
+            }
             set
             {
-                if (_caption != value) 
-                {
-                    _caption = value;
-                    OnPropertyChanged(nameof(Caption));
-                }
+                _caption = value;
+                OnPropertyChanged(nameof(Caption));
             }
         }
-
-        private string _icon;
-        public string Icon
+        public IconChar Icon
         {
-            get => _icon;
+            get
+            {
+                return _icon;
+            }
             set
             {
-                if (_icon != value)
-                {
-                    _icon = value;
-                    OnPropertyChanged(nameof(Icon));
-                }
+                _icon = value;
+                OnPropertyChanged(nameof(Icon));
             }
         }
 
@@ -121,7 +122,7 @@ namespace TravelAgency.ViewModels
         {
             //_navigationService.NavigateTo(new AdminHotelView());
             Caption = (string)Application.Current.Resources["Hotels"];
-            Icon = "Hotel";
+            Icon = IconChar.Hotel;
             _navigationService.NavigateTo(_adminHotelView);
         }
 
@@ -129,24 +130,23 @@ namespace TravelAgency.ViewModels
         {
             // _navigationService.NavigateTo(new AdminReservationsView());
             Caption = (string)Application.Current.Resources["Reservations"];
-            Icon = "CalendarCheck";
+            Icon = IconChar.CalendarCheck;
             _navigationService.NavigateTo(_adminReservationsView);
         }
 
         private void ShowDestinations()
         {
             //_navigationService.NavigateTo(new AdminHotelView());
-            
-            Caption = (string)Application.Current.Resources["Destinations"];
-            Icon = "LocationDot";
             _navigationService.NavigateTo(_adminDestinationView);
+            Caption = (string)Application.Current.Resources["Destinations"];
+            Icon = IconChar.LocationDot;
         }
 
         private void ShowEmployees()
         {
             //_navigationService.NavigateTo(new AdminHotelView());
             Caption = (string)Application.Current.Resources["Employees"];
-            Icon = "User";
+            Icon = IconChar.User;
             _navigationService.NavigateTo(_employeeView);
         }
 

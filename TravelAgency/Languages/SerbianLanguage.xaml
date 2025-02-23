@@ -116,4 +116,12 @@
     <System:String x:Key="PasswordChangeConfirm">Da li ste sigurni da zelite promijeniti lozinku?</System:String>
     <System:String x:Key="CantDeleteAdmin">Ne mozete obrisati administratorski nalog.</System:String>
 
+    <System:String x:Key="UnknownDestination">Izabrana destinacija ne postoji u bazi. Da li zelite da kreirate novu?</System:String>
+    <System:String x:Key="UnknownHotel">Izabrani hotel ne postoji u bazi. Da li zelite da kreirate novi?</System:String>
+    <System:String x:Key="UnknownCustomer">Izabrani putnik ne postoji u bazi. Da li zelite da kreirate novi?</System:String>
+
+    <System:String x:Key="StartDate">Datum polaska:</System:String>
+    <System:String x:Key="EndDate">Datum povratka:</System:String>
+    <System:String x:Key="Reserve">Rezervisi</System:String>
+
 </ResourceDictionary>

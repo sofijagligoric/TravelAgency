@@ -58,6 +58,7 @@ namespace TravelAgency.Views
             DataContext = new AdminViewModel(navigationService, user);
         }
 
+        /*
         public void UpdateCaptionAndIcon(string newCaption, string newIcon)
         {
             MainCaption.Text = newCaption;
@@ -71,6 +72,7 @@ namespace TravelAgency.Views
             }
             
         }
+        */
 
         private void btnMinimise_Click(object sender, RoutedEventArgs e)
         {

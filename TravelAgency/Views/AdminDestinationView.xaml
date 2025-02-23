@@ -98,7 +98,7 @@
                                     Margin="3"
                                     CornerRadius="10"
                                     Width="230"
-                                    Height="180"
+                                    Height="190"
                                     Focusable="False">
                                 <Border.Style>
                                     <Style TargetType="Border">
@@ -176,12 +176,13 @@
                                                           Width="20"
                                                           Grid.Column="0"
                                                           VerticalAlignment="Center"
-                                                          Margin="0,0,5,0" />
+                                                          Margin="0,0,5,4" />
                                             <TextBlock Text="{Binding DestinationName}"
                                                        FontSize="16"
                                                        FontWeight="Bold"
                                                        Grid.Column="1"
-                                                       TextWrapping="Wrap" />
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,0,2,4" />
                                         </Grid>
 
                                         <Grid Grid.Row="1">
@@ -192,11 +193,12 @@
 
                                             <TextBlock Text="{DynamicResource Postcode}"
                                                        FontWeight="Bold"
-                                                       Margin="0,0,5,0"
+                                                       Margin="0,0,5,2"
                                                        Grid.Column="0" />
                                             <TextBlock Text="{Binding PostCode}"
                                                        Grid.Column="1"
-                                                       TextWrapping="Wrap" />
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,0,2,2" />
                                         </Grid>
 
                                         <Grid Grid.Row="2">
@@ -207,11 +209,12 @@
 
                                             <TextBlock Text="{DynamicResource Distance}"
                                                        FontWeight="Bold"
-                                                       Margin="0,0,5,0"
+                                                       Margin="0,0,5,2"
                                                        Grid.Column="0" />
                                             <TextBlock Text="{Binding Distance}"
                                                        Grid.Column="1"
-                                                       TextWrapping="Wrap" />
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,0,2,2" />
                                         </Grid>
 
                                         <Grid Grid.Row="3">
@@ -222,11 +225,12 @@
 
                                             <TextBlock Text="{DynamicResource LocalLanguage}"
                                                        FontWeight="Bold"
-                                                       Margin="0,0,5,0"
+                                                       Margin="0,0,5,2"
                                                        Grid.Column="0" />
                                             <TextBlock Text="{Binding LocalLanguage}"
                                                        Grid.Column="1"
-                                                       TextWrapping="Wrap" />
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,0,2,2" />
                                         </Grid>
 
                                         <Grid Grid.Row="4">
@@ -237,11 +241,12 @@
 
                                             <TextBlock Text="{DynamicResource Country}"
                                                        FontWeight="Bold"
-                                                       Margin="0,0,5,0"
+                                                       Margin="0,0,5,2"
                                                        Grid.Column="0" />
                                             <TextBlock Text="{Binding Country.CountryName}"
                                                        Grid.Column="1"
-                                                       TextWrapping="Wrap" />
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,0,2,2" />
                                         </Grid>
 
                                         <Grid Grid.Row="5">
@@ -252,12 +257,13 @@
 
                                             <TextBlock Text="{DynamicResource About}"
                                                        FontWeight="Bold"
-                                                       Margin="0,0,5,0"
+                                                       Margin="0,0,5,2"
                                                        Grid.Column="0"
                                                        VerticalAlignment="Top" />
                                             <TextBlock Text="{Binding About}"
                                                        TextWrapping="Wrap"
-                                                       Grid.Column="1" />
+                                                       Grid.Column="1"
+                                                       Margin="0,0,2,2" />
                                         </Grid>
 
                                     </Grid>

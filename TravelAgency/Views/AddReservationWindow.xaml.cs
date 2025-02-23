@@ -10,21 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TravelAgency.ViewModels;
 
 namespace TravelAgency.Views
 {
     /// <summary>
-    /// Interaction logic for SalesAgentPackageView.xaml
+    /// Interaction logic for AddReservationWindow.xaml
     /// </summary>
-    public partial class SalesAgentPackageView : UserControl
+    public partial class AddReservationWindow : Window
     {
-        public SalesAgentPackageView()
+        public AddReservationWindow()
         {
             InitializeComponent();
-            DataContext = new PackageViewModel();
         }
     }
 }

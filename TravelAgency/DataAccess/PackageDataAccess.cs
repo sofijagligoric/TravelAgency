@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TravelAgency.Models;
+using TravelAgency.Util;
 
 namespace TravelAgency.DataAccess
 {
@@ -17,7 +18,7 @@ namespace TravelAgency.DataAccess
     {
         private static readonly string connectionString = ConfigurationManager.ConnectionStrings["TravelAgencyConnection"].ConnectionString;
 
-        public List<Package> GetPackages()
+        public static List<Package> GetPackages()
         {
             List<Package> packages = new List<Package>();
             try
@@ -28,7 +29,7 @@ namespace TravelAgency.DataAccess
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"SELECT a.PackageId, a.Price, a.StartDate, a.EndDate, a.About, d.DestinationName,
-                        d.PostCode, d.About, d.Distance, d.LocalLanguage, d.CountryName 
+                        d.PostCode AS DestinationPostCode, d.About, d.Distance, d.LocalLanguage, d.CountryName 
                         FROM package a INNER JOIN destination d on a.PostCode=d.PostCode AND a.DestinationName=d.DestinationName";
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -47,8 +48,8 @@ namespace TravelAgency.DataAccess
                                 );
                                 packages.Add(new Package(
                                     reader["PackageId"] != DBNull.Value ? Convert.ToInt32(reader["PackageId"]) : 0,
-                                    reader["StartDate"]?.ToString() ?? string.Empty,
-                                    reader["EndDate"]?.ToString() ?? string.Empty,
+                                    General.DateFromBase(reader["StartDate"]?.ToString() ?? string.Empty),
+                                    General.DateFromBase(reader["EndDate"]?.ToString() ?? string.Empty),
                                     reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0m,
                                     reader["About"]?.ToString() ?? string.Empty,
                                     destination
@@ -61,11 +62,12 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
+                MessageBox.Show("Error occurred: " + ex.Message);
             }
             return packages;
         }
 
-        public List<Package> GetPackagesByDestination(string destinationName)
+        public static List<Package> GetPackagesByDestination(string destinationName)
         {
             List<Package> packages = new List<Package>();
             try
@@ -76,9 +78,9 @@ namespace TravelAgency.DataAccess
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"SELECT a.PackageId, a.Price, a.StartDate, a.EndDate, a.About, d.DestinationName,
-                        d.PostCode, d.About, d.Distance, d.LocalLanguage, d.CountryName 
+                        d.PostCode AS DestinationPostCode, d.About, d.Distance, d.LocalLanguage, d.CountryName 
                         FROM package a INNER JOIN destination d on a.PostCode=d.PostCode AND a.DestinationName=d.DestinationName
-                        WHERE NazivDestinacije DestinationName LIKE @DestName;";
+                        WHERE a.DestinationName LIKE @DestName;";
                         cmd.Parameters.AddWithValue("@DestName", destinationName + "%");
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -97,8 +99,8 @@ namespace TravelAgency.DataAccess
                                 );
                                 packages.Add(new Package(
                                     reader["PackageId"] != DBNull.Value ? Convert.ToInt32(reader["PackageId"]) : 0,
-                                    reader["StartDate"]?.ToString() ?? string.Empty,
-                                    reader["EndDate"]?.ToString() ?? string.Empty,
+                                    General.DateFromBase(reader["StartDate"]?.ToString() ?? string.Empty),
+                                    General.DateFromBase(reader["EndDate"]?.ToString() ?? string.Empty),
                                     reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0m,
                                     reader["About"]?.ToString() ?? string.Empty,
                                     destination
@@ -111,12 +113,13 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
+                MessageBox.Show("Error occurred: " + ex.Message);
             }
             return packages;
 
         }
 
-        public bool AddPackage(Package package)
+        public static bool AddPackage(Package package)
         {
             bool successful = false;
             try
@@ -128,9 +131,9 @@ namespace TravelAgency.DataAccess
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "add_package";
-                        cmd.Parameters.AddWithValue("@aStartDate", package.StartDate);
+                        cmd.Parameters.AddWithValue("@aStartDate", General.DateForBase(package.StartDate));
                         cmd.Parameters["@aStartDate"].Direction = ParameterDirection.Input;
-                        cmd.Parameters.AddWithValue("@aEndDate", package.EndDate);
+                        cmd.Parameters.AddWithValue("@aEndDate", General.DateForBase(package.EndDate));
                         cmd.Parameters["@aEndDate"].Direction = ParameterDirection.Input;
                         cmd.Parameters.AddWithValue("@aPrice", package.Price);
                         cmd.Parameters["@aPrice"].Direction = ParameterDirection.Input;
@@ -166,7 +169,7 @@ namespace TravelAgency.DataAccess
             return successful;
         }
 
-        public bool DeletePackage(int packageID)
+        public static bool DeletePackage(int packageID)
         {
             bool successful = false;
             try
@@ -204,7 +207,7 @@ namespace TravelAgency.DataAccess
             return successful;
         }
 
-        public bool UpdatePackage(Package package)
+        public static bool UpdatePackage(Package package)
         {
             bool retVal = false;
             try
@@ -217,8 +220,8 @@ namespace TravelAgency.DataAccess
                         cmd.CommandText = @"UPDATE package SET StartDate = @StartDate, EndDate = @EndDate, Price = @Price, About = @About, 
                                           PostCode = @PostCode, DestinationName = @DestinationName
                                           WHERE PackageId = @PackageId;";
-                        cmd.Parameters.AddWithValue("@StartDate", package.StartDate);
-                        cmd.Parameters.AddWithValue("@EndDate", package.EndDate);
+                        cmd.Parameters.AddWithValue("@StartDate", General.DateForBase(package.StartDate));
+                        cmd.Parameters.AddWithValue("@EndDate", General.DateForBase(package.EndDate));
                         cmd.Parameters.AddWithValue("@Price", package.Price);
                         cmd.Parameters.AddWithValue("@About", package.About);
                         cmd.Parameters.AddWithValue("@PostCode", package.Destination.PostCode);

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TravelAgency.Models;
+using TravelAgency.Util;
 
 namespace TravelAgency.DataAccess
 {
@@ -81,7 +82,7 @@ namespace TravelAgency.DataAccess
             return retVal;
         }
 
-        public List<PackageOffersHotel> GetAllPackageOffersHotel()
+        public static List<PackageOffersHotel> GetAllPackageOffersHotel()
         {
             List<PackageOffersHotel> packages = new List<PackageOffersHotel>();
             try
@@ -116,8 +117,8 @@ namespace TravelAgency.DataAccess
 
                                 var package = new Package(
                                     reader["PackageId"] != DBNull.Value ? Convert.ToInt32(reader["PackageId"]) : 0,
-                                    reader["StartDate"]?.ToString() ?? string.Empty,
-                                    reader["EndDate"]?.ToString() ?? string.Empty,
+                                   General.DateFromBase(reader["StartDate"]?.ToString() ?? string.Empty),
+                                    General.DateFromBase(reader["EndDate"]?.ToString() ?? string.Empty),
                                     reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0m,
                                     reader["About"]?.ToString() ?? string.Empty,
                                     destination
@@ -142,11 +143,12 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageBox.Show("Error occurred: " + ex.Message);
             }
             return packages;
         }
 
-        public List<PackageOffersHotel> GetPackageOffersHotelByPackage(int packageId)
+        public static List<PackageOffersHotel> GetPackageOffersHotelByPackage(int packageId)
         {
             List<PackageOffersHotel> packages = new List<PackageOffersHotel>();
             try
@@ -183,8 +185,8 @@ namespace TravelAgency.DataAccess
 
                                 var package = new Package(
                                     reader["PackageId"] != DBNull.Value ? Convert.ToInt32(reader["PackageId"]) : 0,
-                                    reader["StartDate"]?.ToString() ?? string.Empty,
-                                    reader["EndDate"]?.ToString() ?? string.Empty,
+                                   General.DateFromBase(reader["StartDate"]?.ToString() ?? string.Empty),
+                                    General.DateFromBase(reader["EndDate"]?.ToString() ?? string.Empty),
                                     reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0m,
                                     reader["About"]?.ToString() ?? string.Empty,
                                     destination
@@ -209,6 +211,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageBox.Show("Error occurred: " + ex.Message);
             }
             return packages;
         }
