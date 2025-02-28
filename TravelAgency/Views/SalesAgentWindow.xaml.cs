@@ -30,7 +30,10 @@ namespace TravelAgency.Views
             get { return user; }
         }
 
-
+        public static string EmployeeJmb
+        {
+            get; set;
+        }
 
         public SalesAgentWindow(Employee emp)
         {
@@ -53,6 +56,7 @@ namespace TravelAgency.Views
             }
             var navigationService = new NavigationService(MainContent);
             DataContext = new SalesAgentViewModel(navigationService, user);
+            EmployeeJmb = User.Jmb;
         }
 
 

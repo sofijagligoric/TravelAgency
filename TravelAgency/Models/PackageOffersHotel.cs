@@ -1,22 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TravelAgency.Models;
 
 namespace TravelAgency.Models
 {
-    public class PackageOffersHotel
+    public class PackageOffersHotel : INotifyPropertyChanged
     {
-        public Package Package { get; set; }
-        public Hotel Hotel { get; set; }
+        private int _packageId;
+        private int _hotelId;
 
-        public PackageOffersHotel() {
-            Package = new Package();
-            Hotel = new Hotel();
+        public int Package
+        {
+            get => _packageId;
+            set
+            {
+                if (_packageId != value)
+                {
+                    _packageId = value;
+                    OnPropertyChanged(nameof(Package));
+                }
+            }
         }
 
-        public PackageOffersHotel(Package package, Hotel hotel)
+        public int Hotel
+        {
+            get => _hotelId;
+            set
+            {
+                if (_hotelId != value)
+                {
+                    _hotelId = value;
+                    OnPropertyChanged(nameof(Hotel));
+                }
+            }
+        }
+
+        public PackageOffersHotel()
+        {
+            Package = 0;
+            Hotel = 0;
+        }
+
+        public PackageOffersHotel(int package, int hotel)
         {
             Package = package;
             Hotel = hotel;
@@ -24,9 +53,8 @@ namespace TravelAgency.Models
 
         public override bool Equals(object obj)
         {
-            return obj is PackageOffersHotel hotel &&
-                   EqualityComparer<Package>.Default.Equals(Package, hotel.Package) &&
-                   EqualityComparer<Hotel>.Default.Equals(Hotel, hotel.Hotel);
+            return obj is PackageOffersHotel poh &&
+                    Hotel == poh.Hotel;
         }
 
         public override int GetHashCode()
@@ -36,7 +64,72 @@ namespace TravelAgency.Models
 
         public override string ToString()
         {
-            return  Package.PackageId + " - " + Hotel.Name;
+            return $"{Package} - {Hotel}";
+        }
+        /*
+        private int _packageId;
+        private Hotel _hotelId;
+
+        public int int
+        {
+            get => _packageId;
+            set
+            {
+                if (_packageId != value)
+                {
+                    _packageId = value;
+                    OnPropertyChanged(nameof(int));
+                }
+            }
+        }
+
+        public Hotel Hotel
+        {
+            get => _hotelId;
+            set
+            {
+                if (_hotelId != value)
+                {
+                    _hotelId = value;
+                    OnPropertyChanged(nameof(Hotel));
+                }
+            }
+        }
+
+        public intOffersHotel()
+        {
+            int = new int();
+            Hotel = new Hotel();
+        }
+
+        public intOffersHotel(int package, Hotel hotel)
+        {
+            int = package;
+            Hotel = hotel;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is intOffersHotel other &&
+                   EqualityComparer<int>.Default.Equals(int, other.int) &&
+                   EqualityComparer<Hotel>.Default.Equals(Hotel, other.Hotel);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(int, Hotel);
+        }
+
+        public override string ToString()
+        {
+            return $"{int.intId} - {Hotel.Name}";
+        }
+        */
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

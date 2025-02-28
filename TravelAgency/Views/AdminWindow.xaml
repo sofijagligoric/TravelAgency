@@ -100,6 +100,7 @@
 
                         <RadioButton Style="{StaticResource menuButton}"
                                      Tag="{DynamicResource menuContentColor}"
+                                     Command="{Binding ShowPackagesCommand}"
                                      IsChecked="False">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="PlaneDeparture"

@@ -29,9 +29,9 @@ namespace TravelAgency.DataAccess
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "add_package_offers_hotel";
-                        cmd.Parameters.AddWithValue("@rPackageId", poh.Package.PackageId);
+                        cmd.Parameters.AddWithValue("@rPackageId", poh.Package);
                         cmd.Parameters["@rPackageId"].Direction = ParameterDirection.Input;
-                        cmd.Parameters.AddWithValue("@rHotelId", poh.Hotel.HotelId);
+                        cmd.Parameters.AddWithValue("@rHotelId", poh.Hotel);
                         cmd.Parameters["@rHotelId"].Direction = ParameterDirection.Input;
 
                         cmd.Parameters.Add("@successful", MySqlDbType.Bit).Direction = ParameterDirection.Output;
@@ -69,8 +69,8 @@ namespace TravelAgency.DataAccess
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"DELETE FROM package_offers_hotel WHERE HotelId = @HotelId AND PackageId = @PackageId;";
-                        cmd.Parameters.AddWithValue("@HotelId", poh.Hotel.HotelId);
-                        cmd.Parameters.AddWithValue("@PackageId", poh.Package.PackageId);
+                        cmd.Parameters.AddWithValue("@HotelId", poh.Hotel);
+                        cmd.Parameters.AddWithValue("@PackageId", poh.Package);
                         retVal = cmd.ExecuteNonQuery() == 1;
                     }
                 }
@@ -92,49 +92,14 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = @"SELECT a.PackageId, a.Price, a.StartDate, a.EndDate, a.About, d.DestinationName,
-                        d.PostCode, d.About, d.Distance, d.LocalLanguage, d.CountryName,
-				        h.HotelId, h.RoomCount, h.Name_of, h.Address, h.Email, h.ContainsRestaurant
-				        FROM package_offers_hotel anh
-				        INNER JOIN package a on a.PackageId=anh.PackageId
-				        INNER JOIN hotel h on h.HotelId=anh.HotelId
-				        INNER JOIN destination d on a.PostCode=d.PostCode AND a.DestinationName=d.DestinationName ";
+                        cmd.CommandText = @"SELECT PackageId, HotelId
+				        FROM package_offers_hotel anh";
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-
-                                var country = new Country(reader["CountryName"]?.ToString() ?? string.Empty);
-
-                                var destination = new Destination(
-                                    reader["DestinationPostCode"] != DBNull.Value ? Convert.ToInt32(reader["DestinationPostCode"]) : 0,
-                                    reader["DestinationName"]?.ToString() ?? string.Empty,
-                                    reader["About"]?.ToString() ?? string.Empty,
-                                    reader["Distance"] != DBNull.Value ? Convert.ToInt32(reader["Distance"]) : 0,
-                                    reader["LocalLanguage"]?.ToString() ?? string.Empty,
-                                    country
-                                );
-
-                                var package = new Package(
-                                    reader["PackageId"] != DBNull.Value ? Convert.ToInt32(reader["PackageId"]) : 0,
-                                   General.DateFromBase(reader["StartDate"]?.ToString() ?? string.Empty),
-                                    General.DateFromBase(reader["EndDate"]?.ToString() ?? string.Empty),
-                                    reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0m,
-                                    reader["About"]?.ToString() ?? string.Empty,
-                                    destination
-                                );
-
-                                var hotel = new Hotel(
-                                    reader["HotelId"] != DBNull.Value ? Convert.ToInt32(reader["HotelId"]) : 0,
-                                    reader["RoomCount"] != DBNull.Value ? Convert.ToInt32(reader["RoomCount"]) : 0,
-                                    reader["HotelName"]?.ToString() ?? string.Empty,
-                                    reader["Address"]?.ToString() ?? string.Empty,
-                                    reader["Email"]?.ToString() ?? string.Empty,
-                                    reader["ContainsRestaurant"] != DBNull.Value ? Convert.ToByte(reader["ContainsRestaurant"]) : (byte)0,
-                                    destination
-                                );
-
-                                packages.Add(new PackageOffersHotel(package, hotel));
+                                packages.Add(new PackageOffersHotel(reader["PackageId"] != DBNull.Value ? Convert.ToInt32(reader["PackageId"]) : 0,
+                                              reader["HotelId"] != DBNull.Value ? Convert.ToInt32(reader["HotelId"]) : 0));
                             }
                         }
                     }
@@ -158,20 +123,52 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = @"SELECT a.PackageId, a.Price, a.StartDate, a.EndDate, a.About, d.DestinationName,
-                        d.PostCode, d.About, d.Distance, d.LocalLanguage, d.CountryName,
-				        h.HotelId, h.RoomCount, h.Name_of, h.Address, h.Email, h.ContainsRestaurant
-				        FROM package_offers_hotel anh
-				        INNER JOIN package a on a.PackageId=anh.PackageId
-				        INNER JOIN hotel h on h.HotelId=anh.HotelId
-				        INNER JOIN destination d on a.PostCode=d.PostCode AND a.DestinationName=d.DestinationName 
+                        cmd.CommandText = @"SELECT PackageId, HotelId
+				        FROM package_offers_hotel anh 
                         WHERE PackageId = @PId";
                         cmd.Parameters.AddWithValue("@PId", packageId);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
+                                packages.Add(new PackageOffersHotel(reader["PackageId"] != DBNull.Value ? Convert.ToInt32(reader["PackageId"]) : 0,
+                                                                             reader["HotelId"] != DBNull.Value ? Convert.ToInt32(reader["HotelId"]) : 0));
+                            }
+                        
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageBox.Show("Error occurred in GetPackageOffersHotelByPackage: " + ex.Message);
+            }
+            return packages;
+        }
 
+        public static List<Hotel> GetHotelsByPackage(int packageId)
+        {
+            List<Hotel> hotels = new List<Hotel>();
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = @"SELECT  d.DestinationName,
+                        d.PostCode as DestinationPostCode, d.About, d.Distance, d.LocalLanguage, d.CountryName,
+				        h.HotelId, h.RoomCount, h.Name_of as HotelName, h.Address, h.Email, h.ContainsRestaurant
+				        FROM package_offers_hotel anh
+				        INNER JOIN hotel h on h.HotelId=anh.HotelId
+				        INNER JOIN destination d on h.PostCode=d.PostCode AND h.DestinationName=d.DestinationName 
+                        WHERE PackageId = @PId";
+                        cmd.Parameters.AddWithValue("@PId", packageId);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
                                 var country = new Country(reader["CountryName"]?.ToString() ?? string.Empty);
 
                                 var destination = new Destination(
@@ -181,15 +178,6 @@ namespace TravelAgency.DataAccess
                                     reader["Distance"] != DBNull.Value ? Convert.ToInt32(reader["Distance"]) : 0,
                                     reader["LocalLanguage"]?.ToString() ?? string.Empty,
                                     country
-                                );
-
-                                var package = new Package(
-                                    reader["PackageId"] != DBNull.Value ? Convert.ToInt32(reader["PackageId"]) : 0,
-                                   General.DateFromBase(reader["StartDate"]?.ToString() ?? string.Empty),
-                                    General.DateFromBase(reader["EndDate"]?.ToString() ?? string.Empty),
-                                    reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0m,
-                                    reader["About"]?.ToString() ?? string.Empty,
-                                    destination
                                 );
 
                                 var hotel = new Hotel(
@@ -202,8 +190,9 @@ namespace TravelAgency.DataAccess
                                     destination
                                 );
 
-                                packages.Add(new PackageOffersHotel(package, hotel));
+                                hotels.Add( hotel );
                             }
+
                         }
                     }
                 }
@@ -211,9 +200,9 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                MessageBox.Show("Error occurred: " + ex.Message);
+                MessageBox.Show("Error occurred in GetHotelsByPackage: " + ex.Message);
             }
-            return packages;
+            return hotels;
         }
     }
 }

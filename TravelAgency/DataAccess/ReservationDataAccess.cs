@@ -48,7 +48,8 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters.Add("@ResId", MySqlDbType.Int32).Direction = ParameterDirection.Output;
 
                         cmd.ExecuteNonQuery();
-                        reservation.ReservationId = Convert.ToInt32(cmd.Parameters["@ResId"].Value);
+                        // reservation.ReservationId = Convert.ToInt32(cmd.Parameters["@ResId"].Value);
+                        reservation.ReservationId = (int)cmd.LastInsertedId;
                         successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
                         if (successful)

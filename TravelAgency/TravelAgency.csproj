@@ -193,6 +193,9 @@
     <Compile Include="Views\AddHotelWindow.xaml.cs">
       <DependentUpon>AddHotelWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddPackageWindow.xaml.cs">
+      <DependentUpon>AddPackageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddReservationWindow.xaml.cs">
       <DependentUpon>AddReservationWindow.xaml</DependentUpon>
     </Compile>
@@ -259,6 +262,9 @@
     <Compile Include="Views\UpdateHotelWindow.xaml.cs">
       <DependentUpon>UpdateHotelWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UpdatePackageWindow.xaml.cs">
+      <DependentUpon>UpdatePackageWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Languages\EnglishLanguage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -320,6 +326,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AddHotelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddPackageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -408,6 +418,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UpdateHotelWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdatePackageWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -60,11 +60,13 @@ namespace TravelAgency.ViewModels
         private readonly AdminReservationsView _adminReservationsView;
         private readonly AdminDestinationView _adminDestinationView;
         private readonly EmployeeView _employeeView;
+        private readonly AdminPackageView _adminPackageView;
 
         public ICommand ShowHotelsCommand { get; }
         public ICommand ShowReservationsCommand { get; }
         public ICommand ShowDestinationsCommand { get; }
         public ICommand ShowEmployeesCommand { get; }
+        public ICommand ShowPackagesCommand { get; }
         public ICommand ChangePasswordCommand { get; }
 
         public AdminViewModel(INavigationService navigationService, Employee e)
@@ -74,6 +76,7 @@ namespace TravelAgency.ViewModels
             _adminReservationsView = new AdminReservationsView();
             _adminDestinationView = new AdminDestinationView();
             _employeeView = new EmployeeView();
+            _adminPackageView = new AdminPackageView();
             Employee = e;
 
             ShowHotelsCommand = new RelayCommand(ShowHotels);
@@ -81,6 +84,7 @@ namespace TravelAgency.ViewModels
             ShowDestinationsCommand = new RelayCommand(ShowDestinations);
             ShowEmployeesCommand = new RelayCommand(ShowEmployees);
             ChangePasswordCommand = new RelayCommand(ChangePassword);
+            ShowPackagesCommand = new RelayCommand(ShowPackages);
 
             ShowEmployees();
         }
@@ -124,6 +128,14 @@ namespace TravelAgency.ViewModels
             Caption = (string)Application.Current.Resources["Hotels"];
             Icon = IconChar.Hotel;
             _navigationService.NavigateTo(_adminHotelView);
+        }
+
+        private void ShowPackages()
+        {
+            //_navigationService.NavigateTo(new AdminHotelView());
+            Caption = (string)Application.Current.Resources["Packages"];
+            Icon = IconChar.PlaneDeparture;
+            _navigationService.NavigateTo(_adminPackageView);
         }
 
         private void ShowReservations()

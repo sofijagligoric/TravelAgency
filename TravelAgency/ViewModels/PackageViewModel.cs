@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
 using System.Windows.Input;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
@@ -66,12 +67,48 @@ namespace TravelAgency.ViewModels
 
         private void AddReservation()
         {
-            
+            if (SelectedPackage != null)
+            {
+               
+                AddReservationWindow dialog = new AddReservationWindow(SelectedPackage);
+
+                bool? dialogResult = dialog.ShowDialog();
+
+                if ((bool)dialogResult)
+                {
+                    Reservation pom = dialog.Reservation;
+                    string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
+                    MessageDialog dialog2 = new MessageDialog(message2);
+                    bool? dialogResult2 = dialog2.ShowDialog();
+                    if ((bool)dialogResult2)
+                    {
+                        if (ReservationDataAccess.AddReservation(pom))
+                        {
+                            string message = (string)Application.Current.Resources["SuccessfullyAdded"];
+                            MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                            dialog3.ShowDialog();
+                        }
+                        else
+                        {
+                            string message3 = (string)Application.Current.Resources["FailedUpdate"];
+                            MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                            dialog3.ShowDialog();
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                string message = (string)Application.Current.Resources["RowNotSelected"];
+                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                dialog.ShowDialog();
+            }
         }
 
         private void AddPackage()
         {
-            /*
+            
             AddPackageWindow dialog = new AddPackageWindow();
 
             bool? dialogResult = dialog.ShowDialog();
@@ -93,9 +130,15 @@ namespace TravelAgency.ViewModels
                         dialog3.ShowDialog();
                     }
                 }
-
+                else
+                {
+                    string message3 = (string)Application.Current.Resources["FailedUpdate"];
+                    MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                    dialog3.ShowDialog();
+                }
             }
-            */
+           
+
         }
 
         private void AllPackages()
@@ -173,8 +216,7 @@ namespace TravelAgency.ViewModels
 
         private void UpdatePackage()
         {
-            /*
-
+          
             if (SelectedPackage != null)
             {
                 UpdatePackageWindow dialog = new UpdatePackageWindow(SelectedPackage);
@@ -191,12 +233,10 @@ namespace TravelAgency.ViewModels
                     {
                         if (PackageDataAccess.UpdatePackage(pom))
                         {
-                            SelectedPackage.Name = pom.Name;
-                            SelectedPackage.Address = pom.Address;
-                            SelectedPackage.Email = pom.Email;
+                            SelectedPackage.About = pom.About;
+                            SelectedPackage.EndDate = pom.EndDate;
+                            SelectedPackage.StartDate = pom.StartDate;
                             SelectedPackage.Destination = pom.Destination;
-                            SelectedPackage.HasRestaurant = pom.HasRestaurant;
-                            SelectedPackage.RoomCount = pom.RoomCount;
 
                             OnPropertyChanged(nameof(SelectedPackage));
                             OnPropertyChanged(nameof(Packages));
@@ -220,7 +260,7 @@ namespace TravelAgency.ViewModels
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                 dialog.ShowDialog();
             }
-            */
+           
         }
 
         private bool CanModify()

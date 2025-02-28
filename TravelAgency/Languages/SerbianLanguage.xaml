@@ -121,7 +121,12 @@
     <System:String x:Key="UnknownCustomer">Izabrani putnik ne postoji u bazi. Da li zelite da kreirate novi?</System:String>
 
     <System:String x:Key="StartDate">Datum polaska:</System:String>
+    <System:String x:Key="StartDateHint">Datum polaska (dd.MM.yyyy.):</System:String>
+    <System:String x:Key="EndDateHint">Datum povratka (dd.MM.yyyy.):</System:String>
     <System:String x:Key="EndDate">Datum povratka:</System:String>
     <System:String x:Key="Reserve">Rezervisi</System:String>
+    <System:String x:Key="CustomerJmb">JMB putnika:</System:String>
+    <System:String x:Key="CreateCustomer">Dodaj novog putnika</System:String>
+    <System:String x:Key="CreateDestination">Dodaj novu destinaciju</System:String>
 
 </ResourceDictionary>

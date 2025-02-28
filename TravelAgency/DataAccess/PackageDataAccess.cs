@@ -62,7 +62,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
-                MessageBox.Show("Error occurred: " + ex.Message);
+             //   MessageBox.Show("Error occurred: " + ex.Message);
             }
             return packages;
         }
@@ -151,6 +151,7 @@ namespace TravelAgency.DataAccess
                         package.PackageId = Convert.ToInt32(cmd.Parameters["@PackId"].Value);
                         successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
+                        /*
                         if (successful)
                         {
                             MessageBox.Show("Package added successfully.");
@@ -159,12 +160,14 @@ namespace TravelAgency.DataAccess
                         {
                             MessageBox.Show($"Error: {message}");
                         }
+                        */
                     }
                 }
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred while adding package: {e.Message}");
+                //  MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }
@@ -189,6 +192,7 @@ namespace TravelAgency.DataAccess
 
                         successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
+                        /*
                         if (successful)
                         {
                             MessageBox.Show("Package deleted successfully.");
@@ -197,12 +201,14 @@ namespace TravelAgency.DataAccess
                         {
                             MessageBox.Show($"Error: {message}");
                         }
+                        */
                     }
                 }
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred while deleting package: {e.Message}");
+                //  MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }

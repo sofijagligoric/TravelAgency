@@ -106,7 +106,7 @@
                     Margin="10">
 
             <Button Content="{DynamicResource Reserve}"
-                    Command="{Binding PayPackageCommand}"
+                    Command="{Binding AddReservationCommand}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
             

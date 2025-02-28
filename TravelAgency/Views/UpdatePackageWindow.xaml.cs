@@ -1,5 +1,4 @@
-﻿using Mysqlx.Datatypes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -19,71 +18,68 @@ using TravelAgency.Models;
 namespace TravelAgency.Views
 {
     /// <summary>
-    /// Interaction logic for AddReservationWindow.xaml
+    /// Interaction logic for UpdatePackageWindow.xaml
     /// </summary>
-    public partial class AddReservationWindow : Window
+    public partial class UpdatePackageWindow : Window
     {
         public Package Package { get; set; }
-        public Reservation Reservation { get; set; }
-        public List<Hotel> Hotels { get; set; }
-
-        private bool _isOptionYes;
-
-        public bool IsOptionYes
+        public List<Destination> Destinations { get; set; }
+        private Destination _selectedDestination;
+        public Destination SelectedDestination
         {
-            get => _isOptionYes;
+            get => _selectedDestination;
             set
             {
-                _isOptionYes = value;
-                OnPropertyChanged(nameof(IsOptionYes));
+                _selectedDestination = value;
+                OnPropertyChanged(nameof(SelectedDestination));
             }
         }
 
-        public AddReservationWindow(Package package)
+
+        public UpdatePackageWindow(Package package)
         {
             InitializeComponent();
             DataContext = this;
             Package = new Package(package);
-            Reservation = new Reservation();
-            Hotels = PackageOffersHotelDataAccess.GetHotelsByPackage(Package.PackageId);
-           
+            Destinations = DestinationDataAccess.GetAllDestinations();
+            SelectedDestination = Destinations.FirstOrDefault(d => d.DestinationName == Package.Destination.DestinationName);
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
 
-            AddCustomer();
+            AddDestination();
         }
 
-        private void AddCustomer()
+        private void AddDestination()
         {
-            AddCustomerWindow dialog = new AddCustomerWindow();
+            AddDestinationWindow dialog = new AddDestinationWindow();
 
             bool? dialogResult = dialog.ShowDialog();
 
             if ((bool)dialogResult)
             {
-                Customer pom = dialog.Customer;
+                Destination pom = dialog.Destination;
                 string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
                 MessageDialog dialog2 = new MessageDialog(message2);
                 bool? dialogResult2 = dialog2.ShowDialog();
                 if ((bool)dialogResult2)
                 {
-                    if (CustomerDataAccess.AddCustomer(pom, dialog.Customer.PhoneNumber))
+                    if (DestinationDataAccess.AddDestination(pom))
                     {
-                        
+                        Destinations.Add(pom);
+                        OnPropertyChanged(nameof(Destinations));
                         string message = (string)Application.Current.Resources["SuccessfullyAdded"];
                         MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
                         dialog3.ShowDialog();
                     }
                 }
-
             }
         }
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(PackageId.Text) || string.IsNullOrEmpty(Price.Text) || string.IsNullOrEmpty(CustomerJmb.Text))
+            if (string.IsNullOrEmpty(StartDate.Text) || string.IsNullOrEmpty(Price.Text) || string.IsNullOrEmpty(EndDate.Text) || string.IsNullOrEmpty(About.Text))
             {
                 string message = (string)Application.Current.Resources["EmptyField"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
@@ -91,26 +87,11 @@ namespace TravelAgency.Views
             }
             else
             {
-                Customer customer = CustomerDataAccess.GetCustomerByJMB(CustomerJmb.Text);
-                if (customer == null)
-                {
-                    string message = (string)Application.Current.Resources["UnknownCustomer"];
-                    MessageDialog dialog = new MessageDialog(message);
-                    bool? dialogResult = dialog.ShowDialog();
-                    if ((bool)dialogResult)
-                    {
-                        AddCustomer();
-                    }
-                }
-                else
-                {
-                
-                Reservation = new Reservation(1, decimal.Parse(Price.Text, System.Globalization.CultureInfo.InvariantCulture),
-                   (HotelComboBox.SelectedItem as Hotel), Package, customer, (byte)(IsOptionYes ? 1 : 0), SalesAgentWindow.EmployeeJmb);
-                    DialogResult = true;
-                    Close();
-                }
-              
+
+                Package = new Package(1, StartDate.Text, EndDate.Text, decimal.Parse(Price.Text, System.Globalization.CultureInfo.InvariantCulture), About.Text, (DestinationComboBox.SelectedItem as Destination));
+                DialogResult = true;
+                Close();
+
             }
 
 
@@ -139,6 +120,5 @@ namespace TravelAgency.Views
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-       
     }
 }

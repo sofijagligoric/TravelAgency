@@ -122,7 +122,12 @@
     <System:String x:Key="UnknownCustomer">Unknown customer. Would you like to create new?</System:String>
 
     <System:String x:Key="StartDate">Start date:</System:String>
+    <System:String x:Key="StartDateHint">Start date (dd.MM.yyyy.):</System:String>
+    <System:String x:Key="EndDateHint">End date (dd.MM.yyyy.):</System:String>
     <System:String x:Key="EndDate">End date:</System:String>
     <System:String x:Key="Reserve">Reserve</System:String>
+    <System:String x:Key="CustomerJmb">Customer's ID:</System:String>
+    <System:String x:Key="CreateCustomer">Add new customer</System:String>
+    <System:String x:Key="CreateDestination">Add new destination</System:String>
 
 </ResourceDictionary>
