@@ -44,6 +44,7 @@
     <System:String x:Key="ConfirmPayment">Da li ste sigurni da zelite da uplatite:</System:String>
     <System:String x:Key="FailedDelete">Brisanje nije uspjelo.</System:String>
     <System:String x:Key="FailedUpdate">Azuriranje nije uspjelo.</System:String>
+    <System:String x:Key="FailedAdd">Dodavanje nije uspjelo.</System:String>
     <System:String x:Key="SuccessfulDelete">Brisanje uspjesno.</System:String>
     <System:String x:Key="SuccessfulAdd">Dodavanje uspjesno.</System:String>
     <System:String x:Key="SuccessfulUpdate">Azuriranje uspjesno.</System:String>

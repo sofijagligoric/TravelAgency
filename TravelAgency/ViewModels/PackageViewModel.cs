@@ -90,7 +90,7 @@ namespace TravelAgency.ViewModels
                         }
                         else
                         {
-                            string message3 = (string)Application.Current.Resources["FailedUpdate"];
+                            string message3 = (string)Application.Current.Resources["FailedAdd"];
                             MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
                             dialog3.ShowDialog();
                         }
@@ -132,7 +132,7 @@ namespace TravelAgency.ViewModels
                 }
                 else
                 {
-                    string message3 = (string)Application.Current.Resources["FailedUpdate"];
+                    string message3 = (string)Application.Current.Resources["FailedAdd"];
                     MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
                     dialog3.ShowDialog();
                 }

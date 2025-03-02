@@ -44,6 +44,7 @@
     <System:String x:Key="ConfirmAdd">Are you sure you want to add</System:String>
     <System:String x:Key="FailedDelete">Failed to delete.</System:String>
     <System:String x:Key="FailedUpdate">Failed to update.</System:String>
+    <System:String x:Key="FailedAdd">Failed to add.</System:String>
     <System:String x:Key="SuccessfulDelete">Selected item deleted.</System:String>
     <System:String x:Key="SuccessfulUpdate">Selected item updated.</System:String>
     <System:String x:Key="SuccessfulAdd">Selected item added.</System:String>

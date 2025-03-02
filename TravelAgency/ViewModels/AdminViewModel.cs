@@ -21,26 +21,27 @@ namespace TravelAgency.ViewModels
         private IconChar _icon;
         public string Caption
         {
-            get
-            {
-                return _caption;
-            }
+            get => _caption;
             set
             {
-                _caption = value;
-                OnPropertyChanged(nameof(Caption));
+                if (_caption != value)
+                {
+                    _caption = value;
+                    OnPropertyChanged(nameof(Caption));
+                }
             }
         }
+
         public IconChar Icon
         {
-            get
-            {
-                return _icon;
-            }
+            get => _icon;
             set
             {
-                _icon = value;
-                OnPropertyChanged(nameof(Icon));
+                if (_icon != value)
+                {
+                    _icon = value;
+                    OnPropertyChanged(nameof(Icon));
+                }
             }
         }
 
@@ -72,11 +73,13 @@ namespace TravelAgency.ViewModels
         public AdminViewModel(INavigationService navigationService, Employee e)
         {
             _navigationService = navigationService;
+            /*
             _adminHotelView = new AdminHotelView();
             _adminReservationsView = new AdminReservationsView();
             _adminDestinationView = new AdminDestinationView();
             _employeeView = new EmployeeView();
             _adminPackageView = new AdminPackageView();
+            */
             Employee = e;
 
             ShowHotelsCommand = new RelayCommand(ShowHotels);
@@ -85,6 +88,7 @@ namespace TravelAgency.ViewModels
             ShowEmployeesCommand = new RelayCommand(ShowEmployees);
             ChangePasswordCommand = new RelayCommand(ChangePassword);
             ShowPackagesCommand = new RelayCommand(ShowPackages);
+           
 
             ShowEmployees();
         }
@@ -124,42 +128,46 @@ namespace TravelAgency.ViewModels
 
         private void ShowHotels()
         {
-            //_navigationService.NavigateTo(new AdminHotelView());
             Caption = (string)Application.Current.Resources["Hotels"];
             Icon = IconChar.Hotel;
-            _navigationService.NavigateTo(_adminHotelView);
+            _navigationService.NavigateTo(new AdminHotelView());
+            
+           // _navigationService.NavigateTo(_adminHotelView);
         }
 
         private void ShowPackages()
         {
-            //_navigationService.NavigateTo(new AdminHotelView());
+            
             Caption = (string)Application.Current.Resources["Packages"];
             Icon = IconChar.PlaneDeparture;
-            _navigationService.NavigateTo(_adminPackageView);
+            _navigationService.NavigateTo(new AdminPackageView());
+            //   _navigationService.NavigateTo(_adminPackageView);
         }
 
         private void ShowReservations()
         {
-            // _navigationService.NavigateTo(new AdminReservationsView());
+             
             Caption = (string)Application.Current.Resources["Reservations"];
             Icon = IconChar.CalendarCheck;
-            _navigationService.NavigateTo(_adminReservationsView);
+            _navigationService.NavigateTo(new AdminReservationsView());
+            // _navigationService.NavigateTo(_adminReservationsView);
         }
 
         private void ShowDestinations()
         {
-            //_navigationService.NavigateTo(new AdminHotelView());
-            _navigationService.NavigateTo(_adminDestinationView);
             Caption = (string)Application.Current.Resources["Destinations"];
             Icon = IconChar.LocationDot;
+            _navigationService.NavigateTo(new AdminDestinationView());
+            // _navigationService.NavigateTo(_adminDestinationView);
         }
 
         private void ShowEmployees()
         {
-            //_navigationService.NavigateTo(new AdminHotelView());
+           
             Caption = (string)Application.Current.Resources["Employees"];
             Icon = IconChar.User;
-            _navigationService.NavigateTo(_employeeView);
+            _navigationService.NavigateTo(new EmployeeView());
+            //  _navigationService.NavigateTo(_employeeView);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

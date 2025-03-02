@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TravelAgency.Util;
 using TravelAgency.ViewModels;
 
 namespace TravelAgency.Views
@@ -19,12 +20,15 @@ namespace TravelAgency.Views
     /// <summary>
     /// Interaction logic for AdminHotelView.xaml
     /// </summary>
-    public partial class AdminHotelView : UserControl
+    public partial class AdminHotelView : UserControl 
     {
         public AdminHotelView()
         {
             InitializeComponent();
             DataContext = new HotelViewModel();
         }
+
+     
+
     }
 }

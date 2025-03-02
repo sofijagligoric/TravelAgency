@@ -26,7 +26,7 @@
         <StackPanel Grid.Row="0"
                     Orientation="Horizontal"
                     HorizontalAlignment="Left"
-                    Margin="5"
+                    Margin="0"
                     Height="50">
             <TextBox x:Name="destName"
                      Width="300"

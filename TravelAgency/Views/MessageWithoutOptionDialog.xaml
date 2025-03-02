@@ -15,7 +15,11 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown"
         ResizeMode="NoResize">
-    <Border CornerRadius="10,10,10,10">
+    <Border  BorderThickness="1"
+        CornerRadius="10,10,10,10">
+        <Border.BorderBrush>
+            <SolidColorBrush Color="{DynamicResource secondaryBackColor2}" />
+        </Border.BorderBrush>
         <Border.Background>
             <LinearGradientBrush StartPoint="1,1"
                                  EndPoint="0,0">

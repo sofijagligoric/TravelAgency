@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
+using TravelAgency.Util;
 using TravelAgency.ViewModels;
 
 namespace TravelAgency.Views
@@ -225,7 +226,7 @@ namespace TravelAgency.Views
 
         private void SetLang(string lang)
         {
-          
+
             var uri = new Uri(lang, UriKind.Relative);
             var resourceDictionary = new ResourceDictionary { Source = uri };
             var oldLang = Application.Current.Resources.MergedDictionaries
@@ -233,11 +234,11 @@ namespace TravelAgency.Views
 
             if (oldLang != null)
             {
-                 Application.Current.Resources.MergedDictionaries.Remove(oldLang);
+                Application.Current.Resources.MergedDictionaries.Remove(oldLang);
             }
 
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-           
+
         }
     }
 }

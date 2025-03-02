@@ -27,7 +27,7 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = "SELECT e.JMB, LastName, FirstName, Address, DateOfBirth, Email, PhoneNumber, Salary, Username, PasswordString, EmploymentDate, RoleType, PreferredTheme FROM employee e NATURAL JOIN person WHERE Username = @UsrName AND PasswordString = @Passwd";
+                        cmd.CommandText = "SELECT e.JMB, LastName, FirstName, Address, DateOfBirth, Email, PhoneNumber, Salary, Username, PasswordString, EmploymentDate, RoleType, PreferredTheme FROM employee e NATURAL JOIN person WHERE BINARY Username = @UsrName AND PasswordString = @Passwd";
                         cmd.Parameters.AddWithValue("@UsrName", username);
                         cmd.Parameters.AddWithValue("@Passwd", password);
 

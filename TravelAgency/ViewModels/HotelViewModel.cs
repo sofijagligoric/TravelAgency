@@ -93,6 +93,12 @@ namespace TravelAgency.ViewModels
                         MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
                         dialog3.ShowDialog();
                     }
+                    else
+                    {
+                        string message3 = (string)Application.Current.Resources["FailedAdd"];
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                        dialog3.ShowDialog();
+                    }
                 }
                 
             }
