@@ -44,7 +44,8 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
+              //  MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }
@@ -81,7 +82,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                MessageBox.Show("Error occurred: " + ex.Message);
+                // MessageBox.Show("Error occurred: " + ex.Message);
             }
             return result;
         }
@@ -258,7 +259,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                MessageBox.Show("Error occurred: " + ex.Message);
+            //    MessageBox.Show("Error occurred: " + ex.Message);
             }
             return result;
         }

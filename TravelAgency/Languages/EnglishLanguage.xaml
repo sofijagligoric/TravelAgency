@@ -130,5 +130,6 @@
     <System:String x:Key="CustomerJmb">Customer's ID:</System:String>
     <System:String x:Key="CreateCustomer">Add new customer</System:String>
     <System:String x:Key="CreateDestination">Add new destination</System:String>
+    <System:String x:Key="CreateHotel">Add new hotel</System:String>
 
 </ResourceDictionary>

@@ -147,7 +147,7 @@ namespace TravelAgency.Models
             _jmb = string.Empty;
             _address = string.Empty;
             _email = string.Empty;
-            _dateOfBirth = null;
+            _dateOfBirth = string.Empty;
             _phoneNumber = string.Empty;
         }
 

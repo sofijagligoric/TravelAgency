@@ -39,7 +39,7 @@ namespace TravelAgency.DataAccess
                         cmd.ExecuteNonQuery();
                         successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
-
+                        /*
                         if (successful)
                         {
                             MessageBox.Show(message);
@@ -48,17 +48,19 @@ namespace TravelAgency.DataAccess
                         {
                             MessageBox.Show($"Error: {message}");
                         }
+                        */
                     }
                 }
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
+               // MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }
 
-        public static bool DeletePackageOffersHotel(PackageOffersHotel poh)
+        public static bool DeletePackageOffersHotel(int packageId, int hotelId)
         {
             bool retVal = false;
             try
@@ -69,15 +71,16 @@ namespace TravelAgency.DataAccess
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"DELETE FROM package_offers_hotel WHERE HotelId = @HotelId AND PackageId = @PackageId;";
-                        cmd.Parameters.AddWithValue("@HotelId", poh.Hotel);
-                        cmd.Parameters.AddWithValue("@PackageId", poh.Package);
+                        cmd.Parameters.AddWithValue("@HotelId", hotelId);
+                        cmd.Parameters.AddWithValue("@PackageId", packageId);
                         retVal = cmd.ExecuteNonQuery() == 1;
                     }
                 }
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
+                // MessageBox.Show("Error occurred: " + e.Message);
             }
             return retVal;
         }
@@ -108,7 +111,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                MessageBox.Show("Error occurred: " + ex.Message);
+              //  MessageBox.Show("Error occurred: " + ex.Message);
             }
             return packages;
         }
@@ -142,7 +145,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                MessageBox.Show("Error occurred in GetPackageOffersHotelByPackage: " + ex.Message);
+               // MessageBox.Show("Error occurred in GetPackageOffersHotelByPackage: " + ex.Message);
             }
             return packages;
         }
@@ -200,7 +203,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                MessageBox.Show("Error occurred in GetHotelsByPackage: " + ex.Message);
+            //    MessageBox.Show("Error occurred in GetHotelsByPackage: " + ex.Message);
             }
             return hotels;
         }

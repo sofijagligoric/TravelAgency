@@ -98,7 +98,8 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0"
-                                Margin="0,0,0,5">
+                                Margin="0,0,0,5"
+                                HorizontalAlignment="Center">
                         <Label FontSize="15"
                                Content="{DynamicResource StartDateHint}" />
                         <TextBox x:Name="StartDate"
@@ -109,7 +110,7 @@
                                 <Binding Path="Package.StartDate"
                                          UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <util:RegexValidation Pattern="^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}\.$"
+                                        <util:RegexValidation Pattern="^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}\.$|^$"
                                                               ValidatesOnTargetUpdated="True" />
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -119,7 +120,8 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="1"
-                                Margin="0,0,0,5">
+                                Margin="0,0,0,5"
+                                HorizontalAlignment="Center">
                         <Label FontSize="15"
                                Content="{DynamicResource EndDateHint}" />
                         <TextBox x:Name="EndDate"
@@ -131,7 +133,7 @@
                                 <Binding Path="Package.EndDate"
                                          UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <util:RegexValidation Pattern="^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}\.$"
+                                        <util:RegexValidation Pattern="^(0[1-9]|[12][0-9]|3[01])\.(0[1-9]|1[0-2])\.\d{4}\.$|^$"
                                                               ValidatesOnTargetUpdated="True" />
                                     </Binding.ValidationRules>
                                 </Binding>
@@ -141,7 +143,8 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="2"
-                                Margin="0,0,0,5">
+                                Margin="0,0,0,5"
+                                HorizontalAlignment="Center">
                         
                             <Label FontSize="15"
                                    Content="{DynamicResource Price}"
@@ -168,7 +171,8 @@
 
                     <StackPanel Grid.Row="3"
                                 Margin="0,15,0,5"
-                                Orientation="Vertical">
+                                Orientation="Vertical"
+                                HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal"
                                     Margin="0,0,0,5"
                                     HorizontalAlignment="Left"
@@ -176,7 +180,7 @@
 
                             <Label FontSize="15"
                                    Content="{DynamicResource DestinationNameHint}"
-                                   Margin="0,0,60,0"
+                                   Margin="0,0,40,0"
                                    />
                             <TextBlock FontSize="15"
                                        VerticalAlignment="Center"
@@ -197,7 +201,8 @@
                     </StackPanel>
 
                     <StackPanel Grid.Row="4"
-                                Margin="0,0,0,5">
+                                Margin="0,0,0,5"
+                                HorizontalAlignment="Center">
                         <Label FontSize="15"
                                Content="{DynamicResource About}" />
                         <TextBox x:Name="About"

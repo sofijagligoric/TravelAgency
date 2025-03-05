@@ -127,7 +127,8 @@
     <System:String x:Key="EndDate">Datum povratka:</System:String>
     <System:String x:Key="Reserve">Rezervisi</System:String>
     <System:String x:Key="CustomerJmb">JMB putnika:</System:String>
-    <System:String x:Key="CreateCustomer">Dodaj novog putnika</System:String>
-    <System:String x:Key="CreateDestination">Dodaj novu destinaciju</System:String>
+    <System:String x:Key="CreateCustomer">Kreiraj novog putnika</System:String>
+    <System:String x:Key="CreateDestination">Kreiraj novu destinaciju</System:String>
+    <System:String x:Key="CreateHotel">Kreiraj novi hotel</System:String>
 
 </ResourceDictionary>

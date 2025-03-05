@@ -413,7 +413,7 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
             }
             return successful;
         }

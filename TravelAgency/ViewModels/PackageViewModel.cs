@@ -43,6 +43,7 @@ namespace TravelAgency.ViewModels
         public ICommand UpdatePackageCommand { get; }
         public ICommand SearchPackagesCommand { get; }
         public ICommand AllPackagesCommand { get; }
+        public ICommand ShowHotelsCommand { get; }
 
         public PackageViewModel()
         {
@@ -62,7 +63,8 @@ namespace TravelAgency.ViewModels
             UpdatePackageCommand = new RelayCommand(UpdatePackage);
             SearchPackagesCommand = new RelayCommand(param => SearchPackages(param.ToString()));
             AllPackagesCommand = new RelayCommand(AllPackages);
-            
+            ShowHotelsCommand = new RelayCommand(ShowHotels);
+
         }
 
         private void AddReservation()
@@ -176,7 +178,7 @@ namespace TravelAgency.ViewModels
             }
         }
 
-        private void DeletePackage(object obj)
+        private void DeletePackage()
         {
             if (SelectedPackage == null)
             {
@@ -212,6 +214,23 @@ namespace TravelAgency.ViewModels
                     dialog.ShowDialog();
                 }
             }
+        }
+
+
+        private void ShowHotels()
+        {
+            if (SelectedPackage == null)
+            {
+                string message = (string)Application.Current.Resources["RowNotSelected"];
+                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                dialog.ShowDialog();
+
+                return;
+            }
+            
+               PackageHotelsWindow dialog2 = new PackageHotelsWindow(SelectedPackage);
+            dialog2.ShowDialog();
+
         }
 
         private void UpdatePackage()

@@ -16,13 +16,15 @@ namespace TravelAgency.Util
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            /*
+            
             if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
             {
+                /*
                 string emptyFieldMessage = (string)Application.Current.Resources["EmptyFieldRegex"];
                 return new ValidationResult(false, emptyFieldMessage);
+                */
             }
-            */
+            
 
             string input = value.ToString();
             Console.WriteLine($"Validating: {input}");

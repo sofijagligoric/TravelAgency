@@ -190,6 +190,9 @@
     <Compile Include="Views\AddEmployeeWindow.xaml.cs">
       <DependentUpon>AddEmployeeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddHotelToPackagePage.xaml.cs">
+      <DependentUpon>AddHotelToPackagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddHotelWindow.xaml.cs">
       <DependentUpon>AddHotelWindow.xaml</DependentUpon>
     </Compile>
@@ -231,6 +234,12 @@
     </Compile>
     <Compile Include="Views\MessageWithoutOptionDialog.xaml.cs">
       <DependentUpon>MessageWithoutOptionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PackageHotelsPage.xaml.cs">
+      <DependentUpon>PackageHotelsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PackageHotelsWindow.xaml.cs">
+      <DependentUpon>PackageHotelsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PaymentView.xaml.cs">
       <DependentUpon>PaymentView.xaml</DependentUpon>
@@ -325,6 +334,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AddHotelToPackagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddHotelWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -378,6 +391,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MessageWithoutOptionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PackageHotelsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PackageHotelsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

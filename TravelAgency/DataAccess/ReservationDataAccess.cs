@@ -52,6 +52,7 @@ namespace TravelAgency.DataAccess
                         reservation.ReservationId = (int)cmd.LastInsertedId;
                         successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
+                        /*
                         if (successful)
                         {
                             MessageBox.Show("Reservation added successfully.");
@@ -60,12 +61,14 @@ namespace TravelAgency.DataAccess
                         {
                             MessageBox.Show($"Error: {message}");
                         }
+                        */
                     }
                 }
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
+              //  MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }
@@ -90,6 +93,7 @@ namespace TravelAgency.DataAccess
 
                         successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
+                        /*
                         if (successful)
                         {
                             MessageBox.Show("Reservation deleted successfully.");
@@ -98,12 +102,14 @@ namespace TravelAgency.DataAccess
                         {
                             MessageBox.Show($"Error: {message}");
                         }
+                        */
                     }
                 }
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
+                //  MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }
@@ -135,7 +141,8 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"Error: {e.Message}");
+               // MessageBox.Show("Error occurred: " + e.Message);
             }
             return retVal;
         }
@@ -221,7 +228,7 @@ namespace TravelAgency.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               // MessageBox.Show(ex.Message);
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
             }
             return packages;
@@ -337,7 +344,7 @@ namespace TravelAgency.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+             //   MessageBox.Show(ex.Message);
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
             }
             return packages;

@@ -126,8 +126,8 @@ public class Package : INotifyPropertyChanged
         public Package()
         {
             PackageId = 0;
-            StartDate = null ;
-            EndDate = null;
+            StartDate = string.Empty;
+            EndDate = string.Empty; ;
             Price = 0;
             About = string.Empty;
             Destination = new Destination();

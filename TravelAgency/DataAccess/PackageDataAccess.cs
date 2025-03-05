@@ -113,7 +113,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
-                MessageBox.Show("Error occurred: " + ex.Message);
+              //  MessageBox.Show("Error occurred: " + ex.Message);
             }
             return packages;
 
@@ -240,7 +240,7 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                MessageBox.Show("Error occurred: " + e.Message);
+                Console.WriteLine($"An error occurred while updating package: {e.Message}");
             }
             return retVal;
         }

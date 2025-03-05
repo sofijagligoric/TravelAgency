@@ -47,7 +47,7 @@
 
             <Button Content="{DynamicResource Search}"
                     Command="{Binding SearchPackagesCommand}"
-                    CommandParameter="{Binding Text, ElementName=customerName}"
+                    CommandParameter="{Binding Text, ElementName=destName}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
             <Button Content="{DynamicResource All}"
@@ -106,6 +106,10 @@
                     HorizontalAlignment="Center"
                     Margin="10">
 
+            <Button Content="{DynamicResource Hotels}"
+                    Command="{Binding ShowHotelsCommand}"
+                    Margin="5"
+                    Style="{DynamicResource ProceedButtonStyle}" />
             <Button Content="{DynamicResource Add}"
                     Command="{Binding AddPackageCommand}"
                     Margin="5"

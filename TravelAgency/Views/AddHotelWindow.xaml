@@ -137,7 +137,7 @@
                                 <Binding Path="Hotel.Address"
                                          UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
-                                        <util:RegexValidation Pattern="^([A-Za-z0-9ĆČŠĐŽćčšđž\s]+)?$"
+                                        <util:RegexValidation Pattern="^([A-Za-z0-9ĆČŠĐŽćčšđž.\s]+)?$"
                                                               ValidatesOnTargetUpdated="True" />
                                     </Binding.ValidationRules>
                                 </Binding>
