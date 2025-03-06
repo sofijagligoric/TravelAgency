@@ -71,33 +71,43 @@ namespace TravelAgency.ViewModels
         {
             if (SelectedPackage != null)
             {
-               
-                AddReservationWindow dialog = new AddReservationWindow(SelectedPackage);
-
-                bool? dialogResult = dialog.ShowDialog();
-
-                if ((bool)dialogResult)
+                List<Hotel> availableHotels = PackageOffersHotelDataAccess.GetHotelsByPackage(SelectedPackage.PackageId);
+                if (availableHotels.Count == 0)
                 {
-                    Reservation pom = dialog.Reservation;
-                    string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
-                    MessageDialog dialog2 = new MessageDialog(message2);
-                    bool? dialogResult2 = dialog2.ShowDialog();
-                    if ((bool)dialogResult2)
-                    {
-                        if (ReservationDataAccess.AddReservation(pom))
-                        {
-                            string message = (string)Application.Current.Resources["SuccessfullyAdded"];
-                            MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
-                            dialog3.ShowDialog();
-                        }
-                        else
-                        {
-                            string message3 = (string)Application.Current.Resources["FailedAdd"];
-                            MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
-                            dialog3.ShowDialog();
-                        }
-                    }
+                    string message = (string)Application.Current.Resources["HotelUnavailable"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
+                }
+                else
+                {
 
+                    AddReservationWindow dialog = new AddReservationWindow(SelectedPackage);
+
+                    bool? dialogResult = dialog.ShowDialog();
+
+                    if ((bool)dialogResult)
+                    {
+                        Reservation pom = dialog.Reservation;
+                        string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
+                        MessageDialog dialog2 = new MessageDialog(message2);
+                        bool? dialogResult2 = dialog2.ShowDialog();
+                        if ((bool)dialogResult2)
+                        {
+                            if (ReservationDataAccess.AddReservation(pom))
+                            {
+                                string message = (string)Application.Current.Resources["SuccessfullyAdded"];
+                                MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                                dialog3.ShowDialog();
+                            }
+                            else
+                            {
+                                string message3 = (string)Application.Current.Resources["FailedAdd"];
+                                MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                                dialog3.ShowDialog();
+                            }
+                        }
+
+                    }
                 }
             }
             else

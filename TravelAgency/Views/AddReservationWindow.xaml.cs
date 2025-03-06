@@ -27,6 +27,7 @@ namespace TravelAgency.Views
         public Package Package { get; set; }
         public Reservation Reservation { get; set; }
         public List<Hotel> Hotels { get; set; }
+       
 
         private bool _isOptionYes;
 

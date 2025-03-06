@@ -158,7 +158,7 @@
                                  HorizontalContentAlignment="Center">
 
                             <TextBox.Text>
-                                <Binding Path="Jmb"
+                                <Binding Path="Reservation.Customer.Jmb"
                                          UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <util:RegexValidation Pattern="^(\d{13})?$"

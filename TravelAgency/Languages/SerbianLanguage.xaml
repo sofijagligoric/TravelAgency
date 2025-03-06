@@ -131,4 +131,6 @@
     <System:String x:Key="CreateDestination">Kreiraj novu destinaciju</System:String>
     <System:String x:Key="CreateHotel">Kreiraj novi hotel</System:String>
 
+    <System:String x:Key="HotelUnavailable">Trenutno nema dostupnih hotela za ovaj paket. Pokusajte kasnije.</System:String>
+
 </ResourceDictionary>
