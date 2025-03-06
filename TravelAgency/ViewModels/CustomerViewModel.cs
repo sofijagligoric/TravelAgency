@@ -79,7 +79,7 @@ namespace TravelAgency.ViewModels
                         Customers.Add(pom);
                         OnPropertyChanged(nameof(Customers));
                         string message = (string)Application.Current.Resources["SuccessfullyAdded"];
-                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message);
                         dialog3.ShowDialog();
                     }
                     else

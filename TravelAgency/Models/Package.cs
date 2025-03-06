@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace TravelAgency.Models
 {
@@ -146,7 +147,12 @@ public class Package : INotifyPropertyChanged
 
         public override string ToString()
         {
-            return PackageId + ", " + StartDate + ", " + EndDate + ", " + Price + ", " + Destination.DestinationName + ", " + About;
+            return "\n" + (string)Application.Current.Resources["PackageId"] + " " + PackageId + ", \n" +
+                 (string)Application.Current.Resources["StartDate"] + " " + StartDate + ", \n" +
+                 (string)Application.Current.Resources["EndDate"] + " " + EndDate + ", \n" +
+                  (string)Application.Current.Resources["Price"] + " " + Price + ", \n" +
+                   (string)Application.Current.Resources["DestinationNameHint"] + " " + Destination.DestinationName + ", \n" +
+                    (string)Application.Current.Resources["About"] + " " + About;
             /*
             return "Aranžman ID: " + PackageId +
                    "\nDatum polaska: " + StartDate +

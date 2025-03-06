@@ -47,8 +47,11 @@ namespace TravelAgency.Views
             DataContext = this;
             Package = new Package(package);
             Reservation = new Reservation();
-            Hotels = PackageOffersHotelDataAccess.GetHotelsByPackage(Package.PackageId);
-           
+            //   Hotels = PackageOffersHotelDataAccess.GetHotelsByPackage(Package.PackageId);
+            Hotels = PackageOffersHotelDataAccess.GetHotelsByPackage(Package.PackageId)
+                .Where(hotel => hotel.RoomCount > 0)
+                .ToList();
+
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)

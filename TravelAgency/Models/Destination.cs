@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace TravelAgency.Models
 {
@@ -121,7 +122,9 @@ namespace TravelAgency.Models
                    $"lokalni jezik: {LocalLanguage},\n" +
                    $"drzava: {Country?.CountryName}";
             */
-            return DestinationName+ ", "+ PostCode + ", " + About + ", " + Distance + ", " + LocalLanguage + ", " + Country?.CountryName;
+            return "\n" + (string)Application.Current.Resources["Name"] +" "+ DestinationName + ",\n "+ (string)Application.Current.Resources["Postcode"] + " " + PostCode + ",\n" +
+                (string)Application.Current.Resources["About"] + " " + About + ", \n" + (string)Application.Current.Resources["Distance"] + " " + Distance +
+                ", \n" + (string)Application.Current.Resources["LocalLanguage"] + " " + LocalLanguage + ", \n" + (string)Application.Current.Resources["Country"] + " " + Country?.CountryName;
 
         }
 

@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TravelAgency.DataAccess;
 
 namespace TravelAgency.Models
@@ -172,7 +173,13 @@ namespace TravelAgency.Models
 
         public override string ToString()
         {
-            return FirstName + " " + LastName + ", " + Jmb + ", " + Address + ", " + PhoneNumber + ", " + Email + ", " + DateOfBirth;
+            return "\n" + (string)Application.Current.Resources["FirstName"] + " " + FirstName + ",\n"
+                + (string)Application.Current.Resources["LastName"] + " " + LastName + ", \n" +
+                 (string)Application.Current.Resources["JMB"] + " " + Jmb + ", \n" +
+                  (string)Application.Current.Resources["Address"] + " " + Address + ", \n" +
+                   (string)Application.Current.Resources["PhoneNumber"] + " " + PhoneNumber + ", \n" +
+                    (string)Application.Current.Resources["Email"] + " " + Email + ", \n" +
+                     (string)Application.Current.Resources["DateOfbirth"] + " " + DateOfBirth;
             // return $"Ime: {FirstName} {LastName}\nJMB: {Jmb}\nadresa: {Address}\ne-mail: {Email}\ndatum rodjenja: {DateOfBirth}";
         }
 

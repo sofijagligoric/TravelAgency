@@ -156,8 +156,10 @@ namespace TravelAgency.Models
 
         public override string ToString()
         {
-            return Name + ", " + HotelId + ", " + RoomCount + ", " + Address + ", " + Email + ", " + (HasRestaurant != 0 ? "da" : "ne") +
-                  ", " + Destination.DestinationName + ", " + Destination.Country.CountryName;
+            return "\n" + (string)Application.Current.Resources["Name"] + " " + Name + ", \n" + (string)Application.Current.Resources["HotelId"] + " " + HotelId +
+                ", \n" + (string)Application.Current.Resources["RoomCount"] + " " + RoomCount + ", \n" + (string)Application.Current.Resources["Address"] + " " + Address +
+                ", \n" + (string)Application.Current.Resources["Email"] + " " + Email + ", \n" + (string)Application.Current.Resources["HasRestaurant"] + " " + HasRestaurantString +
+                  ", \n" + (string)Application.Current.Resources["DestinationNameHint"] + " " + Destination.DestinationName + ", " +  Destination.Country.CountryName;
 
 
         }

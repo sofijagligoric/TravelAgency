@@ -150,7 +150,8 @@ namespace TravelAgency.Models
 
         public override string ToString()
         {
-            return base.ToString() + ", " + Username + ", " + RoleType + ", " + Salary + ", " + EmploymentDate;
+            return base.ToString() + ", \n" + (string)Application.Current.Resources["EmployeeUsername"] + " " + Username + ", \n" + (string)Application.Current.Resources["Role"] + " " + 
+                RoleType + ", \n" + (string)Application.Current.Resources["Salary"] + " " + Salary + ", \n" + (string)Application.Current.Resources["EmploymentDate"] + " " + EmploymentDate;
             // return base.ToString() + $"Korisnicko ime: {Username}\nuloga: {RoleType}\nplata: {Salary}\ndatum zaposlenja: {EmploymentDate}";
         }
     }

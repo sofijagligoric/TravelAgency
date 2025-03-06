@@ -68,7 +68,7 @@ namespace TravelAgency.ViewModels
                         Destinations.Add(pom);
                         OnPropertyChanged(nameof(Destinations));
                         string message = (string)Application.Current.Resources["SuccessfullyAdded"];
-                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message);
                         dialog3.ShowDialog();
                     }
                     else

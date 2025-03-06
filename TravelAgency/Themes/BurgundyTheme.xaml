@@ -8,7 +8,7 @@
     <Color x:Key="ForegroundColor">#faf0f0</Color>
      
 -->
-
+  
     <SolidColorBrush x:Key="PrimaryBrush"
                      Color="{DynamicResource PrimaryColor}" />
     <SolidColorBrush x:Key="SecondaryBrush"
@@ -21,21 +21,21 @@
  
 
     <Color x:Key="PrimaryColor">#800000</Color>
-    <!-- Tamnija bordo -->
+
     <Color x:Key="SecondaryColor">#A52A2A</Color>
-    <!-- Braon-bordo nijansa -->
+
     <Color x:Key="MouseOverColor">#B22222</Color>
-    <!-- Svetlija bordo -->
+
     <Color x:Key="ForegroundColor">#FFFFFF</Color>
-    <!-- Bela za kontrast -->
+
     <Color x:Key="primaryBackColor1">#F5E4E4</Color>
-    <!-- Svetlija pozadina -->
+
     <Color x:Key="primaryBackColor2">#E8C6C6</Color>
-    <!-- Svetlija bordo pozadina -->
+
     <Color x:Key="secondaryBackColor1">#4D0F0F</Color>
-    <!-- Tamna bordo pozadina -->
+
     <Color x:Key="secondaryBackColor2">#360B0B</Color>
-    <!-- Još tamnija bordo pozadina -->
+
 
     <SolidColorBrush x:Key="panelColor"
                      Color="#5A0E0E" />
@@ -60,6 +60,52 @@
                      Color="#B37070" />
     <SolidColorBrush x:Key="plainTextColor3"
                      Color="#9F5A5A" />
+    
+    
+    <!--
 
-   
+    <Color x:Key="PrimaryColor">#5A0E20</Color>
+    <Color x:Key="SecondaryColor">#3A1A1E</Color>
+    <Color x:Key="MouseOverColor">#7B1F35</Color>
+    <Color x:Key="ForegroundColor">#FFFFFF</Color>
+
+    <Color x:Key="primaryBackColor1">#dbd7d7</Color>
+    <Color x:Key="primaryBackColor2">#c9bfbf</Color>
+    <Color x:Key="secondaryBackColor1">#4A191F</Color>
+    <Color x:Key="secondaryBackColor2">#331015</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush"
+                     Color="{DynamicResource PrimaryColor}" />
+    <SolidColorBrush x:Key="SecondaryBrush"
+                     Color="{DynamicResource SecondaryColor}" />
+    <SolidColorBrush x:Key="MouseOverBrush"
+                     Color="{DynamicResource MouseOverColor}" />
+    <SolidColorBrush x:Key="ForegroundBrush"
+                     Color="{DynamicResource ForegroundColor}" />
+
+    <SolidColorBrush x:Key="panelColor"
+                     Color="#6A1E28" />
+    <SolidColorBrush x:Key="panelOverColor"
+                     Color="#802531" />
+    <SolidColorBrush x:Key="panelActiveColor"
+                     Color="#A02D3E" />
+    <SolidColorBrush x:Key="secondaryBackColor2Brush"
+                     Color="{DynamicResource secondaryBackColor2}" />
+
+    <SolidColorBrush x:Key="menuContentColor"
+                     Color="#F2E6E6" />
+    <SolidColorBrush x:Key="titleColor1"
+                     Color="#4A191F" />
+    <SolidColorBrush x:Key="titleColor2"
+                     Color="#DFC2C2" />
+    <SolidColorBrush x:Key="titleColor3"
+                     Color="#ede4e4" />
+    <SolidColorBrush x:Key="plainTextColor1"
+                     Color="#B38B8B" />
+    <SolidColorBrush x:Key="plainTextColor2"
+                     Color="#996F6F" />
+    <SolidColorBrush x:Key="plainTextColor3"
+                     Color="#805A5A" />
+-->
+
 </ResourceDictionary>

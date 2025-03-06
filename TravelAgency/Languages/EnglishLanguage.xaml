@@ -131,6 +131,7 @@
     <System:String x:Key="CreateCustomer">Add new customer</System:String>
     <System:String x:Key="CreateDestination">Add new destination</System:String>
     <System:String x:Key="CreateHotel">Add new hotel</System:String>
-    <System:String x:Key="HotelUnavailable">No hotels are currently available for this package. Please try later.</System:String>
+    <System:String x:Key="HotelUnavailable">No hotels are currently available for this package. Please try again later.</System:String>
+    <System:String x:Key="NoRooms">No rooms are currently available in this package's hotels. Please try again later.</System:String>
 
 </ResourceDictionary>

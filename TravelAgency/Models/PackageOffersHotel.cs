@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using TravelAgency.Models;
 
 namespace TravelAgency.Models
@@ -64,7 +65,7 @@ namespace TravelAgency.Models
 
         public override string ToString()
         {
-            return $"{Package} - {Hotel}";
+            return (string)Application.Current.Resources["PackageId"] + " " + Package + " - " +(string)Application.Current.Resources["HotelId"] + " " + Hotel;
         }
         /*
         private int _packageId;

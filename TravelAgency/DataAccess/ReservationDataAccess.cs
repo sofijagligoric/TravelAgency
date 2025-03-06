@@ -52,6 +52,7 @@ namespace TravelAgency.DataAccess
                         reservation.ReservationId = (int)cmd.LastInsertedId;
                         successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
+                        
                         /*
                         if (successful)
                         {

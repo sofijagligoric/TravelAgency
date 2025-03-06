@@ -276,13 +276,13 @@
                                 <fa:IconImage Icon="{Binding Icon}"
                                               Height="18"
                                               Width="18"
-                                              Foreground="{StaticResource titleColor2}"
+                                              Foreground="{DynamicResource titleColor2}"
                                               Margin="20,0,10,0" />
 
                                 <TextBlock Text="{Binding Caption}"
-                                           Foreground="{StaticResource titleColor2}"
+                                           Foreground="{DynamicResource titleColor2}"
                                            FontSize="18"
-                                           FontFamily="Montserrat"
+                                           FontFamily="Calibri"
                                            FontWeight="Medium"
                                            VerticalAlignment="Center" />
 
