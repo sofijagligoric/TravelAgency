@@ -81,7 +81,7 @@ namespace TravelAgency.DataAccess
                         d.PostCode AS DestinationPostCode, d.About, d.Distance, d.LocalLanguage, d.CountryName 
                         FROM package a INNER JOIN destination d on a.PostCode=d.PostCode AND a.DestinationName=d.DestinationName
                         WHERE a.DestinationName LIKE @DestName;";
-                        cmd.Parameters.AddWithValue("@DestName", destinationName + "%");
+                        cmd.Parameters.AddWithValue("@DestName", destinationName.Trim() + "%");
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())

@@ -46,7 +46,7 @@
 
             <Button Content="{DynamicResource Search}"
                     Command="{Binding SearchPackagesCommand}"
-                    CommandParameter="{Binding Text, ElementName=customerName}"
+                    CommandParameter="{Binding Text, ElementName=destName}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
             <Button Content="{DynamicResource All}"

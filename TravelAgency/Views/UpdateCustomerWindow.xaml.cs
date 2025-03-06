@@ -40,7 +40,6 @@ namespace TravelAgency.Views
 
             if (string.IsNullOrEmpty(FirstName.Text) || string.IsNullOrEmpty(Address.Text) || string.IsNullOrEmpty(LastName.Text) ||
                string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(PhoneNumber.Text) || string.IsNullOrEmpty(JMB.Text) || string.IsNullOrEmpty(DateOfBirth.Text))
-            // || string.IsNullOrEmpty(HasRestaurant.Text))
             {
                 string message = (string)Application.Current.Resources["EmptyField"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
@@ -48,16 +47,32 @@ namespace TravelAgency.Views
             }
             else
             {
-                Customer.FirstName = FirstName.Text;
-                Customer.LastName = LastName.Text;
-                Customer.Address = Address.Text;
-                Customer.PhoneNumber = PhoneNumber.Text;
-                Customer.Email = Email.Text;
-                Customer.DateOfBirth = DateOfBirth.Text;
-                DialogResult = true;
-                Close();
+                if (HasValidationError(FirstName) || HasValidationError(LastName) ||
+                       HasValidationError(Email) || HasValidationError(PhoneNumber) || HasValidationError(DateOfBirth))
+                {
+                    string message = (string)Application.Current.Resources["InvalidInput"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
+                }
+
+                else
+                {
+                    Customer.FirstName = FirstName.Text;
+                    Customer.LastName = LastName.Text;
+                    Customer.Address = Address.Text;
+                    Customer.PhoneNumber = PhoneNumber.Text;
+                    Customer.Email = Email.Text;
+                    Customer.DateOfBirth = DateOfBirth.Text;
+                    DialogResult = true;
+                    Close();
+                }
 
             }
+        }
+
+        private bool HasValidationError(Control control)
+        {
+            return Validation.GetHasError(control);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

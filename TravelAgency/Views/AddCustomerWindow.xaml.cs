@@ -37,7 +37,7 @@ namespace TravelAgency.Views
         {
             if (string.IsNullOrEmpty(FirstName.Text) || string.IsNullOrEmpty(Address.Text) || string.IsNullOrEmpty(LastName.Text) ||
                string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(PhoneNumber.Text) || string.IsNullOrEmpty(JMB.Text) || string.IsNullOrEmpty(DateOfBirth.Text))
-           
+
             {
                 string message = (string)Application.Current.Resources["EmptyField"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
@@ -45,13 +45,29 @@ namespace TravelAgency.Views
             }
             else
             {
+                if (HasValidationError(FirstName) || HasValidationError(LastName) ||
+                       HasValidationError(Email) || HasValidationError(PhoneNumber) ||
+                       HasValidationError(JMB) || HasValidationError(DateOfBirth))
+                {
+                    string message = (string)Application.Current.Resources["InvalidInput"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
+                }
+
+                else
+                {
                     Customer = new Customer(FirstName.Text, LastName.Text, JMB.Text, Address.Text, Email.Text, DateOfBirth.Text, PhoneNumber.Text);
                     DialogResult = true;
                     Close();
-                
+
+                }
             }
 
+        }
 
+        private bool HasValidationError(Control control)
+        {
+            return Validation.GetHasError(control);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

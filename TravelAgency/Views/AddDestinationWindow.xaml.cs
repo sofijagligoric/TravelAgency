@@ -31,7 +31,7 @@ namespace TravelAgency.Views
 
         public Destination Destination { get; set; }
 
-        
+
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
@@ -44,17 +44,34 @@ namespace TravelAgency.Views
             }
             else
             {
-                Country country = DestinationDataAccess.GetCountryByName(Country.Text);
-                if (country == null)
+                if (HasValidationError(DestinationName) || HasValidationError(Postcode) ||
+                       HasValidationError(Country) || HasValidationError(Distance) ||
+                       HasValidationError(LocalLanguage))
                 {
-                    DestinationDataAccess.AddCountry(new Models.Country(Country.Text));
+                    string message = (string)Application.Current.Resources["InvalidInput"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
                 }
+                else
+                {
+                    Country country = DestinationDataAccess.GetCountryByName(Country.Text);
+                    if (country == null)
+                    {
+                        DestinationDataAccess.AddCountry(new Country(Country.Text));
+                        country = DestinationDataAccess.GetCountryByName(Country.Text);
+                    }
 
-                Destination = new Destination(int.Parse(Postcode.Text), DestinationName.Text, About.Text, int.Parse(Distance.Text), LocalLanguage.Text, country);
-                DialogResult = true;
-                Close();
-                
+                    Destination = new Destination(int.Parse(Postcode.Text), DestinationName.Text, About.Text, int.Parse(Distance.Text), LocalLanguage.Text, country);
+                    DialogResult = true;
+                    Close();
+
+                }
             }
+        }
+
+        private bool HasValidationError(Control control)
+        {
+            return Validation.GetHasError(control);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

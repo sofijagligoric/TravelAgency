@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using FontAwesome.Sharp;
+using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,15 +14,17 @@ using TravelAgency.Views;
 
 namespace TravelAgency.ViewModels
 {
-    public class SalesAgentViewModel : ViewModelBase
+    public class SalesAgentViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private readonly INavigationService _navigationService;
+        /*
         private readonly SalesAgentHotelView _saHotelView;
         private readonly SalesAgentReservationView _saReservationView;
         private readonly TotalReservationPayments _saTotalPayments;
         private readonly SalesAgentPackageView _saPackages;
         private readonly CustomerView _customersView;
         private readonly PaymentView _paymentsView;
+        */
 
         public ICommand ShowCustomersCommand { get; }
         public ICommand ShowHotelsCommand { get; }
@@ -32,6 +35,34 @@ namespace TravelAgency.ViewModels
         public ICommand ChangePasswordCommand { get; }
 
 
+        private string _caption;
+        private IconChar _icon;
+        public string Caption
+        {
+            get => _caption;
+            set
+            {
+                if (_caption != value)
+                {
+                    _caption = value;
+                    OnPropertyChanged(nameof(Caption));
+                }
+            }
+        }
+
+        public IconChar Icon
+        {
+            get => _icon;
+            set
+            {
+                if (_icon != value)
+                {
+                    _icon = value;
+                    OnPropertyChanged(nameof(Icon));
+                }
+            }
+        }
+
         private Employee _employee;
         public Employee Employee
         {
@@ -39,7 +70,6 @@ namespace TravelAgency.ViewModels
             set
             {
                 _employee = value;
-                OnPropertyChanged(nameof(Employee));
             }
         }
 
@@ -47,12 +77,14 @@ namespace TravelAgency.ViewModels
         public SalesAgentViewModel(INavigationService navigationService, Employee e)
         {
             _navigationService = navigationService;
+            /*
             _customersView = new CustomerView();
             _saHotelView = new SalesAgentHotelView();
             _saReservationView = new SalesAgentReservationView();
             _saTotalPayments = new TotalReservationPayments();
             _paymentsView = new PaymentView();
             _saPackages = new SalesAgentPackageView();
+            */
             Employee = e;
 
             ShowCustomersCommand = new RelayCommand(ShowCustomers);
@@ -63,6 +95,8 @@ namespace TravelAgency.ViewModels
             ChangePasswordCommand = new RelayCommand(ChangePassword);
             ShowPackagesCommand = new RelayCommand(ShowPackages);
 
+            Caption = (string)Application.Current.Resources["Customers"];
+            Icon = IconChar.User;
             ShowCustomers();
         }
 
@@ -100,37 +134,62 @@ namespace TravelAgency.ViewModels
 
         private void ShowCustomers()
         {
-            _navigationService.NavigateTo(_customersView);
+            //   _navigationService.NavigateTo(_customersView);
+            Caption = Caption = (string)Application.Current.Resources["Customers"];
+            Icon = IconChar.User;
+            _navigationService.NavigateTo(new CustomerView());
         }
 
         private void ShowPackages()
         {
-            _navigationService.NavigateTo(_saPackages);
+            // _navigationService.NavigateTo(_saPackages);
+            
+            Caption = Caption = (string)Application.Current.Resources["Packages"];
+            Icon = IconChar.PlaneDeparture;
+            _navigationService.NavigateTo(new SalesAgentPackageView());
+
         }
 
         private void ShowHotels()
         {
-            _navigationService.NavigateTo(_saHotelView);
+            // _navigationService.NavigateTo(_saHotelView);
+           
+            Caption = Caption = (string)Application.Current.Resources["Hotels"];
+            Icon = IconChar.Hotel;
+            _navigationService.NavigateTo(new SalesAgentHotelView());
+
         }
 
         private void ShowReservations()
         {
-            _navigationService.NavigateTo(_saReservationView);
+            // _navigationService.NavigateTo(_saReservationView);
+            Caption = Caption = (string)Application.Current.Resources["Reservations"];
+            Icon = IconChar.CalendarCheck;
+            _navigationService.NavigateTo(new SalesAgentReservationView());
         }
         private void ShowTotalPayments()
         {
-            _navigationService.NavigateTo(_saTotalPayments);
+            // _navigationService.NavigateTo(_saTotalPayments);
+            Caption = Caption = (string)Application.Current.Resources["PaymentsByReservation"];
+            Icon = IconChar.MoneyBills;
+            _navigationService.NavigateTo(new TotalReservationPayments());
         }
 
         private void ShowAllPayments()
         {
-            _navigationService.NavigateTo(_paymentsView);
+            //   _navigationService.NavigateTo(_paymentsView);
+            Caption = Caption = (string)Application.Current.Resources["AllPayments"];
+            Icon = IconChar.CashRegister;
+            _navigationService.NavigateTo(new PaymentView());
         }
 
+        
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
+
+        protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        
     }
 }

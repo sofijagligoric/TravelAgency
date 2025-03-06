@@ -187,6 +187,21 @@
                                 Margin="0,15,0,5"
                                 Orientation="Vertical"
                                 HorizontalAlignment="Center">
+                        <Label FontSize="15"
+                               Content="{DynamicResource DestinationNameHint}"
+                               Margin="0,0,38,0"
+                               HorizontalAlignment="Left" />
+
+                        <TextBox x:Name="Destination"
+                                 Height="40"
+                                 Width="300"
+                                 Text="{Binding Package.Destination.DestinationName}"
+                                 Style="{DynamicResource FormTextBoxStyle}"
+                                 HorizontalContentAlignment="Center"
+                                 TextWrapping="Wrap" 
+                                 IsReadOnly="True"/>
+
+                        <!--
                         <StackPanel Orientation="Horizontal"
                                     Margin="0,0,0,5"
                                     HorizontalAlignment="Center"
@@ -213,6 +228,7 @@
                                   Height="40" 
                                   FontSize="15"
                                   HorizontalContentAlignment="Center"/>
+                        -->
                     </StackPanel>
 
                     <StackPanel Grid.Row="5"

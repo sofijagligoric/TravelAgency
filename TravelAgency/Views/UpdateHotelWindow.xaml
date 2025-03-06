@@ -129,19 +129,8 @@
                                Content="{DynamicResource Address}" />
                         <TextBox x:Name="Address"
                                  Width="300"
-                                 Style="{DynamicResource FormTextBoxStyle}"
-                               >
-
-                            <TextBox.Text>
-                                <Binding Path="Hotel.Address"
-                                         UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <util:RegexValidation Pattern="^([A-Za-z0-9ĆČŠĐŽćčšđž\s]+)?$"
-                                                              ValidatesOnTargetUpdated="True" />
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
+                                 Text="{Binding Hotel.Address}"
+                                 Style="{DynamicResource FormTextBoxStyle}" />
                     </StackPanel>
 
                     <StackPanel Grid.Row="3"

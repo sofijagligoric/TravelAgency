@@ -68,7 +68,10 @@ namespace TravelAgency.Views
         private void btnMaximise_Click(object sender, RoutedEventArgs e)
         {
             if (this.WindowState == WindowState.Normal)
+            {
+                this.MaxHeight = SystemParameters.WorkArea.Height;
                 this.WindowState = WindowState.Maximized;
+            }
             else
                 this.WindowState = WindowState.Normal;
         }

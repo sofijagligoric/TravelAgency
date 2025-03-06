@@ -31,7 +31,7 @@ namespace TravelAgency.DataAccess
                     {
                         cmd.CommandText = @"INSERT INTO country(CountryName) VALUES (@CountryName) ";
                         cmd.Parameters.AddWithValue("@CountryName", country.CountryName);
-                        retVal = cmd.ExecuteNonQuery() == 1;
+                        retVal = cmd.ExecuteNonQuery() >= 1;
                     }
                 }
             }
@@ -82,8 +82,9 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
+
                         cmd.CommandText = @"SELECT CountryName from country WHERE CountryName LIKE @CName";
-                        cmd.Parameters.AddWithValue("@CName", name + "%");
+                        cmd.Parameters.AddWithValue("@CName", name.Trim() + "%");
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())
@@ -115,8 +116,8 @@ namespace TravelAgency.DataAccess
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"SELECT PostCode, DestinationName, About, Distance, LocalLanguage, CountryName 
-                        FROM destination WHERE DestinationName = @DName";
-                        cmd.Parameters.AddWithValue("@DName", name);
+                        FROM destination WHERE DestinationName LIKE @DName";
+                        cmd.Parameters.AddWithValue("@DName", name.Trim() + "%");
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -153,8 +154,8 @@ namespace TravelAgency.DataAccess
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
                         cmd.CommandText = @"SELECT PostCode, DestinationName, About, Distance, LocalLanguage, CountryName 
-                        FROM destination WHERE DestinationName = @DName AND PostCode = @Postcode";
-                        cmd.Parameters.AddWithValue("@DName", name);
+                        FROM destination WHERE DestinationName LIKE @DName AND PostCode = @Postcode";
+                        cmd.Parameters.AddWithValue("@DName", name.Trim() + "%");
                         cmd.Parameters.AddWithValue("@Postcode", postcode);
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -222,7 +223,7 @@ namespace TravelAgency.DataAccess
                     {
                         cmd.CommandText = @"SELECT PostCode, DestinationName, About, Distance, LocalLanguage, CountryName 
                         FROM destination WHERE CountryName LIKE @CName";
-                        cmd.Parameters.AddWithValue("@CName", country + "%");
+                        cmd.Parameters.AddWithValue("@CName", country.Trim() + "%");
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             if (reader.Read())

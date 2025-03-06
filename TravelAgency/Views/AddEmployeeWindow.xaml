@@ -247,18 +247,7 @@
                                  Width="300"
                                  FontSize="15"
                                  Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center">
-
-                            <TextBox.Text>
-                                <Binding Path="Employee.Address"
-                                         UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <util:RegexValidation Pattern="^([A-Za-z0-9ĆČŠĐŽćčšđž\s]+)?$"
-                                                              ValidatesOnTargetUpdated="True" />
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
+                                 HorizontalContentAlignment="Center" />
                     </StackPanel>
 
                     <StackPanel Grid.Row="7"

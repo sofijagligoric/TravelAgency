@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,8 @@ namespace TravelAgency.Views
     public partial class AddHotelToPackagePage : Page
     {
         private PackageHotelsWindow _mainWindow;
-        public List<Hotel> DestinationHotels { get; set; }
+       // public List<Hotel> DestinationHotels { get; set; }
+        public ObservableCollection<Hotel> DestinationHotels { get; set; }
         public Package Package { get; set; }
 
         public AddHotelToPackagePage(PackageHotelsWindow mainWindow)
@@ -34,8 +36,9 @@ namespace TravelAgency.Views
             DataContext = this;
             Package = _mainWindow.Package;
             List<Hotel> hotelsInPackage = PackageOffersHotelDataAccess.GetHotelsByPackage(Package.PackageId);
-            DestinationHotels = HotelDataAccess.GetHotelsByDestinationName(Package.Destination.DestinationName);
-            DestinationHotels.RemoveAll(hotel => hotelsInPackage.Contains(hotel));
+            List<Hotel> dHotels = HotelDataAccess.GetHotelsByDestinationName(Package.Destination.DestinationName);
+            dHotels.RemoveAll(hotel => hotelsInPackage.Contains(hotel));
+            DestinationHotels = new ObservableCollection<Hotel>(dHotels);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -46,27 +49,38 @@ namespace TravelAgency.Views
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            PackageOffersHotel pom = new PackageOffersHotel(Package.PackageId, (HotelComboBox.SelectedItem as Hotel).HotelId);
-            string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
-            MessageDialog dialog2 = new MessageDialog(message2);
-            bool? dialogResult2 = dialog2.ShowDialog();
-            if ((bool)dialogResult2)
+            if (HotelComboBox.SelectedItem == null)
             {
-                if (PackageOffersHotelDataAccess.AddPackageOffersHotel(pom))
-                {
-                    string message = (string)Application.Current.Resources["SuccessfullyAdded"];
-                    MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
-                    dialog3.ShowDialog();
-                }
-                else
-                {
-                    string message3 = (string)Application.Current.Resources["FailedAdd"];
-                    MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
-                    dialog3.ShowDialog();
-                }
+                string message = (string)Application.Current.Resources["RowNotSelected"];
+                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                dialog.ShowDialog();
             }
-            _mainWindow.MainFrame.Content = new PackageHotelsPage(_mainWindow);
+            else
+            {
+                PackageOffersHotel pom = new PackageOffersHotel(Package.PackageId, (HotelComboBox.SelectedItem as Hotel).HotelId);
+                string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + (HotelComboBox.SelectedItem as Hotel).Name + "?";
+                MessageDialog dialog2 = new MessageDialog(message2);
+                bool? dialogResult2 = dialog2.ShowDialog();
+                if ((bool)dialogResult2)
+                {
+                    if (PackageOffersHotelDataAccess.AddPackageOffersHotel(pom))
+                    {
+                        string message = (string)Application.Current.Resources["SuccessfullyAdded"];
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                        dialog3.ShowDialog();
+                    }
+                    else
+                    {
+                        string message3 = (string)Application.Current.Resources["FailedAdd"];
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                        dialog3.ShowDialog();
+                    }
+                }
+                _mainWindow.MainFrame.Content = new PackageHotelsPage(_mainWindow);
+            }
         }
+
+
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {

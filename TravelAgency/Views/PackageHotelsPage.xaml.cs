@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,8 @@ namespace TravelAgency.Views
     {
         private PackageHotelsWindow _mainWindow;
         public Package Package { get; set; }
-        public List<Hotel> Hotels { get; set; }
+      //  public List<Hotel> HotelsList { get; set; }
+        public ObservableCollection<Hotel> Hotels { get; set; }
 
         private Hotel _selectedHotel;
         public Hotel SelectedHotel
@@ -44,8 +46,8 @@ namespace TravelAgency.Views
             _mainWindow = mainWindow;
             DataContext = this;
             Package = _mainWindow.Package;
-            Hotels = PackageOffersHotelDataAccess.GetHotelsByPackage(Package.PackageId);
-            
+            List<Hotel> HotelsList = PackageOffersHotelDataAccess.GetHotelsByPackage(Package.PackageId);
+            Hotels = new ObservableCollection<Hotel>(HotelsList);
         }
 
 
@@ -71,6 +73,7 @@ namespace TravelAgency.Views
                 {
                     if (PackageOffersHotelDataAccess.DeletePackageOffersHotel(Package.PackageId, SelectedHotel.HotelId))
                     {
+                      //  HotelsList.Remove(SelectedHotel);
                         Hotels.Remove(SelectedHotel);
                         OnPropertyChanged(nameof(Hotels));
                         string message = (string)Application.Current.Resources["SuccessfulDelete"];

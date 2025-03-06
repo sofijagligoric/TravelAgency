@@ -45,14 +45,29 @@ namespace TravelAgency.Views
             }
             else
             {
-                Employee = new Employee(FirstName.Text, LastName.Text, JMB.Text, Address.Text, Email.Text, DateOfBirth.Text, PhoneNumber.Text,
+                if (HasValidationError(FirstName) || HasValidationError(LastName) ||
+                       HasValidationError(Email) || HasValidationError(PhoneNumber) ||
+                       HasValidationError(JMB) || HasValidationError(DateOfBirth) ||
+                       HasValidationError(Salary) || HasValidationError(Username))
+                {
+                    string message = (string)Application.Current.Resources["InvalidInput"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
+                }
+                else
+                {
+                    Employee = new Employee(FirstName.Text, LastName.Text, JMB.Text, Address.Text, Email.Text, DateOfBirth.Text, PhoneNumber.Text,
                     Username.Text, General.HashPassword("pass123"), "salesAgent", DateTime.Now.ToString("dd.MM.yyyy."), decimal.Parse(Salary.Text, System.Globalization.CultureInfo.InvariantCulture), "default");
-                DialogResult = true;
-                Close();
+                    DialogResult = true;
+                    Close();
 
+                }
             }
+        }
 
-
+        private bool HasValidationError(Control control)
+        {
+            return Validation.GetHasError(control);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

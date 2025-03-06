@@ -15,7 +15,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace TravelAgency.ViewModels
 {
-    public class AdminViewModel : ViewModelBase
+    public class AdminViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private string _caption;
         private IconChar _icon;
@@ -57,11 +57,13 @@ namespace TravelAgency.ViewModels
         }
 
         private readonly INavigationService _navigationService;
+        /*
         private readonly AdminHotelView _adminHotelView;
         private readonly AdminReservationsView _adminReservationsView;
         private readonly AdminDestinationView _adminDestinationView;
         private readonly EmployeeView _employeeView;
         private readonly AdminPackageView _adminPackageView;
+        */
 
         public ICommand ShowHotelsCommand { get; }
         public ICommand ShowReservationsCommand { get; }
@@ -88,7 +90,7 @@ namespace TravelAgency.ViewModels
             ShowEmployeesCommand = new RelayCommand(ShowEmployees);
             ChangePasswordCommand = new RelayCommand(ChangePassword);
             ShowPackagesCommand = new RelayCommand(ShowPackages);
-           
+
 
             ShowEmployees();
         }
@@ -109,7 +111,7 @@ namespace TravelAgency.ViewModels
                 {
                     if (EmployeeDataAccess.ChangePassword(Employee.Jmb, dialog.New))
                     {
-                       
+
                         string message3 = (string)Application.Current.Resources["PasswordChangedSuccessfully"];
                         MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
                         dialog3.ShowDialog();
@@ -120,7 +122,7 @@ namespace TravelAgency.ViewModels
                         MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
                         dialog3.ShowDialog();
                     }
-                
+
                 }
 
             }
@@ -131,13 +133,13 @@ namespace TravelAgency.ViewModels
             Caption = (string)Application.Current.Resources["Hotels"];
             Icon = IconChar.Hotel;
             _navigationService.NavigateTo(new AdminHotelView());
-            
-           // _navigationService.NavigateTo(_adminHotelView);
+
+            // _navigationService.NavigateTo(_adminHotelView);
         }
 
         private void ShowPackages()
         {
-            
+
             Caption = (string)Application.Current.Resources["Packages"];
             Icon = IconChar.PlaneDeparture;
             _navigationService.NavigateTo(new AdminPackageView());
@@ -146,7 +148,7 @@ namespace TravelAgency.ViewModels
 
         private void ShowReservations()
         {
-             
+
             Caption = (string)Application.Current.Resources["Reservations"];
             Icon = IconChar.CalendarCheck;
             _navigationService.NavigateTo(new AdminReservationsView());
@@ -163,7 +165,7 @@ namespace TravelAgency.ViewModels
 
         private void ShowEmployees()
         {
-           
+
             Caption = (string)Application.Current.Resources["Employees"];
             Icon = IconChar.User;
             _navigationService.NavigateTo(new EmployeeView());
@@ -171,7 +173,8 @@ namespace TravelAgency.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(string propertyName)
+
+        protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

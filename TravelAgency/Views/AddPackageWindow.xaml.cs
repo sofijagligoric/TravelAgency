@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,22 +71,43 @@ namespace TravelAgency.Views
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(StartDate.Text) || string.IsNullOrEmpty(Price.Text) || string.IsNullOrEmpty(EndDate.Text) || string.IsNullOrEmpty(About.Text))
+            if (DestinationComboBox.SelectedItem == null)
             {
-                string message = (string)Application.Current.Resources["EmptyField"];
+                string message = (string)Application.Current.Resources["RowNotSelected"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                 dialog.ShowDialog();
             }
-            else
-            {
-               
-                Package = new Package(1, StartDate.Text, EndDate.Text, decimal.Parse(Price.Text, System.Globalization.CultureInfo.InvariantCulture), About.Text, (DestinationComboBox.SelectedItem as Destination));
-                DialogResult = true;
-                Close();
-               
+            else {
+                if (string.IsNullOrEmpty(StartDate.Text) || string.IsNullOrEmpty(Price.Text) || string.IsNullOrEmpty(EndDate.Text) || string.IsNullOrEmpty(About.Text))
+                {
+                    string message = (string)Application.Current.Resources["EmptyField"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
+                }
+                else
+                {
+                    if (HasValidationError(StartDate) || HasValidationError(Price) ||
+                           HasValidationError(EndDate))
+                    {
+                        string message = (string)Application.Current.Resources["InvalidInput"];
+                        MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                        dialog.ShowDialog();
+                    }
+                    else
+                    {
+
+                        Package = new Package(1, StartDate.Text, EndDate.Text, decimal.Parse(Price.Text, System.Globalization.CultureInfo.InvariantCulture), About.Text, (DestinationComboBox.SelectedItem as Destination));
+                        DialogResult = true;
+                        Close();
+
+                    }
+                }
             }
+        }
 
-
+        private bool HasValidationError(Control control)
+        {
+            return Validation.GetHasError(control);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

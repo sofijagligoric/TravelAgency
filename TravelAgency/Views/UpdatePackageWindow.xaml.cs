@@ -23,28 +23,29 @@ namespace TravelAgency.Views
     public partial class UpdatePackageWindow : Window
     {
         public Package Package { get; set; }
-        public List<Destination> Destinations { get; set; }
-        private Destination _selectedDestination;
-        public Destination SelectedDestination
-        {
-            get => _selectedDestination;
-            set
-            {
-                _selectedDestination = value;
-                OnPropertyChanged(nameof(SelectedDestination));
-            }
-        }
-
+        /* public List<Destination> Destinations { get; set; }
+          private Destination _selectedDestination;
+          public Destination SelectedDestination
+          {
+              get => _selectedDestination;
+              set
+              {
+                  _selectedDestination = value;
+                  OnPropertyChanged(nameof(SelectedDestination));
+              }
+          }
+        */
 
         public UpdatePackageWindow(Package package)
         {
             InitializeComponent();
             DataContext = this;
             Package = new Package(package);
-            Destinations = DestinationDataAccess.GetAllDestinations();
-            SelectedDestination = Destinations.FirstOrDefault(d => d.DestinationName == Package.Destination.DestinationName);
+            //    Destinations = DestinationDataAccess.GetAllDestinations();
+            //   SelectedDestination = Destinations.FirstOrDefault(d => d.DestinationName == Package.Destination.DestinationName);
         }
 
+        /*
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
 
@@ -76,6 +77,7 @@ namespace TravelAgency.Views
                 }
             }
         }
+        */
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
@@ -87,16 +89,32 @@ namespace TravelAgency.Views
             }
             else
             {
+                if (HasValidationError(StartDate) || HasValidationError(Price) ||
+                       HasValidationError(EndDate))
+                {
+                    string message = (string)Application.Current.Resources["InvalidInput"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
+                }
+                else
+                {
+                    Package.About = About.Text;
+                    Package.EndDate = EndDate.Text;
+                    Package.StartDate = StartDate.Text;
+                    Package.Price = decimal.Parse(Price.Text, System.Globalization.CultureInfo.InvariantCulture);
 
-                Package = new Package(1, StartDate.Text, EndDate.Text, decimal.Parse(Price.Text, System.Globalization.CultureInfo.InvariantCulture), About.Text, (DestinationComboBox.SelectedItem as Destination));
-                DialogResult = true;
-                Close();
+                    DialogResult = true;
+                    Close();
 
+                }
             }
-
-
         }
 
+
+        private bool HasValidationError(Control control)
+        {
+            return Validation.GetHasError(control);
+        }
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;

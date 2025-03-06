@@ -50,9 +50,8 @@ namespace TravelAgency.Views
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(Name.Text)  || string.IsNullOrEmpty(Address.Text) || string.IsNullOrEmpty(Postcode.Text) ||
-               string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(RoomCount.Text) || string.IsNullOrEmpty(DestinationName.Text) )
-              // || string.IsNullOrEmpty(HasRestaurant.Text))
+            if (string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Address.Text) || string.IsNullOrEmpty(Postcode.Text) ||
+               string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(RoomCount.Text) || string.IsNullOrEmpty(DestinationName.Text))
             {
                 string message = (string)Application.Current.Resources["EmptyField"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
@@ -60,27 +59,43 @@ namespace TravelAgency.Views
             }
             else
             {
-                Destination dest = DestinationDataAccess.GetDestinationByNameAndPostcode(DestinationName.Text, Postcode.Text);
-                if (dest == null)
+                if (HasValidationError(Name) || HasValidationError(Postcode) ||
+                       HasValidationError(Email) || HasValidationError(RoomCount) ||
+                       HasValidationError(DestinationName))
                 {
-                    string message = (string)Application.Current.Resources["UnknownDestination"];
-                    MessageDialog dialog = new MessageDialog(message);
-                    bool? dialogResult = dialog.ShowDialog();
-                    if ((bool)dialogResult)
-                    {
-                        AddDestination();
-                    }
+                    string message = (string)Application.Current.Resources["InvalidInput"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
                 }
                 else
                 {
-                    Hotel = new Hotel(1, int.Parse(RoomCount.Text), Name.Text, Address.Text, Email.Text, (byte)(IsOptionYes ? 1 : 0), dest);
-                    DialogResult = true;
-                    Close();
+                    Destination dest = DestinationDataAccess.GetDestinationByNameAndPostcode(DestinationName.Text, Postcode.Text);
+                    if (dest == null)
+                    {
+                        string message = (string)Application.Current.Resources["UnknownDestination"];
+                        MessageDialog dialog = new MessageDialog(message);
+                        bool? dialogResult = dialog.ShowDialog();
+                        if ((bool)dialogResult)
+                        {
+                            AddDestination();
+                        }
+                    }
+                    else
+                    {
+                        Hotel = new Hotel(1, int.Parse(RoomCount.Text), Name.Text, Address.Text, Email.Text, (byte)(IsOptionYes ? 1 : 0), dest);
+                        DialogResult = true;
+                        Close();
+                    }
                 }
-               
+
             }
 
 
+        }
+
+        private bool HasValidationError(Control control)
+        {
+            return Validation.GetHasError(control);
         }
         private void AddDestination()
         {
@@ -97,7 +112,7 @@ namespace TravelAgency.Views
                 if ((bool)dialogResult2)
                 {
                     if (DestinationDataAccess.AddDestination(pom))
-                    { 
+                    {
                         string message = (string)Application.Current.Resources["SuccessfullyAdded"];
                         MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
                         dialog3.ShowDialog();

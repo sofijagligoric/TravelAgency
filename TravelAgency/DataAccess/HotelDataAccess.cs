@@ -138,7 +138,7 @@ namespace TravelAgency.DataAccess
                                     FROM hotel h
                                     JOIN destination d ON h.PostCode = d.PostCode AND h.DestinationName = d.DestinationName
                                     WHERE d.DestinationName LIKE @DestName;";
-                        cmd.Parameters.AddWithValue("@DestName", destinationName + "%");
+                        cmd.Parameters.AddWithValue("@DestName", destinationName.Trim() + "%");
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while(reader.Read())

@@ -22,7 +22,7 @@ namespace TravelAgency.Views
     /// Interaction logic for UpdateHotelWindow.xaml
     /// </summary>
     /// 
-    
+
     public partial class UpdateHotelWindow : Window
     {
         public Hotel Hotel { get; set; }
@@ -58,29 +58,44 @@ namespace TravelAgency.Views
             }
             else
             {
-                Destination dest = DestinationDataAccess.GetDestinationByNameAndPostcode(DestinationName.Text, Postcode.Text);
-                if (dest == null)
+                if (HasValidationError(Name) || HasValidationError(Postcode) ||
+                       HasValidationError(Email) || HasValidationError(RoomCount) ||
+                       HasValidationError(DestinationName))
                 {
-                    string message = (string)Application.Current.Resources["UnknownEntry"];
-                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message + " " + DestinationName.Text + ", " + Postcode.Text);
+                    string message = (string)Application.Current.Resources["InvalidInput"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                     dialog.ShowDialog();
                 }
                 else
                 {
-                   // Hotel = new Hotel(int.Parse(HotelId.Text), int.Parse(RoomCount.Text), Name.Text, Address.Text, Email.Text, (byte)(HasRestaurant.Text.Equals("yes") ? 1 : 0), dest);
-                   Hotel.Name = Name.Text;
-                    Hotel.Address = Address.Text;
-                    Hotel.Email = Email.Text;
-                    Hotel.HasRestaurant = (byte)((bool)rbYes.IsChecked ? 1 : 0);
-                    Hotel.Destination = dest;
-                    Hotel.RoomCount = int.Parse(RoomCount.Text);
-                    DialogResult = true;
-                    Close();
-                }
+                    Destination dest = DestinationDataAccess.GetDestinationByNameAndPostcode(DestinationName.Text, Postcode.Text);
+                    if (dest == null)
+                    {
+                        string message = (string)Application.Current.Resources["UnknownEntry"];
+                        MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message + " " + DestinationName.Text + ", " + Postcode.Text);
+                        dialog.ShowDialog();
+                    }
+                    else
+                    {
+                        // Hotel = new Hotel(int.Parse(HotelId.Text), int.Parse(RoomCount.Text), Name.Text, Address.Text, Email.Text, (byte)(HasRestaurant.Text.Equals("yes") ? 1 : 0), dest);
+                        Hotel.Name = Name.Text;
+                        Hotel.Address = Address.Text;
+                        Hotel.Email = Email.Text;
+                        Hotel.HasRestaurant = (byte)((bool)rbYes.IsChecked ? 1 : 0);
+                        Hotel.Destination = dest;
+                        Hotel.RoomCount = int.Parse(RoomCount.Text);
+                        DialogResult = true;
+                        Close();
+                    }
 
+                }
             }
 
+        }
 
+        private bool HasValidationError(Control control)
+        {
+            return Validation.GetHasError(control);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)

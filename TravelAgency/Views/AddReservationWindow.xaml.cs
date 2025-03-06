@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TravelAgency.DataAccess;
 using TravelAgency.Models;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace TravelAgency.Views
 {
@@ -83,37 +84,58 @@ namespace TravelAgency.Views
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(PackageId.Text) || string.IsNullOrEmpty(Price.Text) || string.IsNullOrEmpty(CustomerJmb.Text))
+            if (HotelComboBox.SelectedItem == null)
             {
-                string message = (string)Application.Current.Resources["EmptyField"];
+                string message = (string)Application.Current.Resources["RowNotSelected"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                 dialog.ShowDialog();
             }
             else
             {
-                Customer customer = CustomerDataAccess.GetCustomerByJMB(CustomerJmb.Text);
-                if (customer == null)
+                if (string.IsNullOrEmpty(PackageId.Text) || string.IsNullOrEmpty(Price.Text) || string.IsNullOrEmpty(CustomerJmb.Text))
                 {
-                    string message = (string)Application.Current.Resources["UnknownCustomer"];
-                    MessageDialog dialog = new MessageDialog(message);
-                    bool? dialogResult = dialog.ShowDialog();
-                    if ((bool)dialogResult)
-                    {
-                        AddCustomer();
-                    }
+                    string message = (string)Application.Current.Resources["EmptyField"];
+                    MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                    dialog.ShowDialog();
                 }
                 else
                 {
-                
-                Reservation = new Reservation(1, decimal.Parse(Price.Text, System.Globalization.CultureInfo.InvariantCulture),
-                   (HotelComboBox.SelectedItem as Hotel), Package, customer, (byte)(IsOptionYes ? 1 : 0), SalesAgentWindow.EmployeeJmb);
-                    DialogResult = true;
-                    Close();
+                    if (HasValidationError(Price) || HasValidationError(CustomerJmb))
+                    {
+                        string message = (string)Application.Current.Resources["InvalidInput"];
+                        MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
+                        dialog.ShowDialog();
+                    }
+                    else
+                    {
+                        Customer customer = CustomerDataAccess.GetCustomerByJMB(CustomerJmb.Text);
+                        if (customer == null)
+                        {
+                            string message = (string)Application.Current.Resources["UnknownCustomer"];
+                            MessageDialog dialog = new MessageDialog(message);
+                            bool? dialogResult = dialog.ShowDialog();
+                            if ((bool)dialogResult)
+                            {
+                                AddCustomer();
+                            }
+                        }
+                        else
+                        {
+
+                            Reservation = new Reservation(1, decimal.Parse(Price.Text, System.Globalization.CultureInfo.InvariantCulture),
+                               (HotelComboBox.SelectedItem as Hotel), Package, customer, (byte)(IsOptionYes ? 1 : 0), SalesAgentWindow.EmployeeJmb);
+                            DialogResult = true;
+                            Close();
+                        }
+
+                    }
                 }
-              
             }
+        }
 
-
+        private bool HasValidationError(Control control)
+        {
+            return Validation.GetHasError(control);
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
