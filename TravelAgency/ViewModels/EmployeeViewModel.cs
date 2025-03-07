@@ -26,7 +26,6 @@ namespace TravelAgency.ViewModels
             {
                 if (_selectedEmployee != value)
                 {
-                    //  _backupEmployee = value != null ? new Employee(value) : null;  
                     _selectedEmployee = value;
                     OnPropertyChanged(nameof(SelectedEmployee));
                 }
@@ -130,7 +129,7 @@ namespace TravelAgency.ViewModels
             }
         }
 
-        
+
         private void DeleteEmployee(object obj)
         {
             if (SelectedEmployee == null)
@@ -177,7 +176,7 @@ namespace TravelAgency.ViewModels
                 }
             }
         }
-        
+
 
         private void UpdateEmployee()
         {
@@ -196,8 +195,9 @@ namespace TravelAgency.ViewModels
                     bool? dialogResult2 = dialog2.ShowDialog();
                     if ((bool)dialogResult2)
                     {
-                        if (EmployeeDataAccess.UpdateEmployee(pom))
+                        if (EmployeeDataAccess.UpdateEmployee(pom, SelectedEmployee.Jmb))
                         {
+                            SelectedEmployee.Jmb = pom.Jmb;
                             SelectedEmployee.FirstName = pom.FirstName;
                             SelectedEmployee.Address = pom.Address;
                             SelectedEmployee.Email = pom.Email;

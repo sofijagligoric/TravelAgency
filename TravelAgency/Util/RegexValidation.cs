@@ -16,7 +16,7 @@ namespace TravelAgency.Util
 
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            
+
             if (value == null || string.IsNullOrWhiteSpace(value.ToString()))
             {
                 /*
@@ -24,7 +24,7 @@ namespace TravelAgency.Util
                 return new ValidationResult(false, emptyFieldMessage);
                 */
             }
-            
+
 
             string input = value.ToString();
             Console.WriteLine($"Validating: {input}");

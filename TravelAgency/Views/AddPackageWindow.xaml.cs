@@ -26,7 +26,7 @@ namespace TravelAgency.Views
         public Package Package { get; set; }
         public List<Destination> Destinations { get; set; }
 
-      
+
 
         public AddPackageWindow()
         {
@@ -62,7 +62,7 @@ namespace TravelAgency.Views
                         Destinations.Add(pom);
                         OnPropertyChanged(nameof(Destinations));
                         string message = (string)Application.Current.Resources["SuccessfullyAdded"];
-                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message);
                         dialog3.ShowDialog();
                     }
                 }
@@ -77,7 +77,8 @@ namespace TravelAgency.Views
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                 dialog.ShowDialog();
             }
-            else {
+            else
+            {
                 if (string.IsNullOrEmpty(StartDate.Text) || string.IsNullOrEmpty(Price.Text) || string.IsNullOrEmpty(EndDate.Text) || string.IsNullOrEmpty(About.Text))
                 {
                     string message = (string)Application.Current.Resources["EmptyField"];

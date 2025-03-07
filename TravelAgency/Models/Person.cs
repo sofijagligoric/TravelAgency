@@ -29,7 +29,7 @@ namespace TravelAgency.Models
                 {
                     _firstName = value;
                     OnPropertyChanged(nameof(FirstName));
-                    FullName = _firstName + " " + LastName; 
+                    FullName = _firstName + " " + LastName;
                 }
             }
         }
@@ -51,7 +51,7 @@ namespace TravelAgency.Models
         public string FullName
         {
             get { return _fullName; }
-             set
+            set
             {
                 if (_fullName != value)
                 {
@@ -126,7 +126,7 @@ namespace TravelAgency.Models
             }
         }
 
-        
+
         public Person(string firstName, string lastName, string jmb, string address, string email, string dateOfBirth, string phoneNumber)
         {
             _firstName = firstName;
@@ -139,7 +139,7 @@ namespace TravelAgency.Models
             _phoneNumber = phoneNumber;
         }
 
-       
+
         public Person()
         {
             _firstName = string.Empty;
@@ -180,14 +180,9 @@ namespace TravelAgency.Models
                    (string)Application.Current.Resources["PhoneNumber"] + " " + PhoneNumber + ", \n" +
                     (string)Application.Current.Resources["Email"] + " " + Email + ", \n" +
                      (string)Application.Current.Resources["DateOfbirth"] + " " + DateOfBirth;
-            // return $"Ime: {FirstName} {LastName}\nJMB: {Jmb}\nadresa: {Address}\ne-mail: {Email}\ndatum rodjenja: {DateOfBirth}";
+
         }
 
-       /*
-        *  public override int GetHashCode()
-        {
-            return -1255590651 + Jmb.GetHashCode();
-        }*/
 
         public override bool Equals(object obj)
         {

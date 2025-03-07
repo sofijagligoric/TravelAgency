@@ -57,7 +57,6 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                // MessageBox.Show("Error occurred: " + e.Message);
                 Console.WriteLine($"Error: {e.Message}");
             }
             return retVal;
@@ -102,7 +101,6 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                // MessageBox.Show("Error occurred: " + e.Message);
                 Console.WriteLine($"Error: {e.Message}");
             }
             return retVal;
@@ -118,7 +116,7 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
-                        
+
                         string[] parts = searchString.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
                         if (parts.Length == 1)
                         {
@@ -165,7 +163,6 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                // MessageBox.Show("Error occurred: " + e.Message);
                 Console.WriteLine($"Error: {e.Message}");
             }
             return result;
@@ -208,7 +205,6 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                //  MessageBox.Show("Error occurred: " + e.Message);
                 Console.WriteLine($"Error: {e.Message}");
             }
             return result;
@@ -254,8 +250,6 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-
-                //MessageBox.Show("Error occurred: " + e.Message);
                 Console.WriteLine($"Error: {e.Message}");
             }
             return successful;
@@ -319,13 +313,12 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                // MessageBox.Show("Error occurred: " + e.Message);
                 Console.WriteLine($"Error: {e.Message}");
             }
             return successful;
         }
 
-        public static bool UpdateEmployee(Employee employee)
+        public static bool UpdateEmployee(Employee employee, string jmb)
         {
             bool retVal = false;
             try
@@ -338,6 +331,7 @@ namespace TravelAgency.DataAccess
                         cmd.CommandText = @"UPDATE employee e 
                                             NATURAL JOIN person p
                                             SET 
+                                                p.JMB = @NewJMB,
                                                 p.FirstName = @FName, 
                                                 p.LastName = @LName, 
                                                 p.Address = @Address, 
@@ -351,8 +345,7 @@ namespace TravelAgency.DataAccess
                                                 e.RoleType = @RoleType, 
                                                 e.PreferredTheme = @Theme
                                             WHERE e.JMB = @JMB";
-                        //cmd.CommandText2 = "UPDATE employee SET Salary = @Salary," +
-                        //   "Username = @UName, PasswordString = @Password, EmploymentDate = @EmploymentDate, RoleType = @RoleType, PreferredTheme = @Theme  WHERE JMB = @JMB;";
+
                         cmd.Parameters.AddWithValue("@Salary", employee.Salary);
                         cmd.Parameters.AddWithValue("@UName", employee.Username);
                         cmd.Parameters.AddWithValue("@Password", employee.Password);
@@ -360,7 +353,8 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters.AddWithValue("@EmploymentDate", General.DateForBase(employee.EmploymentDate));
                         cmd.Parameters.AddWithValue("@RoleType", employee.RoleType);
                         cmd.Parameters.AddWithValue("@Theme", employee.Theme);
-                        cmd.Parameters.AddWithValue("@JMB", employee.Jmb);
+                        cmd.Parameters.AddWithValue("@JMB", jmb);
+                        cmd.Parameters.AddWithValue("@NewJMB", employee.Jmb);
                         cmd.Parameters.AddWithValue("@FName", employee.FirstName);
                         cmd.Parameters.AddWithValue("@LName", employee.LastName);
                         cmd.Parameters.AddWithValue("@Address", employee.Address);

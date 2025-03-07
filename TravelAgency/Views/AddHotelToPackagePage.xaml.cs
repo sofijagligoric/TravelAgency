@@ -25,7 +25,6 @@ namespace TravelAgency.Views
     public partial class AddHotelToPackagePage : Page
     {
         private PackageHotelsWindow _mainWindow;
-       // public List<Hotel> DestinationHotels { get; set; }
         public ObservableCollection<Hotel> DestinationHotels { get; set; }
         public Package Package { get; set; }
 
@@ -107,7 +106,7 @@ namespace TravelAgency.Views
                         DestinationHotels.Add(pom);
                         OnPropertyChanged(nameof(DestinationHotels));
                         string message = (string)Application.Current.Resources["SuccessfullyAdded"];
-                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message);
                         dialog3.ShowDialog();
                     }
                     else

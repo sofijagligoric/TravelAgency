@@ -243,21 +243,6 @@
                                      Margin="20,0,0,0" />
                     </StackPanel>
 
-                    <!--
-                    <StackPanel Grid.Row="6"
-                                Margin="0,0,0,5">
-                        <Label FontSize="15"
-                               Content="{DynamicResource HasRestaurant}" />
-                        <TextBox x:Name="HasRestaurant"
-                                 Height="40"
-                                 Width="300"
-                                 FontSize="15"
-                                 Style="{DynamicResource FormTextBoxStyle}"
-                                 HorizontalContentAlignment="Center"
-                                 TextWrapping="Wrap" />
-                    </StackPanel>
-                    
-                    -->
 
                 </Grid>
             </ScrollViewer>

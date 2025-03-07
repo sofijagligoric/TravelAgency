@@ -63,9 +63,7 @@
                                      Tag="{DynamicResource menuContentColor}"
                                      IsChecked="True"
                                      Command="{Binding ShowCustomersCommand}">
-                            <!--
-                                     Command="{Binding ShowHomeViewCommand}"
-                            -->
+                            
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="User"
                                               Style="{StaticResource menuButtonIcon}" />
@@ -300,30 +298,7 @@
                                     <ColumnDefinition Width="10" />
                                 </Grid.ColumnDefinitions>
 
-                               
-
-                                <!--
-                                <Menu Grid.Column="1"
-                                      Margin="0,0,10,0"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      Width="70"
-                                      Height="35">
-                                    <MenuItem Header="{DynamicResource Theme}"
-                                              Style="{DynamicResource MenuDottsStyle}"
-                                              StaysOpenOnClick="True">
-                                        <MenuItem Header="{DynamicResource BlueTheme}"
-                                                  Click="Blue_Click"
-                                                  Style="{DynamicResource MenuOptionStyle}" />
-                                        <MenuItem Header="{DynamicResource DarkTheme}"
-                                                  Click="Dark_Click"
-                                                  Style="{DynamicResource MenuOptionStyle}" />
-                                        <MenuItem Header="{DynamicResource BurgundyTheme}"
-                                                  Click="Burgundy_Click"
-                                                  Style="{DynamicResource MenuOptionStyle}" />
-                                    </MenuItem>
-                                </Menu>
-                                -->
+                            
                                 <ComboBox x:Name="ThemeComboBox"
                                           Grid.Column="0"
                                           Margin="0,0,10,0"

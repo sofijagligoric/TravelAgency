@@ -123,19 +123,7 @@
                                                      Value="True">
                                                 <Setter Property="Background"
                                                         Value="{DynamicResource titleColor3}" />
-                                                <!--
-
-                                                <Setter Property="Effect">
-                                                    <Setter.Value>
-                                                        <DropShadowEffect Color="Gray"
-                                                                          BlurRadius="5"
-                                                                          ShadowDepth="2"
-                                                                          Opacity="0.4" />
-                                                    </Setter.Value>
-                                                </Setter>
-                                                -->
-
-
+                                                
                                                 <Setter Property="BorderBrush"
                                                         Value="{DynamicResource titleColor1}" />
                                             </Trigger>
@@ -147,25 +135,11 @@
                                                 <Setter Property="BorderBrush"
                                                         Value="{DynamicResource titleColor1}" />
 
-                                                <!--
-                                                <Setter Property="Effect">
-                                                    <Setter.Value>
-                                                        <DropShadowEffect Color="{DynamicResource mouseOverTextboxColor}"
-                                                                          BlurRadius="5"
-                                                                          ShadowDepth="3"
-                                                                          Opacity="0.3" />
-                                                    </Setter.Value>
-                                                </Setter>
-                                                -->
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </Border.Style>
 
-                                <!--
-                                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                              Focusable="False"
-                                              > -->
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto" />
@@ -277,7 +251,7 @@
                                                        HorizontalAlignment="Center" />
                                         </Grid>
                                     </Grid>
-                             <!--   </ScrollViewer> -->
+                            
                             </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>

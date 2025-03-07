@@ -59,21 +59,6 @@ namespace TravelAgency.Views
             DataContext = new AdminViewModel(navigationService, user);
         }
 
-        /*
-        public void UpdateCaptionAndIcon(string newCaption, string newIcon)
-        {
-            MainCaption.Text = newCaption;
-            if (Enum.TryParse(newIcon, out IconChar iconChar))
-            {
-                MainIcon.Icon = iconChar;
-            }
-            else
-            {
-                MainIcon.Icon = IconChar.QuestionCircle;
-            }
-            
-        }
-        */
 
         private void btnMinimise_Click(object sender, RoutedEventArgs e)
         {
@@ -87,7 +72,7 @@ namespace TravelAgency.Views
                 this.MaxHeight = SystemParameters.WorkArea.Height;
                 this.WindowState = WindowState.Maximized;
             }
-                
+
             else
                 this.WindowState = WindowState.Normal;
         }
@@ -146,7 +131,7 @@ namespace TravelAgency.Views
             {
                 EmployeeDataAccess.ChangeTheme(user, "default");
                 SetTheme("Themes/BlueTheme.xaml");
-            }    
+            }
         }
 
         private void Dark_Click(object sender, RoutedEventArgs e)
@@ -184,34 +169,9 @@ namespace TravelAgency.Views
 
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
 
-            /*
-            var adminWindow = Application.Current.MainWindow as AdminWindow;
-            Console.WriteLine("------------------------>  MAIN WINDOW JE NULL" );
-            
-            if (adminWindow != null)
-            {
-                Console.WriteLine("------------------------>  MAIN WINDOW NIJE NULL");
-                var themeComboBox = adminWindow.FindName("ThemeComboBox") as ComboBox;
-                Console.WriteLine("------------------------>  THEMEBOX JE NULL");
-                if (themeComboBox != null)
-                {
-                    Console.WriteLine("------------------------>  THEMEBOX NIJE NULL");
-                    string themeName = theme.Split('/')[1].Replace("Theme.xaml", "");
-                    Console.WriteLine("------------------------>" + themeName);
-                    foreach (ComboBoxItem item in themeComboBox.Items)
-                    {
-                        if (item.Tag != null && item.Tag.ToString() == themeName)
-                        {
-                            themeComboBox.SelectedItem = item;
-                            break;
-                        }
-                    }
-                }
-            }
-            */
         }
 
-        
+
         private void Set_English_Lang(object sender, RoutedEventArgs e)
         {
             var oldLang = Application.Current.Resources.MergedDictionaries
@@ -225,7 +185,7 @@ namespace TravelAgency.Views
             var oldLang = Application.Current.Resources.MergedDictionaries
                .FirstOrDefault(d => d.Source != null && d.Source.ToString().EndsWith("Language.xaml")).ToString();
             if (!oldLang.EndsWith("Languages/SerbianLanguage.xaml"))
-                 SetLang("Languages/SerbianLanguage.xaml");
+                SetLang("Languages/SerbianLanguage.xaml");
         }
 
         private void SetLang(string lang)

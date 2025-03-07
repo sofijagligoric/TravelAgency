@@ -119,9 +119,8 @@
             <Button Content="{DynamicResource Delete}"
                     Command="{Binding DeleteHotelCommand}"
                     Margin="5"
-                    Style="{DynamicResource ProceedButtonStyle}" 
-                    IsEnabled="True"/>
-            <!--  IsEnabled="{Binding SelectedHotel, Converter={StaticResource NullToBooleanConverter}}" -->
+                    Style="{DynamicResource ProceedButtonStyle}"
+                    IsEnabled="True" />
         </StackPanel>
     </Grid>
 </UserControl>

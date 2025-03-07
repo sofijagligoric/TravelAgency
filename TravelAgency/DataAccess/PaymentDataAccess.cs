@@ -31,21 +31,20 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters.AddWithValue("@uAmount", amount);
                         cmd.Parameters["@uAmount"].Direction = ParameterDirection.Input;
                         cmd.Parameters.AddWithValue("@uReservationId", resId);
-                        cmd.Parameters["@uReservationId"].Direction = ParameterDirection.Input;   cmd.Parameters.Add("@successful", MySqlDbType.Bit).Direction = ParameterDirection.Output;
+                        cmd.Parameters["@uReservationId"].Direction = ParameterDirection.Input; cmd.Parameters.Add("@successful", MySqlDbType.Bit).Direction = ParameterDirection.Output;
                         cmd.Parameters.Add("@message", MySqlDbType.VarChar, 255).Direction = ParameterDirection.Output;
                         cmd.Parameters.Add("@successfulPayment", MySqlDbType.Int32).Direction = ParameterDirection.Output;
 
                         cmd.ExecuteNonQuery();
                         successful = Convert.ToBoolean(cmd.Parameters["@successfulPayment"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
-                       
+
                     }
                 }
             }
             catch (MySqlException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
-              //  MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }
@@ -71,7 +70,6 @@ namespace TravelAgency.DataAccess
                                     reader["FinalPrice"] != DBNull.Value ? Convert.ToDecimal(reader["FinalPrice"]) : 0m,
                                     reader["Payed"] != DBNull.Value ? Convert.ToDecimal(reader["Payed"]) : 0m,
                                     reader["Debt"] != DBNull.Value ? Convert.ToDecimal(reader["Debt"]) : 0m,
-                                    //   reader["IsPayed"]?.ToString() ?? string.Empty
                                     reader["IsPayed"] != DBNull.Value && reader["IsPayed"].ToString().Equals("Jeste", StringComparison.OrdinalIgnoreCase)
                                 ));
                             }
@@ -82,7 +80,6 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                // MessageBox.Show("Error occurred: " + ex.Message);
             }
             return result;
         }
@@ -107,11 +104,6 @@ namespace TravelAgency.DataAccess
 
                         cmd.Parameters.AddWithValue("@firstName", "%" + firstName + "%");
                         cmd.Parameters.AddWithValue("@lastName", "%" + lastName + "%");
-                        /*
-                        cmd.CommandText = "SELECT * FROM total_payment_for_reservation WHERE  CustomerName LIKE @CustomerName";
-                        cmd.Parameters.AddWithValue("@CustomerName", "%" + searchString + "%");
-                        */
-
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -132,7 +124,7 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-                
+
             }
             return result;
         }
@@ -153,7 +145,7 @@ namespace TravelAgency.DataAccess
                         {
                             if (reader.Read())
                             {
-                                result= new TotalReservationPayment(
+                                result = new TotalReservationPayment(
                                     reader["CustomerName"]?.ToString() ?? string.Empty,
                                     reader["ReservationId"] != DBNull.Value ? Convert.ToInt32(reader["ReservationId"]) : 0,
                                     reader["FinalPrice"] != DBNull.Value ? Convert.ToDecimal(reader["FinalPrice"]) : 0m,
@@ -232,10 +224,6 @@ namespace TravelAgency.DataAccess
 
                         cmd.Parameters.AddWithValue("@firstName", "%" + firstName + "%");
                         cmd.Parameters.AddWithValue("@lastName", "%" + lastName + "%");
-                        /*
-                        cmd.CommandText = "SELECT * FROM reservation_payment_info WHERE  CustomerFirstName LIKE @CustomerName";
-                        cmd.Parameters.AddWithValue("@CustomerName", "%" + searchString + "%");
-                        */
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -259,7 +247,6 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-            //    MessageBox.Show("Error occurred: " + ex.Message);
             }
             return result;
         }

@@ -62,7 +62,6 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
-             //   MessageBox.Show("Error occurred: " + ex.Message);
             }
             return packages;
         }
@@ -113,7 +112,6 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
-              //  MessageBox.Show("Error occurred: " + ex.Message);
             }
             return packages;
 
@@ -167,7 +165,6 @@ namespace TravelAgency.DataAccess
             catch (MySqlException e)
             {
                 Console.WriteLine($"An error occurred while adding package: {e.Message}");
-                //  MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }
@@ -208,7 +205,6 @@ namespace TravelAgency.DataAccess
             catch (MySqlException e)
             {
                 Console.WriteLine($"An error occurred while deleting package: {e.Message}");
-                //  MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }

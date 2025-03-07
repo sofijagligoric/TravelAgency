@@ -73,8 +73,8 @@ namespace TravelAgency.DataAccess
         }
 
         public static Country GetCountryByName(string name)
-        { 
-            Country country = null; 
+        {
+            Country country = null;
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))

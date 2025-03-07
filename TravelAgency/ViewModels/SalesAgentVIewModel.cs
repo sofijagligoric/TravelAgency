@@ -143,7 +143,7 @@ namespace TravelAgency.ViewModels
         private void ShowPackages()
         {
             // _navigationService.NavigateTo(_saPackages);
-            
+
             Caption = Caption = (string)Application.Current.Resources["Packages"];
             Icon = IconChar.PlaneDeparture;
             _navigationService.NavigateTo(new SalesAgentPackageView());
@@ -153,7 +153,7 @@ namespace TravelAgency.ViewModels
         private void ShowHotels()
         {
             // _navigationService.NavigateTo(_saHotelView);
-           
+
             Caption = Caption = (string)Application.Current.Resources["Hotels"];
             Icon = IconChar.Hotel;
             _navigationService.NavigateTo(new SalesAgentHotelView());
@@ -183,13 +183,13 @@ namespace TravelAgency.ViewModels
             _navigationService.NavigateTo(new PaymentView());
         }
 
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        
+
     }
 }

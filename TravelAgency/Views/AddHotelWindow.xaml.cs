@@ -114,7 +114,7 @@ namespace TravelAgency.Views
                     if (DestinationDataAccess.AddDestination(pom))
                     {
                         string message = (string)Application.Current.Resources["SuccessfullyAdded"];
-                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message);
                         dialog3.ShowDialog();
                     }
                 }
@@ -144,19 +144,6 @@ namespace TravelAgency.Views
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        /*
-        private void LetterNumberCheck(object sender, TextChangedEventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-            if (textBox != null)
-            {
-                string input = textBox.Text;
-                if (!Regex.IsMatch(input, "^[a-zA-Z0-9 ]*$"))
-                {
-                    textBox.Background = Brushes.LightCoral;
-                }
-            }
-        }
-        */
+
     }
 }

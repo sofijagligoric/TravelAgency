@@ -68,10 +68,6 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
-                        /*
-                        cmd.CommandText = "SELECT p.JMB, LastName, FirstName, Address, DateOfBirth, Email, PhoneNumber FROM customer p NATURAL JOIN person WHERE FirstName LIKE @searchTerm OR LastName LIKE @searchTerm";
-                        cmd.Parameters.AddWithValue("@searchTerm", searchString + "%");
-                        */
                         string[] parts = searchString.Split(' ', (char)StringSplitOptions.RemoveEmptyEntries);
                         if (parts.Length == 1)
                         {
@@ -92,7 +88,7 @@ namespace TravelAgency.DataAccess
                             cmd.Parameters.AddWithValue("@firstName", firstName + "%");
                             cmd.Parameters.AddWithValue("@lastName", lastName + "%");
                         }
-                        
+
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -242,13 +238,12 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                // MessageBox.Show("Error occurred: " + e.Message);
                 Console.WriteLine($"An error occurred: {e.Message}");
             }
             return successful;
         }
 
-        public static bool UpdateCustomer(Customer customer)
+        public static bool UpdateCustomer(Customer customer, string jmb)
         {
             bool retVal = false;
             try
@@ -258,8 +253,9 @@ namespace TravelAgency.DataAccess
                     conn.Open();
                     using (MySqlCommand cmd = conn.CreateCommand())
                     {
-                        cmd.CommandText = "UPDATE person SET FirstName = @FName, LastName = @LName, Address = @Address, DateOfBirth = @DateOfBirth, Email = @Email, PhoneNumber = @PhoneNumber WHERE JMB = @JMB;";
-                        cmd.Parameters.AddWithValue("@JMB", customer.Jmb);
+                        cmd.CommandText = "UPDATE person SET JMB = @NewJMB, FirstName = @FName, LastName = @LName, Address = @Address, DateOfBirth = @DateOfBirth, Email = @Email, PhoneNumber = @PhoneNumber WHERE JMB = @JMB;";
+                        cmd.Parameters.AddWithValue("@JMB", jmb);
+                        cmd.Parameters.AddWithValue("@NewJMB", customer.Jmb);
                         cmd.Parameters.AddWithValue("@FName", customer.FirstName);
                         cmd.Parameters.AddWithValue("@LName", customer.LastName);
                         cmd.Parameters.AddWithValue("@Address", customer.Address);
@@ -273,13 +269,12 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                // MessageBox.Show("Error occurred: " + e.Message);
                 Console.WriteLine($"An error occurred: {e.Message}");
             }
             return retVal;
         }
 
-        
+
     }
 
 }

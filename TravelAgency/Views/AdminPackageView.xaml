@@ -122,9 +122,7 @@
                     Command="{Binding DeletePackageCommand}"
                     Margin="5"
                     Style="{DynamicResource ProceedButtonStyle}" />
-
-            <!--  IsEnabled="{Binding SelectedHotel, Converter={StaticResource NullToBooleanConverter}}" -->
-        </StackPanel>
+ </StackPanel>
     </Grid>
 </UserControl>
 

@@ -25,7 +25,6 @@ namespace TravelAgency.ViewModels
             {
                 if (_selectedCustomer != value)
                 {
-                    //  _backupCustomer = value != null ? new Customer(value) : null;  
                     _selectedCustomer = value;
                     OnPropertyChanged(nameof(SelectedCustomer));
                 }
@@ -58,7 +57,7 @@ namespace TravelAgency.ViewModels
             AllCustomersCommand = new RelayCommand(AllCustomers);
         }
 
-        
+
 
         private void AddCustomer()
         {
@@ -166,7 +165,7 @@ namespace TravelAgency.ViewModels
             }
         }
 
-        
+
         private void UpdateCustomer()
         {
 
@@ -184,14 +183,15 @@ namespace TravelAgency.ViewModels
                     bool? dialogResult2 = dialog2.ShowDialog();
                     if ((bool)dialogResult2)
                     {
-                        if (CustomerDataAccess.UpdateCustomer(pom))
+                        if (CustomerDataAccess.UpdateCustomer(pom, SelectedCustomer.Jmb))
                         {
+                            SelectedCustomer.Jmb = pom.Jmb;
                             SelectedCustomer.FirstName = pom.FirstName;
                             SelectedCustomer.Address = pom.Address;
                             SelectedCustomer.Email = pom.Email;
                             SelectedCustomer.LastName = pom.LastName;
                             SelectedCustomer.DateOfBirth = pom.DateOfBirth;
-                            
+
 
                             OnPropertyChanged(nameof(SelectedCustomer));
                             OnPropertyChanged(nameof(Customers));
@@ -217,7 +217,7 @@ namespace TravelAgency.ViewModels
             }
         }
 
-        
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)

@@ -16,7 +16,7 @@
         MouseDown="Window_MouseDown"
         ResizeMode="CanResize">
     <Border  BorderThickness="1"
-        CornerRadius="10,10,10,10">
+        CornerRadius="0,0,10,10">
         <Border.BorderBrush>
             <SolidColorBrush Color="{DynamicResource secondaryBackColor2}" />
         </Border.BorderBrush>

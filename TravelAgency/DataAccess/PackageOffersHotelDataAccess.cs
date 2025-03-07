@@ -55,7 +55,6 @@ namespace TravelAgency.DataAccess
             catch (MySqlException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
-               // MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }
@@ -80,7 +79,6 @@ namespace TravelAgency.DataAccess
             catch (MySqlException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
-                // MessageBox.Show("Error occurred: " + e.Message);
             }
             return retVal;
         }
@@ -111,7 +109,6 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-              //  MessageBox.Show("Error occurred: " + ex.Message);
             }
             return packages;
         }
@@ -137,7 +134,7 @@ namespace TravelAgency.DataAccess
                                 packages.Add(new PackageOffersHotel(reader["PackageId"] != DBNull.Value ? Convert.ToInt32(reader["PackageId"]) : 0,
                                                                              reader["HotelId"] != DBNull.Value ? Convert.ToInt32(reader["HotelId"]) : 0));
                             }
-                        
+
                         }
                     }
                 }
@@ -145,7 +142,6 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-               // MessageBox.Show("Error occurred in GetPackageOffersHotelByPackage: " + ex.Message);
             }
             return packages;
         }
@@ -193,7 +189,7 @@ namespace TravelAgency.DataAccess
                                     destination
                                 );
 
-                                hotels.Add( hotel );
+                                hotels.Add(hotel);
                             }
 
                         }
@@ -203,7 +199,6 @@ namespace TravelAgency.DataAccess
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
-            //    MessageBox.Show("Error occurred in GetHotelsByPackage: " + ex.Message);
             }
             return hotels;
         }

@@ -10,7 +10,7 @@ namespace TravelAgency.Models
     public class Country : INotifyPropertyChanged
     {
         private string _countryName;
-       
+
 
         public string CountryName
         {
@@ -43,17 +43,10 @@ namespace TravelAgency.Models
                    CountryName == country.CountryName;
         }
 
-        /*
-        public override int GetHashCode()
-        {
-            return -1255590651 + CountryName.GetHashCode();
-        }
-        */
 
         public override string ToString()
         {
             return CountryName;
-           // return $"Naziv drzave: {CountryName}";
         }
 
         public override int GetHashCode()

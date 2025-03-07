@@ -18,7 +18,6 @@ namespace TravelAgency.ViewModels
     {
 
         public ObservableCollection<Package> Packages { get; set; }
-        //  public Package SelectedPackage { get; set; } = new Package();
 
         private Package _selectedPackage;
 
@@ -29,7 +28,6 @@ namespace TravelAgency.ViewModels
             {
                 if (_selectedPackage != value)
                 {
-                    //  _backupPackage = value != null ? new Package(value) : null;  
                     _selectedPackage = value;
                     OnPropertyChanged(nameof(SelectedPackage));
                 }
@@ -118,7 +116,7 @@ namespace TravelAgency.ViewModels
                         }
                     }
                 }
-                
+
             }
             else
             {
@@ -130,7 +128,7 @@ namespace TravelAgency.ViewModels
 
         private void AddPackage()
         {
-            
+
             AddPackageWindow dialog = new AddPackageWindow();
 
             bool? dialogResult = dialog.ShowDialog();
@@ -159,7 +157,7 @@ namespace TravelAgency.ViewModels
                     dialog3.ShowDialog();
                 }
             }
-           
+
 
         }
 
@@ -247,15 +245,15 @@ namespace TravelAgency.ViewModels
 
                 return;
             }
-            
-               PackageHotelsWindow dialog2 = new PackageHotelsWindow(SelectedPackage);
+
+            PackageHotelsWindow dialog2 = new PackageHotelsWindow(SelectedPackage);
             dialog2.ShowDialog();
 
         }
 
         private void UpdatePackage()
         {
-          
+
             if (SelectedPackage != null)
             {
                 UpdatePackageWindow dialog = new UpdatePackageWindow(SelectedPackage);
@@ -300,7 +298,7 @@ namespace TravelAgency.ViewModels
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                 dialog.ShowDialog();
             }
-           
+
         }
 
         private bool CanModify()

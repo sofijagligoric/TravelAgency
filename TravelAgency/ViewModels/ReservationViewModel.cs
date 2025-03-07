@@ -16,7 +16,6 @@ namespace TravelAgency.ViewModels
     public class ReservationViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Reservation> Reservations { get; set; }
-        //  public Reservation SelectedReservation { get; set; } = new Reservation();
         private Reservation _selectedReservation;
         public Reservation NewReservation { get; set; }
         public Reservation SelectedReservation
@@ -54,7 +53,7 @@ namespace TravelAgency.ViewModels
             PayReservationCommand = new RelayCommand(PayReservation);
         }
 
-      
+
         private void AllReservations()
         {
             var reservations = ReservationDataAccess.GetReservations();
@@ -129,7 +128,7 @@ namespace TravelAgency.ViewModels
 
             if (SelectedReservation != null)
             {
-                if(SelectedReservation.AllPayed != 0)
+                if (SelectedReservation.AllPayed != 0)
                 {
                     string message3 = (string)Application.Current.Resources["ReservationIsPayed"];
                     MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
@@ -144,8 +143,8 @@ namespace TravelAgency.ViewModels
                     {
                         Reservation pom = dialog.Reservation;
                         string message2 = (string)Application.Current.Resources["ConfirmPayment"] + "\n" +
-                          (string)Application.Current.Resources["ReservationId"]+ " " + dialog.Reservation.ReservationId + ", " + 
-                          dialog.Reservation.Customer.FullName +", "+ (string)Application.Current.Resources["Amount"] + " "+ dialog.AmountPayed + "?";
+                          (string)Application.Current.Resources["ReservationId"] + " " + dialog.Reservation.ReservationId + ", " +
+                          dialog.Reservation.Customer.FullName + ", " + (string)Application.Current.Resources["Amount"] + " " + dialog.AmountPayed + "?";
                         MessageDialog dialog2 = new MessageDialog(message2);
                         bool? dialogResult2 = dialog2.ShowDialog();
                         if ((bool)dialogResult2)

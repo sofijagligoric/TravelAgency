@@ -83,7 +83,8 @@ namespace TravelAgency.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public Destination() {
+        public Destination()
+        {
             PostCode = 0;
             DestinationName = string.Empty;
             About = string.Empty;
@@ -114,15 +115,7 @@ namespace TravelAgency.Models
 
         public override string ToString()
         {
-            /*
-            return $"Destinacija: {DestinationName},\n" +
-                   $"posta: {PostCode},\n" +
-                   $"opis: {About},\n" +
-                   $"udaljenost: {Distance} km,\n" +
-                   $"lokalni jezik: {LocalLanguage},\n" +
-                   $"drzava: {Country?.CountryName}";
-            */
-            return "\n" + (string)Application.Current.Resources["Name"] +" "+ DestinationName + ",\n "+ (string)Application.Current.Resources["Postcode"] + " " + PostCode + ",\n" +
+            return "\n" + (string)Application.Current.Resources["Name"] + " " + DestinationName + ",\n" + (string)Application.Current.Resources["Postcode"] + " " + PostCode + ",\n" +
                 (string)Application.Current.Resources["About"] + " " + About + ", \n" + (string)Application.Current.Resources["Distance"] + " " + Distance +
                 ", \n" + (string)Application.Current.Resources["LocalLanguage"] + " " + LocalLanguage + ", \n" + (string)Application.Current.Resources["Country"] + " " + Country?.CountryName;
 

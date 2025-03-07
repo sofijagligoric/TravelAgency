@@ -10,16 +10,21 @@
     <Color x:Key="secondaryBackColor1">#061d69</Color>
     <Color x:Key="secondaryBackColor2">#041240</Color>
     <Color x:Key="mouseOverTextboxColor">#5f94de</Color>
-    <SolidColorBrush x:Key="panelColor" Color="#200F53" />
-    <SolidColorBrush x:Key="panelOverColor" Color="#281269" />
-    <SolidColorBrush x:Key="panelActiveColor" Color="#2B1372" />
+    <SolidColorBrush x:Key="panelColor"
+                     Color="#200F53" />
+    <SolidColorBrush x:Key="panelOverColor"
+                     Color="#281269" />
+    <SolidColorBrush x:Key="panelActiveColor"
+                     Color="#2B1372" />
 
     <SolidColorBrush x:Key="menuContentColor"
                      Color="#d5d8e3" />
-    <SolidColorBrush x:Key="titleColor1" Color="#041240" />
+    <SolidColorBrush x:Key="titleColor1"
+                     Color="#041240" />
     <SolidColorBrush x:Key="secondaryBackColor2Brush"
                      Color="{DynamicResource secondaryBackColor2}" />
-    <SolidColorBrush x:Key="titleColor2" Color="#d3d8eb" />
+    <SolidColorBrush x:Key="titleColor2"
+                     Color="#d3d8eb" />
     <SolidColorBrush x:Key="titleColor3"
                      Color="#BCBEE0" />
     <SolidColorBrush x:Key="plainTextColor1"
@@ -29,9 +34,12 @@
     <SolidColorBrush x:Key="plainTextColor3"
                      Color="#7376BD" />
 
-    <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource PrimaryColor}" />
-    <SolidColorBrush x:Key="SecondaryBrush" Color="{DynamicResource SecondaryColor}" />
-    <SolidColorBrush x:Key="MouseOverBrush" Color="{DynamicResource MouseOverColor}" />
+    <SolidColorBrush x:Key="PrimaryBrush"
+                     Color="{DynamicResource PrimaryColor}" />
+    <SolidColorBrush x:Key="SecondaryBrush"
+                     Color="{DynamicResource SecondaryColor}" />
+    <SolidColorBrush x:Key="MouseOverBrush"
+                     Color="{DynamicResource MouseOverColor}" />
     <SolidColorBrush x:Key="ForegroundBrush"
                      Color="{DynamicResource ForegroundColor}" />
     <SolidColorBrush x:Key="MouseOverTextbox"

@@ -46,7 +46,7 @@ namespace TravelAgency.ViewModels
             AllTotalReservationPaymentsCommand = new RelayCommand(AllTotalReservationPayments);
         }
 
-        
+
         private void AllTotalReservationPayments()
         {
             var hotels = PaymentDataAccess.GetPaymentInfoForReservations();

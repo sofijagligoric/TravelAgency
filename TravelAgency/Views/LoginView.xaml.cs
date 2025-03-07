@@ -39,8 +39,8 @@ namespace TravelAgency.Views
 
                 if (emp != null)
                 {
-                    
-                    if("admin".Equals(emp.RoleType))
+
+                    if ("admin".Equals(emp.RoleType))
                     {
                         AdminWindow adminWindow = new AdminWindow(emp);
                         adminWindow.Show();
@@ -60,7 +60,7 @@ namespace TravelAgency.Views
                 }
                 else
                 {
-                       incorrectData.SetResourceReference(TextBlock.TextProperty, "IncorrectPassword");
+                    incorrectData.SetResourceReference(TextBlock.TextProperty, "IncorrectPassword");
                 }
 
             }

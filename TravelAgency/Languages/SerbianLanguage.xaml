@@ -50,7 +50,7 @@
     <System:String x:Key="SuccessfulUpdate">Ažuriranje uspješno.</System:String>
     <System:String x:Key="Hotel">Hotel:</System:String>
     <System:String x:Key="EmptyField">Sva polja moraju biti popunjena.</System:String>
-    <System:String x:Key="SuccessfullyAdded">Uspješno dodano:</System:String>
+    <System:String x:Key="SuccessfullyAdded">Dodavanje uspješno.</System:String>
     <System:String x:Key="Cancel">Odustani</System:String>
     <System:String x:Key="CustomerName">Ime i/ili prezime putnika</System:String>
 

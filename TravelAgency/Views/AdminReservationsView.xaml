@@ -98,22 +98,5 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
-
-        <!--
-        <TextBlock 
-                   TextWrapping="Wrap"
-                   x:Name="messageText"
-                   Width="400"
-                   FontSize="12"
-                   FontStyle="Italic"
-                   Text="{Binding MessageLabel}"
-                   Foreground="{Binding MessageLabelTextColor}" 
-                   Margin="5,5,0,0"
-                   Grid.Row="2"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left" />
-        -->
-
-       
     </Grid>
 </UserControl>

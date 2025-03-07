@@ -18,11 +18,10 @@ namespace TravelAgency.ViewModels
 {
     public class HotelViewModel : INotifyPropertyChanged
     {
-        
+
         public ObservableCollection<Hotel> Hotels { get; set; }
-        //  public Hotel SelectedHotel { get; set; } = new Hotel();
-        
-        private Hotel _selectedHotel; 
+
+        private Hotel _selectedHotel;
 
         public Hotel SelectedHotel
         {
@@ -31,14 +30,13 @@ namespace TravelAgency.ViewModels
             {
                 if (_selectedHotel != value)
                 {
-                  //  _backupHotel = value != null ? new Hotel(value) : null;  
                     _selectedHotel = value;
                     OnPropertyChanged(nameof(SelectedHotel));
                 }
             }
         }
 
-      
+
         public ICommand AddHotelCommand { get; }
         public ICommand DeleteHotelCommand { get; }
         public ICommand UpdateHotelCommand { get; }
@@ -49,15 +47,15 @@ namespace TravelAgency.ViewModels
         public HotelViewModel()
         {
             var hotels = HotelDataAccess.GetAllHotels();
-            
+
             if (hotels == null)
             {
                 Console.WriteLine("Hotels list is null! Check database connection.");
-                hotels = new List<Hotel>();  
+                hotels = new List<Hotel>();
             }
 
             Hotels = new ObservableCollection<Hotel>(hotels);
-           
+
             AddHotelCommand = new RelayCommand(AddHotel);
             DeleteHotelCommand = new RelayCommand(DeleteHotel);
             UpdateHotelCommand = new RelayCommand(UpdateHotel);
@@ -75,7 +73,7 @@ namespace TravelAgency.ViewModels
         {
             AddHotelWindow dialog = new AddHotelWindow();
 
-            bool? dialogResult =dialog.ShowDialog();
+            bool? dialogResult = dialog.ShowDialog();
 
             if ((bool)dialogResult)
             {
@@ -100,7 +98,7 @@ namespace TravelAgency.ViewModels
                         dialog3.ShowDialog();
                     }
                 }
-                
+
             }
         }
 
@@ -110,7 +108,7 @@ namespace TravelAgency.ViewModels
             if (hotels == null)
             {
                 Console.WriteLine("Hotels list is null! Check database connection.");
-                hotels = new List<Hotel>(); 
+                hotels = new List<Hotel>();
             }
             else
             {
@@ -144,18 +142,18 @@ namespace TravelAgency.ViewModels
             if (SelectedHotel == null)
             {
                 string message = (string)Application.Current.Resources["RowNotSelected"];
-                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);   
+                MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                 dialog.ShowDialog();
-               
+
                 return;
             }
-            
+
 
             string message2 = (string)Application.Current.Resources["ConfirmDelete"] + " " + SelectedHotel.Name + "?";
             MessageDialog dialog2 = new MessageDialog(message2);
             bool? dialogResult2 = dialog2.ShowDialog();
 
-            
+
             if ((bool)dialogResult2)
             {
                 if (HotelDataAccess.DeleteHotel(SelectedHotel))
@@ -165,11 +163,11 @@ namespace TravelAgency.ViewModels
                     string message = (string)Application.Current.Resources["SuccessfulDelete"];
                     MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                     dialog.ShowDialog();
-                    
+
                 }
                 else
                 {
-                    
+
                     string message = (string)Application.Current.Resources["FailedDelete"];
                     MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                     dialog.ShowDialog();
@@ -179,7 +177,7 @@ namespace TravelAgency.ViewModels
 
         private void UpdateHotel()
         {
-            
+
             if (SelectedHotel != null)
             {
                 UpdateHotelWindow dialog = new UpdateHotelWindow(SelectedHotel);
@@ -192,7 +190,7 @@ namespace TravelAgency.ViewModels
                     string message2 = (string)Application.Current.Resources["ConfirmUpdate"] + ": " + pom + "?";
                     MessageDialog dialog2 = new MessageDialog(message2);
                     bool? dialogResult2 = dialog2.ShowDialog();
-                    if((bool)dialogResult2)
+                    if ((bool)dialogResult2)
                     {
                         if (HotelDataAccess.UpdateHotel(pom))
                         {
@@ -202,7 +200,7 @@ namespace TravelAgency.ViewModels
                             SelectedHotel.Destination = pom.Destination;
                             SelectedHotel.HasRestaurant = pom.HasRestaurant;
                             SelectedHotel.RoomCount = pom.RoomCount;
-                            
+
                             OnPropertyChanged(nameof(SelectedHotel));
                             OnPropertyChanged(nameof(Hotels));
                             string message3 = (string)Application.Current.Resources["SuccessfulUpdate"];
@@ -216,11 +214,11 @@ namespace TravelAgency.ViewModels
                             dialog3.ShowDialog();
                         }
                     }
-                   
+
                 }
             }
             else
-                {
+            {
                 string message = (string)Application.Current.Resources["RowNotSelected"];
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                 dialog.ShowDialog();
@@ -229,7 +227,7 @@ namespace TravelAgency.ViewModels
 
         private bool CanModify()
         {
-            return SelectedHotel != null;   
+            return SelectedHotel != null;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -40,7 +40,6 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                //  MessageBox.Show("Error occurred: " + e.Message);
                 return false;
             }
             return retVal;
@@ -141,7 +140,7 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters.AddWithValue("@DestName", destinationName.Trim() + "%");
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            while(reader.Read())
+                            while (reader.Read())
                             {
 
                                 var country = new Country(reader["CountryName"]?.ToString() ?? string.Empty);
@@ -205,7 +204,6 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-                //  MessageBox.Show("Error occurred: " + e.Message);
                 return false;
             }
             return retVal;
@@ -229,7 +227,6 @@ namespace TravelAgency.DataAccess
             }
             catch (MySqlException e)
             {
-               // MessageBox.Show("Error occurred: " + e.Message);
                 return false;
             }
             return retVal;

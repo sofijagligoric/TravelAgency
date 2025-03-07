@@ -20,15 +20,13 @@ namespace TravelAgency.Views
     /// <summary>
     /// Interaction logic for AdminHotelView.xaml
     /// </summary>
-    public partial class AdminHotelView : UserControl 
+    public partial class AdminHotelView : UserControl
     {
         public AdminHotelView()
         {
             InitializeComponent();
             DataContext = new HotelViewModel();
         }
-
-     
 
     }
 }

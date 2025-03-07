@@ -3,21 +3,21 @@
 
 
     <Color x:Key="PrimaryColor">#000000</Color>
-    <!-- Crna -->
+
     <Color x:Key="SecondaryColor">#4B4B4B</Color>
-    <!-- Tamno siva -->
+
     <Color x:Key="MouseOverColor">#2B2B2B</Color>
-    <!-- Srednje tamna siva -->
+
     <Color x:Key="ForegroundColor">#FFFFFF</Color>
-    <!-- Bela za kontrast -->
+
     <Color x:Key="primaryBackColor1">#E0E0E0</Color>
-    <!-- Svetlo siva pozadina -->
+
     <Color x:Key="primaryBackColor2">#C0C0C0</Color>
-    <!-- Još svetlija siva pozadina -->
+
     <Color x:Key="secondaryBackColor1">#202020</Color>
-    <!-- Tamno siva pozadina -->
+
     <Color x:Key="secondaryBackColor2">#121212</Color>
-    <!-- Još tamnija siva pozadina -->
+
 
     <SolidColorBrush x:Key="panelColor"
                      Color="#1C1C1C" />

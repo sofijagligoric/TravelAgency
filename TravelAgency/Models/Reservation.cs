@@ -200,7 +200,7 @@ namespace TravelAgency.Models
 
         public override string ToString()
         {
-            return "\n" + (string)Application.Current.Resources["ReservationId"] + " " +  ReservationId + ", \n" +
+            return "\n" + (string)Application.Current.Resources["ReservationId"] + " " + ReservationId + ", \n" +
                  (string)Application.Current.Resources["PackageId"] + " " + Package.PackageId + ", \n" +
                   (string)Application.Current.Resources["CustomerFullName"] + " " + Customer.LastName + " " + Customer.FirstName + ", \n" +
                    (string)Application.Current.Resources["Hotel"] + " " + Hotel.Name + ", \n" +

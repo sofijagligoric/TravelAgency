@@ -59,8 +59,8 @@ namespace TravelAgency.Models
                 {
                     _hasRestaurant = value;
                     OnPropertyChanged(nameof(HasRestaurant));
-                    OnPropertyChanged(nameof(HasRestaurantBool)); 
-                    OnPropertyChanged(nameof(HasRestaurantString)); 
+                    OnPropertyChanged(nameof(HasRestaurantBool));
+                    OnPropertyChanged(nameof(HasRestaurantString));
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace TravelAgency.Models
                 {
                     HasRestaurant = (byte)(value ? 1 : 0);
                     OnPropertyChanged(nameof(HasRestaurantBool));
-                    OnPropertyChanged(nameof(HasRestaurantString)); 
+                    OnPropertyChanged(nameof(HasRestaurantString));
                 }
             }
         }
@@ -129,7 +129,7 @@ namespace TravelAgency.Models
             this.Address = other.Address;
             this.Email = other.Email;
             this.HasRestaurant = other.HasRestaurant;
-            this.Destination = new Destination(other.Destination); 
+            this.Destination = new Destination(other.Destination);
         }
 
         public Hotel()
@@ -159,10 +159,10 @@ namespace TravelAgency.Models
             return "\n" + (string)Application.Current.Resources["Name"] + " " + Name + ", \n" + (string)Application.Current.Resources["HotelId"] + " " + HotelId +
                 ", \n" + (string)Application.Current.Resources["RoomCount"] + " " + RoomCount + ", \n" + (string)Application.Current.Resources["Address"] + " " + Address +
                 ", \n" + (string)Application.Current.Resources["Email"] + " " + Email + ", \n" + (string)Application.Current.Resources["HasRestaurant"] + " " + HasRestaurantString +
-                  ", \n" + (string)Application.Current.Resources["DestinationNameHint"] + " " + Destination.DestinationName + ", " +  Destination.Country.CountryName;
+                  ", \n" + (string)Application.Current.Resources["DestinationNameHint"] + " " + Destination.DestinationName + ", " + Destination.Country.CountryName;
 
 
         }
 
     }
-        }
+}

@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace TravelAgency.Models
 {
- 
 
-public class Package : INotifyPropertyChanged
+
+    public class Package : INotifyPropertyChanged
     {
         private int _packageId;
         private string _startDate;
@@ -26,7 +26,7 @@ public class Package : INotifyPropertyChanged
             EndDate = other.EndDate;
             Price = other.Price;
             About = other.About;
-            Destination = other.Destination; 
+            Destination = other.Destination;
         }
 
         public int PackageId
@@ -153,14 +153,7 @@ public class Package : INotifyPropertyChanged
                   (string)Application.Current.Resources["Price"] + " " + Price + ", \n" +
                    (string)Application.Current.Resources["DestinationNameHint"] + " " + Destination.DestinationName + ", \n" +
                     (string)Application.Current.Resources["About"] + " " + About;
-            /*
-            return "Aranžman ID: " + PackageId +
-                   "\nDatum polaska: " + StartDate +
-                   ", Datum povratka: " + EndDate +
-                   "\nCijena: " + Price + " KM" +
-                   "\nDestinacija: " + Destination.DestinationName +
-                   "\nOpis: " + About;
-            */
+
         }
 
     }

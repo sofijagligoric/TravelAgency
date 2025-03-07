@@ -189,17 +189,7 @@
                                 Orientation="Horizontal">
                         <Label FontSize="15"
                                Content="{DynamicResource IsPayed}" />
-                        <!--
-                        <RadioButton Content="{DynamicResource Yes}"
-                                     GroupName="Options"
-                                     Click="IsPayedClick"
-                                     Margin="10,0,0,0" />
-
-                        <RadioButton Content="{DynamicResource No}"
-                                     GroupName="Options"
-                                     Click="IsPayedClick"
-                                     Margin="20,0,0,0" />
-                        -->
+                        
                         <RadioButton Content="{DynamicResource Yes}"
                                      GroupName="Options"
                                      IsChecked="{Binding IsOptionYes}"

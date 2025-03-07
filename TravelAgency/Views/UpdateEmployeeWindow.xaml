@@ -106,7 +106,6 @@
                                  Height="40"
                                  Width="300"
                                  FontSize="15"
-                                 IsReadOnly="True"
                                  Style="{DynamicResource FormTextBoxStyle}"
                                  HorizontalContentAlignment="Center"
                                  TextWrapping="Wrap">

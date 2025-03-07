@@ -232,19 +232,7 @@
                                      IsChecked="{Binding Hotel.HasRestaurantBool, Converter={StaticResource InverseBoolConverter}}"
                                      Margin="20,0,0,0" />
                     </StackPanel>
-                    
-                    <!--
-                    <StackPanel Grid.Row="7"
-                                Margin="0,0,0,5">
-                        <Label FontSize="15"
-                               Content="{DynamicResource HasRestaurant}" />
-                        <TextBox x:Name="HasRestaurant"
-                                 Width="300"
-                                 Text="{Binding Hotel.HasRestaurant,Mode=TwoWay}"
-                                 Style="{DynamicResource FormTextBoxStyle}" />
-                    </StackPanel>
-                    -->
-
+                 
                 </Grid>
             </ScrollViewer>
 

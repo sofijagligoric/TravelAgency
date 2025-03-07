@@ -58,7 +58,6 @@
 
             <DockPanel Grid.Row="2">
 
-                <!-- Docking the Image to the Left -->
                 <Image DockPanel.Dock="Left"
                        Source="/Images/Logo-transparent.png"
                        Width="400"
@@ -74,10 +73,6 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
-                        <!--
-           <RowDefinition Height="Auto"/>
-           <RowDefinition Height="Auto"/>
-           -->
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         
@@ -86,7 +81,6 @@
                     </Grid.ColumnDefinitions>
 
 
-                    <!-- Ostali sadržaj bez blur efekta -->
                     <TextBlock Text="{DynamicResource LoginWelcomeTitle}"
                                FontSize="30"
                                FontWeight="Bold"

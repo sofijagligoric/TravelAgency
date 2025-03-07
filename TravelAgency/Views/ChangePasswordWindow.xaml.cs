@@ -60,12 +60,12 @@ namespace TravelAgency.Views
                     }
                     else
                     {
-                        New = General.HashPassword(NewPassword2.Text);    
+                        New = General.HashPassword(NewPassword2.Text);
                         DialogResult = true;
                         Close();
                     }
                 }
-                
+
             }
 
         }

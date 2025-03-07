@@ -27,19 +27,7 @@ namespace TravelAgency.Views
     {
         public Hotel Hotel { get; set; }
 
-        /*
-        private bool _isOptionYes;
 
-        public bool IsOptionYes
-        {
-            get => _isOptionYes;
-            set
-            {
-                _isOptionYes = value;
-                OnPropertyChanged(nameof(IsOptionYes));
-            }
-        }
-        */
         public UpdateHotelWindow(Hotel hotel1)
         {
             InitializeComponent();
@@ -77,7 +65,6 @@ namespace TravelAgency.Views
                     }
                     else
                     {
-                        // Hotel = new Hotel(int.Parse(HotelId.Text), int.Parse(RoomCount.Text), Name.Text, Address.Text, Email.Text, (byte)(HasRestaurant.Text.Equals("yes") ? 1 : 0), dest);
                         Hotel.Name = Name.Text;
                         Hotel.Address = Address.Text;
                         Hotel.Email = Email.Text;

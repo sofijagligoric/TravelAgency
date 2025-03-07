@@ -65,67 +65,9 @@ namespace TravelAgency.Models
 
         public override string ToString()
         {
-            return (string)Application.Current.Resources["PackageId"] + " " + Package + " - " +(string)Application.Current.Resources["HotelId"] + " " + Hotel;
-        }
-        /*
-        private int _packageId;
-        private Hotel _hotelId;
-
-        public int int
-        {
-            get => _packageId;
-            set
-            {
-                if (_packageId != value)
-                {
-                    _packageId = value;
-                    OnPropertyChanged(nameof(int));
-                }
-            }
+            return (string)Application.Current.Resources["PackageId"] + " " + Package + " - " + (string)Application.Current.Resources["HotelId"] + " " + Hotel;
         }
 
-        public Hotel Hotel
-        {
-            get => _hotelId;
-            set
-            {
-                if (_hotelId != value)
-                {
-                    _hotelId = value;
-                    OnPropertyChanged(nameof(Hotel));
-                }
-            }
-        }
-
-        public intOffersHotel()
-        {
-            int = new int();
-            Hotel = new Hotel();
-        }
-
-        public intOffersHotel(int package, Hotel hotel)
-        {
-            int = package;
-            Hotel = hotel;
-        }
-
-        public override bool Equals(object obj)
-        {
-            return obj is intOffersHotel other &&
-                   EqualityComparer<int>.Default.Equals(int, other.int) &&
-                   EqualityComparer<Hotel>.Default.Equals(Hotel, other.Hotel);
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(int, Hotel);
-        }
-
-        public override string ToString()
-        {
-            return $"{int.intId} - {Hotel.Name}";
-        }
-        */
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)

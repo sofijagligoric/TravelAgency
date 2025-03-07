@@ -27,7 +27,7 @@ namespace TravelAgency.Views
         public Package Package { get; set; }
         public Reservation Reservation { get; set; }
         public List<Hotel> Hotels { get; set; }
-       
+
 
         private bool _isOptionYes;
 
@@ -47,7 +47,6 @@ namespace TravelAgency.Views
             DataContext = this;
             Package = new Package(package);
             Reservation = new Reservation();
-            //   Hotels = PackageOffersHotelDataAccess.GetHotelsByPackage(Package.PackageId);
             Hotels = PackageOffersHotelDataAccess.GetHotelsByPackage(Package.PackageId)
                 .Where(hotel => hotel.RoomCount > 0)
                 .ToList();
@@ -76,9 +75,9 @@ namespace TravelAgency.Views
                 {
                     if (CustomerDataAccess.AddCustomer(pom, dialog.Customer.PhoneNumber))
                     {
-                        
+
                         string message = (string)Application.Current.Resources["SuccessfullyAdded"];
-                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message + " " + pom);
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message);
                         dialog3.ShowDialog();
                     }
                 }
@@ -165,6 +164,6 @@ namespace TravelAgency.Views
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-       
+
     }
 }

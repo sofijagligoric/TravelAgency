@@ -42,17 +42,16 @@ namespace TravelAgency.DataAccess
                         cmd.Parameters["@ReservationPayed"].Direction = ParameterDirection.Input;
                         cmd.Parameters.AddWithValue("@rEmployeeJMB", reservation.EmployeeJMB);
                         cmd.Parameters["@rEmployeeJMB"].Direction = ParameterDirection.Input;
-                   
+
                         cmd.Parameters.Add("@successful", MySqlDbType.Bit).Direction = ParameterDirection.Output;
                         cmd.Parameters.Add("@message", MySqlDbType.VarChar, 255).Direction = ParameterDirection.Output;
                         cmd.Parameters.Add("@ResId", MySqlDbType.Int32).Direction = ParameterDirection.Output;
 
                         cmd.ExecuteNonQuery();
-                        // reservation.ReservationId = Convert.ToInt32(cmd.Parameters["@ResId"].Value);
                         reservation.ReservationId = (int)cmd.LastInsertedId;
                         successful = Convert.ToBoolean(cmd.Parameters["@successful"].Value);
                         string message = cmd.Parameters["@message"].Value?.ToString() ?? string.Empty;
-                        
+
                         /*
                         if (successful)
                         {
@@ -69,7 +68,6 @@ namespace TravelAgency.DataAccess
             catch (MySqlException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
-              //  MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }
@@ -110,7 +108,6 @@ namespace TravelAgency.DataAccess
             catch (MySqlException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
-                //  MessageBox.Show("Error occurred: " + e.Message);
             }
             return successful;
         }
@@ -143,7 +140,6 @@ namespace TravelAgency.DataAccess
             catch (MySqlException e)
             {
                 Console.WriteLine($"Error: {e.Message}");
-               // MessageBox.Show("Error occurred: " + e.Message);
             }
             return retVal;
         }
@@ -229,7 +225,6 @@ namespace TravelAgency.DataAccess
             }
             catch (Exception ex)
             {
-               // MessageBox.Show(ex.Message);
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
             }
             return packages;
@@ -278,12 +273,12 @@ namespace TravelAgency.DataAccess
                                           INNER JOIN person o ON p.JMB=o.JMB
                                           WHERE(o.FirstName LIKE @firstName AND o.LastName LIKE @lastName)
                                              OR(o.FirstName LIKE @lastName AND o.LastName LIKE @firstName)";
-                           
+
 
                             cmd.Parameters.AddWithValue("@firstName", firstName + "%");
                             cmd.Parameters.AddWithValue("@lastName", lastName + "%");
                         }
-                       
+
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
@@ -345,11 +340,10 @@ namespace TravelAgency.DataAccess
             }
             catch (Exception ex)
             {
-             //   MessageBox.Show(ex.Message);
                 Console.WriteLine($"An error occurred while fetching all packets: {ex.Message}");
             }
             return packages;
 
         }
-        }
     }
+}

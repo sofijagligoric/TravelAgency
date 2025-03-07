@@ -57,6 +57,7 @@ namespace TravelAgency.Views
 
                 else
                 {
+                    Customer.Jmb = JMB.Text;
                     Customer.FirstName = FirstName.Text;
                     Customer.LastName = LastName.Text;
                     Customer.Address = Address.Text;

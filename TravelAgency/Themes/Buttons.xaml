@@ -294,7 +294,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-       
+
         <Setter Property="FontWeight"
                 Value="Medium" />
         <Setter Property="FontSize"

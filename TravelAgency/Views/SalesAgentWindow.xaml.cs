@@ -200,7 +200,7 @@ namespace TravelAgency.Views
             }
 
             Application.Current.Resources.MergedDictionaries.Add(resourceDictionary);
-           
+
         }
     }
 }

@@ -201,34 +201,7 @@
                                  TextWrapping="Wrap" 
                                  IsReadOnly="True"/>
 
-                        <!--
-                        <StackPanel Orientation="Horizontal"
-                                    Margin="0,0,0,5"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom">
-
-                            <Label FontSize="15"
-                                   Content="{DynamicResource DestinationNameHint}"
-                                   Margin="0,0,38,0" 
-                                   HorizontalAlignment="Right"/>
-                            <TextBlock FontSize="15"
-                                       VerticalAlignment="Center"
-                                       Foreground="{DynamicResource secondaryBackColor2Brush}">
-                                 <Hyperlink Click="Hyperlink_Click">
-    <Run Text="{DynamicResource CreateDestination}" />
-</Hyperlink>
-
-                            </TextBlock>
-                        </StackPanel>
-                        <ComboBox x:Name="DestinationComboBox"
-                                  ItemsSource="{Binding Destinations}"
-                                  DisplayMemberPath="DestinationName"
-                                  HorizontalAlignment="Stretch"
-                                  SelectedItem="{Binding SelectedDestination, Mode=TwoWay}"
-                                  Height="40" 
-                                  FontSize="15"
-                                  HorizontalContentAlignment="Center"/>
-                        -->
+                       
                     </StackPanel>
 
                     <StackPanel Grid.Row="5"

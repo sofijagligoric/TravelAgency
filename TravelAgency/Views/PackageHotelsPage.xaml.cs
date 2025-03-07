@@ -26,7 +26,6 @@ namespace TravelAgency.Views
     {
         private PackageHotelsWindow _mainWindow;
         public Package Package { get; set; }
-      //  public List<Hotel> HotelsList { get; set; }
         public ObservableCollection<Hotel> Hotels { get; set; }
 
         private Hotel _selectedHotel;
@@ -59,7 +58,6 @@ namespace TravelAgency.Views
                 MessageWithoutOptionDialog dialog = new MessageWithoutOptionDialog(message);
                 dialog.ShowDialog();
 
-                //  return;
             }
 
             else
@@ -73,7 +71,6 @@ namespace TravelAgency.Views
                 {
                     if (PackageOffersHotelDataAccess.DeletePackageOffersHotel(Package.PackageId, SelectedHotel.HotelId))
                     {
-                      //  HotelsList.Remove(SelectedHotel);
                         Hotels.Remove(SelectedHotel);
                         OnPropertyChanged(nameof(Hotels));
                         string message = (string)Application.Current.Resources["SuccessfulDelete"];

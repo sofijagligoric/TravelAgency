@@ -24,7 +24,7 @@ namespace TravelAgency.Models
                 if (_username != value)
                 {
                     _username = value;
-                    OnPropertyChanged(nameof(Username)); 
+                    OnPropertyChanged(nameof(Username));
                 }
             }
         }
@@ -44,8 +44,9 @@ namespace TravelAgency.Models
 
         public string RoleType
         {
-            get {
-                 return _roleType;
+            get
+            {
+                return _roleType;
             }
             set
             {
@@ -129,14 +130,14 @@ namespace TravelAgency.Models
         public Employee(Employee other)
                 : base(other.FirstName, other.LastName, other.Jmb, other.Address, other.Email,
                 other.DateOfBirth, other.PhoneNumber)
-            {
-                _username = other.Username;
-                _password = other.Password;
-                _roleType = other.RoleType;
-                _employmentDate = other.EmploymentDate;
+        {
+            _username = other.Username;
+            _password = other.Password;
+            _roleType = other.RoleType;
+            _employmentDate = other.EmploymentDate;
             _salary = other.Salary;
-                _theme = other.Theme;
-            }
+            _theme = other.Theme;
+        }
 
         public Employee()
         {
@@ -150,9 +151,8 @@ namespace TravelAgency.Models
 
         public override string ToString()
         {
-            return base.ToString() + ", \n" + (string)Application.Current.Resources["EmployeeUsername"] + " " + Username + ", \n" + (string)Application.Current.Resources["Role"] + " " + 
+            return base.ToString() + ", \n" + (string)Application.Current.Resources["EmployeeUsername"] + " " + Username + ", \n" + (string)Application.Current.Resources["Role"] + " " +
                 RoleType + ", \n" + (string)Application.Current.Resources["Salary"] + " " + Salary + ", \n" + (string)Application.Current.Resources["EmploymentDate"] + " " + EmploymentDate;
-            // return base.ToString() + $"Korisnicko ime: {Username}\nuloga: {RoleType}\nplata: {Salary}\ndatum zaposlenja: {EmploymentDate}";
         }
     }
 }
