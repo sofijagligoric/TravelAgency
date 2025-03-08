@@ -236,7 +236,7 @@
                                 <Button x:Name="btnMinimise"
                                         Style="{DynamicResource controlButton}"
                                         Grid.Column="1"
-                                        Tag="{DynamicResource SecondaryColor}"
+                                        Tag="{DynamicResource SecondaryBrush}"
                                         Click="btnMinimise_Click">
                                     <fa:IconImage Icon="WindowMinimize"
                                                   Style="{DynamicResource controlButtonIcon}" />
@@ -245,7 +245,7 @@
                                 <Button x:Name="btnMaximise"
                                         Style="{DynamicResource controlButton}"
                                         Grid.Column="2"
-                                        Tag="{DynamicResource SecondaryColor}"
+                                        Tag="{DynamicResource SecondaryBrush}"
                                         Click="btnMaximise_Click">
                                     <fa:IconImage Icon="WindowMaximize"
                                                   Style="{DynamicResource controlButtonIcon}" />
@@ -254,7 +254,7 @@
                                 <Button x:Name="btnClose"
                                         Style="{DynamicResource controlButton}"
                                         Grid.Column="3"
-                                        Tag="{DynamicResource SecondaryColor}"
+                                        Tag="{DynamicResource SecondaryBrush}"
                                         Click="btnClose_Click">
                                     <fa:IconImage Icon="Xmark"
                                                   Style="{DynamicResource controlButtonIcon}" />
