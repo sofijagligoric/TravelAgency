@@ -78,7 +78,7 @@
     <System:String x:Key="Country">Country:</System:String>
     <System:String x:Key="About">About:</System:String>
     <System:String x:Key="EmptyFieldRegex">Field cannot be empty!</System:String>
-    <System:String x:Key="InvalidInput">Invalid input format.</System:String>
+    <System:String x:Key="InvalidInput">Incorrect input format.</System:String>
 
     <System:String x:Key="FirstName">First name:</System:String>
     <System:String x:Key="LastName">Last name:</System:String>
@@ -133,5 +133,6 @@
     <System:String x:Key="CreateHotel">Add new hotel</System:String>
     <System:String x:Key="HotelUnavailable">No hotels are currently available for this package. Please try again later.</System:String>
     <System:String x:Key="NoRooms">No rooms are currently available in this package's hotels. Please try again later.</System:String>
+    <System:String x:Key="DateNotValid">Date not valid!</System:String>
 
 </ResourceDictionary>

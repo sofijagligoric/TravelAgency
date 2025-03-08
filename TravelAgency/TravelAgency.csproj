@@ -162,6 +162,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Util\BoolToVisibilityConverter.cs" />
+    <Compile Include="Util\DateValidationRule.cs" />
     <Compile Include="Util\EmptyToVisibilityConverter.cs" />
     <Compile Include="Util\General.cs" />
     <Compile Include="Util\RegexValidation.cs" />
