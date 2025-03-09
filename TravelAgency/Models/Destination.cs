@@ -17,6 +17,7 @@ namespace TravelAgency.Models
         private string _localLanguage;
         private Country _country;
 
+
         public int PostCode
         {
             get => _postCode;
@@ -125,7 +126,7 @@ namespace TravelAgency.Models
         {
             return obj is Destination destination &&
                    PostCode == destination.PostCode &&
-                   DestinationName == destination.DestinationName;
+                   DestinationName.Equals(destination.DestinationName);
         }
 
         public override int GetHashCode()

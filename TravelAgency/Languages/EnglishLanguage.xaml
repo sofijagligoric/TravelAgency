@@ -50,7 +50,7 @@
     <System:String x:Key="SuccessfulAdd">Selected item added.</System:String>
     <System:String x:Key="Hotel">Hotel:</System:String>
     <System:String x:Key="EmptyField">All fields must be filled.</System:String>
-    <System:String x:Key="SuccessfullyAdded">Successfully added: </System:String>
+    <System:String x:Key="SuccessfullyAdded">Successfully added. </System:String>
     <System:String x:Key="Cancel">Cancel</System:String>
     <System:String x:Key="UnknownEntry">Unknown entry:</System:String>
     <System:String x:Key="CustomerName">Customer's firstname and/or lastname </System:String>

@@ -163,8 +163,10 @@
     </ApplicationDefinition>
     <Compile Include="Util\BoolToVisibilityConverter.cs" />
     <Compile Include="Util\DateValidationRule.cs" />
+    <Compile Include="Util\DecimalConverter.cs" />
     <Compile Include="Util\EmptyToVisibilityConverter.cs" />
     <Compile Include="Util\General.cs" />
+    <Compile Include="Util\IntConverter.cs" />
     <Compile Include="Util\RegexValidation.cs" />
     <Compile Include="Util\YesNoConverter .cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />

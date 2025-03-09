@@ -17,6 +17,10 @@
         AllowsTransparency="True"
         MouseDown="Window_MouseDown"
         ResizeMode="NoResize">
+
+    <Window.Resources>
+        <util:IntConverter x:Key="IntConverter" />
+    </Window.Resources>
     <Border BorderThickness="1"
             CornerRadius="0,0,10,10">
         <Border.BorderBrush>
@@ -138,7 +142,8 @@
 
                             <TextBox.Text>
                                 <Binding Path="AmountPayed"
-                                         UpdateSourceTrigger="PropertyChanged">
+                                         UpdateSourceTrigger="PropertyChanged"
+                                         Converter="{StaticResource IntConverter}">
                                     <Binding.ValidationRules>
                                         <util:RegexValidation Pattern="^(\d+)?$"
                                                               ValidatesOnTargetUpdated="True" />

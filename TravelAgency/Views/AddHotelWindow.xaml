@@ -28,6 +28,7 @@
                               Pattern="^([A-Za-z\s]+)?$" />
         <util:RegexValidation x:Key="EmailValidation"
                                   Pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
+        <util:IntConverter x:Key="IntConverter" />
     </Window.Resources>
 
     <Border BorderThickness="1"
@@ -170,7 +171,8 @@
 
                             <TextBox.Text>
                                 <Binding Path="Hotel.RoomCount"
-                                         UpdateSourceTrigger="PropertyChanged">
+                                         UpdateSourceTrigger="PropertyChanged"
+                                         Converter="{StaticResource IntConverter}">
                                     <Binding.ValidationRules>
                                         <util:RegexValidation Pattern="^(\d+)?$"
                                                               ValidatesOnTargetUpdated="True" />
@@ -217,7 +219,8 @@
 
                             <TextBox.Text>
                                 <Binding Path="Hotel.Destination.PostCode"
-                                         UpdateSourceTrigger="PropertyChanged">
+                                         UpdateSourceTrigger="PropertyChanged"
+                                         Converter="{StaticResource IntConverter}">
                                     <Binding.ValidationRules>
                                         <util:RegexValidation Pattern="^(\d+)?$"
                                                               ValidatesOnTargetUpdated="True" />

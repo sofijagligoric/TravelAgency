@@ -20,6 +20,7 @@
 
     <Window.Resources>
         <local2:InverseBoolConverter x:Key="InverseBoolConverter" />
+        <util:IntConverter x:Key="IntConverter" />
     </Window.Resources>
     <Border BorderThickness="1"
             CornerRadius="0,0,10,10">
@@ -163,7 +164,8 @@
 
                             <TextBox.Text>
                                 <Binding Path="Hotel.RoomCount"
-                                         UpdateSourceTrigger="PropertyChanged">
+                                         UpdateSourceTrigger="PropertyChanged"
+                                         Converter="{StaticResource IntConverter}">
                                     <Binding.ValidationRules>
                                         <util:RegexValidation Pattern="^(\d+)?$"
                                                               ValidatesOnTargetUpdated="True" />
@@ -204,7 +206,8 @@
 
                             <TextBox.Text>
                                 <Binding Path="Hotel.Destination.PostCode"
-                                         UpdateSourceTrigger="PropertyChanged">
+                                         UpdateSourceTrigger="PropertyChanged"
+                                         Converter="{StaticResource IntConverter}">
                                     <Binding.ValidationRules>
                                         <util:RegexValidation Pattern="^(\d+)?$"
                                                               ValidatesOnTargetUpdated="True" />

@@ -23,6 +23,8 @@ namespace TravelAgency.Util
                 string emptyFieldMessage = (string)Application.Current.Resources["EmptyFieldRegex"];
                 return new ValidationResult(false, emptyFieldMessage);
                 */
+               return new ValidationResult(true, null);
+                //return null;
             }
 
 

@@ -28,6 +28,7 @@
                               Pattern="^([A-Za-z\s]+)?$" />
         <util:RegexValidation x:Key="EmailValidation"
                               Pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
+        <util:DecimalConverter x:Key="DecimalConverter" />
     </Window.Resources>
 
     <Border BorderThickness="1"
@@ -285,7 +286,8 @@
 
                             <TextBox.Text>
                                 <Binding Path="Employee.Salary"
-                                         UpdateSourceTrigger="PropertyChanged">
+                                         UpdateSourceTrigger="PropertyChanged"
+                                         Converter="{StaticResource DecimalConverter}">
                                     <Binding.ValidationRules>
                                         <util:RegexValidation Pattern="^\d{1,13}([.,]\d{1,2})?$"
                                                               ValidatesOnTargetUpdated="True" />

@@ -20,8 +20,13 @@ namespace TravelAgency.Views
     /// <summary>
     /// Interaction logic for AddDestinationWindow.xaml
     /// </summary>
+    /// 
+
+
     public partial class AddDestinationWindow : Window
     {
+      
+
         public AddDestinationWindow()
         {
             InitializeComponent();
@@ -62,7 +67,7 @@ namespace TravelAgency.Views
                     }
 
                     Destination = new Destination(int.Parse(Postcode.Text), DestinationName.Text, About.Text, int.Parse(Distance.Text), LocalLanguage.Text, country);
-                    DialogResult = true;
+                    DialogResult = true; 
                     Close();
 
                 }
