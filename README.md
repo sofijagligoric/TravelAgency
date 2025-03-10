@@ -40,5 +40,5 @@ Sadržaj:
 ## Prijava na aplikaciju
 
 Za pristup funkcionalnostima aplikacije neophodno je da korisnik ima korisnički nalog i da se na njega prijavi.
-<img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/General/Login.png?raw=true" alt="LoginWindow" width="350">
+<img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/General/Login.png?raw=true" alt="LoginWindow" width="350">  <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/General/LoginUnsuccessful.png?raw=true" alt="LoginWindow" width="350">
 
