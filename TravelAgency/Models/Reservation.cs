@@ -206,6 +206,15 @@ namespace TravelAgency.Models
                    (string)Application.Current.Resources["Hotel"] + " " + Hotel.Name + ", \n" +
                     (string)Application.Current.Resources["Price"] + " " + Price + ", \n" + (string)Application.Current.Resources["IsPayed"] + " " + AllPayedString;
         }
+
+        public string ToStringWithoutId()
+        {
+            return "\n" +
+                 (string)Application.Current.Resources["PackageId"] + " " + Package.PackageId + ", \n" +
+                  (string)Application.Current.Resources["CustomerFullName"] + " " + Customer.LastName + " " + Customer.FirstName + ", \n" +
+                   (string)Application.Current.Resources["Hotel"] + " " + Hotel.Name + ", \n" +
+                    (string)Application.Current.Resources["Price"] + " " + Price + ", \n" + (string)Application.Current.Resources["IsPayed"] + " " + AllPayedString;
+        }
     }
 
 }

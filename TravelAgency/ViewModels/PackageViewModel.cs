@@ -94,7 +94,7 @@ namespace TravelAgency.ViewModels
                         if ((bool)dialogResult)
                         {
                             Reservation pom = dialog.Reservation;
-                            string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
+                            string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom.ToStringWithoutId() + "?";
                             MessageDialog dialog2 = new MessageDialog(message2);
                             bool? dialogResult2 = dialog2.ShowDialog();
                             if ((bool)dialogResult2)
