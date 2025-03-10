@@ -112,6 +112,12 @@ namespace TravelAgency.ViewModels
                                     dialog3.ShowDialog();
                                 }
                             }
+                            else
+                            {
+                                string message3 = (string)Application.Current.Resources["ActionCanceled"];
+                                MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                                dialog3.ShowDialog();
+                            }
 
                         }
                     }
@@ -136,7 +142,7 @@ namespace TravelAgency.ViewModels
             if ((bool)dialogResult)
             {
                 Package pom = dialog.Package;
-                string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom + "?";
+                string message2 = (string)Application.Current.Resources["ConfirmAdd"] + ": " + pom.ToStringWithoutid() + "?";
                 MessageDialog dialog2 = new MessageDialog(message2);
                 bool? dialogResult2 = dialog2.ShowDialog();
                 if ((bool)dialogResult2)
@@ -152,7 +158,7 @@ namespace TravelAgency.ViewModels
                 }
                 else
                 {
-                    string message3 = (string)Application.Current.Resources["FailedAdd"];
+                    string message3 = (string)Application.Current.Resources["ActionCanceled"];
                     MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
                     dialog3.ShowDialog();
                 }
@@ -232,6 +238,12 @@ namespace TravelAgency.ViewModels
                     dialog.ShowDialog();
                 }
             }
+            else
+            {
+                string message3 = (string)Application.Current.Resources["ActionCanceled"];
+                MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                dialog3.ShowDialog();
+            }
         }
 
 
@@ -288,6 +300,12 @@ namespace TravelAgency.ViewModels
                             MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
                             dialog3.ShowDialog();
                         }
+                    }
+                    else
+                    {
+                        string message3 = (string)Application.Current.Resources["ActionCanceled"];
+                        MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                        dialog3.ShowDialog();
                     }
 
                 }

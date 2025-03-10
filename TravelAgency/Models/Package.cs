@@ -156,5 +156,15 @@ namespace TravelAgency.Models
 
         }
 
+        public string ToStringWithoutid()
+        {
+            return "\n" +
+                 (string)Application.Current.Resources["StartDate"] + " " + StartDate + ", \n" +
+                 (string)Application.Current.Resources["EndDate"] + " " + EndDate + ", \n" +
+                  (string)Application.Current.Resources["Price"] + " " + Price + ", \n" +
+                   (string)Application.Current.Resources["DestinationNameHint"] + " " + Destination.DestinationName + ", \n" +
+                    (string)Application.Current.Resources["About"] + " " + About;
+
+        }
     }
 }

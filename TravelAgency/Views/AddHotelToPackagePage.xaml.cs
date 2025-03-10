@@ -75,6 +75,12 @@ namespace TravelAgency.Views
                         dialog3.ShowDialog();
                     }
                 }
+                else
+                {
+                    string message3 = (string)Application.Current.Resources["ActionCanceled"];
+                    MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                    dialog3.ShowDialog();
+                }
                 _mainWindow.MainFrame.Content = new PackageHotelsPage(_mainWindow);
             }
         }
@@ -115,6 +121,12 @@ namespace TravelAgency.Views
                         MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
                         dialog3.ShowDialog();
                     }
+                }
+                else
+                {
+                    string message3 = (string)Application.Current.Resources["ActionCanceled"];
+                    MessageWithoutOptionDialog dialog3 = new MessageWithoutOptionDialog(message3);
+                    dialog3.ShowDialog();
                 }
 
             }
