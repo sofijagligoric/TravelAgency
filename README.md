@@ -170,25 +170,25 @@ Administrator je tip korisničkog naloga koji ima ovlaštenje da upravlja nalozi
       <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminHotels/ConfirmDeleteHotel.png?raw=true" alt="ConfirmDeleteHotel" width="  300">
 
    - ### Rad sa aranžmanima
-   Svaki aranžman se odnosi na jednu destinaciju i ima određeno vrijeme trajanja definisano datumom početka i kraja. Za istu destinaciju moguće je kreirati više aranžmana. Filtriranje aranžmana vrši se navođenjem naziva destinacije u polje za pretragu.
-   <p>
+      Svaki aranžman se odnosi na jednu destinaciju i ima određeno vrijeme trajanja definisano datumom početka i kraja. Za istu destinaciju moguće je kreirati više aranžmana. Filtriranje aranžmana vrši se navođenjem naziva destinacije u polje za pretragu.
+      <p>
       <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/AdminPackages.png?raw=true" alt="AdminPackages" ><img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/AminPackagesSearch.png?raw=true" alt="AdminPackagesSearch" width="700">
       </p>
 
-   Kao i dosada, proces kreiranja započinje se klikom na dugme **Dodaj**, a zatim se popune polja. U sklopu prozora za kreiranje ponuđena je mogućnost dodavanja nove destinacije, ukoliko ona nije ranije unesena u bazu. 
-
- <p>
+      Kao i dosada, proces kreiranja započinje se klikom na dugme **Dodaj**, a zatim se popune polja. U sklopu prozora za kreiranje ponuđena je mogućnost dodavanja nove destinacije, ukoliko ona nije ranije unesena u bazu.
+     <p>
       <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/AddPackage.png?raw=true" alt="AddPackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmAddPackage.png?raw=true" alt="ConfirmAddPackage" width=" 300"> 
    </p>
-      
+   
    Svaki aranžman u ponudi može imati više hotela iz destinacije u kojoj se nalazi, međutim njih je potrebno naknadno dodati. Za upravljanje hotelima u sklopu aranžmana potrebno je izabrati aranžman u tabeli i kliknuti na dugme **Hoteli**. Nakon toga ponuđena je lista svih hotela koji se već nalaze u sklopu aranžmana (ukoliko nema hotela biće ispisana poruka), te mogućnost da dodamo novi hotel ili da obrišemo postojeći. Za brisanje potrebno je selektovati hotel u listi i kliknuti na dugme **Obriši**, a za dodavanje novog na dugme **Dodaj**. U sklopu prozora za dodavanje nalazi se padajući meni sa svim hotelima u destinaciji za koju je aranžman, bez onih koji se već nalaze u ponudi tog aranžmana. Pored ponuđenih hotela administrator ima mogućnost da kreira u bazi unos za novi hotel koji već nije definisan.
+   
    <p>
       <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/HotelsInPackage.png?raw=true" alt="HotelsInPackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/HotelInPackageExpanded.png?raw=true" alt="NoHotelsInPackage" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/NoHotelsInPackage.png?raw=true" alt="NoHotelsInPackage" width=" 300"> 
-      </p>
+         </p>
       <p>
         <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/AddHotelToPacage.png?raw=true" alt="AddHotelToPackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmAddHotelToPackage.png?raw=true" alt="ConfirmAddhotelToPackage" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/HotelAddedToPackage.png?raw=true" alt="HotelAddedToPackage" width=" 300"> 
       </p>
-
+      
    Za ažuriranje i brisanje aranžmana prvo ga je potrebno selektovati u tabeli, a zatim kliknuti na **Uredi** i **Obriši** respektivno.
    <p>
         <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/UpdatePackage1.png?raw=true" alt="UpdatePackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/UpdatePackage2.png?raw=true" alt="UpdatePackage2" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmUpdatePackage.png?raw=true" alt="ConfirmUpdatePackage" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmDeletePackage.png?raw=true" alt="ConfirmUpdatePackage" width=" 300"> 
