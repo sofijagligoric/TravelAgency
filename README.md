@@ -33,7 +33,8 @@ Sadržaj:
      - [Rad sa pojedinačnim uplatama](#rad-sa-pojedinačnim-uplatama)
      - [Rad sa ukupnim uplatama](#rad-sa-ukupnim-uplatama)
 3. [Korištene tehnologije](#korištene-tehnologije)  
-4. [Kontakt](#kontakt)
+4. [Dodatno](#dodatno)
+   - [Kredencijali za pristup](#kredencijali-za-pristup) 
 
 ---
 
@@ -73,7 +74,7 @@ Na dnu navigacionog menija postavljena je mogućnost promjene lozinke. Klikom na
 </p>
 
 ### Povratne informacije
-Sve aktivnosti podržane u aplikaciji imaju povratnu informaciju, kao što su potvrda o dodavanju, ažuriranju i brisanju stavki, kao i otkazivanju neke ranije započete radnje. U formama gdje je neophodno da određeno polje bude popunjeno postoji provjera da li je uslov ispunjen i u slučaju da nije aktivnost ne može biti nastavljena. Polja za unos imaju dodatnu provjeru da li je uneseni tekst u skladu sa očekivanim formatom, u suprotnom korisnik dobija obavještenje da nije. Aktivnosti koje se odnose na tačno određenu stavku u list/tabeli, npr. ažuriranje ili brisanje, očekuju selekciju željene stavke. Navedena obavještenja se kreiraju u obliku zasebnog prozora, prisutna su za svaku korisničku aktivnost i prikazana su na slikama ispod:
+Sve aktivnosti podržane u aplikaciji imaju povratnu informaciju, kao što su potvrda o dodavanju, ažuriranju i brisanju stavki, kao i otkazivanju neke ranije započete radnje. U formama gdje je neophodno da određeno polje bude popunjeno postoji provjera da li je uslov ispunjen i u slučaju da nije aktivnost ne može biti nastavljena. Polja za unos imaju dodatnu provjeru da li je uneseni tekst u skladu sa očekivanim formatom, u suprotnom korisnik dobija obavještenje da nije. Aktivnosti koje se odnose na tačno određenu stavku u listi/tabeli, npr. ažuriranje ili brisanje, očekuju selekciju željene stavke. Navedena obavještenja se kreiraju u obliku zasebnog prozora, prisutna su za svaku korisničku aktivnost i prikazana su na slikama ispod:
 
 
 
@@ -114,7 +115,7 @@ Administrator je tip korisničkog naloga koji ima ovlaštenje da upravlja nalozi
         <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/Employees/Employees.png?raw=true" alt="Employees"> <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/Employees/EmployeesSearch.png?raw=true" alt="EmployeesSearch" width="700" > 
       </p>
 
-      Klikom na dugme **Dodaj** otvara se forma za unos podataka o novom radniku. Svaki radnik ima jedinstven JMB. Za nastavak neophodno je kliknuti na dugme "OK", nakokn čega se otvaa prozor za potvrdu dodavanja ili odustajanje. Shodno izboru korisnika prikazaće se poruka o tome da li je dodavanje bilo uspješno ili nije, ili u slučaju odustajanja da je aktivnost otkazana.
+      Klikom na dugme **Dodaj** otvara se forma za unos podataka o novom radniku. Svaki radnik ima jedinstven JMB. Za nastavak neophodno je kliknuti na dugme "OK", nakokn čega se otvara prozor za potvrdu dodavanja ili odustajanje. Shodno izboru korisnika prikazaće se poruka o tome da li je dodavanje bilo uspješno ili nije, ili u slučaju odustajanja da je aktivnost otkazana.
      <p >
         <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/Employees/AddEmployee1.png?raw=true" alt="AddEmployee1" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/Employees/AddEmployee2.png?raw=true" alt="AddEmployee2" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/Employees/ConfirmAddEmployee.png?raw=true" alt="ConfirmAddEmployee" width="  300">
       </p>
@@ -145,13 +146,12 @@ Administrator je tip korisničkog naloga koji ima ovlaštenje da upravlja nalozi
       <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminDestinations/ConfirmDestinationDelete.png?raw=true" alt="DeleteEmployee" width="  300">
       
    - ### Rad sa hotelima
-
      Informacije o hotelima su prikazane u tabeli. Moguće ih je pretražiti po imenu destinacije u kojoj se nalaze.
         <p >
         <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminHotels/AdminHotels.png?raw=true" alt="Hotels"><img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminHotels/AdminHotelsSearch.png?raw=true" alt="HotelsSearch" width="700"> 
       </p>
 
-     Hotel se može dodati u neku od postojećih destinacija. Ako uneseni naziv destinacije nije pornđen u bazi korisniku će biti pružena mogućnost da kreira novu destinaciju ukoliko želi ili da promijeni unos.
+     Hotel se može dodati u neku od postojećih destinacija. Ako uneseni naziv destinacije nije pronađen u bazi korisniku će biti pružena mogućnost da kreira novu destinaciju ukoliko želi ili da promijeni unos.
 
      <p >
         <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminHotels/AddHotel1.png?raw=true" alt="Hotels" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminHotels/AddHotel2.png?raw=true" alt="HotelsSearch" width=" 300">
@@ -174,25 +174,26 @@ Administrator je tip korisničkog naloga koji ima ovlaštenje da upravlja nalozi
       <p>
       <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/AdminPackages.png?raw=true" alt="AdminPackages" ><img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/AminPackagesSearch.png?raw=true" alt="AdminPackagesSearch" width="700">
       </p>
-
-      Kao i dosada, proces kreiranja započinje se klikom na dugme **Dodaj**, a zatim se popune polja. U sklopu prozora za kreiranje ponuđena je mogućnost dodavanja nove destinacije, ukoliko ona nije ranije unesena u bazu.
-     <p>
-      <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/AddPackage.png?raw=true" alt="AddPackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmAddPackage.png?raw=true" alt="ConfirmAddPackage" width=" 300"> 
-   </p>
-   
-   Svaki aranžman u ponudi može imati više hotela iz destinacije u kojoj se nalazi, međutim njih je potrebno naknadno dodati. Za upravljanje hotelima u sklopu aranžmana potrebno je izabrati aranžman u tabeli i kliknuti na dugme **Hoteli**. Nakon toga ponuđena je lista svih hotela koji se već nalaze u sklopu aranžmana (ukoliko nema hotela biće ispisana poruka), te mogućnost da dodamo novi hotel ili da obrišemo postojeći. Za brisanje potrebno je selektovati hotel u listi i kliknuti na dugme **Obriši**, a za dodavanje novog na dugme **Dodaj**. U sklopu prozora za dodavanje nalazi se padajući meni sa svim hotelima u destinaciji za koju je aranžman, bez onih koji se već nalaze u ponudi tog aranžmana. Pored ponuđenih hotela administrator ima mogućnost da kreira u bazi unos za novi hotel koji već nije definisan.
-   
-   <p>
-      <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/HotelsInPackage.png?raw=true" alt="HotelsInPackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/HotelInPackageExpanded.png?raw=true" alt="NoHotelsInPackage" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/NoHotelsInPackage.png?raw=true" alt="NoHotelsInPackage" width=" 300"> 
-         </p>
-      <p>
-        <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/AddHotelToPacage.png?raw=true" alt="AddHotelToPackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmAddHotelToPackage.png?raw=true" alt="ConfirmAddhotelToPackage" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/HotelAddedToPackage.png?raw=true" alt="HotelAddedToPackage" width=" 300"> 
-      </p>
       
-   Za ažuriranje i brisanje aranžmana prvo ga je potrebno selektovati u tabeli, a zatim kliknuti na **Uredi** i **Obriši** respektivno.
-   <p>
-        <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/UpdatePackage1.png?raw=true" alt="UpdatePackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/UpdatePackage2.png?raw=true" alt="UpdatePackage2" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmUpdatePackage.png?raw=true" alt="ConfirmUpdatePackage" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmDeletePackage.png?raw=true" alt="ConfirmUpdatePackage" width=" 300"> 
-      </p>
+      Kao i dosada, proces kreiranja započinje se klikom na dugme **Dodaj**, a zatim se popune polja. U sklopu prozora za kreiranje ponuđena je mogućnost dodavanja nove destinacije, ukoliko ona nije ranije unesena u bazu.
+
+     <p>
+      <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/AddPackage.png?raw=true" alt="AddPackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmAddPackage.png?raw=true" alt="ConfirmAddPackage" width=" 300">
+     </p>
+     
+     Svaki aranžman u ponudi može imati više hotela iz destinacije u kojoj se nalazi, međutim njih je potrebno naknadno dodati. Za upravljanje hotelima u sklopu aranžmana potrebno je izabrati aranžman u tabeli i kliknuti na dugme **Hoteli**. Nakon toga ponuđena je lista svih hotela koji se već nalaze u sklopu aranžmana (ukoliko nema hotela biće ispisana poruka), te mogućnost da dodamo novi hotel ili da obrišemo postojeći. Za brisanje potrebno je selektovati hotel u listi i kliknuti na dugme **Obriši**, a za dodavanje novog na dugme **Dodaj**. U sklopu prozora za dodavanje nalazi se padajući meni sa svim hotelima u destinaciji za koju je aranžman, bez onih koji se već nalaze u ponudi tog aranžmana. Pored ponuđenih hotela administrator ima mogućnost da kreira u bazi unos za novi hotel koji već nije definisan.
+     <p>
+      <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/HotelsInPackage.png?raw=true" alt="HotelsInPackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/HotelInPackageExpanded.png?raw=true" alt="NoHotelsInPackage" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/NoHotelsInPackage.png?raw=true" alt="NoHotelsInPackage" width=" 300"> 
+     </p>
+     <p>
+        <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/AddHotelToPacage.png?raw=true" alt="AddHotelToPackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmAddHotelToPackage.png?raw=true" alt="ConfirmAddhotelToPackage" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/HotelAddedToPackage.png?raw=true" alt="HotelAddedToPackage" width=" 300">
+     </p>
+     
+     Za ažuriranje i brisanje aranžmana prvo ga je potrebno selektovati u tabeli, a zatim kliknuti na **Uredi** i **Obriši** respektivno.
+     
+     <p>
+        <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/UpdatePackage1.png?raw=true" alt="UpdatePackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/UpdatePackage2.png?raw=true" alt="UpdatePackage2" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmUpdatePackage.png?raw=true" alt="ConfirmUpdatePackage" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmDeletePackage.png?raw=true" alt="ConfirmUpdatePackage" width=" 300">
+     </p>
    
      
    - ### Rad sa rezervacijama
@@ -206,7 +207,36 @@ Administrator je tip korisničkog naloga koji ima ovlaštenje da upravlja nalozi
 Agent prodaje je tip korisničkog naloga koji ima ovlaštenje da upravlja informacijama o putnicima, rezervacijama i uplatama. Pored toga on ima i uvid u kreirane aranžmane, hotele, pregled svih uplata i pregled uplata za svaku rezervaciju. Početna stavka navigacionog menija koja se aktivira pri otvaranju prozora je "Putnici". 
 
    - ### Rad sa putnicima
+     Rad sa putnicima kod agenta prodaje je po principu isti kao rad sa zaposlenima kod administratorskog naloga. Prikazani su u vidu kartica sa podacima, a pretražuju se po imenu i/ili prezimenu.
+      <p >
+        <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/Customers.png?raw=true" alt="Customers" > <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/CustomersSearch.png?raw=true" alt="CustomersSearch" width="700">
+      </p>
+
+      Putnik se može kreirati, informacije o postojećem se mogu urediti i može se obrisati iz baze ukoliko ne postoji rezervacija na njegovo ime.
+
+      <p>
+        <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/AddCustomer1.png?raw=true" alt="AddCustomer1" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/AddCustomer2.png?raw=true" alt="AddCustomer2" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/ConfirmAddCustomer.png?raw=true" alt="ConfirmAdd" width=" 300"> 
+       </p>
+       <p> <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/UpdateCustomer1.png?raw=true" alt="UpdateCustomer1" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/UpdateCustomer2.png?raw=true" alt="UpdateCustomer2" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/ConfirmUpdateCustomer.png?raw=true" alt="ConfirmUpdate" width=" 300">
+     </p>
+      <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/ConfirmDeleteCustomer.png?raw=true" alt="DeleteCustomer" width=" 300">
+     
    - ### Rad sa aranžmanima
+     U odjeljku za sad sa aranžmanima agent prodaje pregleda sve aranžmane koji su kreirani od strane administratora. Može da ih filtrira unošenjem naziva destinacije u polje za pretragu, te može da napravi rezervaciju.
+     <p>
+        <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAPackages/SAPackages.png?raw=true" alt="SAHotels" > <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAPackages/PackageSearch.png?raw=true" alt="SAHotelsSearch" width="700">
+      </p>
+
+      Rezervacija se kreira klikom na aranžman u tabeli i onda na dugme **Rezerviši**. Rezervacija nije moguća ukoliko izabrani aranžman trenutno nema hotela u ponudi ili ako nema slobodnih soba u ponuđenim hotelima, te korisniku stiže obavještenje. U suprotnom prikazuje se prozor sa poljima za unos podataka. Omogućeno je i kreiranje unosa za novog putnika ako on već ne postoji u bazi, čak i kada korisnik unese nepostojeći JMB u polje automatski mu se nudi mogućnost kreiranja.
+
+       <p>
+        <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAPackages/NoHotelsAvailable.png?raw=true" alt="NoHotels" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAPackages/NoRoomsAvailable.png?raw=true" alt="NoRooms" width=" 300"> 
+       </p>
+       <p> <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAPackages/AddReservation.png?raw=true" alt="AddReservation" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAPackages/CustomerNotFound.png?raw=true" alt="CustomerNotFound" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAPackages/ConfirmAddReservation.png?raw=true" alt="ConfirmAddReservation" width=" 300">
+     </p>
+
+     U slučaju da agent prodaje prilikom kreranja označi da je rezervacija plaćena, automatski se kreira uplata sa kompletnim iznosom cijene rezervacije.
+      
    - ### Rad sa hotelima
      Za razliku od administratora, agent prodaje nema mogućnost da uređuje podatke o hotelima, ali ima pristup informacijama o svim hotelima koji postoje u bazi. Može i da ih pretražuje prema imenu destinacije.
         <p >
@@ -214,6 +244,20 @@ Agent prodaje je tip korisničkog naloga koji ima ovlaštenje da upravlja inform
       </p>
    
    - ### Rad sa rezervacijama
+     Pored kreiranja rezervacije za postojeće aranžmane, agent prodaje je ovlašten da kreira uplate rezervacija. Informacije o rezervacijama su prikazane tabelarno i mogu se pretraživati na osnovu imena putnika čija je rezervacija.  
+      <p >
+        <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAReservations/SAReservations.png?raw=true" alt="SAHotels" > <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAReservations/SAReservationsSearch.png?raw=true" alt="SAHotelsSearch" width="700">
+      </p>
+
+      Uplata se kreira selektovanjem određene rezervacije u tabeli i klikom na dugme **Uplati**. Ukoliko je rezervacija već potpuno plaćena korisniku će stići obavještenje. U prozoru za uplatu ispisani su osnovni podaci za rezervaciju, ako što je njen ID, ime korisnika, ukupna cijena i dug. Korisnik treba samo da unese iznos koji se uplaćuje ovom uplatom i da u narednom koraku potvrdi ili odustane od kreiranja uplate. Ako je unesen veći iznos od duga uplata neće proći i korisnik će dobiti obavještenje, te će biti vraćen na prethodni korak.
+
+     <p>
+        <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAReservations/AllPayed.png?raw=true" alt="AllPayed" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAReservations/PayReservation.png?raw=true" alt="PayReservtion" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAReservations/AmountTooBig.png?raw=true" alt="AmountTooBig" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAReservations/ConfirmPayment.png?raw=true" alt="ConfirmPayment" width=" 300">
+     </p>
+
+     U slučaju da ne postoji uplata vezana za rezervaciju, moguće je izbrisati rezervaciju njenom selekcijom u tabeli i klikom na dugme **Obriši**.
+
+      <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAReservations/ConfirmDeleteReservation.png?raw=true" alt="DeleteReservatoin" width="300">
      
    - ### Rad sa pojedinačnim uplatama
      Prikaz svih uplata sa važnim podacima o rezervaciji, iznosu, korisniku, kao i agentu prodaje koji je zaključio uplatu. Pretraga se vrši po imenu putnika.
@@ -236,3 +280,7 @@ Za izradu ove aplikacije, korištene su sljedeće tehnologije
 - **C#** - Kao programski jezik za implementaciju logike aplikacije.
 - **XAML (Extensible Application Markup Language)** - Za definisanje korisničkog interfejsa.
 - **MySQL** - Baza podataka.
+
+## Dodatno
+### Kredencijali za pristup
+Početna lozinka za korisničke naloge je *pass123*. Administratorski nalozi imaju korisnička imena "*admin1*" i "*admin2*", a agenti prodaje su "*korisnickoIme2*", "*korisnickoIme3*", "*korisnickoIme4*", "*korisnickoIme5*", "*korisnickoIme6*" i "*korisnickoIme7*".
