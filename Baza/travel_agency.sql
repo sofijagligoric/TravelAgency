@@ -150,7 +150,7 @@ create table package
 insert into package (StartDate, EndDate, Price, About, PostCode, DestinationName) values ('2024-09-03', '2024-09-10', 1985.00, 'Sedam dana u Milanu.', 20123, 'Milano');
 insert into package (StartDate, EndDate, Price, About, PostCode, DestinationName) values ('2024-10-12', '2024-10-15', 814.00, 'Tri dana u Parizu.', 70123, 'Pariz');
 insert into package (StartDate, EndDate, Price, About, PostCode, DestinationName) values ('2024-12-31', '2025-01-02', 1600.00, 'Nova Godina u Atini.', 11742, 'Atina');
-insert into package (StartDate, EndDate, Price, About, PostCode, DestinationName) values ('2024-12-31', '2025-01-02', 2800.00, 'Nova godina u Lisabonu.', 1900, 'Lisabon');
+insert into package (StartDate, EndDate, Price, About, PostCode, DestinationName) values ('2024-12-31', '2025-01-02', 2800.00, 'Nova Godina u Lisabonu.', 1900, 'Lisabon');
 insert into package (StartDate, EndDate, Price, About, PostCode, DestinationName) values ('2024-04-01', '2024-04-05', 1255.00, 'Četiri dana u Zagrebu.', 10000, 'Zagreb');
 
 
