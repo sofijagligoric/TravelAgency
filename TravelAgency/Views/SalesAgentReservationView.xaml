@@ -15,6 +15,15 @@
         <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
 
+    <UserControl.InputBindings>
+        <KeyBinding Key="P"
+                    Modifiers="Control"
+                    Command="{Binding PayReservationCommand}" />
+        <KeyBinding Key="Delete"
+                    Modifiers="Control"
+                    Command="{Binding DeleteReservationCommand}" />
+    </UserControl.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />

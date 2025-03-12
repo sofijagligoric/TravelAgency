@@ -16,6 +16,13 @@
         <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
 
+    <UserControl.InputBindings>
+    <KeyBinding Key="R"
+                Modifiers="Control"
+                Command="{Binding AddReservationCommand}" />
+    
+    </UserControl.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />

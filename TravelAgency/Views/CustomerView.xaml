@@ -15,6 +15,18 @@
         <util:EmptyToVisibilityConverter x:Key="EmptyToVisibilityConverter" />
         <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
+
+    <UserControl.InputBindings>
+    <KeyBinding Key="N"
+                Modifiers="Control"
+                Command="{Binding AddCustomerCommand}" />
+    <KeyBinding Key="U"
+                Modifiers="Control"
+                    Command="{Binding UpdateCustomerCommand}" />
+    <KeyBinding Key="Delete"
+                    Command="{Binding DeleteCustomerCommand}" />
+    </UserControl.InputBindings>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />

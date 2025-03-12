@@ -11,10 +11,24 @@
              d:DesignHeight="500"
              d:DesignWidth="800">
 
+
     <UserControl.Resources>
         <util:EmptyToVisibilityConverter x:Key="EmptyToVisibilityConverter" />
         <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
+
+
+    <UserControl.InputBindings>
+        <KeyBinding Key="N"
+                    Modifiers="Control"
+                    Command="{Binding AddEmployeeCommand}" />
+        <KeyBinding Key="U"
+                    Modifiers="Control"
+                    Command="{Binding UpdateEmployeeCommand}" />
+        <KeyBinding Key="Delete"
+                    Command="{Binding DeleteEmployeeCommand}" />
+    </UserControl.InputBindings>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />

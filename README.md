@@ -58,7 +58,7 @@ Pored izbora teme nalaze se dva dugmeta: **EN** za engleski jezik i **SR** za sr
 
 
 ### Promjena lozinke
-Na dnu navigacionog menija postavljena je mogućnost promjene lozinke. Klikom na dugme "Promijeni lozinku" otvara se prozor sa poljima za unos trenutne lozinke, nove lozinke, kao i potvrda nove lozinke. U slučaju da unesena trenutna lozinka nije tačna ili da se ne poklapaju unosi nove lozinke korisniku će se prikazati poruka i biće vraćen na prethodni korak. Za prihvatanje izmjene lozinke traži se dodatna potvrda od korisnika, uz mogućnost odustajanja. 
+Na dnu navigacionog menija postavljena je mogućnost promjene lozinke. Klikom na dugme "Promijeni lozinku" otvara se prozor sa poljima za unos trenutne lozinke, nove lozinke, kao i potvrda nove lozinke. U slučaju da unesena trenutna lozinka nije tačna ili da se ne poklapaju unosi nove lozinke korisniku će se prikazati poruka i biće vraćen na prethodni korak. Za prihvatanje izmjene lozinke traži se dodatna potvrda od korisnika, uz mogućnost odustajanja. Prečica na tastaturi za promjenu lozinke je **CTRL + F5**.
 
 <p align="center">
     <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/General/PasswordChange.png?raw=true" alt="PasswordChange" width="  300">
@@ -126,6 +126,11 @@ Administrator je tip korisničkog naloga koji ima ovlaštenje da upravlja nalozi
      <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/Employees/ConfirmDeleteEmployee.png?raw=true" alt="DeleteEmployee" width="  300">
      </p>
 
+     Prečice na tastaturi:
+      - kreiranje novog - **CTRL + N**
+      - ažuriranje - **CTRL + U**
+      - brisanje - **Delete**.
+
    - ### Rad sa destinacijama
      Podaci o destinacijama prikazani su u vidu tabele, a **filtriranje** se vrši unošenjem imena destinacije u polje.
      <p align="center">
@@ -142,6 +147,10 @@ Administrator je tip korisničkog naloga koji ima ovlaštenje da upravlja nalozi
      <p align="center">
       <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminDestinations/ConfirmDestinationDelete.png?raw=true" alt="DeleteEmployee" width="  300">
       </p>
+
+       Prečice na tastaturi:
+      - kreiranje nove - **CTRL + N**
+      - brisanje - **CTRL + Delete**.
       
    - ### Rad sa hotelima
      Informacije o hotelima su prikazane u tabeli. Moguće ih je pretražiti po imenu destinacije u kojoj se nalaze.
@@ -169,6 +178,11 @@ Administrator je tip korisničkog naloga koji ima ovlaštenje da upravlja nalozi
       <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminHotels/ConfirmDeleteHotel.png?raw=true" alt="ConfirmDeleteHotel" width="  300">
       </p>
 
+       Prečice na tastaturi:
+      - kreiranje novog - **CTRL + N**
+      - ažuriranje - **CTRL + U**
+      - brisanje - **CTRL + Delete**.
+
    - ### Rad sa aranžmanima
       Svaki aranžman se odnosi na jednu destinaciju i ima određeno vrijeme trajanja definisano datumom početka i kraja. Za istu destinaciju moguće je kreirati više aranžmana. Filtriranje aranžmana vrši se navođenjem naziva destinacije u polje za pretragu.
       <p align="center">
@@ -195,7 +209,12 @@ Administrator je tip korisničkog naloga koji ima ovlaštenje da upravlja nalozi
      <p align="center">
         <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/UpdatePackage1.png?raw=true" alt="UpdatePackage" width=" 300"> &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/UpdatePackage2.png?raw=true" alt="UpdatePackage2" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmUpdatePackage.png?raw=true" alt="ConfirmUpdatePackage" width=" 300">  &nbsp; <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/AdminPackages/ConfirmDeletePackage.png?raw=true" alt="ConfirmUpdatePackage" width=" 300">
      </p>
-   
+
+     Prečice na tastaturi:
+      - kreiranje novog - **CTRL + N**
+      - ažuriranje - **CTRL + U**
+      - hoteli - **CTRL + H**
+      - brisanje - **CTRL + Delete**.
      
    - ### Rad sa rezervacijama
      Administratorska ovlaštenja za rezervacije završavaju na nivou jednostavnog pregleda informacija o rezervacijama i pretraživanja istih na osnovu imena i/ili prezime putnika.
@@ -224,6 +243,11 @@ Agent prodaje je tip korisničkog naloga koji ima ovlaštenje da upravlja inform
      <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/ConfirmUpdateCustomer.png?raw=true" alt="ConfirmUpdate" width=" 300"> &nbsp;
       <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SACustomer/ConfirmDeleteCustomer.png?raw=true" alt="DeleteCustomer" width=" 300">
       </p>
+
+      Prečice na tastaturi:
+      - kreiranje novog - **CTRL + N**
+      - ažuriranje - **CTRL + U**
+      - brisanje - **Delete**.
      
    - ### Rad sa aranžmanima
      U odjeljku za sad sa aranžmanima agent prodaje pregleda sve aranžmane koji su kreirani od strane administratora. Može da ih filtrira unošenjem naziva destinacije u polje za pretragu, te može da napravi rezervaciju.
@@ -242,6 +266,9 @@ Agent prodaje je tip korisničkog naloga koji ima ovlaštenje da upravlja inform
      </p>
 
      U slučaju da agent prodaje prilikom kreranja označi da je rezervacija plaćena, automatski se kreira uplata sa kompletnim iznosom cijene rezervacije.
+
+     Prečice na tastaturi:
+      - kreiranje rezervacije - **CTRL + R**
       
    - ### Rad sa hotelima
      Za razliku od administratora, agent prodaje nema mogućnost da uređuje podatke o hotelima, ali ima pristup informacijama o svim hotelima koji postoje u bazi. Može i da ih pretražuje prema imenu destinacije.
@@ -265,6 +292,10 @@ Agent prodaje je tip korisničkog naloga koji ima ovlaštenje da upravlja inform
      <p align="center">
       <img src="https://github.com/sofijagligoric/TravelAgency/blob/master/Screenshots/SAReservations/ConfirmDeleteReservation.png?raw=true" alt="DeleteReservatoin" width="300">
       </p>
+
+      Prečice na tastaturi:
+      - kreiranje uplate - **CTRL + P**
+      - brisanje - **CTRL + Delete**.
      
    - ### Rad sa pojedinačnim uplatama
      Prikaz svih uplata sa važnim podacima o rezervaciji, iznosu, korisniku, kao i agentu prodaje koji je zaključio uplatu. Pretraga se vrši po imenu putnika.

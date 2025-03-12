@@ -14,6 +14,14 @@
         <util:EmptyToVisibilityConverter x:Key="EmptyToVisibilityConverter" />
         <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
+
+    <UserControl.InputBindings>
+        <KeyBinding Key="N"
+                    Modifiers="Control"
+                    Command="{Binding AddDestinationCommand}" />
+        <KeyBinding Key="Delete"
+                    Command="{Binding DeleteDestinationCommand}" />
+    </UserControl.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />

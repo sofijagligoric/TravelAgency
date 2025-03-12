@@ -17,6 +17,21 @@
         <util:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
     </UserControl.Resources>
 
+    <UserControl.InputBindings>
+        <KeyBinding Key="N"
+                    Modifiers="Control"
+                    Command="{Binding AddPackageCommand}" />
+        <KeyBinding Key="H"
+                    Modifiers="Control"
+                    Command="{Binding ShowHotelsCommand}" />
+        <KeyBinding Key="U"
+                    Modifiers="Control"
+                    Command="{Binding UpdatePackageCommand}" />
+        <KeyBinding Key="Delete"
+                    Modifiers="Control"
+                    Command="{Binding DeletePackageCommand}" />
+    </UserControl.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />

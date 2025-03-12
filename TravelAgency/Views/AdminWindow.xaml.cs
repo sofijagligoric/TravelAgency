@@ -57,8 +57,24 @@ namespace TravelAgency.Views
             }
             var navigationService = new NavigationService(MainContent);
             DataContext = new AdminViewModel(navigationService, user);
+
+          
         }
 
+        /*
+        private void UpdateShortcuts(object sender, EventArgs e)
+        {
+            this.InputBindings.Clear();
+
+            if (MainContent.Content is UserControl activeView)
+            {
+                foreach (var binding in activeView.InputBindings)
+                {
+                    this.InputBindings.Add((InputBinding)binding);
+                }
+            }
+        }
+        */
 
         private void btnMinimise_Click(object sender, RoutedEventArgs e)
         {
